@@ -1,6 +1,6 @@
 # Discrepancias entre la plantilla oficial y la norma
 
-Generado con `node tools/discrepancias.mjs --escribir`. 127 preguntas de convocatorias publicadas cuya respuesta oficial no coincide con la legislación vigente o con las matemáticas. La respuesta oficial no se modifica en los datos: en el examen real vale la del tribunal. Excluye las anuladas y las reservadas para el examen final. Las fuentes de cada banco están en `docs/BANCOS.md`.
+Generado con `node tools/discrepancias.mjs --escribir`. 129 preguntas de convocatorias publicadas cuya respuesta oficial no coincide con la legislación vigente o con las matemáticas. La respuesta oficial no se modifica en los datos: en el examen real vale la del tribunal. Excluye las anuladas y las reservadas para el examen final. Las fuentes de cada banco están en `docs/BANCOS.md`.
 
 ## Andalucía
 
@@ -83,7 +83,7 @@ Oficial: **a)** La longitud del arco de ecuador correspondiente a un ángulo cen
 La milla náutica es la longitud de un minuto de arco de meridiano. Su valor internacional es exactamente 1852 m (Conferencia Hidrográfica Internacional de 1929), que corresponde a su valor medio hacia los 45° de latitud. Un minuto de arco de ecuador mide unos 1855,3 m (la milla geográfica), no 1852 m, y el de un paralelo mide menos cuanto mayor es la latitud. La a) mezcla dos definiciones, la b) es falsa y la c) es la definición del metro; en rigor, ninguna de las tres es correcta y la d) se sostiene.  
 _Opción defendible: d)_
 
-### Patrón de Yate (39)
+### Patrón de Yate (41)
 
 **and-py-2015-c1-g10** · 1ª convocatoria 2015  
 El RESAR o SART podrá activarse o desactivarse:  
@@ -293,6 +293,18 @@ En la pantalla del radar observamos que tenemos barrido y los controles de pertu
 Oficial: **b)** La sintonía  
 Con la ganancia a cero tampoco aparecen ecos, así que la opción a también podría justificar el síntoma. La plantilla da la sintonía, que es la causa clásica en los manuales cuando hay barrido pero no ecos; conviene saber que en la práctica se comprueban ambos controles.  
 _Opción defendible: a)_
+
+**and-py-2025-c1-g05** · 1ª Convocatoria 2025  
+En el caso de que el centro de gravedad coincida con el metacentro estamos ante:  
+Oficial: **c)** Un equilibrio indiferente  
+En física, «equilibrio neutro» es sinónimo de indiferente, así que la d) también describe la misma situación. La plantilla da solo la c), que es el término que usan los temarios de náutica; en el examen marca «indiferente», pero la pregunta podría haberse impugnado por tener dos opciones equivalentes.  
+_Opción defendible: d)_
+
+**and-py-2025-c1-g15** · 1ª Convocatoria 2025  
+Señale la opción correcta.  
+Oficial: **a)** El viento geostrófico sopla paralelo a las isobaras.  
+En meteorología teórica el viento antitríptico es el equilibrio entre el gradiente de presión y el rozamiento, sin Coriolis, y por eso sopla perpendicular a las isobaras, de la alta a la baja. Con esa definición d) también sería cierta. La plantilla (a) sigue el manual del examen, que trata el antitríptico como un viento con rozamiento que corta las isobaras con un ángulo. a) es la respuesta indiscutible.  
+_Opción defendible: d)_
 
 ## Dirección General de la Marina Mercante
 

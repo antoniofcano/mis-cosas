@@ -34,7 +34,8 @@ export async function calcularPlan(progress, tit, ahora = Date.now(), { guardar 
     conceptos: entradaConceptos(conceptos, progress, banco.eje.id, tit, progress.get().exams),
   });
   if (guardar && st.plan?.nuevo) progress.setPlanEstudio(tit, st.plan.base); // sin guardar: para mirar otro día (el de mañana)
-  return { ...st.datos, banco, indiceConceptos: conceptos, plan: st.actividades, st };
+  // cursoCompleto: el curso sin recortar al módulo elegido (src/course/foco.js), para abrir un tema del otro módulo.
+  return { ...st.datos, cursoCompleto: curso, banco, indiceConceptos: conceptos, plan: st.actividades, st };
 }
 
 /** Enlace a una actividad del plan (las tandas de preguntas llevan su semilla para poder recargarlas). */

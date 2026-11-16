@@ -1,0 +1,10 @@
+{
+ "formato": "conceptos-etiquetas/1", "eje": "andalucia", "tit": "per", "autor": "agente-r63", "fecha": "2026-11-16",
+ "etiquetas": {
+  "and-2026-c3-t24": {"conceptos":["ripa.dst.sin-preferencia","ripa.dst.cruzar"],"motivo":"R-63: la falsa es que quien cruza debe apartarse de los que van por la vía; ir por la vía no da preferencia."},
+  "and-2018-c2-t23": {"conceptos":["ripa.dst.sin-preferencia","ripa.cruce"],"motivo":"R-63: en la vía, el que cruza por estribor tiene preferencia por la Regla 15; la vía no la da."},
+  "and-2018-c4-t21": {"conceptos":["ripa.dst.sin-preferencia","ripa.vuelta-encontrada"],"motivo":"R-63: en la vía no se es «el que sigue a rumbo»; de vuelta encontrada, los dos caen a estribor."},
+  "and-2020-c1-t21": {"conceptos":["ripa.dst.sin-preferencia","ripa.cruce"],"motivo":"R-63: ir por la vía no hace «sigue a rumbo»; cede quien ve al otro por estribor."},
+  "and-2023-c3-t27": {"conceptos":["ripa.dst.sin-preferencia","ripa.cruce"],"motivo":"R-63: ni el que va por la vía ni el que la cruza tienen preferencia; manda la Regla 15."}
+ }
+}

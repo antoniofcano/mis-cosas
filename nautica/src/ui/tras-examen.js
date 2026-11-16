@@ -7,15 +7,14 @@
 
 import { h, setChildren, copyText } from './dom.js';
 import { TITULACIONES, tlink } from './titulacion.js';
-import { claveSemana, leerAjuste, guardarFoto, apuntarResultado, descartarModulo, responderComoFue, RESPUESTAS_FUE } from '../course/semana.js';
+import { claveSemana, leerAjuste, guardarFoto, apuntarResultado, responderComoFue, RESPUESTAS_FUE } from '../course/semana.js';
 import {
   fallosPorMateria, fotoPrediccion, tocaFoto, leerResultado, modulosAprobados, aptoCompleto, compararPrediccion,
-  textoComparacion, lineaModuloPendiente, DIAS_RESULTADO,
+  textoComparacion, DIAS_RESULTADO,
 } from '../course/tras-examen.js';
 import { estructuraModulo } from '../theory/blocks.js';
 import { diasHasta } from '../course/plan.js';
 import { cuenta, fechaLarga } from '../texto.js';
-import { randomSeed } from '../math/rng.js';
 
 const ajuste = (progress, tit) => leerAjuste(progress.settings()[claveSemana(tit)]);
 const guardar = (progress, tit, a) => progress.setSetting(claveSemana(tit), a);
@@ -24,7 +23,7 @@ const repintar = () => dispatchEvent(new HashChangeEvent('hashchange'));
 /** La estructura y los exámenes con los que se mide al alumno: los del módulo que le queda, si le queda uno. */
 export function medida(tit, st) {
   const E = TITULACIONES[tit].estructura;
-  const id = st.moduloPendiente?.id ?? null;
+  const id = st.foco?.id ?? null;
   // Los fallos por materia solo leen `porTema`: valen todos los exámenes, en su orden.
   return { estructura: id ? estructuraModulo(E, id) : E, tests: st.datos?.tests ?? [] };
 }
@@ -111,6 +110,7 @@ export function tarjetaResultado(progress, tit, fecha, fue) {
     } },
     h('h2', { id: `res-${tit}-t` }, '¿Cuántas fallaste en cada materia?'),
     h('p.muted.small', 'Con la plantilla de respuestas, cuando salga. Es voluntario: sirve para ver si la app acertó contigo y para afinarla.'),
+    h('p.small', 'Si la convocatoria ya está en la app, ', h('a', { href: tlink(tit, ['oficial']) }, 'pasa tu hoja'), ': Patrón la corrige con la plantilla, rellena esto solo y entrena tus fallos.'),
     h('div.res-materias', sels.map(({ b, s }) => h('div.res-materia', h('label', { for: s.id }, b.titulo), s))),
     radios,
     h('div.semana-fue-botones', h('button', { type: 'submit' }, 'Guardar'), previo ? h('button.linklike', { type: 'button', onclick: pintar }, 'Cancelar') : null));
@@ -163,22 +163,4 @@ function yaLoSe(progress, tit, fecha) {
     h('h2', { id: `yalose-${tit}` }, `¿Ya sabes la nota del examen de ${T.sigla}?`),
     h('p.muted.small', `Era el ${fechaLarga(fecha, { diaSemana: false })}.`),
     h('div.semana-fue-botones', ['aprobado', 'suspenso'].map((r) => h('button.secondary', { type: 'button', onclick: () => responder(r) }, RESPUESTAS_FUE[r]))));
-}
-
-/** El aviso del módulo que queda (PY), con el simulacro del módulo y la salida. null si no queda ninguno. */
-export function avisoModulo(progress, tit, st) {
-  const p = st.moduloPendiente;
-  if (!p) return null;
-  const T = TITULACIONES[tit];
-  return h('section.modulo-pendiente', { 'aria-labelledby': `modp-${tit}` },
-    h('h2', { id: `modp-${tit}` }, `Te queda el ${p.titulo.replace(/^Módulo/, 'módulo')}`),
-    h('p', lineaModuloPendiente(p, T.sigla)),
-    h('p.muted.small', '«¿Estás listo?» y la semana del examen miran ahora solo este módulo. Te examinarás solo de él, con su tiempo.'),
-    h('div.semana-fue-botones',
-      h('a.btn', { href: tlink(tit, ['test', 'simulacro'], { s: randomSeed(), m: p.id }) }, `Simulacro del ${p.titulo.replace(/^Módulo/, 'módulo')}`),
-      h('button.linklike', { type: 'button', onclick: () => {
-        if (!confirm('¿Volver a preparar el examen entero? Puedes volver a apuntar el módulo aprobado desde «La semana del examen».')) return;
-        guardar(progress, tit, descartarModulo(ajuste(progress, tit), p.desde));
-        repintar();
-      } }, 'Prepararlo entero')));
 }

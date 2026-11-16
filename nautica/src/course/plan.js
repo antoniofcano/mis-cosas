@@ -118,9 +118,10 @@ export function pendientesRuta(estructura, curso, preguntas, regs = {}, respuest
  * @param {object} o  { estructura, curso, preguntas, regs, respuestas, tests, testEnCurso, fechaExamen, ahora }
  * @returns {{ tipo, titulo, verbo, minutos, ruta: string[], query?: object, ut: number|null }[]}
  */
-export function planHoy({ estructura, curso = null, preguntas = [], regs = {}, respuestas = {}, tests = [], testEnCurso = null, fechaExamen = null, ultimoMezclado = null, segTarjeta = SEG_TARJETA, final = null, conceptos = null, ahora = Date.now() }) {
+export function planHoy({ estructura, foco = null, curso = null, preguntas = [], regs = {}, respuestas = {}, tests = [], testEnCurso = null, fechaExamen = null, ultimoMezclado = null, segTarjeta = SEG_TARJETA, final = null, conceptos = null, ahora = Date.now() }) {
   const lista = [];
-  const simulacro = () => ({ tipo: 'simulacro', titulo: 'Simulacro de examen', verbo: 'Hacer simulacro', minutos: estructura.duracionMin, ruta: ['test', 'simulacro'], query: undefined, ut: null });
+  // Con un módulo elegido (PY, src/course/foco.js), el simulacro es el de ese módulo, con su tiempo.
+  const simulacro = () => ({ tipo: 'simulacro', titulo: foco ? `Simulacro del ${estructura.titulo.replace(/^Módulo/, 'módulo')}` : 'Simulacro de examen', verbo: 'Hacer simulacro', minutos: estructura.duracionMin, ruta: ['test', 'simulacro'], query: foco ? { m: foco } : undefined, ut: null });
 
   // 1. Examen a medias
   if (testEnCurso) {

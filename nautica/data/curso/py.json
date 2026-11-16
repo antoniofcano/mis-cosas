@@ -2463,7 +2463,7 @@
       {
        "tipo": "texto",
        "titulo": "Los cálidos del sur: siroco y lebeche",
-       "texto": "**Siroco** (xaloc): viento del **SE**, de origen sahariano. Es **extremadamente cálido en verano** y de **temperatura moderada en invierno**. Suele traer polvo y calima, y al cruzar el mar se carga de humedad.\n\n**Lebeche** (garbí): viento del **SW**, cálido, seco y a menudo polvoriento en la costa levantina.\n\n**Mediodía** (migjorn): del **S**, cálido."
+       "texto": "**Siroco** (xaloc): viento del **SE**, de origen sahariano. Sopla **por delante (en la vanguardia) de las depresiones** que cruzan el Mediterráneo meridional. Sale del Sáhara **cálido y seco**, con polvo y calima, y **al cruzar el mar se carga de humedad**. Es **extremadamente cálido en verano** y de **temperatura moderada en invierno**.\n\n**Lebeche** (garbí): viento del **SW**, cálido, seco y a menudo polvoriento en la costa levantina.\n\n**Mediodía** (migjorn): del **S**, cálido."
       },
       {
        "tipo": "texto",
@@ -2499,7 +2499,7 @@
       },
       {
        "tipo": "ojo",
-       "texto": "Trampas repetidas:\n- La galerna es del **Cantábrico** (no del golfo de León ni del Mediterráneo) y **no siempre** trae precipitación.\n- El mistral es **frío** (bajas temperaturas, aire seco, cielo claro, rachas), nunca de «altas temperaturas».\n- La tramontana es **fría y seca** (no húmeda) y sopla en la **retaguardia** de las borrascas (no en la vanguardia, ni es cálida).\n- El siroco es mediterráneo, no cantábrico."
+       "texto": "Trampas repetidas:\n- La galerna es del **Cantábrico** (no del golfo de León ni del Mediterráneo) y **no siempre** trae precipitación.\n- El mistral es **frío** (bajas temperaturas, aire seco, cielo claro, rachas), nunca de «altas temperaturas».\n- La tramontana es **fría y seca** (no húmeda) y sopla en la **retaguardia** de las borrascas (no en la vanguardia, ni es cálida).\n- El siroco es mediterráneo, no cantábrico, y sopla en la **vanguardia** (por delante) de las depresiones: justo al revés que la tramontana."
       },
       {
        "tipo": "check",
@@ -2528,7 +2528,7 @@
       "Rosa mediterránea: N tramontana, NE gregal, E levante, SE siroco, S mediodía, SW lebeche, W poniente, NW mistral.",
       "Mistral: NW, golfo de León, frío, seco, cielo claro, rachas.",
       "Tramontana: N, fría y seca; nombre general de los fríos y secos de la retaguardia de las borrascas.",
-      "Siroco: SE, sahariano; muy cálido en verano, moderado en invierno.",
+      "Siroco: SE, sahariano, por delante de las depresiones del Mediterráneo meridional; sale cálido y seco y se humedece al cruzar el mar; muy cálido en verano, moderado en invierno.",
       "Galerna: Cantábrico, súbita, fuerte, racheada, tras tiempo apacible y caluroso; con o sin lluvia.",
       "Levante: E, Estrecho (mayo–octubre). Vendaval: SW, golfo de Cádiz. Alisios: NE."
      ],
@@ -2570,6 +2570,10 @@
       {
        "dato": "Vendaval: SW fuerte del golfo de Cádiz, borrascas invernales; alisios del NE en el HN",
        "fuente": "Plantillas 2020-c3-g14 (b), 2025-c1-g13 (c), 2022-c1-g13 (a)"
+      },
+      {
+       "dato": "Siroco: viento muy cálido y seco que sopla en la parte delantera de las depresiones del Mediterráneo meridional",
+       "fuente": "[pregunta reservada], plantilla oficial (a)"
       }
      ],
      "terminos": [
@@ -3461,7 +3465,12 @@
       {
        "tipo": "texto",
        "titulo": "Mediterráneo occidental",
-       "texto": "La corriente general la marca el agua atlántica que entra por el Estrecho:\n\n- Frente a **Ceuta** y entre **Málaga y el cabo de Gata**: hacia el **E**.\n- Una rama sigue al **E** pegada a la costa africana y pasa al **E** por el **canal entre Túnez y Sicilia**."
+       "texto": "La corriente general la marca el agua atlántica que entra por el Estrecho:\n\n- En el **paralelo de Ceuta** tiende al **SE**, y al llegar al **cabo Tres Forcas** se **divide en dos partes** (lo vemos ahora).\n- Entre **Málaga y el cabo de Gata**: hacia el **E**.\n- Una rama sigue al **E** pegada a la costa africana y pasa al **E** por el **canal entre Túnez y Sicilia**."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Costa norte de África: Ceuta y Tres Forcas",
+       "texto": "Así lo describe el tribunal: en el **paralelo de Ceuta** la corriente general **tiende al SE** y, al llegar al **cabo Tres Forcas** (junto a Melilla), **se divide en dos partes**.\n\nTiene lógica: Coriolis desvía a la derecha el chorro atlántico que sale del Estrecho y lo arrima a la costa africana. En Ceuta y en Tres Forcas la costa cambia de golpe de orientación, y ahí nacen los grandes remolinos del mar de Alborán."
       },
       {
        "tipo": "texto",
@@ -3490,7 +3499,7 @@
       },
       {
        "tipo": "ojo",
-       "texto": "Más trampas:\n- Frente a **Ceuta** la corriente va al **E** (ni al SW ni al NE); en el **canal de Túnez-Sicilia**, al **E**, no al W.\n- Entre Palos y San Antonio son **dos** ramas, no tres."
+       "texto": "Más trampas:\n- En el **paralelo de Ceuta** la corriente tiende al **SE** (ni al SW, ni al NE, ni al NW). En **Tres Forcas** se divide en **dos** partes: no se va entera hacia el norte ni al golfo de León.\n- En el **canal de Túnez-Sicilia**, al **E**, no al W.\n- Entre Palos y San Antonio son **dos** ramas, no tres."
       },
       {
        "tipo": "check",
@@ -3521,7 +3530,7 @@
       "Termohalina (densidad: T y S), arrastre (viento persistente), gradiente (desnivel por presión), marea (Luna y Sol). Coriolis: a la derecha en el HN.",
       "Vizcaya: débil e irregular. Portugal: hacia el S, débil; rama al Mediterráneo y sigue como corriente de Canarias (fría, al S-SW).",
       "Estrecho: Atlántico en superficie hacia el E; Mediterráneo en profundidad hacia el W.",
-      "Mediterráneo: Ceuta, Málaga–Gata y Túnez–Sicilia hacia el E; Palos–San Antonio, dos ramas (ESE y NE); golfo de León con NW, hacia S-SE."
+      "Mediterráneo: paralelo de Ceuta hacia el SE y en el cabo Tres Forcas se divide en dos; Málaga–Gata y Túnez–Sicilia hacia el E; Palos–San Antonio, dos ramas (ESE y NE); golfo de León con NW, hacia S-SE."
      ],
      "profundizar": [
       {
@@ -3567,12 +3576,20 @@
        "fuente": "NGA, Sailing Directions (Enroute) Pub. 131 Western Mediterranean, 19.ª ed. 2025 (https://msi.nga.mil), basado en los derroteros nacionales, §3.1; plantilla 2025-c3-g11 (a)"
       },
       {
-       "dato": "Ceuta, Málaga–Gata y canal Túnez–Sicilia: corriente general al E; golfo de León con NW fuerte: al S (no al N)",
-       "fuente": "Plantillas 2021-c1-g19 (a), 2026-c1-g19 (b), 2025-c1-g12 (a falsa); Derrotero IHM no consultable en línea"
+       "dato": "Málaga–Gata y canal Túnez–Sicilia: corriente general al E; golfo de León con NW fuerte: al S (no al N); paralelo de Ceuta: ni al SW ni al NE",
+       "fuente": "Plantillas 2021-c1-g19 (a), 2026-c1-g19 (b), 2024-c3-g14 (c falsa), 2025-c1-g12 (a falsa); Derrotero IHM no consultable en línea"
       },
       {
        "dato": "Corriente de Canarias: fría, hacia el S-SW",
        "fuente": "Plantilla 2025-c2-g14 (d)"
+      },
+      {
+       "dato": "Paralelo de Ceuta: la corriente general tiende al SE; en el cabo Tres Forcas se divide en dos partes. Rumbo e intensidad de cada parte: pendiente (falta el Derrotero del IHM)",
+       "fuente": "[pregunta reservada], plantilla oficial (a)"
+      },
+      {
+       "dato": "El chorro atlántico se desvía al S por Coriolis y sigue la costa africana; los giros de Alborán nacen de los bucles que se forman frente a Ceuta y el cabo Tres Forcas, donde la costa cambia bruscamente de orientación",
+       "fuente": "Sánchez-Garrido y Nadal, «The Alboran Sea circulation and its biological response: A review», Frontiers in Marine Science 9:933390, 2022 (https://www.frontiersin.org/journals/marine-science/articles/10.3389/fmars.2022.933390/full), §2–3"
       }
      ],
      "terminos": [
@@ -6729,6 +6746,11 @@
        "texto": "Con los mismos datos, a la hora oficial **19:10** (17:10 UT): tramo PM 12:25 – BM 18:40, D = 375 min, A = 3,10 − 0,90 = **2,20 m**, I = 18:40 − 17:10 = **90 min**.\n\nC = 2,20 · sen²(90° · 90 / 375) = 2,20 · sen²(21,6°) ≈ **0,30 m** → h = 0,90 + 0,30 = **1,20 m**."
       },
       {
+       "tipo": "texto",
+       "titulo": "Tramo que cruza la medianoche",
+       "texto": "Si la bajamar (o la pleamar) del tramo es del **día siguiente**, súmale **24 h** antes de calcular: la BM de las 00:23 del día siguiente pasa a ser las **24:23**.\n\nAsí D e I salen bien. Si la hora final pasa de 24:00, réstale 24 h: es del día siguiente."
+      },
+      {
        "tipo": "regla",
        "id": "py-nav-05"
       },
@@ -6823,6 +6845,7 @@
       "C = A · sen²(90° · I / D); h = altura BM + C; sonda = sonda de la carta + h.",
       "Inverso: C = h necesaria − altura BM; I = D · arcsen(√(C/A)) / 90.",
       "Hora: BM + I si sube, BM − I si baja.",
+      "Tramo que cruza la medianoche: a la hora del día siguiente súmale 24 h (00:23 → 24:23).",
       "Presión: unos −1 cm por hPa por encima de 1013 y +1 cm por debajo."
      ],
      "profundizar": [

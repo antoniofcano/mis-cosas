@@ -1,5 +1,6 @@
 // Clase: #/<tit>/curso/<lección>[?practica=1] — tarjetas paso a paso (se retoma donde se dejó), chuleta,
-// práctica con preguntas reales y repaso espaciado. Modo concentración con barra de actividad.
+// práctica con preguntas reales (se retoma la tanda a medias; se puede ir directo a ella desde la primera tarjeta y desde
+// el tema) y repaso espaciado. Modo concentración con barra de actividad.
 // También las clases del apéndice «Las cuentas del patrón» (#/<tit>/cuentas/<id>): las mismas tarjetas, con ejercicios
 // de cuentas para la calculadora (tarjetas `cuenta`) y sin práctica ni plan.
 
@@ -35,6 +36,7 @@ import { botonBloc } from '../bloc.js';
 import { ID_BLOC } from '../../bloc/notas.js';
 import { crearAyudas } from '../ayudas.js';
 import { glosar } from '../glosas.js';
+import { CLAVE_TANDA, tandaAMedias } from '../../course/tanda-clase.js';
 
 const PRACTICA_MAX = 10;
 
@@ -183,6 +185,8 @@ export function leccionView({ ctx, progress, params: route, tit }) {
           lineaApoyos(),
           enlaceRepasa(),
           enApendice ? h('p.muted.small', 'Repaso de matemáticas: no es un tema del examen ni cuenta en tu plan. Ten a mano la calculadora.') : null,
+          // Directo a la prueba de la clase, sin recorrer las tarjetas (para comprobar si ya la sabes o repasarla).
+          !enApendice && nPractica ? h('p.directo-practica', h('button.secondary', { type: 'button', onclick: () => { voice.stop(); practicar(); } }, conIcono('pregunta', `Ir directo a las ${cuenta(nPractica, 'pregunta')} de examen`))) : null,
           episodio ? h('div.radio-clase', h('a.btn.secondary.boton-icono', { href: enlacePodcast }, icono('podcast'), `Escucha el podcast de esta clase (${minPodcast} min)`),
             h('p.muted.small', 'Antes o después de la clase: Elena y Andrés lo cuentan en voz alta.')) : null);
         case 'texto': return glosado(h('div.paso.texto', p.titulo ? h('h3', p.titulo) : null, rich(p.texto), /^Problema modelo/.test(p.titulo ?? '') ? accionesModelo(p) : null));
@@ -514,17 +518,23 @@ export function leccionView({ ctx, progress, params: route, tit }) {
       window.scrollTo(0, 0);
     }
 
-    function practicar() {
+    function practicar(guardada = null) {
       const resp = progress.get().exams;
       // primero las no hechas, después las falladas, después el resto
       const orden = (q) => (!resp[q.id] ? 0 : !resp[q.id].ok ? 1 : 2);
       const rng = createRng(randomSeed());
-      const ses = rng.shuffle(disponibles).sort((a, b) => orden(a) - orden(b)).slice(0, PRACTICA_MAX);
+      const ses = guardada ? guardada.ids.map((x) => preguntas.get(x)) : rng.shuffle(disponibles).sort((a, b) => orden(a) - orden(b)).slice(0, PRACTICA_MAX);
+      // Se guarda por dónde vas (en este aparato): si sales a mitad (avisar de un error, una llamada…), al volver a la
+      // clase sigues en la misma pregunta.
+      const guarda = (i, ok) => progress.setSetting(CLAVE_TANDA, { leccion: L.id, ids: ses.map((q) => q.id), i, ok, dia: new Date().toISOString().slice(0, 10) });
+      guarda(guardada?.i ?? 0, guardada?.ok ?? 0);
       setChildren(cont, tandaPreguntas({
         preguntas: ses, explicaciones: bank.explicaciones, progress, barra, vocab: bank.vocab, ayudas, rotulo: L.titulo,
+        inicio: guardada ? { i: guardada.i, ok: guardada.ok } : null, alAvanzar: guarda,
         onSummary: (t) => { summaryText = `CLASE ${L.id} práctica\n${t}`; },
         onFin: (ok, total, min) => {
           const acierto = ok / total;
+          progress.setSetting(CLAVE_TANDA, null);
           progress.saveLeccion(L.id, { ...trasPractica(reg(), acierto), paso: 0 });
           progress.logActividad(min);
           barra.remove();
@@ -554,12 +564,15 @@ export function leccionView({ ctx, progress, params: route, tit }) {
             : 'Te irá mejor si la ves antes (luego vuelves aquí). Si ya lo sabes, empieza igualmente.')),
         h('div.actions.aviso-apoyo-botones',
           h('a.btn.grande', { href: tlink(tit, ['curso', faltan[0].l.id], { desde: L.id }) }, `Ver antes: ${faltan[0].l.titulo}`),
-          h('button.secondary.grande', { type: 'button', onclick: () => tarjeta() }, 'Empezar igualmente')));
+          h('button.secondary.grande', { type: 'button', onclick: () => tarjeta() }, 'Empezar igualmente'),
+          nPractica ? h('button.secondary', { type: 'button', onclick: () => practicar() }, conIcono('pregunta', `Ir directo a las ${cuenta(nPractica, 'pregunta')} de examen`)) : null));
       summaryText = `CLASE ${L.id} «${L.titulo}» · AVISO: se apoya en ${faltan.map((a) => `${a.l.id} ${a.l.titulo}`).join('; ')} (sin ver) · «Empezar igualmente» para seguir`;
       window.scrollTo(0, 0);
     }
     const sinEmpezar = !reg().visto && reg().caja == null && !Number(reg().paso);
-    if (route.query.practica === '1' && nPractica) practicar();
+    const aMedias = enApendice ? null : tandaAMedias(progress.settings()[CLAVE_TANDA], L.id, preguntas);
+    if (aMedias) practicar(aMedias);
+    else if (route.query.practica === '1' && nPractica) practicar();
     else if (sinEmpezar && apoyos.some((a) => !a.vista)) avisoApoyos();
     else tarjeta();
   }).catch((err) => setChildren(cont, h('p.warn', `No se pudo cargar la clase: ${err.message}`)));

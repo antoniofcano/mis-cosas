@@ -78,6 +78,9 @@ Las soluciones programadas de las preguntas de carta de Andalucía siguen en `sr
 - **Reserva por alumno**: la primera vez que un alumno carga un eje y una titulación, la app guarda la foto de la
   reserva en sus ajustes (`reserva_<eje>_<tit>` = `{ convs, modo, desde }`, con `fijarReservaAlumno`). Su examen final
   sale siempre de esa foto; si los datos cambian la reserva, se apartan del estudio las de la foto y las de la ficha.
+  Las convocatorias que el alumno ya hizo de verdad y apuntó con su hoja (`#/<tit>/oficial`, R-60) van en el ajuste
+  compartido `hechas_<eje>_<tit>` (aparte de la foto, en la que gana el primer valor): dejan de ser su examen final y
+  entran en su estudio (ya no son inéditas para él).
 - `listas` (opcional): listados de preguntas reales del eje por titulación, con página propia
   (`#/<tit>/examenes/<id>`). Filtro: `requiere` (las que lo requieren) y/o `sinRequiere` (las que no). `tarjeta`
   es el texto de su tarjeta en «Ejercicios de carta» (`{n}` = número de preguntas). Una lista con `requiere: "carta"`

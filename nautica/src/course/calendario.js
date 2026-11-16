@@ -200,7 +200,7 @@ export function crearPlan(datos, { fechaExamen, minutosDia, diasEstudio = 'todos
   const hoy = diaLocal(ahora);
   const r = repartir(unidades({ ...datos, ahora }).filter((u) => !u.hecha), { desde: hoy, dias: n, minutosDia, fechas: fechasDeEstudio(hoy, n, diasEstudio) });
   return {
-    creado: hoy, fechaExamen, minutosDia, diasEstudio, esencial: !!datos.esencial,
+    creado: hoy, fechaExamen, minutosDia, diasEstudio, esencial: !!datos.esencial, ...(datos.foco ? { foco: datos.foco } : {}),
     dias: Object.fromEntries(r.dias.filter((d) => d.unidades.length).map((d) => [d.fecha, d.unidades.map(({ id, titulo, minutos }) => ({ id, titulo, minutos }))])),
   };
 }

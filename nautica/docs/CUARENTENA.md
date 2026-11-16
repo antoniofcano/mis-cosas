@@ -72,8 +72,9 @@ clases 174, reglas 151, podcast 284 (líneas 76, fichas 79, episodios.json 79, g
   no la pregunta) y un minijuego del PY que lee una pregunta pública cuya opción repite el enunciado corto de una
   reservada.
 
-Queda la **deuda del audio**: 197 citas en 31 episodios grabados (47 preguntas reservadas que el audio lee en su
-minijuego), con su aviso en la app mientras tanto.
+Queda la **deuda del audio**: 135 citas en 24 episodios grabados (32 preguntas reservadas que el audio lee en su
+minijuego), con su aviso en la app mientras tanto. Eran 197 en 31 episodios; bajó al entrar la 3.ª convocatoria de 2026
+en la reserva de Andalucía (16 de noviembre de 2026), porque la 1.ª de 2025 salió de ella y sus citas dejaron de serlo.
 
 ## Fase 2: regrabar el audio (pendiente; no se ha llamado a ElevenLabs)
 

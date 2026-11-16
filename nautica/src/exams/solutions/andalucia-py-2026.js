@@ -204,6 +204,104 @@ export default {
       ], 'Situación 23:00'));
     },
   },
+
+  // ---- 3ª Convocatoria 2026
+  'and-py-2026-c3-n11': {
+    ejercicio: 'abatimiento',
+    solve(k) {
+      const s = k.fromMark('punta-europa', 165, 10, 'Situación');
+      const { rv: rs } = k.rhumb(s, 'algeciras-espigon', 'Rumbo y distancia a Algeciras');
+      const rv = k.rvConAbatimiento(rs, 15, SW);
+      const ct = k.ct({ dm: -4, desvio: -3 });
+      return [{ kind: 'bearing', value: k.ra(rv, ct) }];
+    },
+  },
+  'and-py-2026-c3-n12': {
+    ejercicio: 'corriente-efectiva',
+    solve(k) {
+      const s = k.pos('35 45,0 N', '6 15,0 W', 'Situación 11:30');
+      const rs = k.abatimiento(35, 20, SE);
+      const { ref, vef } = k.efectivo(rs, 8, E, 3, s);
+      return latlon(k.estimaEfectiva(s, ref, vef, hrb(13) - hrb(11, 30), 'Situación 13:00'));
+    },
+  },
+  'and-py-2026-c3-n13': {
+    ejercicio: 'ct-enfilacion',
+    solve(k) {
+      // En la oposición, Tarifa queda a un lado y Cires al otro: la demora a Cires es la de la recta Tarifa → Cires.
+      const dv = k.oposicion('isla-tarifa', 'punta-cires');
+      return [{ kind: 'signed', value: k.ctFrom(dv, 138.5) }];
+    },
+  },
+  'and-py-2026-c3-n14': {
+    ejercicio: 'corriente-desconocida',
+    solve(k) {
+      const s = k.fromMark('cabo-roche', SW, 4, 'Situación 18:30');
+      const t = hrb(20) - hrb(18, 30);
+      const e = k.run(s, 195, k.distFor(7, t), 'Situación de estima 20:00');
+      const o = k.fix2('cabo-roche', 359, 'cabo-trafalgar', 32, 'Situación verdadera 20:00');
+      const { rc, ic } = k.corrienteDesconocida(e, o, t);
+      return [{ kind: 'bearing', value: rc }, { kind: 'speed', value: ic }];
+    },
+  },
+  'and-py-2026-c3-n15': {
+    ejercicio: 'rumbo-pasar-distancia',
+    solve(k) {
+      const s = k.pos('35 44,0 N', '6 11,0 W', 'Situación');
+      // Subimos hacia el Estrecho por fuera de Espartel: el cabo queda por estribor.
+      const rs = k.tangent(s, 'cabo-espartel', 4, 'estribor');
+      const rv = k.rvConAbatimiento(rs, 15, NW);
+      const ct = k.ct({ carta: [2 + 25 / 60, 2012, -6], anyo: 2026, desvio: 10 });
+      return [{ kind: 'bearing', value: k.ra(rv, ct) }];
+    },
+  },
+  'and-py-2026-c3-n16': {
+    ejercicio: 'corriente-rumbo-a-dar',
+    solve(k) {
+      const s = k.pos('35 55,0 N', '6 00,0 W', 'Salida 06:00');
+      const { rs, vb } = k.rumboYVelocidad(s, 'barbate-espigon', hrb(8) - hrb(6), NW, 3);
+      k.note('Rumbo verdadero', 'Sin viento no hay abatimiento: el Rv es el mismo rumbo de superficie.');
+      const ct = k.ct({ dm: -4, desvio: 11 });
+      return [{ kind: 'bearing', value: k.ra(rs, ct) }, { kind: 'speed', value: vb }];
+    },
+  },
+  'and-py-2026-c3-n17': {
+    ejercicio: 'demoras-no-simultaneas',
+    solve(k) {
+      const d = k.distFor(8, hrb(4, 45) - hrb(3, 15));
+      return latlon(k.traslado('punta-malabata', 150, 'punta-alcazar', 195, 75, d, 'Situación 04:45'));
+    },
+  },
+  'and-py-2026-c3-n18': {
+    sinCarta: true,
+    ejercicio: 'marea-sonda',
+    solve(k, q) {
+      const t = k.horaUT(hrb(17, 30), 1);
+      const tr = k.tramoMarea(q.tabla_mareas, { t });
+      return [{ kind: 'meters', value: k.sondaA(tr, t, 1.2) }];
+    },
+  },
+  'and-py-2026-c3-n19': {
+    sinCarta: true,
+    ejercicio: 'marea-sonda',
+    solve(k, q) {
+      // Después de la segunda pleamar: segunda pleamar (18:18 UT) → bajamar siguiente (00:23 UT del 15).
+      k.note('Horas del día siguiente', 'La bajamar de las 00:23 es ya del día 15: para medir el tramo se cuenta como 24:23 (seis horas y cinco minutos después de la pleamar de las 18:18).');
+      const tr = k.tramoMarea(q.tabla_mareas, { desde: 2 });
+      return [{ kind: 'clock', value: k.horaParaSonda(tr, 5.5, 3.3, 1) }];
+    },
+  },
+  'and-py-2026-c3-n20': {
+    sinCarta: true,
+    ejercicio: 'estima-analitica',
+    solve(k) {
+      const s = k.pos('36 28,0 S', '178 52,0 E', 'Situación 13:00');
+      k.note('Distancia navegada', 'A 15 nudos durante 6 h (de 13:00 a 19:00): 90 millas al 055°.');
+      const a = k.tramos(s, [{ rumbo: 55, millas: 90 }], 'Situación 19:00');
+      const b = k.pos('34 45,0 S', '178 30,0 E', 'Destino');
+      return [{ kind: 'bearing', value: k.rumboDirecto(a, b).rumbo }];
+    },
+  },
 };
 
 /* DISCREPANCIAS

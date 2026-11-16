@@ -1,6 +1,6 @@
 {
  "grupo": "balizamiento-ripa",
- "version": 8,
+ "version": 9,
  "conceptos": [
   {
    "id": "baliza",
@@ -1605,6 +1605,33 @@
    "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.2 Reglas de rumbo y gobierno (Reglas 4 a 19); RIPA, Regla 10 c)"
   },
   {
+   "id": "ripa.dst.sin-preferencia",
+   "tipo": "concepto",
+   "etiqueta": "En un DST ir por la vía no da preferencia: con riesgo de abordaje mandan las reglas de rumbo",
+   "sinonimos": [
+    "preferencia de paso",
+    "sigue a rumbo",
+    "navegando por la vía de circulación",
+    "se mantendrá apartado de la derrota de los buques que naveguen",
+    "denunciar la maniobra",
+    "tenemos preferencia"
+   ],
+   "nota": "La Regla 10 no exime de cumplir las demás: quien va por la vía no tiene preferencia por ello, y quien cruza no está obligado por la Regla 10 a apartarse. Con riesgo de abordaje se aplican las reglas de rumbo y gobierno (cruce, vuelta encontrada, alcance). No confundir con «no estorbar» (ripa.dst.no-estorbar).",
+   "padre": "ripa.dst",
+   "relacionados": [
+    "ripa.dst.no-estorbar",
+    "ripa.dst.cruzar",
+    "ripa.cruce"
+   ],
+   "tit": [
+    "per"
+   ],
+   "clases": [
+    "per-6-3"
+   ],
+   "temario": "RD 875/2014, anexo II, PER, UT6 Reglamento (RIPA), 6.2 Reglas de rumbo y gobierno (Reglas 4 a 19); RIPA, Regla 10 a)"
+  },
+  {
    "id": "ripa.dst.zona-separacion",
    "tipo": "concepto",
    "etiqueta": "Zona y línea de separación: cuándo se pueden cruzar",
@@ -1660,11 +1687,12 @@
     "tendido de cable submarino",
     "exentos"
    ],
-   "nota": "Pesca no estorba a los que siguen una vía; < 20 m y vela no estorban a los de propulsión mecánica en la vía; los de maniobra restringida en tareas de seguridad o cables quedan exentos en lo necesario. Ir por la vía no da preferencia en un cruce.",
+   "nota": "Pesca no estorba a los que siguen una vía; < 20 m y vela no estorban a los de propulsión mecánica en la vía; los de maniobra restringida en tareas de seguridad o cables quedan exentos en lo necesario.",
    "padre": "ripa.dst",
    "relacionados": [
     "ripa.canal.no-estorbar",
-    "ripa.cruce"
+    "ripa.cruce",
+    "ripa.dst.sin-preferencia"
    ],
    "tit": [
     "per"

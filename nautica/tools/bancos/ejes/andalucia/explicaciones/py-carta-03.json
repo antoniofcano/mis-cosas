@@ -1,0 +1,133 @@
+{
+ "and-py-2026-c3-n11": {
+  "explicacion": "Salida: desde el faro de Punta Europa trazamos 165º y medimos 10 M → 35º 57,0′ N 005º 17,4′ W. A la luz roja del espigón de Algeciras: Rs = 331º, 13,6 M. Con proa al 331º el viento del SW entra por babor y nos abate a estribor (+15º): metemos la proa al viento, Rv = Rs − Ab = 331º − 15º = 316º. Ct = −4º − 3º = −7º → Ra = Rv − Ct = 316º + 7º = 323º.",
+  "clave": "Viento por babor → Rv = Rs − Ab; con Ct negativa, Ra = Rv + |Ct|.",
+  "trampa": "Restar la Ct negativa (316º − 7º = 309º, la a) u olvidar el abatimiento (331º + 7º = 338º ≈ 339º, la d).",
+  "ilustraciones": [
+   {
+    "tipo": "abatimiento",
+    "banda": "babor",
+    "ab": 15,
+    "rv": 316
+   }
+  ],
+  "concepto": "and-py-2018-c1b-n15"
+ },
+ "and-py-2026-c3-n12": {
+  "explicacion": "Con proa al 035º el viento del SE entra por estribor y nos abate a babor: Rs = 035º − 20º = 015º. Triángulo: buque 015º a 8 nudos + corriente 090º a 3 nudos → Ref = 033º, Vef = 9,2 nudos. De 11:30 a 13:00 (1,5 h): 13,9 M al 033º desde 35º 45,0′ N 006º 15,0′ W → 35º 56,6′ N 006º 05,6′ W.",
+  "clave": "Estima: Rv → Rs (abatimiento) → + corriente; distancia = Vef × tiempo.",
+  "trampa": "Abatir hacia el lado del viento (Rs 055º, la b), aplicar la corriente hacia el W (la c) o las dos cosas (la a).",
+  "ilustraciones": [
+   {
+    "tipo": "corriente",
+    "caso": "efectivo",
+    "rumbo": 35,
+    "vb": 8,
+    "rc": 90,
+    "ic": 3,
+    "ab": -20
+   }
+  ],
+  "concepto": "and-py-2020-c3-n15"
+ },
+ "and-py-2026-c3-n13": {
+  "explicacion": "En la oposición de Isla de Tarifa y Punta Cires estamos entre los dos faros: la Dv a Punta Cires es la de la recta Tarifa → Cires medida en la carta, ≈ 131,8º. Ct = Dv − Da = 131,8º − 138,5º = −6,7º ≈ −6º.",
+  "clave": "Ct = Dv − Da, con la Dv sacada de la oposición en la carta.",
+  "trampa": "Restar al revés (Da − Dv): sale positiva y lleva a la c.",
+  "ilustraciones": [
+   {
+    "tipo": "enfilacion",
+    "dv": 132,
+    "da": 138.5
+   }
+  ],
+  "concepto": "and-py-2022-c1-n11"
+ },
+ "and-py-2026-c3-n14": {
+  "explicacion": "18:30: 4 M al SW del faro de Cabo Roche → 36º 15,0′ N 006º 11,8′ W. Estima 20:00: 7 × 1,5 = 10,5 M al 195º → 36º 04,8′ N 006º 15,2′ W. Observada 20:00: desde Cabo Roche trazamos 179º (opuesta de 359º) y desde Cabo Trafalgar 212º (opuesta de 032º): se cortan en 36º 03,3′ N 006º 08,0′ W. Vector estima → observada: Rc = 105º, 6,0 M en 1,5 h → Ihc = 4,0′.",
+  "clave": "Corriente desconocida: Rc = de la estima a la observada; Ihc = distancia / horas.",
+  "trampa": "No dividir entre 1,5 h (6,0′, la b) o invertir el vector (Rc ≈ 285º).",
+  "ilustraciones": [
+   {
+    "tipo": "corriente",
+    "caso": "efectivo",
+    "rumbo": 195,
+    "vb": 7,
+    "rc": 105,
+    "ic": 4
+   }
+  ],
+  "concepto": "and-py-2020-c1-n14"
+ },
+ "and-py-2026-c3-n15": {
+  "explicacion": "Desde 35º 44,0′ N 006º 11,0′ W, Cabo Espartel queda a 13,1 M al 074º; tangente al círculo de 4 M dejando el faro por estribor (pasamos por fuera, al N): arcsen(4 / 13,1) = 17,7º → Rs = 057º. El NW entra por babor y abate a estribor: Rv = Rs − Ab = 057º − 15º = 042º. dm 2026 = 2º 25′ E − 14 años × 6′ = 1º 01′ E ≈ +1º; Ct = +1º + 10º = +11º → Ra = 042º − 11º = 031º.",
+  "clave": "Rumbo para pasar a d millas: Rs = demora ± arcsen(d / distancia); viento por babor → Rv = Rs − Ab; Ra = Rv − Ct.",
+  "trampa": "Sumar la Ct (042º + 11º = 053º, la c) o dar el Rv como Ra (042º, la b).",
+  "ilustraciones": [
+   {
+    "tipo": "abatimiento",
+    "banda": "babor",
+    "ab": 15,
+    "rv": 42
+   }
+  ],
+  "concepto": "and-py-2022-c2-n12"
+ },
+ "and-py-2026-c3-n16": {
+  "explicacion": "Ref: de 35º 55′ N 006º 00′ W a la luz roja del espigón de Barbate, 013º y 16,3 M en 2 h → Vef = 8,1 nudos. Triángulo: corriente 315º (NW) 3 nudos desde la salida; uniendo su extremo con el del vector efectivo sale el buque: Rs = 034º, Vb = 7,0 nudos. Sin viento, Rv = Rs. Ct = −4º + 11º = +7º → Ra = 034º − 7º = 027º.",
+  "clave": "Hora de llegada fijada: Vef = D / t; buque = efectivo − corriente; Ra = Rv − Ct.",
+  "trampa": "Sumar la corriente en vez de restarla (Vb ≈ 10 nudos, como en la a y la b) o dar la Vef (8,1 nudos) como Vb.",
+  "ilustraciones": [
+   {
+    "tipo": "corriente",
+    "caso": "rumbo-a-dar",
+    "rumbo": 13,
+    "vb": 7,
+    "rc": 315,
+    "ic": 3
+   }
+  ],
+  "concepto": "and-py-2023-c1-n13"
+ },
+ "and-py-2026-c3-n17": {
+  "explicacion": "Navegado de 03:15 a 04:45: 8 × 1,5 = 12 M al 075º. La 1ª línea sale del faro de Punta Malabata al 330º (opuesta de 150º); la trasladamos 12 M al 075º. 04:45: desde el faro de Punta Alcázar trazamos 015º (opuesta de 195º): corta a la línea trasladada en 35º 54,8′ N 005º 32,4′ W ≈ la b.",
+  "clave": "Demoras no simultáneas: traslada la primera línea el rumbo y la distancia navegados y córtala con la segunda.",
+  "trampa": "Cortar las dos demoras sin trasladar la primera: el corte cae en tierra, al S de Punta Alcázar.",
+  "concepto": "and-py-2023-c3-n17"
+ },
+ "and-py-2026-c3-n18": {
+  "explicacion": "Pasa a UT: 17:30 − 1 h = 16:30 UT. Estás entre BM 12:13 UT (1,40 m) y PM 18:18 UT (3,47 m): D = 6h05m, A = 3,47 − 1,40 = 2,07 m. Intervalo desde la bajamar I = 4h17m → C = 2,07·sen²(90°·4h17m/6h05m) = 1,65 m; altura de marea = 1,40 + 1,65 = 3,05 m. Sonda = 1,20 + 3,05 = 4,25 m.",
+  "clave": "Sonda del momento = sonda de carta + altura de marea; altura = h(BM) + A·sen²(90°·I/D), con I contado desde la bajamar más próxima.",
+  "trampa": "No pasar la hora oficial a UT (con las 17:30 sale ≈ 4,58 m) o sumar a la sonda la altura de la pleamar entera (1,20 + 3,47 = 4,67 m, la c).",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "sonda"
+   }
+  ],
+  "concepto": "and-py-2024-c1-n19"
+ },
+ "and-py-2026-c3-n19": {
+  "explicacion": "Después de la 2.ª pleamar el tramo es PM 18:18 UT (3,47 m) → BM 00:23 UT del día 15 (1,61 m), que contamos como 24:23: D = 6h05m, A = 3,47 − 1,61 = 1,86 m. Altura de marea necesaria = 5,50 − 3,30 = 2,20 m; C = 2,20 − 1,61 = 0,59 m → sen²(90°·I/D) = 0,59/1,86 = 0,317 → I = 2h19m antes de la BM → 24:23 − 2h19m = 22:04 UT + 1 h = 23:04 hora oficial.",
+  "clave": "Altura necesaria = Sm − Sc; C = altura − h(BM); despeja I = D·asen(√(C/A))/90° y cuéntalo desde la BM; si la BM es del día siguiente, súmale 24 h para restar.",
+  "trampa": "Contar I desde la pleamar (18:18 + 2h19m = 20:37, la a; 21:37 con el adelanto, la b) o dar la hora en UT sin sumar el adelanto (22:04 ≈ la c).",
+  "ilustraciones": [
+   {
+    "tipo": "marea",
+    "modo": "curva"
+   }
+  ],
+  "concepto": "and-py-2024-c3-n18"
+ },
+ "and-py-2026-c3-n20": {
+  "explicacion": "Estima 19:00: 15 × 6 h = 90 M al 055º. Δl = 90·cos 55º = 51,6′ N → l = 36º 28,0′ S − 51,6′ = 35º 36,4′ S; A = 90·sen 55º = 73,7′ E, lm 36,0º → ΔL = 91,2′ E → 178º 52′ E + 1º 31,2′ = 180º 23,2′ E = 179º 36,8′ W (hemos cruzado el meridiano 180º). Rumbo directo a 34º 45′ S 178º 30′ E: Δl = 51,4′ N; ΔL = 113,2′ W (volvemos a cruzar el 180º por el camino corto); lm 35,2º → A = 113,2·cos 35,2º = 92,5′ W. R = atan(92,5/51,4) = N 61,0º W = 299º.",
+  "clave": "Estima: Δl = d·cos R, A = d·sen R, ΔL = A / cos lm. Rumbo directo: A = ΔL·cos lm, R = atan(A/Δl) y cuadrante según los signos.",
+  "trampa": "Equivocar el sentido en el hemisferio S: de 35º 36′ S a 34º 45′ S la latitud disminuye, así que vamos hacia el N; y a las 19:00 ya estamos en longitud W, de modo que el destino queda al W.",
+  "ilustraciones": [
+   {
+    "tipo": "loxodromica"
+   }
+  ],
+  "concepto": "and-py-2024-c1-n20"
+ }
+}

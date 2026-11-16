@@ -200,7 +200,9 @@ export function farosPorTema(est) {
  *   null sin conceptos (banco sin etiquetas): entonces no hay travesía.
  */
 export function estadoTravesia({ ic, estructura = null, respuestas = {}, tests = [], dias = {}, ahora = Date.now() }) {
-  const ideas = ideasDelBanco(ic);
+  // Con la estructura de un módulo (PY, src/course/foco.js), solo las ideas de sus temas: la derrota es la de ese módulo.
+  const delModulo = estructura?.modulo ? new Set(estructura.bloques.map((b) => b.ut)) : null;
+  const ideas = delModulo ? ideasDelBanco(ic).filter((i) => delModulo.has(i.ut)) : ideasDelBanco(ic);
   if (!ideas.length) return null;
   // Cuarentena: solo las respuestas a preguntas del estudio de las ideas.
   const estudio = new Set(ideas.flatMap((i) => i.qs));

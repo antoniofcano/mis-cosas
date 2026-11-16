@@ -17,13 +17,13 @@ test('estructura PY: 40 preguntas, 28 aciertos, límites en navegación y carta'
   assert.equal(TITULACIONES.py.estructura, PY);
 });
 
-test('banco PY: 34 convocatorias completas de 40 preguntas (2020–2026: 180 por bloque)', () => {
-  const antiguas = bank.filter((q) => !/^and-py-201[5-9]-/.test(q.id));
+test('banco PY: 35 convocatorias completas de 40 preguntas (2020–2026: 180 por bloque)', () => {
+  const antiguas = bank.filter((q) => !/^and-py-201[5-9]-/.test(q.id) && !/^and-py-2026-c3-/.test(q.id));
   assert.equal(antiguas.length, 720);
-  assert.equal(bank.length, 720 + 609); // 2015–2019 (fase F5): las que repiten una publicada van en su apareceEn
+  assert.equal(bank.length, 720 + 609 + 40); // 2015–2019 (fase F5): las que repiten una publicada van en su apareceEn; y la 3.ª de 2026
   for (const b of PY.bloques) assert.equal(antiguas.filter((q) => q.ut === b.ut).length, b.n * 18, `UT${b.ut}`);
   const convs = convocatorias(PY, bank);
-  assert.equal(convs.length, 34);
+  assert.equal(convs.length, 35);
   assert.ok(convs.every((c) => c.completa && c.n === 40));
   for (const c of convs) {
     const t = buildReal(bank, c.key);

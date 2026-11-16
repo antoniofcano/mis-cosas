@@ -75,7 +75,7 @@ export function crearBancos(leer) {
   /**
    * La app indica cómo leer y guardar la foto de la reserva del alumno ({ convs, modo, desde } por eje y titulación,
    * en sus ajustes). Sin esto (herramientas, tests), la reserva es la de la ficha.
-   * @param {{ leer: (eje, tit) => object|null, guardar: (eje, tit, foto) => void } | null} a
+   * @param {{ leer: (eje, tit) => object|null, guardar: (eje, tit, foto) => void, hechas?: (eje, tit) => string[] } | null} a
    */
   const fijarReservaAlumno = (a) => { alumno = a; };
   // Configuración del profesor que ha importado el alumno (la app pone de dónde leerla con fijarConfigProfe). Se aplica
@@ -189,12 +189,16 @@ export function crearBancos(leer) {
     const datos = [...(ficha.reserva?.[tit] ?? [])];
     let foto = alumno?.leer(eje, tit) ?? null;
     if (!foto?.convs?.length && alumno && datos.length) {
-      foto = { convs: datos, modo: ficha.reserva?.modo ?? 'examen', desde: new Date().toISOString().slice(0, 10) };
+      foto = { ...(foto ?? {}), convs: datos, modo: ficha.reserva?.modo ?? 'examen', desde: new Date().toISOString().slice(0, 10) };
       try { alumno.guardar(eje, tit, foto); } catch { /* sin almacén: se usa la de la ficha */ }
     }
-    const convs = foto?.convs?.length ? [...foto.convs] : datos;
-    const apartar = [...new Set([...convs, ...datos])];
-    return { modo: ficha.reserva?.modo ?? 'examen', convs, datos, apartar, firma: `${convs.join(',')}|${apartar.join(',')}` };
+    // Las convocatorias que el alumno ya hizo de verdad y apuntó (src/course/examen-oficial.js; `alumno.hechas`) ya no son
+    // inéditas para él: no son su examen final y entran en su estudio.
+    const deAjuste = alumno?.hechas?.(eje, tit);
+    const hechas = new Set(Array.isArray(deAjuste) ? deAjuste.filter((c) => typeof c === 'string') : []);
+    const convs = (foto?.convs?.length ? [...foto.convs] : datos).filter((c) => !hechas.has(c));
+    const apartar = [...new Set([...convs, ...datos])].filter((c) => !hechas.has(c));
+    return { modo: ficha.reserva?.modo ?? 'examen', convs, datos, apartar, hechas: [...hechas], firma: `${convs.join(',')}|${apartar.join(',')}` };
   };
 
   /**
@@ -254,8 +258,11 @@ export function crearBancos(leer) {
       // Las preguntas con el tema oficial (el del banco): con ellas se arman y se corrigen los exámenes. En el banco
       // sin correcciones del alumno son las mismas; en su vista (src/bancos/correcciones.js) no.
       oficial: { porId, estudio }, correcciones: new Map(), correccionDe: () => null, reservadas: r.reservadas, porId, explicaciones, reglasDe: mnemo.reglasDe, vocab, listas,
-      reserva: { modo: res.modo, convs: res.convs, datos: res.datos, examenes: examenesFinal },
+      reserva: { modo: res.modo, convs: res.convs, datos: res.datos, hechas: res.hechas, examenes: examenesFinal },
       convocatorias: () => convocatoriasDe(estructura, examenes).filter((c) => !apartar.has(convDeClave(c.key))),
+      // Todas las convocatorias del banco, también las reservadas: solo para apuntar el examen oficial que hizo el alumno
+      // (src/ui/views/oficial.js), que enseña su fecha y su nombre, nunca sus preguntas.
+      convocatoriasTodas: () => convocatoriasDe(estructura, todas),
       practicaDe: (leccionId) => (practicaClases[leccionId] ?? []).filter((id) => enPractica.has(id)),
       resueltasDe: (leccionId) => resueltasSegun(resueltos[leccionId], SOLUCIONES, porId).filter((id) => enEstudio.has(id)),
       lista: (id) => listas.find((l) => l.id === id) ?? null,

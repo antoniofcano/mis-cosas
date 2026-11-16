@@ -1,6 +1,6 @@
 {
  "grupo": "meteorologia",
- "version": 6,
+ "version": 7,
  "conceptos": [
   {
    "id": "meteo",
@@ -1506,9 +1506,11 @@
     "garbí",
     "SW",
     "norte de África",
-    "calima"
+    "calima",
+    "parte delantera de las depresiones",
+    "Mediterráneo meridional"
    ],
-   "nota": "Vientos cálidos de origen africano: siroco (SE) y lebeche o garbí (SW), secos y con calima. Discrepancia: and-py-2017-c3-g15 da el siroco como «del S»; Baleares y la rosa lo dan del SE. El siroco es muy cálido en verano y moderado en invierno (and-py-2024-c3-g11) y el lebeche llega seco, cálido y con calima.",
+   "nota": "Vientos cálidos de origen africano: siroco (SE) y lebeche o garbí (SW), secos y con calima. El siroco sopla por delante (vanguardia) de las depresiones que cruzan el Mediterráneo meridional: sale cálido y seco del Sáhara y se carga de humedad al cruzar el mar. Discrepancia: and-py-2017-c3-g15 da el siroco como «del S»; Baleares y la rosa lo dan del SE. El siroco es muy cálido en verano y moderado en invierno (and-py-2024-c3-g11) y el lebeche llega seco, cálido y con calima.",
    "padre": "meteo.regionales",
    "tit": [
     "py"
@@ -2533,11 +2535,38 @@
     "paralelo de Ceuta",
     "Mediterráneo occidental"
    ],
-   "nota": "El agua atlántica entra por el Estrecho: frente a Ceuta y entre Málaga y cabo de Gata va al E; sigue pegada a la costa africana; entre cabo de Palos y cabo de San Antonio se divide en dos ramas (ESE hacia Baleares y NE); golfo de Valencia y golfo de León con vientos fuertes del NW; la corriente del Norte baja hacia el SSW.",
+   "nota": "El agua atlántica entra por el Estrecho: entre Málaga y cabo de Gata va al E (frente a Ceuta y Tres Forcas, ver meteo.corrientes.norte-africa); sigue pegada a la costa africana; entre cabo de Palos y cabo de San Antonio se divide en dos ramas (ESE hacia Baleares y NE); golfo de Valencia y golfo de León con vientos fuertes del NW; la corriente del Norte baja hacia el SSW.",
    "padre": "meteo.corrientes.mediterraneo",
    "relacionados": [
     "meteo.corrientes.estrecho",
-    "meteo.corrientes.mediterraneo-central"
+    "meteo.corrientes.mediterraneo-central",
+    "meteo.corrientes.norte-africa"
+   ],
+   "tit": [
+    "py"
+   ],
+   "clases": [
+    "py-2-9"
+   ],
+   "temario": "RD 875/2014, anexo II, 4 (PY), UT 2 Meteorología, 2.8 Corrientes generales en las costas españolas y del Mediterráneo"
+  },
+  {
+   "id": "meteo.corrientes.norte-africa",
+   "tipo": "concepto",
+   "etiqueta": "Corrientes de la costa norte de África (Ceuta–cabo Tres Forcas)",
+   "sinonimos": [
+    "paralelo de Ceuta",
+    "cabo Tres Forcas",
+    "costa norte de África",
+    "costa de Marruecos",
+    "se divide en dos partes",
+    "hacia el SE"
+   ],
+   "nota": "El agua atlántica que sale del Estrecho se arrima a la costa africana: en el paralelo de Ceuta la corriente general tiende al SE y al llegar al cabo Tres Forcas se divide en dos partes (así lo da el tribunal; el rumbo y la intensidad de cada parte están pendientes de contrastar con el Derrotero del IHM). Falsas: hacia el NW, SW o NE frente a Ceuta, todo el flujo al golfo de León, velocidades de 5 o 6 nudos.",
+   "padre": "meteo.corrientes.mediterraneo",
+   "relacionados": [
+    "meteo.corrientes.mediterraneo-occidental",
+    "meteo.corrientes.estrecho"
    ],
    "tit": [
     "py"

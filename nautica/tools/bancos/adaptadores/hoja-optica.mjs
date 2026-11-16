@@ -37,6 +37,15 @@ export const REGLAS_ANDALUCIA = {
 };
 
 /** Fecha «2ª Convocatoria: 11 de junio de 2022» de la portada. */
+/**
+ * Módulo del PY que dice la portada del cuadernillo («PATRÓN DE YATE. MÓDULO NAVEGACIÓN»): 'generico', 'navegacion' o
+ * null. Sirve para avisar si el portal enlaza un cuadernillo con el nombre del otro módulo (3.ª convocatoria de 2026).
+ */
+export function moduloPortada(lineas = []) {
+  const m = /m[óo]dulo\s+(gen[ée]rico|navegaci[óo]n)/i.exec(lineas.join(' '));
+  return m ? (/^gen/i.test(m[1]) ? 'generico' : 'navegacion') : null;
+}
+
 export function fechaPortada(lineas) {
   for (const l of lineas) {
     const m = /(\d{1,2})\s+de\s+([a-záéíóú]+)\s+(?:de\s+)?(\d{4})/i.exec(l);
@@ -201,7 +210,7 @@ export function leerCuestionario(pdf, rotulos, n = null, grados = []) {
   for (const modo of ['normal', 'raw', 'layout']) {
     const { examenes } = analizarCuestionario(textoCuestionario(pdf, rotulos, modo, grados), REGLAS_ANDALUCIA);
     const ex = examenes[0];
-    const r = { preguntas: ex.preguntas.map(separarTabla).map(separarAnuario), fecha: fechaPortada(ex.lineasPrevias), modo };
+    const r = { preguntas: ex.preguntas.map(separarTabla).map(separarAnuario), fecha: fechaPortada(ex.lineasPrevias), moduloPortada: moduloPortada(ex.lineasPrevias), modo };
     r.calidad = n ? calidad(r.preguntas, n) : 0;
     if (!mejor || r.calidad > mejor.calidad) mejor = r;
     if (!n || r.calidad === n) break;
@@ -255,6 +264,7 @@ export function extraer(ctx, tit) {
     const fechaConfig = cfgConv?.fechas?.[tit] ?? cfgConv?.fecha;
     if (cu.fecha && fechaConfig && cu.fecha !== fechaConfig) avisos.add('extraer', `${t.clave}: la portada dice ${cu.fecha} y config.json ${fechaConfig}`);
     const [modulo, variante] = tit === 'py' ? t.modelo.split('-') : [null, t.modelo];
+    if (modulo && cu.moduloPortada && cu.moduloPortada !== modulo) avisos.add('extraer', `${t.clave} py ${t.modelo}: la portada del cuestionario dice módulo ${cu.moduloPortada} (¿enlace cambiado en el portal? config.json, convocatorias[].documentos)`);
     // PY de la 1ª de 2018: dos exámenes distintos (modelos A y B de cada módulo, con preguntas distintas). El B es otra
     // convocatoria a efectos del banco: clave «2018-c1b», ids and-py-2018-c1b-gNN|nNN (config.json lo titula).
     const claveConv = tit === 'py' && variante && variante !== 'A' ? `${t.clave}${variante.toLowerCase()}` : t.clave;

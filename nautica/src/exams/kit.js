@@ -562,7 +562,15 @@ export function createKit(chart, { error = null } = {}) {
     // ---- Mareas (Anuario: horas en UT; la corrección C = A · sen²(90° · I / D) desde la bajamar)
     /** Tramo BM–PM de la tabla: `{ desde: i }` (del extremo i al i+1) o `{ t }` (el que contiene esa hora UT, en minutos). */
     tramoMarea(tabla, { desde, t: cual }) {
-      const ext = tabla.map((x) => ({ t: hrb(...x.hora.split(':').map(Number)), h: x.altura_m, hora: x.hora }));
+      // Las horas siguen el reloj: una menor que la anterior es ya del día siguiente y suma 24 h, para que un tramo que
+      // cruza la medianoche (pleamar 18:18 → bajamar 00:23 del día 15) dure lo que dura. Las extremas van cada ~6 h.
+      const ext = [];
+      for (const x of tabla) {
+        let t = hrb(...x.hora.split(':').map(Number));
+        const prev = ext.at(-1);
+        while (prev && t < prev.t) t += 1440;
+        ext.push({ t, h: x.altura_m, hora: x.hora });
+      }
       const [a, b] = desde != null ? [ext[desde], ext[desde + 1]] : ext.slice(0, -1).map((e, i) => [e, ext[i + 1]]).find(([u, v]) => cual >= u.t && cual <= v.t);
       const bm = a.h < b.h ? a : b; const pm = a.h < b.h ? b : a;
       const D = Math.abs(b.t - a.t); const A = pm.h - bm.h;

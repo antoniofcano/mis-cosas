@@ -68,7 +68,7 @@ test('una pregunta que se repite en otra convocatoria sale también en el examen
 test('Andalucía no cambia: un examen por convocatoria con sus 45 preguntas (modelos A y B juntos)', () => {
   const per = leerJSON('data/ejes/andalucia/per/preguntas.json').preguntas;
   const cs = convocatorias(PER, per);
-  assert.equal(cs.length, 34); // 2015–2026
+  assert.equal(cs.length, 35); // 2015–2026
   assert.ok(cs.every((c) => !c.key.includes('@') && c.n === 45 && c.completa));
   // Cada examen: sus preguntas y las de otra convocatoria idénticas que se unieron (apareceEn; 2015–2019), en el orden
   // del modelo A.

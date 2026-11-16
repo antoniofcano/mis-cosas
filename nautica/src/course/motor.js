@@ -12,12 +12,12 @@ import { avanceCamino, unidades, temasDePocoPeso, crearPlan, planCaducado, segui
 import { estoyListo } from './listo.js';
 import { moduloPendiente, testsDelModulo } from './tras-examen.js';
 import { leerAjuste, claveSemana } from './semana.js';
-import { estructuraModulo } from '../theory/blocks.js';
 import { estadoFinal } from './final.js';
 import { SEG_TARJETA } from './engine.js';
 import { cuenta, fechaLarga, diaISO } from '../texto.js';
 import { colaRepaso, repasoDelDia, sumaDias } from './repaso.js';
 import { siguienteEnRuta } from './ruta.js';
+import { focoModulo, datosDelModulo } from './foco.js';
 
 /**
  * @typedef {object} Entrada
@@ -51,9 +51,13 @@ export function estadoAlumno(e) {
   const fechaExamen = s[`examen_${tit}`] || null;
   const esencial = !!s[`planEsencial_${tit}`];
   const chuletasLeidas = s[`chuletasLeidas_${tit}`] ?? [];
+  // ¿De qué se examina? (PY: los dos módulos, uno elegido o el que queda tras aprobar el otro; src/course/foco.js). Con
+  // un módulo, todo lo de abajo trabaja solo con sus temas.
+  const foco = focoModulo(s, tit, e.estructura);
+  const base0 = foco ? datosDelModulo(e, foco.id) : e;
   // Los datos que comparten todos los cálculos (una sola fuente).
   const d = {
-    estructura: e.estructura, curso: e.curso, preguntas: e.preguntas, regs: e.regs ?? {}, respuestas: e.respuestas ?? {}, tests: e.tests ?? [],
+    estructura: base0.estructura, curso: base0.curso, preguntas: base0.preguntas, foco: foco?.id ?? null, regs: e.regs ?? {}, respuestas: e.respuestas ?? {}, tests: e.tests ?? [],
     testEnCurso: e.testEnCurso ?? null, fechaExamen, ultimoMezclado: s[`mezclado_${tit}`] || null, segTarjeta, minutosDia: objetivo,
     minutosHoy: e.minutosHoy ?? 0, esencial, chuletasLeidas, ahora: e.ahora ?? Date.now(), reservadas: e.reservadas ?? new Set(),
     conceptos: e.conceptos ?? null,
@@ -64,6 +68,10 @@ export function estadoAlumno(e) {
 
   // Temas (en el orden de estudio) y camino.
   const temas = bloquesEnOrden(d.estructura).map((b) => ({ b, e: estadoTema(b, d.curso, d.preguntas, d.regs, d.respuestas, d.ahora) }));
+  // Con un módulo elegido, los temas del otro: fuera de la ruta y del plan, pero se pueden abrir desde el Temario.
+  const enFoco = new Set(d.estructura.bloques.map((b) => b.ut));
+  const temasFuera = foco ? bloquesEnOrden(e.estructura).filter((b) => !enFoco.has(b.ut))
+    .map((b) => ({ b, e: estadoTema(b, e.curso, e.preguntas, d.regs, d.respuestas, d.ahora) })) : [];
   const camino = { ...avance(d.estructura, d.curso, d.preguntas, d.regs, d.respuestas, d.ahora), ...avanceCamino(d) };
 
   // Plan con fecha (si la hay): el guardado si sigue valiendo; si no, uno nuevo (la pantalla lo guarda).
@@ -72,7 +80,7 @@ export function estadoAlumno(e) {
     const diasEstudio = s.diasEstudio ?? 'todos';
     let base = e.planGuardado ?? null;
     let nuevo = false;
-    if (planCaducado(base, fechaExamen, objetivo, diasEstudio, esencial)) { base = crearPlan(d, { fechaExamen, minutosDia: objetivo, diasEstudio, ahora: d.ahora }); nuevo = true; }
+    if (planCaducado(base, fechaExamen, objetivo, diasEstudio, esencial) || (base?.foco ?? null) !== d.foco) { base = crearPlan(d, { fechaExamen, minutosDia: objetivo, diasEstudio, ahora: d.ahora }); nuevo = true; }
     if (base) {
       const seg = seguimiento(base, d, { ahora: d.ahora });
       const alt = seg.estado === 'no-llega' && !esencial ? alternativaEsencial(d, { fechaExamen, minutosDia: objetivo, diasEstudio, ahora: d.ahora }) : null;
@@ -82,9 +90,10 @@ export function estadoAlumno(e) {
 
   // ¿Listo? y examen final (antes que las actividades: Hoy propone el final cuando toca).
   // Con un módulo aprobado y el otro pendiente (PY, src/course/tras-examen.js), «¿Estás listo?» es el del módulo que queda.
-  const pendiente = moduloPendiente(leerAjuste(s[claveSemana(tit)]), d.estructura);
-  const listo = pendiente
-    ? { ...estoyListo(estructuraModulo(d.estructura, pendiente.id), d.preguntas, d.respuestas, testsDelModulo(d.tests, pendiente.id)), modulo: pendiente.id }
+  // Con un módulo (elegido o el que queda), «¿Estás listo?» es el de ese módulo, con sus simulacros y exámenes.
+  const pendiente = moduloPendiente(leerAjuste(s[claveSemana(tit)]), e.estructura);
+  const listo = foco
+    ? { ...estoyListo(d.estructura, d.preguntas, d.respuestas, testsDelModulo(d.tests, foco.id)), modulo: foco.id }
     : estoyListo(d.estructura, d.preguntas, d.respuestas, d.tests);
   const diasAlExamen = fechaExamen ? diasHasta(fechaExamen, d.ahora) : null;
   const final = estadoFinal({ estructura: d.estructura, reserva: e.reserva ?? null, pool: e.pool ?? [], respuestas: d.respuestas, tests: d.tests, listo, diasAlExamen, ahora: d.ahora });
@@ -116,7 +125,7 @@ export function estadoAlumno(e) {
   const ritmo = ritmoEstudio(d);
   const mensaje = mensajeDelDia({ dia, plan, ritmo, fechaExamen, objetivo, principal, ahora: d.ahora });
 
-  return { tit, datos: d, dia, temas, camino, plan, actividades, principal, ruta, ritmo, listo, moduloPendiente: pendiente, final, repaso, flojos, mensaje, fechaExamen, diasAlExamen, orientativa: !!s[`examenOrientativo_${tit}`] };
+  return { tit, datos: d, dia, temas, temasFuera, camino, plan, actividades, principal, ruta, ritmo, listo, moduloPendiente: pendiente, foco, final, repaso, flojos, mensaje, fechaExamen, diasAlExamen, orientativa: !!s[`examenOrientativo_${tit}`] };
 }
 
 /**

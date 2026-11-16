@@ -3,7 +3,7 @@
 Cajón de ideas de producto que **no están planificadas**. Cuando una se decide, pasa a `docs/ROADMAP.md` con su id y aquí
 se tacha con la referencia. Cada idea dice qué problema resuelve, para poder descartarla con criterio.
 
-_Última revisión: 10 de noviembre de 2026._
+_Última revisión: 16 de noviembre de 2026._
 
 ## Formación
 
@@ -23,6 +23,8 @@ _Última revisión: 10 de noviembre de 2026._
 - **Qué se gana:** se repasa el fallo concreto, no todo el tema; y a un profesor le dice qué errores repite su grupo.
 
 ### Examen de carta con papel de verdad
+- **En parte decidido:** el simulacro en papel con el móvil de reloj y corrector es R-57, y corregir la hoja por pasos,
+  R-58 (`docs/CARTA-MOVIL.md`).
 - **Problema:** el examen se hace sobre la carta en papel, con transportador y compás; la app entrena en pantalla.
 - **Idea:** hojas de práctica imprimibles por tipo de problema y una guía de cómo organizar la mesa y el tiempo.
 - **Condición:** la carta oficial tiene derechos (Instituto Hidrográfico de la Marina); solo con cartografía propia o permiso.
@@ -105,3 +107,8 @@ producto hermano que comparta contenido y progreso.
 - ~~Diagnóstico por tipo de error~~ → R-36 (ídem).
 - ~~Ensayo general con material real, velocidad en carta, simulacro de tus errores, lista del día del examen, tu convocatoria y repaso de la víspera~~ → R-41 a R-45 (hechas, H-35 a H-39).
 - ~~Fallos por materia, comparar la predicción con el examen real y recuperar un solo módulo~~ → R-48 a R-50 (hechas, H-42 a H-44).
+- ~~Propuestas para la carta en el móvil (noviembre de 2026): construir por intención, estimar y descartar, aprender
+  guiado, avisos Ojo / No olvides / Así se hace, cuaderno de fallos y dosis cortas, primer minuto con el cuadernillo~~ →
+  ordenadas en tres funciones en `docs/CARTA-MOVIL.md` (R-54 a R-58). Descartadas allí mismo, con su motivo: más
+  herramientas de dibujo en el móvil (R-59), voz y ayudante hablado, ideas vanguardistas sueltas, «caza el error» como
+  modo propio y las pantallas separadas de «reconocer» y «plan».

@@ -3,7 +3,7 @@
 Una sola página para saber **dónde estamos, qué viene y qué está parado y por qué**. Se actualiza en el mismo commit
 que cambia el estado de algo. Las decisiones de diseño viven en su documento (`docs/*.md`); aquí solo se apuntan.
 
-_Última revisión: 10 de noviembre de 2026._
+_Última revisión: 16 de noviembre de 2026._
 
 ## Cómo se mantiene
 
@@ -33,7 +33,7 @@ _Última revisión: 10 de noviembre de 2026._
 
 | Área | Estado |
 | --- | --- |
-| Bancos y contenido | Andalucía 2016–2026, DGMM y Baleares por eje; conceptos etiquetados; 127 discrepancias documentadas |
+| Bancos y contenido | Andalucía 2016–2026, DGMM y Baleares por eje; conceptos etiquetados; 129 discrepancias documentadas |
 | Curso y ruta | PER y PY enlazados, ruta intercalada con dependencias, test de nivel, plan hasta el examen |
 | Estudio | «Estoy listo» con olvido y margen, repaso con fichas, hoja de corrección plegable, tarjetas de memoria |
 | Entrada | Hoy y Travesía en estilo C (derrota como carta náutica, faros, rangos, insignias) |
@@ -60,6 +60,8 @@ _Última revisión: 10 de noviembre de 2026._
 | R-05 | Informe de fin de sesión y «Mi progreso» al estilo nuevo | Siguiente | Hoy conservan su aspecto antiguo (las insignias ya no) |
 | R-06 | Hoja propia en la galería para señales pirotécnicas sueltas y sonidos con texto | Siguiente | Hoy se funden con la hoja general (`socorro` + `solo`) |
 | R-07 | Animaciones que faltan: frentes en corte, búsqueda con reproductor | Siguiente | Confirmar contra el catálogo de animaciones antes de empezar |
+| R-54 | Carta en el móvil, función 1: paso a paso que enseña (primer paso «¿qué tipo es?», avisos Ojo / No olvides / Así se hace, ayuda en escalones, ejemplo resuelto y otro con huecos) | Siguiente | `docs/CARTA-MOVIL.md`; incluye R-52. Primero estima y loxodrómica, mareas y corrección total; la carta gráfica por intención, después |
+| R-55 | Catálogo de fallos típicos por paso: qué respuesta equivocada corresponde a qué fallo, tipo a tipo y comprobado por test | Siguiente | Cimiento de R-56; se escribe a la vez que R-54 y amplía el diagnóstico de H-31 |
 
 ## Después
 
@@ -68,7 +70,7 @@ _Última revisión: 10 de noviembre de 2026._
 | R-09 | Regenerar el podcast (fase 2) con el contenido corregido | Después | Necesita presupuesto de síntesis de voz; el audio del PER aún dice el ejemplo antiguo de la tangente (2,5 millas, 14,5°, 019°; el curso usa ya 2,6 millas y 15°), «sin aflojarlo» (torniquete) y «aguas costeras hasta 20 millas» (cifra retirada del curso por no verificada) y hay citas a preguntas reservadas que revisar |
 | ~~R-10~~ | ~~Pulido de PWA: insignia de la app, notificaciones, pantalla de arranque iOS~~ | — | Se partió: las notificaciones (recordatorio diario) están hechas (H-18); la insignia y la pantalla de arranque pasan a R-18 |
 | R-18 | Pulido de PWA: insignia de la app y pantalla de arranque iOS | Después | Media Session, pantalla encendida y compartir el parte ya hechos (H-17) |
-| R-11 | Nuevas convocatorias: incorporar las que se publiquen y pasar la reservada a banco | Después | Cada incorporación pasa por la extracción y la cuarentena |
+| R-11 | Nuevas convocatorias: incorporar las que se publiquen y pasar la reservada a banco | Después | Cada incorporación pasa por la extracción y la cuarentena. Última: Andalucía 3.ª de 2026 (H-49); la reserva sigue siendo de las 5 más recientes |
 | R-12 | Otros tribunales y comunidades con examen propio | Después | Orden según volumen y acceso; cada uno es un eje (`docs/BANCOS.md`) |
 | R-13 | Vigilancia de cambios normativos (BOE) con aviso sobre las preguntas afectadas | Después | Hoy el filtro normativo es manual |
 | R-14 | Calibrar los umbrales de «estoy listo» con datos reales de uso | Después | Hoy son hipótesis razonadas, no medidas; la comparación predicción–resultado tras el examen (H-43) es la primera fuente, ver R-51 |
@@ -88,8 +90,14 @@ _Última revisión: 10 de noviembre de 2026._
 | R-46 | Revisar la lista del día del examen y la estrategia con la convocatoria vigente de cada tribunal (Baleares sin leer; Andalucía 2026) y confirmar dónde publica cada uno las listas de admitidos y la sede | Después | Hoy el enlace por defecto es la página oficial del banco |
 | R-47 | Limpiar los alumnos de prueba que las pruebas automáticas dieron de alta en producción (10 de noviembre de 2026) | Después | Solo con decisión del dueño, filtrando por fecha y sin borrados generales (incidente de octubre) |
 | R-51 | Calibrar «¿Estás listo?» y los avisos por materia con las comparaciones predicción–resultado que vayan apuntando los alumnos | Después | Hoy solo en el aparato o la cuenta de cada alumno; juntarlas pide su consentimiento y la versión 2 (complementa R-14) |
-| R-52 | Llevar el paso a paso «de hoja de examen» (traigo, planteo, cuenta y croquis) al resto de tipos: corrección total, corrientes, abatimiento, demoras | Siguiente | Hecho en la estima analítica y las mareas (H-46); los demás siguen con la voz del profe y dan hechos los pasos intermedios |
+| R-52 | Llevar el paso a paso «de hoja de examen» (traigo, planteo, cuenta y croquis) al resto de tipos: corrección total, corrientes, abatimiento, demoras | Siguiente | Forma parte de R-54. Hecho en la estima analítica y las mareas (H-46); los demás siguen con la voz del profe y dan hechos los pasos intermedios |
 | R-53 | Ejercicio generado de estima analítica con corriente, cruce del 180° y hemisferio sur, como pone hoy el tribunal | Siguiente | Hoy genera 2 o 3 tramos sin corriente cerca del Estrecho |
+| R-56 | Carta en el móvil, función 2: cuaderno de fallos con nombre, dosis de uno o dos minutos con reloj y comprobación días después sin pistas | Después | `docs/CARTA-MOVIL.md`; necesita R-55. Empieza por mareas. Maqueta «Patrón, tu entrenador» |
+| R-57 | Carta en el móvil, función 3: simulacro con estrategia (primer minuto con el cuadernillo, reparto del tiempo, estimar y descartar, simulacro completo de teoría y carta seguidas) | Después | Cose H-35, H-36, H-37, H-42 y H-43; la carta en papel y el móvil de reloj y corrector |
+| R-58 | Corregir la hoja en papel por pasos: el alumno mete el resultado de cada paso y la app dice en cuál se desvió | Después | Lleva lo hecho en papel al cuaderno de fallos (R-56) |
+| R-59 | Más herramientas de dibujo de la mesa de cartas para el móvil | Descartado | La pantalla pequeña no da para trazar; la mesa queda para tablet y ordenador (`docs/CARTA-MOVIL.md`) |
+| ~~R-62~~ | ~~La travesía y el mapa de Hoy con un módulo elegido~~ | Hecho | H-51: la travesía, el mapa de Hoy y los faros del Temario siguen el módulo; los temas del otro módulo quedan aparte en el Temario, con enlace |
+| ~~R-63~~ | ~~Retoques de clases y fichas por los huecos de la 3.ª de 2026~~ | Hecho | H-53. Queda pendiente comprobar en el Derrotero del IHM la dirección de cada rama de la corriente tras el cabo Tres Forcas (anotado en la verificación de py-2-9) |
 
 ## Bloqueado por fuente
 
@@ -114,6 +122,7 @@ _Última revisión: 10 de noviembre de 2026._
 ## Fuera de alcance (proyecto aparte)
 
 - Ideas sin planificar: `docs/IDEAS.md`.
+- La carta en el móvil (tres funciones, qué se descarta): `docs/CARTA-MOVIL.md`.
 - Vídeo y avatares de profesor. El aula virtual (R-25) no aloja vídeo: la voz y el vídeo van por un enlace externo.
 - Una app nativa: la PWA cubre el caso; solo se reconsidera si falla la instalación en un dispositivo concreto.
 
@@ -169,6 +178,11 @@ _Última revisión: 10 de noviembre de 2026._
 | H-46 | Paso a paso «de hoja de examen» en la estima analítica y en las mareas: un paso por tramo y por cuenta intermedia, tabla, croquis, lo que se trae y lo que se plantea (kit: `traigo`, `plantea`, `lineas`, `tabla`, `croquis`; magnitud `minutos`) | Noviembre 2026 |
 | H-47 | `RAMAS.md` con la dirección completa del repositorio en cada comando (no depende de la carpeta) y las ramas nuevas: 186, 7 a conservar | Noviembre 2026 |
 | H-48 | Limpieza de ramas remotas hecha: 179 borradas, quedan las 7 a conservar; `RAMAS.md` reducido a las que se conservan y a cómo borrar las nuevas | Noviembre 2026 |
+| H-49 | Andalucía, 3.ª convocatoria de 2026 (14 de noviembre): PER y PY en el banco y reservadas para el examen final (sale de la reserva la 1.ª de 2025); los dos cuadernillos del PY venían enlazados con el nombre del otro módulo: corrección en `config.json` (`documentos`) y aviso del adaptador por la portada | Noviembre 2026 |
+| H-51 | ¿De qué te examinas? (R-61): elección de módulo en el PY (`modulos_<tit>`, `src/course/foco.js`); el motor recorta estructura, curso, ruta y preguntas al módulo (siguiente parada, plan con fecha —rehecho al cambiar—, avance, «¿Estás listo?», simulacro). Sin elección, el módulo que queda tras un resultado apuntado | Noviembre 2026 |
+| H-52 | Clase: la tanda de 10 preguntas se retoma donde se dejó (ajuste del aparato `tandaClase`, `src/course/tanda-clase.js`) y se puede ir directo a ella (primera tarjeta, aviso de apoyos y lista de clases del tema) | Noviembre 2026 |
+| H-53 | Huecos de la 3.ª de 2026 cubiertos (R-63): py-2-9 corriente de la costa norte de África (Ceuta al SE, Tres Forcas; concepto `meteo.corrientes.norte-africa`), py-2-4 siroco en la vanguardia de las depresiones, py-4-9 tramo de marea que cruza la medianoche; per-6-1 Regla 3 «no pueden apartarse», per-2-5 borneo y profundidad, per-11-7 enfilación y distancia; concepto `ripa.dst.sin-preferencia` (6 preguntas reetiquetadas) | Noviembre 2026 |
+| H-50 | Tu examen oficial (R-60): pasar la hoja del examen de verdad, corregirla con la plantilla y que sus fallos entren en el repaso, en «Tus fallos por materia» y en el resultado del examen; la convocatoria hecha sale del examen final del alumno | Noviembre 2026 |
 
 ## Mantenimiento recurrente
 

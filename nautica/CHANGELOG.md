@@ -17,6 +17,33 @@ Qué cambia en la app para quien la usa, por fecha de publicación. Es la base d
 
 Nada pendiente.
 
+## 16 de noviembre de 2026 · versión `4b1450d82307`
+
+**Novedades**
+
+- **Tu examen oficial.** Si ya te has examinado y la convocatoria está en la app, pasa lo que marcaste en tu hoja (en
+  Examen, o desde «¿Cuántas fallaste en cada materia?»). Patrón la corrige con la plantilla oficial, te enseña tus
+  fallos por tipo de problema con su paso a paso, los mete en tu repaso de fallos y apunta tu resultado por materia
+  (y el módulo que te queda, en el PY). Esa convocatoria deja de estar guardada para tu examen final, porque ya la has
+  visto.
+- **¿De qué te examinas?** En el PY, Hoy pregunta si preparas los dos módulos, solo el genérico o solo el de
+  navegación (se cambia cuando quieras). La siguiente parada, el plan hasta el examen, el avance, «¿Estás listo?» y el
+  simulacro siguen esa elección, y tu derrota (la travesía) enseña solo los faros de ese módulo; los temas del otro
+  siguen a mano en el Temario, aparte. Si apuntas un examen con un módulo aprobado, se centra solo en el que te queda.
+- **Las 10 preguntas de una clase se retoman donde las dejaste** si sales a mitad (por ejemplo, para avisar de un
+  error). Y se puede ir directo a ellas sin pasar por las tarjetas: desde la primera tarjeta de la clase y desde la
+  lista de clases del tema.
+- **Andalucía, 3.ª convocatoria de 2026** (14 de noviembre), en el PER y en el PY. Entra reservada para el examen
+  final; la 1.ª de 2025 pasa a poder estudiarse.
+
+**Correcciones**
+
+- Clases al día con lo que preguntó el examen del 14 de noviembre: la corriente frente a Ceuta tiende al SE y se divide
+  en el cabo Tres Forcas; el siroco sopla por delante de las depresiones; el tramo de marea que pasa de medianoche;
+  quién no puede apartarse según la Regla 3; de qué depende el círculo de borneo; y cómo situarse con una enfilación y la
+  distancia a un faro. En un dispositivo de separación de tráfico, ir por la vía no da preferencia, ahora como idea propia.
+- La numeración de las clases de un tema ya no salta números cuando hay ideas flojas entre ellas.
+
 ## 11 de noviembre de 2026 · versión `6a8d8eabafe6`
 
 ### Mejoras

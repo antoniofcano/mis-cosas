@@ -1,5 +1,5 @@
 // Generado por tools/precache.mjs: no lo edites a mano.
-self.VERSION = '6a8d8eabafe6';
+self.VERSION = '4b1450d82307';
 self.APP = [
  "fonts/patron-texto.woff2",
  "fonts/patron-titulos.woff2",
@@ -42,8 +42,10 @@ self.APP = [
  "src/course/engine.js",
  "src/course/entrada.js",
  "src/course/estrategia.js",
+ "src/course/examen-oficial.js",
  "src/course/ficha.js",
  "src/course/final.js",
+ "src/course/foco.js",
  "src/course/formulas.js",
  "src/course/guia.js",
  "src/course/listo.js",
@@ -57,6 +59,7 @@ self.APP = [
  "src/course/semana.js",
  "src/course/sesion.js",
  "src/course/simulacro-errores.js",
+ "src/course/tanda-clase.js",
  "src/course/tarjetas.js",
  "src/course/tras-examen.js",
  "src/course/travesia.js",
@@ -309,6 +312,7 @@ self.APP = [
  "src/ui/encaja.js",
  "src/ui/ensayo.js",
  "src/ui/entrada.js",
+ "src/ui/foco.js",
  "src/ui/glosas.js",
  "src/ui/guiado.js",
  "src/ui/hoja.js",
@@ -364,6 +368,7 @@ self.APP = [
  "src/ui/views/mas.js",
  "src/ui/views/misc.js",
  "src/ui/views/nivel.js",
+ "src/ui/views/oficial.js",
  "src/ui/views/plan.js",
  "src/ui/views/podcast.js",
  "src/ui/views/profe.js",

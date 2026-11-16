@@ -1,0 +1,164 @@
+{
+  "and-py-2026-c3-g01": {
+    "explicacion": "Los chalecos inflables llevan cilindro de CO2, mecanismo de disparo y cámara, y se revisan según las instrucciones del fabricante (cilindro, pastilla soluble, estanqueidad). La norma no les exige un localizador personal por radio (la a). Cuando el cilindro caduca se cambia, no se tira el chaleco (la b). Y los hay de 150 N y de 275 N, así que la c) es falsa.",
+    "clave": "Chaleco inflable: revisión según el fabricante; cilindro caducado → se cambia.",
+    "trampa": "La b): lo que caduca es el cilindro, y se sustituye por uno nuevo."
+  },
+  "and-py-2026-c3-g02": {
+    "explicacion": "El arnés y su línea de vida son de fibras sintéticas que se degradan con el sol, la intemperie y los productos químicos. Por eso se guardan en un sitio fresco, seco y a la sombra, pero a mano para usarlo enseguida. A la intemperie (la a) o colgado en el palo (la d) se estropea, y junto a disolventes y pinturas (la c) se degrada. El arnés sirve para engancharse a la línea de vida, no para subir al palo.",
+    "clave": "Arnés: fresco, seco, a la sombra, lejos de químicos y a mano.",
+    "trampa": "La d): el arnés de seguridad no es una guindola para subir al palo."
+  },
+  "and-py-2026-c3-g03": {
+    "explicacion": "Al embarcar combustible aumenta el peso total, es decir, el desplazamiento. El centro de gravedad se mueve hacia el peso añadido, en este caso hacia abajo. Y como el barco cala más, cambia el volumen sumergido y con él la posición del centro de carena. Varían las tres.",
+    "clave": "Cargar o consumir peso → cambian desplazamiento, G y C.",
+    "trampa": "Pensar que, al estar el tanque bajo, solo cambia G: también cambian el desplazamiento y la carena."
+  },
+  "and-py-2026-c3-g04": {
+    "explicacion": "El Código IDS exige que la bengala de mano siga ardiendo después de haber estado sumergida 10 segundos bajo 100 mm de agua. Las otras profundidades no son las de la norma.",
+    "clave": "Bengala de mano: 10 s bajo 100 mm de agua y sigue ardiendo.",
+    "trampa": "Elegir una cifra mayor por parecer más exigente: la prueba es a 100 mm."
+  },
+  "and-py-2026-c3-g05": {
+    "explicacion": "El contenedor de la balsa debe llevar marcadas, entre otros datos, las instrucciones para su puesta a flote, para que cualquiera pueda lanzarla en una emergencia. También lleva el fabricante, el número de serie, el número de personas que admite y la fecha de la última revisión. No se exige el nombre del barco serigrafiado por el fabricante, ni un peso máximo, ni un número mínimo de personas para su estabilidad.",
+    "clave": "Contenedor de la balsa: instrucciones de puesta a flote bien a la vista.",
+    "trampa": "La d): se marca el número máximo de personas que admite, no un mínimo."
+  },
+  "and-py-2026-c3-g06": {
+    "explicacion": "Se pregunta lo que NO conviene. En una balsa no se sabe cuánto tardará el rescate, así que el agua y las raciones se racionan desde el principio. Por eso no racionar (la a) es lo desaconsejado. Ventilar con buen tiempo, beber en pequeñas dosis a lo largo del día y hacer turnos de vigilancia son buenas prácticas.",
+    "clave": "En la balsa: racionar agua y comida y vigilar por turnos.",
+    "trampa": "La doble negación de la a): «no racionar» es justo lo que no se debe hacer."
+  },
+  "and-py-2026-c3-g07": {
+    "explicacion": "El ancla flotante (ancla de capa) es un cono o saco de tela que se larga sujeto a la balsa: la frena, reduce la deriva y la mantiene aproada a la mar, lo que mejora su estabilidad. Las bolsas de lastre van bajo el fondo y evitan el vuelco, pero no se largan ni frenan la deriva. La capota protege a los ocupantes y el rezón es un ancla de fondo.",
+    "clave": "Contra la deriva → ancla flotante.",
+    "trampa": "La b): las bolsas de lastre estabilizan, pero van fijas bajo la balsa.",
+    "concepto": "and-py-2025-c1-g01"
+  },
+  "and-py-2026-c3-g08": {
+    "explicacion": "Salvamento Marítimo recomienda que, durante un rescate con helicóptero, todas las personas a bordo lleven puesto el chaleco salvavidas, por si alguien cae al agua durante la maniobra. No hay chalecos «homologados para helicóptero» con una letra H, y sirve cualquier chaleco reglamentario, rígido o inflable.",
+    "clave": "Rescate con helicóptero: todos con el chaleco puesto.",
+    "trampa": "La d) inventa una homologación especial que no existe."
+  },
+  "and-py-2026-c3-g09": {
+    "explicacion": "Se pide la INCORRECTA. Un extintor tiene que poder usarse al instante, así que va en un lugar de fácil acceso, bien sujeto, nunca dentro de un cofre o pañol cerrado con llave. Las demás son ciertas: hay que vigilar las fechas de revisión y de retimbrado, y la tripulación debe saber usarlo.",
+    "clave": "Extintor: a mano, sujeto y revisado; nunca bajo llave.",
+    "trampa": "La b) suena prudente por el mal tiempo, pero se evita la caída sujetándolo, no encerrándolo."
+  },
+  "and-py-2026-c3-g10": {
+    "explicacion": "Con altura metacéntrica negativa, el metacentro queda por debajo del centro de gravedad. Al escorar, peso y empuje forman un par que aumenta la escora en vez de corregirla, y el barco no vuelve a adrizarse. Recuperar la posición (la a) es propio del equilibrio estable y quedarse en la escora adquirida (la c) del indiferente.",
+    "clave": "GM > 0 vuelve; GM = 0 se queda; GM < 0 escora más.",
+    "trampa": "La c) describe el equilibrio indiferente (GM = 0).",
+    "ilustraciones": [{ "tipo": "estabilidad", "caso": "inestable" }]
+  },
+  "and-py-2026-c3-g11": {
+    "explicacion": "Se pide la FALSA. Un gradiente horizontal de presión grande significa que la presión cambia mucho en poca distancia: las isobaras están juntas y el viento es fuerte. Con gradiente pequeño, isobaras separadas y viento flojo. La d) lo dice al revés.",
+    "clave": "Isobaras juntas = gradiente grande = viento fuerte.",
+    "trampa": "Las tres primeras son ciertas; la falsa es la única que invierte la relación."
+  },
+  "and-py-2026-c3-g12": {
+    "explicacion": "La humedad relativa es el cociente, en porcentaje, entre la tensión del vapor que hay en el aire y la tensión máxima o de saturación a esa temperatura. Con el aire saturado vale el 100 %, su máximo, no su mínimo (la b). La c) lo pone al revés: la absoluta se da en g/m³ y la relativa en %.",
+    "clave": "Relativa = vapor real / vapor de saturación (%). Absoluta = g/m³.",
+    "trampa": "La c) intercambia las unidades de las dos humedades."
+  },
+  "and-py-2026-c3-g13": {
+    "explicacion": "La niebla de advección se forma cuando aire húmedo y templado se desplaza sobre una superficie más fría y se enfría por debajo de su punto de rocío. Un descenso de la temperatura favorece la niebla, no la disipa (la a). La de radiación se disipa de día, cuando el sol calienta (la c). Las de vapor y las frontales se forman por aporte de vapor (evaporación), no por enfriamiento (la d).",
+    "clave": "Advección = aire templado y húmedo sobre agua o suelo fríos.",
+    "trampa": "La d): las de enfriamiento son las de radiación y de advección; las de vapor y frontales son de evaporación."
+  },
+  "and-py-2026-c3-g14": {
+    "explicacion": "Si el aire cálido ya no toca el suelo, el frente está ocluido. Como el aire de vanguardia es menos frío que el de retaguardia, el de retaguardia, más denso, se mete por debajo de todo y levanta el resto: la oclusión es fría. El frente frío y el cálido simples (la a y la b) tienen aún el aire cálido en contacto con el suelo.",
+    "clave": "Retaguardia más fría = oclusión fría; vanguardia más fría = oclusión cálida.",
+    "trampa": "La d): leer al revés vanguardia y retaguardia. El más frío es el que se queda abajo.",
+    "concepto": "and-py-2019-c3-g14"
+  },
+  "and-py-2026-c3-g15": {
+    "explicacion": "Cuando el viento choca con una montaña, el aire sube forzado por la ladera, se enfría y condensa: son las nubes orográficas. Las convectivas se forman por el calentamiento del suelo, las frontales donde el aire cálido sube sobre una cuña de aire frío, y las «de radiación» no son un tipo de nube (sí hay nieblas de radiación).",
+    "clave": "Convectivas = calor desde abajo; orográficas = montaña; frontales = aire cálido sobre aire frío.",
+    "trampa": "Todas son ascensos de aire; lo que cambia es la causa del ascenso.",
+    "concepto": "and-py-2017-c3-g11"
+  },
+  "and-py-2026-c3-g16": {
+    "explicacion": "El viento antitríptico es aquel en el que interviene el rozamiento con la superficie: frena el aire y le hace cortar las isobaras hacia las bajas presiones. El geostrófico equilibra gradiente y Coriolis, el ciclostrófico gradiente y fuerza centrífuga, y el de Euler solo tiene en cuenta el gradiente.",
+    "clave": "Antitríptico = con rozamiento.",
+    "trampa": "La d): el geostrófico es el que no tiene rozamiento y va paralelo a las isobaras.",
+    "concepto": "and-py-2016-c1-g11"
+  },
+  "and-py-2026-c3-g17": {
+    "explicacion": "El Siroco es un viento del SE (o S) que nace en el Sahara y sopla por delante de las depresiones que cruzan el Mediterráneo meridional. Llega muy cálido y seco, a menudo con polvo en suspensión. Mistral, Tramontana y Bora son vientos fríos: el Mistral del NW en el golfo de León, la Tramontana del N y la Bora del NE en el Adriático.",
+    "clave": "Siroco = cálido, del Sahara, por delante de las borrascas.",
+    "trampa": "Mistral, Tramontana y Bora son mediterráneos, pero fríos.",
+    "concepto": "and-py-2024-c3-g11"
+  },
+  "and-py-2026-c3-g18": {
+    "explicacion": "La longitud de onda es la distancia horizontal entre dos crestas (o dos senos) consecutivas. La distancia vertical entre cresta y seno es la altura de la ola (la a), y la extensión de mar sobre la que sopla el viento en la misma dirección es el fetch (la b).",
+    "clave": "Longitud = horizontal entre crestas; altura = vertical cresta-seno; fetch = zona de generación.",
+    "trampa": "La a): eso es la altura de la ola, no su longitud."
+  },
+  "and-py-2026-c3-g19": {
+    "explicacion": "Las corrientes termohalinas se deben a diferencias de densidad del agua, que dependen de la temperatura (termo-) y de la salinidad (-halina). Las demás cambian los orígenes entre sí: las de arrastre las produce el viento, las de gradiente un desnivel de la superficie del mar, y las de marea la Luna y el Sol.",
+    "clave": "Termohalina = temperatura + sal = densidad.",
+    "trampa": "b), c) y d) intercambian las causas de las corrientes de gradiente, de marea y de arrastre.",
+    "concepto": "and-py-2024-c2-g17"
+  },
+  "and-py-2026-c3-g20": {
+    "explicacion": "Por el Estrecho entra en superficie agua atlántica que avanza hacia el Mediterráneo, es decir, hacia levante. La respuesta oficial recoge la descripción clásica: a la altura de Ceuta la corriente general tiende al SE, siguiendo la costa africana, y al llegar al cabo Tres Forcas se divide en dos ramas. Las demás fallan: la corriente no va hacia el NW (la b), el golfo de León queda muy lejos, al norte del Mediterráneo occidental (la c), y 6 nudos es una velocidad desmesurada para una contracorriente costera (la d).",
+    "clave": "Norte de África: agua atlántica hacia el E-SE; en Tres Forcas se divide en dos.",
+    "trampa": "La b): el flujo atlántico entra hacia levante, no hacia el NW."
+  },
+  "and-py-2026-c3-n01": {
+    "explicacion": "El Círculo Polar Ártico está en 66° 33′ N y el Antártico en 66° 33′ S: a 23° 27′ de cada polo, lo mismo que la inclinación del eje terrestre. 23° 27′ es la latitud de los trópicos (la a), la c) pone los hemisferios al revés y la d) invierte las cifras.",
+    "clave": "Trópicos 23° 27′; círculos polares 66° 33′ (Ártico N, Antártico S).",
+    "trampa": "La c): mismas cifras, pero el Ártico está en el hemisferio norte."
+  },
+  "and-py-2026-c3-n02": {
+    "explicacion": "La longitud es el arco de Ecuador entre el meridiano de Greenwich y el meridiano del lugar, de 0° a 180° E u W. La latitud se mide sobre el meridiano, desde el Ecuador, y las diferencias de latitud o de longitud son arcos entre dos lugares, no desde Greenwich.",
+    "clave": "Longitud: sobre el Ecuador, desde Greenwich. Latitud: sobre el meridiano, desde el Ecuador.",
+    "trampa": "La d): la diferencia de longitud es entre los meridianos de dos lugares, no desde Greenwich.",
+    "concepto": "and-py-2021-c2-n02"
+  },
+  "and-py-2026-c3-n03": {
+    "explicacion": "La corrección total (Ct) es la suma algebraica de la declinación magnética y el desvío, y también se obtiene en la mar comparando una demora o rumbo verdadero conocido con el de aguja: con la estrella Polar, que marca el norte verdadero, o con una enfilación u oposición de puntos de la carta (Ct = Dv − Da). La a) habla de una «declinación Polar» que no existe, la estrella del Sur no es el único método (la c) y sin conocer la demora verdadera no se puede calcular nada (la d).",
+    "clave": "Ct = dm + Δ = Dv − Da (Polar, enfilación u oposición).",
+    "trampa": "La d): sin demora verdadera conocida no hay con qué comparar la de aguja."
+  },
+  "and-py-2026-c3-n04": {
+    "explicacion": "El rumbo de aguja es el ángulo que forma la línea de crujía (proa-popa) con el norte de aguja, el que marca el compás, medido de 0° a 360° en sentido horario. Desde el norte verdadero sería el rumbo verdadero (la b) y desde el magnético el rumbo magnético (la c). El rumbo respecto al fondo es el rumbo efectivo (la d).",
+    "clave": "Ra desde Na, Rm desde Nm, Rv desde Nv.",
+    "trampa": "La c): el norte magnético da el rumbo magnético; el de aguja incluye además el desvío.",
+    "ilustraciones": [{ "tipo": "nortes", "dm": -2, "desvio": 3 }],
+    "concepto": "and-py-2020-c1-n07"
+  },
+  "and-py-2026-c3-n05": {
+    "explicacion": "El derrotero describe la costa con detalle: su aspecto, los peligros, los fondeaderos y las instrucciones para recalar y entrar en puerto. El libro de faros recoge las luces y señales, el almanaque náutico los datos astronómicos y el anuario de mareas las horas y alturas de la marea.",
+    "clave": "Derrotero = descripción de la costa y entrada en puertos.",
+    "trampa": "La a): el libro de faros describe luces, no la costa ni la entrada en puerto."
+  },
+  "and-py-2026-c3-n06": {
+    "explicacion": "Para una buena imagen radar se ajustan la sintonía (afinar el receptor), la ganancia (amplificación) y los supresores de perturbación de mar y de lluvia. Brillo, contraste y escala ayudan a ver la pantalla, pero no bastan para sacar bien los ecos, y aunque haya modo automático el radar permite el ajuste manual.",
+    "clave": "Ajustes básicos: sintonía, ganancia, mar y lluvia (y brillo y escala).",
+    "trampa": "La a): brillo y contraste solo ajustan la pantalla, no la recepción de ecos.",
+    "concepto": "and-py-2024-c2-n06"
+  },
+  "and-py-2026-c3-n07": {
+    "explicacion": "La marcación radar se cuenta desde la proa. Sin viento ni corriente, la proa apunta al rumbo verdadero, así que Dv = Rv + marcación por estribor = 040° + 030° = 070°. Si la marcación fuera por babor, se restaría.",
+    "clave": "Dv = Rv + M (estribor +, babor −).",
+    "trampa": "La a): restar la marcación, como si fuera por babor."
+  },
+  "and-py-2026-c3-n08": {
+    "explicacion": "Las coordenadas dependen del datum. El GNSS suele trabajar en WGS84, y si la carta está en otro datum la misma latitud y longitud caen en un punto distinto. Por eso hay que comprobar que coinciden y, si no, aplicar la corrección que indica la carta. Tener tres satélites no arregla esto, y la escala de la carta no tiene nada que ver.",
+    "clave": "GNSS → carta: mismo datum o aplicar la corrección de la carta.",
+    "trampa": "La a): las coordenadas no son universales; dependen del datum."
+  },
+  "and-py-2026-c3-n09": {
+    "explicacion": "Las cartas electrónicas son de dos tipos: raster (RNC), imagen escaneada de la carta de papel, y vectoriales (ENC), formadas por objetos con atributos. ECDIS y ECS son los equipos que las muestran, no tipos de carta (la b). Recalada, aproximación y portulano son clases de carta según su escala (la c), y la d) olvida las raster.",
+    "clave": "Cartas: ENC (vectorial) y RNC (raster). Equipo: ECDIS/ECS.",
+    "trampa": "La b): mezcla los equipos con las cartas.",
+    "concepto": "and-py-2019-c1-n09"
+  },
+  "and-py-2026-c3-n10": {
+    "explicacion": "Se pide la FALSA. El AIS solo muestra los barcos que llevan el equipo encendido y transmitiendo, porque intercambia datos por VHF; no detecta a quien no lo lleva, a diferencia del radar. Sí identifica a los buques con AIS, ayuda a prevenir abordajes y se usa también en ayudas a la navegación (AIS AtoN).",
+    "clave": "AIS: solo ves a quien transmite. El radar ve a todos los que dan eco.",
+    "trampa": "La b): confiar en el AIS como si fuera un radar."
+  }
+}

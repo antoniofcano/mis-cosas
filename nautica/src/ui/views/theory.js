@@ -394,8 +394,10 @@ export function examenesView({ ctx, progress, tit }) {
       aviso,
       tarjetaFinal(T0, fin),
       h('section.simulacro',
-        h('a.btn.grande', { href: tlink(T0.id, ['test', 'simulacro'], { s: randomSeed() }), class: aMedias || fin.sugerir ? 'secondary' : '' }, 'Hacer un simulacro'),
-        h('p.centrado.muted', `${cuenta(totalPreguntas(E0), 'pregunta')} · ${cuenta(E0.duracionMin, 'minuto')} · como el de verdad`),
+        // Con un módulo elegido (src/course/foco.js), el simulacro principal es el de ese módulo.
+        (() => { const Ef = st.foco ? estructuraModulo(E0, st.foco.id) : null; return [
+          h('a.btn.grande', { href: tlink(T0.id, ['test', 'simulacro'], { s: randomSeed(), ...(Ef ? { m: st.foco.id } : {}) }), class: aMedias || fin.sugerir ? 'secondary' : '' }, Ef ? `Simulacro del ${Ef.titulo.replace(/^Módulo/, 'módulo')}` : 'Hacer un simulacro'),
+          h('p.centrado.muted', `${cuenta(totalPreguntas(Ef ?? E0), 'pregunta')} · ${cuenta((Ef ?? E0).duracionMin, 'minuto')} · como el de verdad`)]; })(),
         h('p.centrado.enlace-estrategia', h('a', { href: tlink(T0.id, ['estrategia']) }, conIcono('diana', 'Cómo hacer el examen: tu estrategia'))),
         // Por módulos (PY): practicar uno mientras se aprende el otro.
         E0.modulos?.length ? h('div.simulacro-modulos', h('p.muted.small', 'O solo un módulo, para practicarlo mientras aprendes el otro:'),
@@ -411,6 +413,11 @@ export function examenesView({ ctx, progress, tit }) {
             h('span.mas-fila-tx', h('strong#ensayo-tarjeta-t', 'Ensayo general en papel'), h('span.muted.small', `Con tu carta, transportador, compás y reloj. ${ce.hechos} de ${ce.recomendados} recomendados.`)),
             h('span.mas-fila-flecha', { 'aria-hidden': 'true' }, '›')));
       })(),
+      // Tu examen oficial (R-60): pasar la hoja del examen de verdad, corregirla con la plantilla y entrenar sus fallos.
+      h('section.ensayo-tarjeta', { 'aria-labelledby': 'oficial-tarjeta-t' },
+        h('a.mas-fila', { href: tlink(T0.id, ['oficial']) }, h('span.mas-fila-ico', icono('lista')),
+          h('span.mas-fila-tx', h('strong#oficial-tarjeta-t', 'Tu examen oficial'), h('span.muted.small', 'Ya te examinaste: pasa tu hoja, Patrón la corrige con la plantilla y entrena tus fallos.')),
+          h('span.mas-fila-flecha', { 'aria-hidden': 'true' }, '›'))),
       (() => {
         const n = st.repaso.hoy; // del motor (con conceptos, una por idea)
         return h('section.repaso-examen',
@@ -459,14 +466,18 @@ export function examenesView({ ctx, progress, tit }) {
  * avisoDe(i, q): un aviso encima de la pregunta i (p. ej. «te la traigo con otra redacción»), o null.
  * alResponder(i, q, ok): se llama tras guardar la respuesta; si devuelve un texto, va al final de la corrección.
  */
-export function tandaPreguntas({ preguntas, explicaciones, progress, barra, rotulo = null, temaEnCadaPregunta = false, vocab = null, ayudas = null, avisoDe = null, alResponder = null, registrar = null, contador = null, onFin, onSummary = () => {} }) {
+/**
+ * Tanda de preguntas con corrección inmediata. `inicio` ({ i, ok }) retoma una tanda a medias por la pregunta i con ok
+ * aciertos; `alAvanzar(i, ok)` se llama tras cada respuesta con la pregunta por la que habría que seguir.
+ */
+export function tandaPreguntas({ preguntas, explicaciones, progress, barra, rotulo = null, temaEnCadaPregunta = false, vocab = null, ayudas = null, avisoDe = null, alResponder = null, registrar = null, contador = null, inicio = null, alAvanzar = null, onFin, onSummary = () => {} }) {
   const box = h('div.tanda');
   // La lista puede crecer mientras se responde (test de nivel adaptativo: alResponder añade la siguiente).
   const total = () => preguntas.length;
   const cuenta_ = (j) => contador?.(j) ?? { texto: `Pregunta ${j + 1} de ${total()}`, fraccion: j / total() };
-  let i = 0;
+  let i = Math.max(0, Math.min(Number(inicio?.i) || 0, Math.max(0, preguntas.length - 1)));
   const crono = cronometro(); // minutos reales (con tope por pantalla), no estimados
-  let ok = 0;
+  let ok = Math.max(0, Number(inicio?.ok) || 0);
   function show() {
     const q = preguntas[i];
     // Tu velocidad en carta (R-42): el tiempo de cada pregunta de carta, solo con la pestaña visible (en el aparato).
@@ -491,6 +502,7 @@ export function tandaPreguntas({ preguntas, explicaciones, progress, barra, rotu
       const good = k != null && (q.anulada || k === q.correcta);
       if (good) ok += 1;
       if (registrar) registrar(q, k, good); else progress.recordExam(q.id, { choice: k, ok: good });
+      alAvanzar?.(i + 1, ok);
       if (reloj && k != null) tiemposAlumno().anota({ y: tipoDe(q), s: reloj.parar(), o: good, q: q.id });
       else reloj?.parar();
       const extra = alResponder?.(i, q, good) ?? null;

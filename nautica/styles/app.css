@@ -442,10 +442,12 @@ nav.temas a.chip.secondary { background: transparent; border: 1px solid var(--bo
 .tema-ideas-barra { display: block; height: 6px; }
 .tema-ideas-tx { font-size: .9rem; color: var(--muted); }
 ol.clases { list-style: none; padding: 0; margin: 0; display: grid; gap: .5rem; counter-reset: clase; }
-ol.clases li { counter-increment: clase; }
+ol.clases > li { counter-increment: clase; }
 a.clase { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: .3rem .8rem; min-height: 56px; padding: .6rem 1rem; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); text-decoration: none; color: var(--text); }
 a.clase:hover { border-color: var(--accent); }
 a.clase .clase-titulo { font-weight: 600; }
+a.clase-practica { display: inline-flex; align-items: center; gap: .3rem; min-height: 44px; padding: 0 .6rem; margin: .1rem 0 .3rem .4rem; }
+.directo-practica { margin-top: .8rem; }
 a.clase .clase-titulo::before { content: counter(clase) ". "; color: var(--muted); }
 a.clase .clase-meta { display: inline-flex; gap: .6rem; align-items: center; }
 .tema > .btn.grande { margin: 1rem 0; }
@@ -2635,3 +2637,12 @@ svg.guiado-croquis { display: block; width: 100%; max-width: 340px; height: auto
 @media (prefers-reduced-motion: reduce) { .guiado-croquis .cq-traza { animation: none; stroke-dasharray: none; stroke-dashoffset: 0; } .guiado-croquis .cq-sale { animation: none; opacity: 1; } }
 .guiado-tabla tr.marcada td, .guiado-tabla tr.marcada th { font-weight: 700; background: var(--accent-2); }
 .guiado-tabla-tit { margin: 0 0 .2rem; }
+
+/* «¿De qué te examinas?» en Hoy (src/ui/foco.js) */
+.foco { display: grid; gap: .5rem; padding: .8rem 1rem; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); }
+.foco p { margin: 0; overflow-wrap: anywhere; }
+.foco h2 { margin: 0; font-size: 1.2rem; }
+.foco-pregunta { border-color: var(--accent); }
+.foco-opciones { display: grid; gap: .5rem; }
+.foco-opciones button { min-height: 44px; width: 100%; }
+.foco-cambiar summary { cursor: pointer; min-height: 44px; display: flex; align-items: center; color: var(--accent); }

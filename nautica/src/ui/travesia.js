@@ -3,7 +3,8 @@
 // todo devuelve null y la app es la de siempre.
 
 import { estadoTravesia, examenesDe, semanaDe, fusionar, progresoRango } from '../course/travesia.js';
-import { TITULACIONES } from '../theory/blocks.js';
+import { TITULACIONES, estructuraModulo } from '../theory/blocks.js';
+import { focoModulo } from '../course/foco.js';
 
 /**
  * El estado de la travesía de un banco con los datos de hoy (sin guardar nada), o null sin conceptos. Los faros son los
@@ -14,7 +15,10 @@ import { TITULACIONES } from '../theory/blocks.js';
 export function calcularTravesia(progress, eje, tit, ic, { respuestas = progress.get().exams, ahora = Date.now() } = {}) {
   if (!ic) return null;
   const dias = progress.get().dias ?? {};
-  const est = estadoTravesia({ ic, estructura: TITULACIONES[tit]?.estructura ?? null, respuestas, tests: examenesDe(progress.tests(), eje, tit), dias, ahora });
+  // Con un módulo elegido (PY, src/course/foco.js), la derrota es la de ese módulo: sus temas y sus ideas.
+  const E = TITULACIONES[tit]?.estructura ?? null;
+  const foco = E ? focoModulo(progress.settings(), tit, E) : null;
+  const est = estadoTravesia({ ic, estructura: foco ? estructuraModulo(E, foco.id) : E, respuestas, tests: examenesDe(progress.tests(), eje, tit), dias, ahora });
   if (!est) return null;
   est.semana = semanaDe(dias, ahora);
   return est;

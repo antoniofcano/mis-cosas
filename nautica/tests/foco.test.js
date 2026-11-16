@@ -60,3 +60,24 @@ test('motor: con solo navegación, temas, camino, «¿Estás listo?» y simulacr
   const otra = estadoAlumno({ ...e, planGuardado: nav.plan.base, settings: { examen_py: '2027-03-20' } });
   assert.equal(otra.plan.nuevo, true);
 });
+
+test('travesía de un módulo (banco real del PY de Andalucía): solo los faros y las ideas de sus temas', async () => {
+  const { estadoTravesia } = await import('../src/course/travesia.js');
+  const { estructuraModulo } = await import('../src/theory/blocks.js');
+  const { crearConceptos } = await import('../src/conceptos/index.js');
+  const { bancosNode } = await import('../tools/bancos/leer.mjs');
+  const ic = await crearConceptos(bancosNode()).cargarConceptos('andalucia', 'py');
+  const nav = estadoTravesia({ ic, estructura: estructuraModulo(PY, 'navegacion'), respuestas: {}, ahora });
+  assert.deepEqual(nav.temas.map((f) => f.ut).sort(), [3, 4]);
+  assert.ok(nav.ideas.every((i) => [3, 4].includes(i.ut)));
+  const todo = estadoTravesia({ ic, estructura: PY, respuestas: {}, ahora });
+  assert.ok(todo.total > nav.total);
+});
+
+test('motor: con un módulo, los temas del otro van aparte (temasFuera), con su estado', () => {
+  const preguntas = PY.bloques.flatMap((b) => Array.from({ length: 3 }, (_, i) => ({ id: `q${b.ut}-${i}`, ut: b.ut, correcta: 'a' })));
+  const st = estadoAlumno({ tit: 'py', estructura: PY, curso: null, preguntas, regs: {}, respuestas: {}, tests: [], minutosHoy: 0, racha: 0, planGuardado: null, ahora, settings: { modulos_py: 'navegacion' } });
+  assert.deepEqual(st.temasFuera.map((t) => t.b.ut).sort(), [1, 2]);
+  assert.ok(st.temasFuera.every((t) => t.e && typeof t.e.estado === 'string'));
+  assert.deepEqual(estadoAlumno({ tit: 'py', estructura: PY, curso: null, preguntas, regs: {}, respuestas: {}, tests: [], minutosHoy: 0, racha: 0, planGuardado: null, ahora, settings: {} }).temasFuera, []);
+});

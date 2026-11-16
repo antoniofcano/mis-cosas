@@ -68,6 +68,10 @@ export function estadoAlumno(e) {
 
   // Temas (en el orden de estudio) y camino.
   const temas = bloquesEnOrden(d.estructura).map((b) => ({ b, e: estadoTema(b, d.curso, d.preguntas, d.regs, d.respuestas, d.ahora) }));
+  // Con un módulo elegido, los temas del otro: fuera de la ruta y del plan, pero se pueden abrir desde el Temario.
+  const enFoco = new Set(d.estructura.bloques.map((b) => b.ut));
+  const temasFuera = foco ? bloquesEnOrden(e.estructura).filter((b) => !enFoco.has(b.ut))
+    .map((b) => ({ b, e: estadoTema(b, e.curso, e.preguntas, d.regs, d.respuestas, d.ahora) })) : [];
   const camino = { ...avance(d.estructura, d.curso, d.preguntas, d.regs, d.respuestas, d.ahora), ...avanceCamino(d) };
 
   // Plan con fecha (si la hay): el guardado si sigue valiendo; si no, uno nuevo (la pantalla lo guarda).
@@ -121,7 +125,7 @@ export function estadoAlumno(e) {
   const ritmo = ritmoEstudio(d);
   const mensaje = mensajeDelDia({ dia, plan, ritmo, fechaExamen, objetivo, principal, ahora: d.ahora });
 
-  return { tit, datos: d, dia, temas, camino, plan, actividades, principal, ruta, ritmo, listo, moduloPendiente: pendiente, foco, final, repaso, flojos, mensaje, fechaExamen, diasAlExamen, orientativa: !!s[`examenOrientativo_${tit}`] };
+  return { tit, datos: d, dia, temas, temasFuera, camino, plan, actividades, principal, ruta, ritmo, listo, moduloPendiente: pendiente, foco, final, repaso, flojos, mensaje, fechaExamen, diasAlExamen, orientativa: !!s[`examenOrientativo_${tit}`] };
 }
 
 /**

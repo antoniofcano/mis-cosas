@@ -6,7 +6,7 @@ import { h, setChildren } from '../dom.js';
 import { link } from '../router.js';
 import { estadoLeccion } from '../../course/engine.js';
 import { requisitos } from '../../course/ruta.js';
-import { estadoTema, parteTema, TANDA } from '../../course/plan.js';
+import { parteTema, TANDA } from '../../course/plan.js';
 import { bloque, bloquesEnOrden } from '../../theory/blocks.js';
 import { randomSeed } from '../../math/rng.js';
 import { TITULACIONES, tlink, volver, reglasExamen } from '../titulacion.js';
@@ -93,7 +93,7 @@ export function temarioView({ progress, tit }) {
     const filas = d.st.temas; // del motor
     // Los faros por tema (solo si el banco tiene sus preguntas etiquetadas por idea); si no, el aspecto de siempre.
     // Son los mismos faros de la carta de la derrota (estadoTravesia().faros), con las mismas cuentas.
-    const est = d.indiceConceptos ? estadoTravesia({ ic: d.indiceConceptos, estructura: T.estructura, respuestas: d.respuestas, ahora: d.ahora }) : null;
+    const est = d.indiceConceptos ? estadoTravesia({ ic: d.indiceConceptos, estructura: d.estructura, respuestas: d.respuestas, ahora: d.ahora }) : null;
     const faros = farosPorTema(est);
     // El faro de un tema que se ha encendido desde la última visita se enciende una vez (src/ui/efectos.js).
     const recien = new Set(est ? novedades(`temario:${d.banco.eje.id}/${tit}`, filas.filter(({ b }) => faros.get(b.ut)?.estado === 'on').map(({ b }) => String(b.ut))) : []);
@@ -113,6 +113,13 @@ export function temarioView({ progress, tit }) {
           f ? avanceIdeas(f)
             : e.estado !== 'sin-empezar' ? h('div.bar', { title: 'Camino hasta tener el tema al día' }, h('span', { style: `width:${Math.round(100 * parteTema(e))}%` })) : null);
       })),
+      // Con un módulo elegido (src/course/foco.js), los temas del otro siguen a mano, aparte.
+      (() => {
+        const otros = (d.st.temasFuera ?? []).map(({ b }) => b);
+        return otros.length ? h('section.temas-otro-modulo', h('h2', 'Del otro módulo'),
+          h('p.muted.small', `Ahora preparas el ${d.st.foco?.titulo.replace(/^Módulo/, 'módulo') ?? 'otro módulo'}: estos temas no entran en tu ruta ni en tu plan. Se cambia en Hoy.`),
+          h('ul', otros.map((b) => h('li', h('a', { href: tlink(tit, ['temario', String(b.ut)]) }, b.titulo))))) : null;
+      })(),
       h('details', h('summary', 'Reglas del examen'), h('ul', reglasExamen(T, d.banco.eje).map((r) => h('li', r)))),
     );
   }).catch((e) => setChildren(el, h('p.warn', `No se pudieron cargar las preguntas: ${e.message}`)));
@@ -133,9 +140,11 @@ export function temaView({ progress, params: route, tit }) {
   const el = h('div.tema', volver('Temario', tlink(tit, ['temario'])), h('h1', conIcono(b.ico, b.titulo)), h('p.muted', 'Cargando…'));
   let summaryText = `VISTA tema ${T.sigla} ${b.titulo} (cargando)`;
   calcularPlan(progress, tit).then((d) => {
-    const m = d.curso?.modulos?.find((x) => x.ut === ut);
+    const cursoT = d.cursoCompleto ?? d.curso; // también los temas del otro módulo (src/course/foco.js)
+    const m = cursoT?.modulos?.find((x) => x.ut === ut);
     const clases = (m?.lecciones ?? []).map((l) => ({ l, e: estadoLeccion(l, d.regs[l.id], d.respuestas, d.ahora) }));
-    const e = d.st.temas.find((x) => x.b.ut === b.ut).e; // del motor
+    // Del motor (también los temas del otro módulo, fuera de la ruta: st.temasFuera).
+    const e = [...d.st.temas, ...(d.st.temasFuera ?? [])].find((x) => x.b.ut === b.ut).e;
     const aMedias = clases.find((c) => c.e.estado === 'empezada');
     const nueva = clases.find((c) => c.e.estado === 'nueva');
     const tanda = tlink(tit, ['teoria', 'ut', String(ut)], { s: randomSeed() });
@@ -144,14 +153,14 @@ export function temaView({ progress, params: route, tit }) {
         : h('a.btn.grande', { href: tanda }, `Hacer ${cuenta(TANDA, 'pregunta')}`);
     // La siguiente clase de la ruta (del motor) y en qué clases se apoya cada una (sus datos `requiere`).
     const siguienteRuta = d.st.ruta.siguiente;
-    const apoyos = new Map(clases.map(({ l }) => [l.id, requisitos(l, d.curso)]));
+    const apoyos = new Map(clases.map(({ l }) => [l.id, requisitos(l, cursoT)]));
     // Clases con práctica (sus preguntas de examen): se puede ir directo a ella (#/<tit>/curso/<id>?practica=1).
     const practicables = new Map(clases.filter(({ l }) => l.practica?.length).map(({ l }) => [l.id, Math.min(10, l.practica.length)]));
     summaryText = `VISTA tema ${T.sigla} ${b.titulo} · examen ${b.n}${b.maxErrores != null ? ` (máx ${b.maxErrores} err)` : ''} · ${e.estado} · hechas ${e.hechas}/${e.total} · fallos pendientes ${e.fallos}\n` +
       clases.map(({ l, e: x }) => `CLASE ${l.id} ${l.titulo}: ${x.estado}${l.id === siguienteRuta ? ' · SIGUIENTE EN LA RUTA' : ''}${apoyos.get(l.id).length ? ` · se apoya en ${apoyos.get(l.id).map((r) => r.id).join(', ')}` : ''} → #/${tit}/curso/${l.id}`).join('\n');
     // Las ideas de cada clase (con etiquetas): sabidas, flojas y sin ver; las flojas, con su mapa o lámina.
     const ideas = ideasPorClase(d.indiceConceptos, d.respuestas);
-    const clasesCurso = clasesDeCurso(d.curso);
+    const clasesCurso = clasesDeCurso(cursoT);
     const flojasDe = new Map();
     for (const { l } of clases) if (ideas.get(l.id)?.flojas.length) flojasDe.set(l.id, h('ul.ideas-flojas.ideas-clase'));
     const pintaFlojas = (mapas) => { for (const [id, ul] of flojasDe) ul.replaceChildren(...ideas.get(id).flojas.map((c) => filaIdea(c, tit, clasesCurso, mapas, { claseActual: id, ficha: `temario/${ut}` }))); };

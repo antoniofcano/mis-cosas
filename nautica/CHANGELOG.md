@@ -28,7 +28,8 @@ Qué cambia en la app para quien la usa, por fecha de publicación. Es la base d
   visto.
 - **¿De qué te examinas?** En el PY, Hoy pregunta si preparas los dos módulos, solo el genérico o solo el de
   navegación (se cambia cuando quieras). La siguiente parada, el plan hasta el examen, el avance, «¿Estás listo?» y el
-  simulacro siguen esa elección. Si apuntas un examen con un módulo aprobado, se centra solo en el que te queda.
+  simulacro siguen esa elección, y tu derrota (la travesía) enseña solo los faros de ese módulo; los temas del otro
+  siguen a mano en el Temario, aparte. Si apuntas un examen con un módulo aprobado, se centra solo en el que te queda.
 - **Las 10 preguntas de una clase se retoman donde las dejaste** si sales a mitad (por ejemplo, para avisar de un
   error). Y se puede ir directo a ellas sin pasar por las tarjetas: desde la primera tarjeta de la clase y desde la
   lista de clases del tema.

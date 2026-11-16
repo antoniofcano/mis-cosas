@@ -15,7 +15,15 @@ Qué cambia en la app para quien la usa, por fecha de publicación. Es la base d
 
 ## Sin publicar
 
-Nada pendiente.
+**Novedades**
+
+- **«¿Qué tipo de problema es?» al empezar el paso a paso.** Antes de la primera cuenta eliges el tipo entre cuatro (marea y sonda, situación por dos demoras, corriente: rumbo a dar…). Si te equivocas, te dice por qué es de ese tipo y qué dato del enunciado lo delata. No cuenta como fallo.
+- **Ayuda por escalones en cada paso.** En lugar de darte el valor de golpe: primero una pista (qué buscar), después la fórmula con tus datos y, si aún hace falta, «Dímelo». Usar la ayuda no es fallar, pero queda apuntado («con 2 ayudas»).
+- **Ejemplo resuelto y otro con huecos.** Desde el paso a paso, «Ver un ejemplo resuelto» te enseña otra pregunta real del mismo tipo resuelta entera, con su carta; después, «Ahora tú, con huecos» te da otra con la mitad de los pasos ya hechos para que completes el resto.
+
+**Mejoras**
+
+- **Trázalo en la carta, también con distancias no simultáneas.** Las preguntas de dos distancias (o demora y distancia) tomadas a horas distintas ya se trazan por intención: el primer arco, el traslado con el rumbo y la distancia navegados y el corte con el segundo arco. Si trasladas hacia atrás, no trasladas o te equivocas con la distancia navegada, te lo dice con nombre y te dibuja tu trazo. Ya están todas las preguntas de carta de práctica.
 
 ## 16 de noviembre de 2026, séptima publicación · versión `d3c9b2ed3320`
 

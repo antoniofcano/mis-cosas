@@ -49,9 +49,28 @@ dibujo que manejar con el dedo.
 
 Orden: estima y loxodrómica, mareas y corrección total primero; la carta gráfica después.
 
-_Estado (noviembre de 2026): la hoja de examen en todos los tipos (H-46, H-56), el reloj (H-54), los avisos (H-55) y la
-carta gráfica por intención (H-66, abajo) están hechos. Falta el primer paso «¿qué tipo es?», la ayuda en escalones y el
-ejemplo resuelto seguido de otro con huecos: R-71 en `docs/ROADMAP.md`._
+_Estado (noviembre de 2026): hecha. La hoja de examen en todos los tipos (H-46, H-56), el reloj (H-54), los avisos (H-55),
+la carta gráfica por intención (H-66 y H-67, abajo) y el primer paso «¿qué tipo es?», la ayuda en escalones y el ejemplo
+resuelto seguido de otro con huecos (H-68, abajo)._
+
+#### Lo que enseña el paso a paso (H-68) · hecho
+
+Lógica en `src/exams/ensena.js`, interfaz en `src/ui/guiado.js`.
+
+- **«¿Qué tipo de problema es?»** antes de la primera cuenta: cuatro botones, el tipo de la pregunta (el de su resolución:
+  marea y sonda, situación por dos demoras, corriente: rumbo a dar…) y tres de los que más se le parecen. Si falla, se le
+  dice por qué es de ese tipo, qué dato del enunciado lo delata («sonda que tendremos a la hora oficial 22:50…»; en las
+  demoras no simultáneas, la segunda hora) y cuándo sería el que eligió. No va al cuaderno de fallos: ningún error de la
+  taxonomía es «confundir el tipo», y no se ha inventado uno.
+- **Ayuda en escalones** en cada paso, con un solo botón que avanza: la **pista** (qué buscar y qué se busca), **la
+  fórmula con tus datos** (la cuenta de la hoja cortada justo antes del resultado: «D = 23:25 − 17:16 = …») o, si el paso
+  no la trae, la regla, y al final **«Dímelo»**. Usar un escalón no es fallar, pero queda apuntado en el paso, en el
+  resumen y en `nautica.state()` («con 2 ayudas»). Los avisos «Ojo / No olvides / Así se hace» y el reloj siguen igual.
+- **Ejemplo resuelto y otro con huecos:** «Ver un ejemplo resuelto» enseña otra pregunta real del mismo tipo resuelta
+  entera, paso a paso y con su carta; después, «Ahora tú, con huecos» abre una tercera con la primera mitad de los pasos
+  ya rellena para que el alumno complete el resto. Salen de la práctica del banco (nunca de las convocatorias
+  reservadas), siempre las mismas para una misma pregunta. Sin reloj: no son un problema entero hecho por él. No usa los
+  ejercicios generados: con las preguntas reales hay ejemplos de todos los tipos.
 
 #### La carta gráfica por intención («Trázalo en la carta», H-66) · hecha
 
@@ -81,8 +100,13 @@ un examen en marcha. Lógica en `src/exams/intencion.js`, interfaz en `src/ui/in
   con su diferencia. Las cuentas que quedan después del último trazo (el Ra con la Ct, el abatimiento) se enseñan
   aparte.
 - **Al cuaderno**, solo el primer fallo con nombre, con el origen «traza».
-- **Fuera:** las distancias no simultáneas con dos arcos o con un arco y la demora trasladada (12 preguntas de práctica)
-  y la estima analítica, que no se traza.
+- **Distancias no simultáneas (H-67):** dos distancias, o una demora y una distancia, tomadas a horas distintas, en tres
+  trazos: el primer arco (o la demora), el traslado y el segundo arco. En el traslado, primero qué se hace con la primera
+  línea —trasladar el centro del arco (o la línea) lo navegado, trasladarlo hacia atrás (**traslado al revés**, error
+  nuevo de la taxonomía con su variante del kit) o cortar sin trasladar (**sin trasladar**)— y luego el rumbo y la
+  distancia navegados, con su error si lo hay (la Ct en el rumbo, los minutos leídos como décimas en la distancia). Si
+  un traslado equivocado no llega a cortar, se dibuja igual y al final se dice que no sale ninguna situación.
+- **Cubre** las 1124 preguntas de práctica con algo que trazar. **Fuera** solo la estima analítica, que no se traza.
 
 ### 2. Cuaderno de fallos con dosis cortas (R-56)
 - Cada respuesta equivocada de un paso se convierte en un fallo con nombre: «sumas el adelanto», «trazas la demora al

@@ -43,7 +43,9 @@ test('la vista del examen cuenta cada pregunta con el mismo criterio que el relo
   assert.match(src, /tiemposDelTest\(\{ preguntas: test\.preguntas, ms: msPregunta/);
   assert.match(src, /porTema: [^\n]+\n\s*\/\/[^\n]+\n\s*tq \}\);/);
   // En la práctica, la pregunta de carta y el ejercicio de carta, con el reloj de pestaña visible y en el aparato.
-  assert.match(src, /relojVisible\(\{ vivo: \(\) => box\.isConnected \}\)/);
+  // (R-64: el mismo reloj, ahora con su pantalla compacta y pausa, en src/ui/reloj-paso.js sobre relojVisible.)
+  assert.match(src, /relojPaso\(\{ tit: T\.id, compacto: true, vivo: \(\) => box\.isConnected \}\)/);
+  assert.match(leer('src/ui/reloj-paso.js'), /relojVisible\(\{ vivo \}\)/);
   assert.match(leer('src/ui/views/exercise.js'), /tiemposAlumno\(\)\.anota\(\{ y: exercise\.id, s: reloj\.parar\(\)/);
 });
 

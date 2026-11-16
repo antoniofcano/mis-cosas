@@ -90,13 +90,23 @@ un banco concreto; las vistas piden `cargarBanco(currentEje(progress), tit)`.
   `ui/semana.js` (calcula con el resultado de `calcularPlan`, guarda el ajuste compartido `semana_<tit>` y apunta el día
   hecho), la tarjeta de Hoy (`views/hoy.js`), `views/semana.js` (`#/<tit>/semana` y la tanda `#/<tit>/semana/ideas/<n>`) y
   la Travesía («Seguir» arranca la misma sesión, `composicionDeHoy`).
-- **Paso a paso «de hoja de examen»** (H-46): un paso del kit puede declarar `traigo` (datos de pasos anteriores),
-  `plantea` (la fórmula, visible antes de contestar), `lineas` (la cuenta, visible al contestar) y `tabla`. `ui/guiado.js`
-  los pinta en lugar de la voz del profe cuando la resolución los trae; hoy, `tramos` y `rumboDirecto` (estima analítica),
-  que preguntan cada fila con la magnitud `minutos` (`analysis/quantities.js`: con signo o con N/S/E/W), y las mareas
-  (`tramoMarea`, `horaUT`, `sondaA`, `horaParaSonda`). `croquis` (`{ tipo: 'marea' | 'tramos', … }`) lo dibuja `croquisEl`,
-  animado con CSS (`.cq-traza`, `.cq-sale`; nada con «reducir movimiento»). `tras: ['traigo', 'croquis']` deja esas partes
-  para después de contestar (en `tramoMarea`, elegir el tramo en la tabla del enunciado es parte del problema).
+- **Paso a paso «de hoja de examen»** (H-46, R-52): un paso del kit puede declarar `traigo` (datos de pasos anteriores),
+  `plantea` (la fórmula o la regla, visible antes de contestar), `lineas` (la cuenta o la construcción escrita, visible al
+  contestar) y `tabla`. `ui/guiado.js` los pinta en lugar de la voz del profe; si un paso preguntado no los trae, ese paso
+  vuelve a la voz del profe. Hoy los traen todos los pasos preguntados del kit: la estima analítica (`tramos` y
+  `rumboDirecto`, cada fila con la magnitud `minutos` de `analysis/quantities.js`), las mareas (`tramoMarea`, `horaUT`,
+  `sondaA`, `horaParaSonda`), la corrección total (`ct` con la dm del año en minutos, `rv`, `ra`, `dv`, `dvM`, `ctFrom`,
+  `ctPolar`: cada signo escrito y la vuelta de 360°), las líneas de posición y situaciones (opuesta de cada demora,
+  oposición, enfilación, traslado —también el paso de la 1ª línea, que no se pregunta—), el viento (`abatimiento`,
+  `rvConAbatimiento`: la banda por viento − rumbo y Rs = Rv + Ab) y la corriente (`efectivo`, `rumboConCorriente`,
+  `rumboYVelocidad`, `corrienteDesconocida`, `estimaEfectiva`: el triángulo de velocidades por sus trazos). `croquis`
+  (`{ tipo: 'marea' | 'tramos' | 'ct' | 'abatimiento' | 'corriente', … }`) lo dibuja `croquisEl(p, hecho)`: en los de la
+  carta, antes de contestar solo lo que da el enunciado (los nortes con dm y Δ, la proa y el viento, dos lados del
+  triángulo) y al contestar lo que se buscaba (Ct, Rs o Rv, el tercer lado); `'ct'` exagera los ángulos y lo dice.
+  Animado con CSS (`.cq-traza`, `.cq-sale`; nada con «reducir movimiento»). `tras: ['traigo', 'croquis']` deja esas
+  partes para después de contestar (en `tramoMarea`, elegir el tramo en la tabla es parte del problema; en `ctFrom` y
+  `ctPolar`, el croquis sería la respuesta). `tests/guiado.test.js` exige en todas las soluciones reales que cada paso
+  preguntado traiga, plantee y escriba una cuenta que acabe en el valor pedido.
 - **Antes y después del examen real** (R-48 a R-50; `course/tras-examen.js`, funciones puras; tests
   `tests/tras-examen.test.js`): `fallosPorMateria` (los 3 últimos exámenes con `porTema` completo de cada materia:
   simulacro, real, final, módulo y ensayo; nunca el simulacro de tus errores ni las tandas) con `estadoFrente` (holgado,
@@ -117,6 +127,11 @@ un banco concreto; las vistas piden `cargarBanco(currentEje(progress), tit)`.
   frente a `tiempoDisponible` de `course/estrategia.js`) y `consejoVelocidad` (por dónde empezar la carta). Se pinta en
   «Tu estrategia» (`#est-velocidad`) y en el resultado de un simulacro. La práctica se guarda en el aparato
   (`store/tiempos.js`); dónde va cada cosa y por qué, en [`SYNC.md`](SYNC.md) («Tiempo por pregunta»).
+  **Reloj del paso a paso y de la práctica de carta** (R-64; `course/reloj-paso.js` puro, `ui/reloj-paso.js`; tests
+  `tests/reloj-paso.test.js`): el objetivo por problema es el `tiempoDisponible` de arriba (estimación, no norma; con la
+  media del examen si no hubiera carta), los estados siguen la tabla de velocidad (`estadoTiempo`), la pausa es la de
+  `relojVisible`. Va en el paso a paso (que al terminar guarda su tiempo en `store/tiempos.js`, clave `guiado:<id>`) y,
+  compacto, en las preguntas de carta de las tandas; nunca en exámenes ni simulacros.
 - **Ensayos en papel en la semana y la estrategia:** `recordatorioEnsayos` (`course/semana.js`) y `cuentaEnsayos`
   (`theory/ensayo.js`) cuentan los `tests` con `tipo: 'ensayo'` frente a los 2 recomendados; la página de la semana, la
   estrategia y la pantalla Examen enlazan `#/<tit>/ensayo`.
@@ -200,6 +215,12 @@ exige que coincida con la plantilla oficial. Si cambias la carta o un motor, est
   Ajustes), interfaz en `ui/guiado.js` (`guiadoPanel`). Se abre en `#/q/<id>` («Resolver paso a paso» o `?guiado=1`),
   en el panel del profe de la práctica (clases y tandas) y en la pestaña «Paso a paso» de la mesa (`openWorkspace({ guiado })`,
   que dibuja cada paso con el tutorial). Nunca en un examen (`modoExamen()`), ni en la revisión de uno.
+- **Avisos por paso (R-65):** `exams/avisos-pasos.js` (sin DOM) guarda el catálogo `AVISOS` (por error típico: `ojo`, `no`,
+  `asi`, `has`; test: uno por cada `E(...)` del kit). El kit anota en cada paso preguntable `errores` (los `E(...)` que se
+  consultan en su operación, afinados por paso con `erroresDelPaso`; no cambia ningún resultado) y `pasosGuiados` los pasa.
+  `avisoPrevio` elige el «Ojo» (el error del alumno de `store/errores.js` o, sin datos, el más frecuente del tribunal de
+  `data/comun/errores-frecuentes.json`); `diagnosticarPaso` vuelve a resolver con cada variante de esos errores y compara
+  el paso. Interfaz: `avisosDeLosPasos` en `ui/guiado.js`.
 - **Diagnóstico en la interfaz:** `ui/diagnostico.js` (`diagnosticoEl`) en la corrección de `#/q/<id>`, en el panel del
   profe (práctica y revisión de un examen terminado) y al final del modo guiado; «Tus errores más repetidos» en Mi progreso.
 - **Errores del alumno** (`store/errores.js`, `localStorage` `nautica.errores.v1`): pasos fallados en el modo guiado y

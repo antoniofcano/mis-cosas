@@ -11,6 +11,7 @@ import { PASOS, ERRORES, VARIANTES, tipoDe, errorComun, fraseError } from '../sr
 import { estadoVacio, anotaError, anotaPaso, resumen, leerEstado, crearAlmacenErrores } from '../src/store/errores.js';
 import { rhumbTo } from '../src/math/mercator.js';
 import { norm360 } from '../src/math/angles.js';
+import { fmtBearing } from '../src/math/format.js';
 import { chart } from './helpers.js';
 import { todasLasPreguntas } from '../tools/bancos/leer.mjs';
 
@@ -114,6 +115,85 @@ test('las soluciones reales siguen llegando a lo mismo y casi todas tienen pasos
     for (const s of k.steps) for (const c of s.pide?.campos ?? []) assert.ok(Number.isFinite(c.value), `${id}: ${s.title}`);
   }
   assert.ok(con / total > 0.9, `con pasos preguntables: ${con}/${total}`);
+});
+
+// Hoja de examen (H-46, R-52): cada paso que se pregunta trae lo que usa, plantea la regla y escribe la cuenta, y la
+// cuenta acaba en el valor que se pide, escrito como lo corrige el modo guiado.
+const CROQUIS = new Set(['marea', 'tramos', 'ct', 'abatimiento', 'corriente']);
+function hojaCoherente(s, donde) {
+  // Lo que trae es la tabla en la suma de los tramos (H-46).
+  assert.ok(s.tabla || (Array.isArray(s.traigo) && s.traigo.length && s.traigo.every((x) => typeof x === 'string' && x.length)), `${donde}: traigo`);
+  assert.ok(typeof s.plantea === 'string' && s.plantea.length > 15, `${donde}: plantea`);
+  assert.ok(Array.isArray(s.lineas) && s.lineas.length && s.lineas.every((x) => typeof x === 'string' && x.length), `${donde}: lineas`);
+  const cuenta = s.lineas.join('\n');
+  for (const c of s.pide?.campos ?? []) {
+    const txt = QUANTITIES[c.kind].format(c.value);
+    // Un rumbo calculado (no medido) puede escribirse con su décima, como en rumboDirecto.
+    // Y una duración, como en las mareas, «6h 24m».
+    const conDecima = c.kind === 'bearing' ? fmtBearing(c.value, 1) : c.kind === 'duration' ? `${Math.floor(Math.round(c.value * 60) / 60)}h ${String(Math.round(c.value * 60) % 60).padStart(2, '0')}m` : txt;
+    assert.ok(cuenta.includes(txt) || cuenta.includes(conDecima), `${donde}: la cuenta no llega a ${c.label} = ${txt}\n${cuenta}`);
+  }
+  assert.doesNotMatch(cuenta, /undefined|NaN|\[object/, `${donde}: cuenta mal escrita`);
+  if (s.croquis) assert.ok(CROQUIS.has(s.croquis.tipo), `${donde}: croquis ${s.croquis.tipo}`);
+}
+
+test('hoja de examen: cada paso preguntado de cada operación trae, plantea y escribe la cuenta hasta el valor pedido', () => {
+  for (const [nombre, { run }] of Object.entries(OPERACIONES)) {
+    const k = createKit(chart);
+    run(k);
+    k.steps.forEach((s, i) => { if (s.pide) hojaCoherente(s, `${nombre} paso ${i + 1}`); });
+  }
+  // El traslado de la 1ª línea no se pregunta, pero se escribe en la hoja.
+  for (const op of ['traslado', 'trasladoArco', 'trasladoDosArcos']) {
+    const k = createKit(chart);
+    OPERACIONES[op].run(k);
+    assert.ok(k.steps[0].lineas?.length && k.steps[0].traigo?.length && k.steps[0].plantea, `${op}: traslado en la hoja`);
+  }
+});
+
+test('hoja de examen: los signos y las reglas de corrección total, abatimiento y corriente', () => {
+  let k = createKit(chart);
+  k.ct({ dm: -3, desvio: 1 });
+  assert.deepEqual(ultimo(k).lineas, ['Ct = (−3°) + (+1°)', "Ct = −2° = 2° W"]);
+  assert.match(ultimo(k).plantea, /Ct = dm \+ Δ/);
+  assert.deepEqual(ultimo(k).croquis, { tipo: 'ct', dm: -3, dz: 1, ct: -2 });
+  k.ct({ carta: [-(2 + 50 / 60), 2005, 7], anyo: 2015, desvio: 3 });
+  const dm = k.steps.at(-2);
+  assert.deepEqual(dm.lineas.slice(1), ['10 × (+7′) = +70′', "dm 2005 = 2° 50' W = −170′", 'dm 2015 = −170′ + 70′ = −100′', "dm 2015 = 1° 40' W"]);
+  k.rv(358, 4);
+  assert.deepEqual(ultimo(k).lineas, ['Rv = 358° + (+4°)', '362° − 360°', 'Rv = 002°']);
+  k.ra(2, 4);
+  assert.deepEqual(ultimo(k).lineas, ['Ra = 002° − (+4°)', '−2° + 360°', 'Ra = 358°']);
+  k.ctFrom(2, 358);
+  assert.deepEqual(ultimo(k).lineas, ['Ct = 002,0° − 358°', '−356° + 360°  (se cruza el N)', 'Ct = +4° = 4° E']);
+  assert.deepEqual(ultimo(k).tras, ['croquis'], 'el croquis de la Ct por enfilación se enseña al contestar');
+  k.ctPolar(357);
+  assert.deepEqual(ultimo(k).lineas, ['Ct = 360° − 357°', 'Ct = +3° = 3° E']);
+  k.dvM(100, -90, 'punta-carnero');
+  assert.deepEqual(ultimo(k).lineas, ['Dv = 100° + (−90°)', 'Dv = 010°']);
+  // Viento del N con Rv 090°: entra por babor, abate a estribor, Ab +.
+  k = createKit(chart);
+  k.abatimiento(90, 10, 0);
+  assert.deepEqual(ultimo(k).lineas, ['000° − 090° = −90° → 270°', 'Más de 180°: entra por babor', 'Ab = +10°  (abate a estribor)', 'Rs = 090° + (+10°)', 'Rs = 100°']);
+  assert.deepEqual(ultimo(k).croquis, { tipo: 'abatimiento', viento: 0, sabido: { n: 'Rv', r: 90 }, busca: { n: 'Rs', r: 100 }, ab: 10 });
+  // Para hacer Rs 090° con viento del S (entra por estribor, Ab −) se mete la proa al viento: Rv 100°.
+  k.rvConAbatimiento(90, 10, 180);
+  assert.deepEqual(ultimo(k).lineas.slice(1), ['Entre 0° y 180°: entra por estribor', 'Ab = −10°', 'Rv = 090° − (−10°)', 'Rv = 100°']);
+  // Triángulo de velocidades: el croquis lleva los tres vectores con lo que da el kit.
+  const { ref, vef } = k.efectivo(90, 6, 0, 2, S0);
+  assert.deepEqual(ultimo(k).croquis, { tipo: 'corriente', modo: 'efectivo', rs: 90, vb: 6, rc: 0, ic: 2, ref, vef });
+  k.rumboConCorriente(S0, 45, 6, 90, 2);
+  assert.equal(ultimo(k).croquis.modo, 'rumbo');
+  k.rumboYVelocidad(S0, 'punta-carnero', 120, 90, 2);
+  assert.equal(ultimo(k).croquis.modo, 'velocidad');
+});
+
+test('hoja de examen: todas las soluciones reales escriben la cuenta de cada paso que preguntan', () => {
+  for (const [id, sol] of Object.entries(SOLUCIONES)) {
+    const k = createKit(chart);
+    sol.solve(k, byId.get(id));
+    k.steps.forEach((s, i) => { if (s.pide) hojaCoherente(s, `${id} paso ${i + 1} (${s.title})`); });
+  }
 });
 
 test('el modo guiado corrige con la tolerancia de examen (el doble en lo medido en la carta)', () => {

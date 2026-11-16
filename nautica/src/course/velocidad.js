@@ -116,6 +116,9 @@ export function muestras({ tests = [], practica = [] } = {}) {
   return out.sort((a, b) => a.t - b.t);
 }
 
+/** «cabe» (hasta el 75 % de lo disponible), «justo» (hasta el 100 %) o «se-pasa»; null sin tiempo disponible. */
+export const estadoTiempo = (s, disponibleS) => (disponibleS ? (s > disponibleS ? 'se-pasa' : s > 0.75 * disponibleS ? 'justo' : 'cabe') : null);
+
 const media = (xs) => (xs.length ? xs.reduce((s, x) => s + x, 0) / xs.length : null);
 
 /**
@@ -143,7 +146,7 @@ export function velocidadPorTipo({ tests = [], practica = [], disponibleCartaS =
       tendencia = r <= 0.9 ? 'baja' : r >= 1.1 ? 'sube' : 'estable';
     }
     const disponible = tipo === 'teoria' ? disponibleTeoriaS : disponibleCartaS;
-    const estado = disponible ? (m > disponible ? 'se-pasa' : m > 0.75 * disponible ? 'justo' : 'cabe') : null;
+    const estado = estadoTiempo(m, disponible);
     return { tipo, nombre: nombreTipo(tipo), carta: esTipoCarta(tipo), n: recientes.length, total: ms.length, mediaS: m, aciertos: recientes.filter((x) => x.ok).length,
       examen: recientes.filter((x) => x.origen === 'examen').length, tendencia, disponibleS: disponible, estado };
   });

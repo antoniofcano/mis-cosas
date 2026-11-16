@@ -2283,6 +2283,27 @@ a.semana-ver .mas-fila-flecha { color: var(--lc-magenta); }
   .est-fuentes a::after { content: " (" attr(href) ")"; font-size: 7pt; }
 }
 
+/* ---- Reloj del paso a paso y de las preguntas de carta de la práctica (R-64; src/ui/reloj-paso.js) ---- */
+.reloj-paso { border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); padding: .4rem .7rem .5rem; margin: 0 0 .7rem; min-width: 0; }
+.rp-fila { display: flex; align-items: center; gap: .5rem; flex-wrap: wrap; }
+.rp-ico { display: inline-flex; color: var(--muted); }
+.rp-tiempo { font-size: 1.5rem; font-weight: 700; font-variant-numeric: tabular-nums; line-height: 1; }
+.rp-meta { font-variant-numeric: tabular-nums; }
+.rp-estado { font-weight: 600; margin-left: auto; }
+.rp-pausa { min-width: 44px; min-height: 44px; padding: 0; display: inline-flex; align-items: center; justify-content: center; }
+.rp-barra { height: 8px; border-radius: 4px; background: var(--accent-2); overflow: hidden; margin: .3rem 0; }
+.rp-barra-in { display: block; height: 100%; width: 0; background: var(--ok); }
+.reloj-paso[data-estado="justo"] .rp-barra-in { background: var(--close); }
+.reloj-paso[data-estado="justo"] .rp-estado { color: var(--close); }
+.reloj-paso[data-estado="bien"] .rp-estado { color: var(--ok); }
+.reloj-paso[data-estado="pasas"] .rp-barra-in { background: var(--warn); }
+.reloj-paso[data-estado="pasas"] .rp-estado { color: var(--warn); }
+.reloj-paso.en-pausa .rp-tiempo, .reloj-paso.parado .rp-tiempo { opacity: .7; }
+.rp-pasos { list-style: none; margin: .3rem 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: .25rem .8rem; font-variant-numeric: tabular-nums; }
+.rp-nota { margin: .25rem 0 0; }
+.reloj-paso.compacto { padding: .2rem .6rem .3rem; }
+.reloj-paso.compacto .rp-tiempo { font-size: 1.15rem; }
+
 /* ---- Modo guiado «Paso a paso» y diagnóstico por tipo de error (src/ui/guiado.js, src/ui/diagnostico.js) ---- */
 .guiado-box { margin: 1rem 0; display: grid; gap: 1rem; }
 .guiado-box.en-profe { margin: .6rem 0; }
@@ -2610,6 +2631,19 @@ table.ep-hoja-papel th, table.ep-hoja-papel td { padding: .2rem .7rem; border-bo
 .guiado-traigo small, .guiado-plantea small { display: block; font-size: .72rem; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
 .guiado-traigo div, .guiado-cuenta div, .guiado-tabla td { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-variant-numeric: tabular-nums; font-size: .95rem; }
 .guiado-plantea { margin: .35rem 0; }
+/* Avisos «Ojo / No olvides / Así se hace» de cada paso (R-65): mismos colores que el resto del modo guiado, sin movimiento. */
+.guiado-ojo-caja:empty { display: none; }
+.guiado-ojo { margin: .45rem 0; padding: .45rem .7rem; border-left: 4px solid var(--close); border-radius: 6px; background: color-mix(in srgb, var(--close) 10%, var(--surface)); color: var(--text); }
+.guiado-ojo.hecho { border-left-color: var(--ok); background: color-mix(in srgb, var(--ok) 9%, var(--surface)); }
+.guiado-ojo.error { border-left-color: var(--warn); background: color-mix(in srgb, var(--warn) 9%, var(--surface)); }
+.guiado-ojo p { margin: .15rem 0; }
+.guiado-ojo .guiado-ojo-motivo { margin-top: .1rem; }
+.guiado-aviso-txt .ico-t { color: var(--close); vertical-align: -.2em; margin-right: .3rem; }
+.guiado-ojo.hecho .ico-t { color: var(--ok); }
+.guiado-ojo.error .ico-t { color: var(--warn); }
+details.guiado-no { margin: .3rem 0; padding: 0 .7rem; background: transparent; border-style: dashed; }
+details.guiado-no summary { min-height: 44px; display: flex; align-items: center; margin: 0; padding: 0; }
+details.guiado-no p { margin: 0 0 .5rem; }
 .guiado-nota { margin: .2rem 0; }
 .guiado-cuenta { margin: .35rem 0; padding: .4rem .6rem; border-left: 3px solid var(--accent); background: var(--surface); display: grid; gap: .15rem; }
 .guiado-cuenta div.res { font-weight: 700; }
@@ -2628,6 +2662,17 @@ svg.guiado-croquis { display: block; width: 100%; max-width: 340px; height: auto
 .guiado-croquis .cq-punto { fill: var(--text); }
 .guiado-croquis .cq-marca { fill: var(--close); }
 .guiado-croquis text.cq-marca-tx { fill: var(--close); font-weight: 700; }
+/* Croquis de la carta (R-52): nortes, abatimiento y triángulo de velocidades. Lo que se busca, en el color de «casi» y
+   más grueso; cada trazo, además, nombrado en la leyenda (nada solo por color). */
+.guiado-croquis .cq-efec { stroke: var(--close); stroke-width: 2.4; fill: none; stroke-linecap: round; }
+.guiado-croquis .cq-guia { stroke: var(--muted); stroke-width: 1; fill: none; stroke-dasharray: 2 3; }
+.guiado-croquis .cq-nv { stroke: var(--text); stroke-width: 1.4; }
+.guiado-croquis .cq-pta { stroke: none; }
+.guiado-croquis .cq-pta.tinta { fill: var(--accent); }
+.guiado-croquis .cq-pta.raya { fill: var(--muted); }
+.guiado-croquis .cq-pta.efec { fill: var(--close); }
+.guiado-croquis text.cq-ley { fill: var(--text); }
+.guiado-croquis text.cq-nota { font-size: 9.5px; font-style: italic; }
 /* El croquis se dibuja solo; con «reducir movimiento» aparece ya hecho */
 .guiado-croquis { cursor: pointer; }
 .guiado-croquis .cq-traza { stroke-dasharray: 1; stroke-dashoffset: 1; animation: cq-traza .7s ease forwards; }
@@ -2646,3 +2691,7 @@ svg.guiado-croquis { display: block; width: 100%; max-width: 340px; height: auto
 .foco-opciones { display: grid; gap: .5rem; }
 .foco-opciones button { min-height: 44px; width: 100%; }
 .foco-cambiar summary { cursor: pointer; min-height: 44px; display: flex; align-items: center; color: var(--accent); }
+
+/* Reloj del paso a paso: las explicaciones, plegadas */
+details.rp-nota summary { cursor: pointer; min-height: 44px; display: flex; align-items: center; }
+details.rp-nota p { margin: .2rem 0; }

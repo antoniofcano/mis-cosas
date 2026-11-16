@@ -3,7 +3,7 @@
 Una sola página para saber **dónde estamos, qué viene y qué está parado y por qué**. Se actualiza en el mismo commit
 que cambia el estado de algo. Las decisiones de diseño viven en su documento (`docs/*.md`); aquí solo se apuntan.
 
-_Última revisión: 16 de noviembre de 2026._
+_Última revisión: 16 de noviembre de 2026 (plan hacia 2027)._
 
 ## Cómo se mantiene
 
@@ -44,6 +44,35 @@ _Última revisión: 16 de noviembre de 2026._
 | PWA | Instalable, copia de seguridad con aviso, persistencia, accesos directos, tipografía propia, pantalla encendida, compartir el parte |
 | Servicio | Sincronización por código de alumno (Worker + D1, registro de operaciones), recordatorio diario por push con tarea horaria, recomposición automática si el servicio pierde un alumno |
 | Negocio | Estudio de mercado y planes definidos como hipótesis (`docs/PRODUCTO.md`); refactorización 2.0 planificada y condicionada a la validación (`docs/VERSION-2.md`) |
+
+## Plan hacia la 1.ª convocatoria de 2027 (carta en el móvil y cara nueva)
+
+Decidido el 16 de noviembre de 2026. Objetivo: aprobar la carta del PY en la próxima convocatoria de Andalucía (prevista
+hacia marzo de 2027, sin confirmar). Orden por ganancia frente a esfuerzo; las tandas 1 y 2 atacan las dos causas del
+suspenso del 14 de noviembre (el tiempo y los fallos de mareas y cálculo). Esfuerzo: S unas horas, M una sesión larga,
+L dos o tres. Modelo: Opus para diseñar mecanismos nuevos y todo lo que toque normas o cálculos; Sonnet para construir
+lo ya decidido, con pruebas; Haiku solo para trabajo en volumen que se comprueba solo (nunca contenido del examen).
+Diseño de referencia: lienzo «Patrón, cinco direcciones», propuesta «Elegida» (carta náutica + modo noche de puente +
+reloj de regata).
+
+| Tanda | Ids | Qué | Ganancia | Esfuerzo | Modelo |
+| --- | --- | --- | --- | --- | --- |
+| 1 · Lo que más aprueba (diciembre) | R-64 | Reloj en el paso a paso y en las preguntas de carta, con objetivo por problema | Muy alta | S | Sonnet |
+| | R-52 | Paso a paso «de hoja de examen» en corrientes, abatimiento, demoras y corrección total | Muy alta | M | Opus el primero, Sonnet el resto |
+| | R-65 | Avisos «Ojo / No olvides / Así se hace» en cada paso, sacados de los errores típicos | Alta | S | Sonnet |
+| 2 · Tu fallo, entrenado (diciembre–enero) | R-55 | Catálogo de fallos por paso (mareas, estima, corrección total primero) | Alta | M | Opus |
+| | R-56 | Dosis de 2 minutos sobre el fallo con nombre y comprobación a los 3 días (empieza por mareas) | Muy alta | M | Opus motor, Sonnet pantalla |
+| 3 · La cara nueva (diciembre–enero) | R-67 | Colores, letras, fondo de carta y modo noche de puente (claro, oscuro, automático) | Media | M | Sonnet |
+| | R-68 | Hoy rediseñado según la maqueta | Media | M | Sonnet |
+| 4 · Examen de verdad (enero–febrero) | R-57 | Simulacro con estrategia: primer minuto con el cuadernillo, reparto del tiempo, descartar | Alta | M | Opus |
+| | R-58 | Corregir la hoja en papel por pasos | Alta | M | Opus |
+| | R-66 | Simulacro completo de teoría y carta seguidos (cansancio) | Media | S | Sonnet |
+| 5 · Pulido (si da tiempo) | R-69 | Resto de pantallas al estilo nuevo (Temario, Examen, clase, mesa de cartas) | Media | L | Sonnet; Haiku para capturas |
+| | R-53 | Estima analítica generada con corriente, cruce del 180° y hemisferio sur | Media | M | Opus |
+| | R-54 | Carta gráfica «por intención» en el móvil (eliges qué trazar y la app lo dibuja) | Media | L | Opus |
+| Suelto | R-70 | Comprobar en el Derrotero del IHM la corriente tras el cabo Tres Forcas (R-63) | Baja | S | El autor, en papel |
+
+Publicación: cada tanda al terminarla; en marzo, solo simulacros y repaso, sin cambios grandes.
 
 ## Ahora
 

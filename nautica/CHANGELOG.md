@@ -15,7 +15,9 @@ Qué cambia en la app para quien la usa, por fecha de publicación. Es la base d
 
 ## Sin publicar
 
-Nada pendiente.
+**Novedades**
+
+- **Avisos en cada paso del paso a paso.** Antes de contestar, un «Ojo» te avisa de la trampa típica del paso (la que ya has fallado o, si aún no hay datos tuyos, la que más repiten en el examen) y un «No olvides» plegado te da la regla exacta. Si fallas y tu respuesta es la que sale con un error típico, te lo dice con nombre («Has aplicado el adelanto al revés»). Al acertar, «Así se hace» te deja la regla para la próxima.
 
 ## 16 de noviembre de 2026, segunda publicación · versión `d7108aa0c424`
 

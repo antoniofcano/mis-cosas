@@ -20,6 +20,7 @@ import { toPlane, fromPlane, unitsPerMile } from '../math/mercator.js';
 import { intersectLines } from '../math/vector.js';
 import { effectiveCourse, courseToSteer, windSide, abatimientoSigned } from '../nautical/kinematics.js';
 import { timeForHeight, correccionTabla } from '../nautical/tides.js';
+import { erroresDelPaso } from './avisos-pasos.js';
 
 const DIR_NAME = { 0: 'N', 45: 'NE', 90: 'E', 135: 'SE', 180: 'S', 225: 'SW', 270: 'W', 315: 'NW' };
 const coma = (x, dec = 2) => x.toFixed(dec).replace('.', ',');
@@ -37,9 +38,15 @@ export function createKit(chart, { error = null } = {}) {
   let n = 0;
   // `extra` (modo guiado, src/ui/guiado.js): { traigo: string[] (datos de pasos anteriores que usa este), plantea: string
   // (la fórmula, que se enseña antes de contestar), lineas: string[] (la cuenta, línea a línea), tabla: { cab, filas } }.
-  const step = (title, text, pide, extra) => { steps.push({ title, text, ...(pide ? { pide } : {}), ...(extra ?? {}) }); n = steps.length; };
+  // Cada paso preguntable lleva `errores` (R-65, src/exams/avisos-pasos.js): los tipos de error típico que se evalúan en
+  // su operación (los E(...) que consulta, activos o no), para sacar el aviso «Ojo» del paso. No cambia ningún resultado.
+  let consultados = [];
+  const step = (title, text, pide, extra) => {
+    const errores = pide ? erroresDelPaso(consultados, { paso: pide.paso, title, text }) : [];
+    steps.push({ title, text, ...(pide ? { pide } : {}), ...(errores.length ? { errores } : {}), ...(extra ?? {}) }); n = steps.length;
+  };
   /** ¿Se resuelve con este error típico? (`id` = variante exacta o, sin «:», cualquier variante de ese tipo) */
-  const E = (id) => error != null && (error === id || (!id.includes(':') && error.split(':')[0] === id));
+  const E = (id) => { consultados.push(id); return error != null && (error === id || (!id.includes(':') && error.split(':')[0] === id)); };
   /** Lo que pide el paso (modo guiado). */
   const pide = (paso, pregunta, campos) => ({ paso, pregunta, campos });
   const posCampos = (p, medido = true) => [{ kind: 'lat', value: p.lat, label: 'Latitud', medido }, { kind: 'lon', value: p.lon, label: 'Longitud', medido }];
@@ -657,6 +664,16 @@ export function createKit(chart, { error = null } = {}) {
       return of;
     },
   };
+  // Cada operación empieza sin errores consultados (las anidadas siguen con los de la operación que las llama).
+  let hondo = 0;
+  for (const [nombre, f] of Object.entries(k)) {
+    if (typeof f !== 'function' || nombre === 'P') continue;
+    k[nombre] = (...a) => {
+      if (!hondo) consultados = [];
+      hondo += 1;
+      try { return f(...a); } finally { hondo -= 1; }
+    };
+  }
   return k;
 }
 

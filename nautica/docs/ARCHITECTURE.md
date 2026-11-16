@@ -200,6 +200,12 @@ exige que coincida con la plantilla oficial. Si cambias la carta o un motor, est
   Ajustes), interfaz en `ui/guiado.js` (`guiadoPanel`). Se abre en `#/q/<id>` («Resolver paso a paso» o `?guiado=1`),
   en el panel del profe de la práctica (clases y tandas) y en la pestaña «Paso a paso» de la mesa (`openWorkspace({ guiado })`,
   que dibuja cada paso con el tutorial). Nunca en un examen (`modoExamen()`), ni en la revisión de uno.
+- **Avisos por paso (R-65):** `exams/avisos-pasos.js` (sin DOM) guarda el catálogo `AVISOS` (por error típico: `ojo`, `no`,
+  `asi`, `has`; test: uno por cada `E(...)` del kit). El kit anota en cada paso preguntable `errores` (los `E(...)` que se
+  consultan en su operación, afinados por paso con `erroresDelPaso`; no cambia ningún resultado) y `pasosGuiados` los pasa.
+  `avisoPrevio` elige el «Ojo» (el error del alumno de `store/errores.js` o, sin datos, el más frecuente del tribunal de
+  `data/comun/errores-frecuentes.json`); `diagnosticarPaso` vuelve a resolver con cada variante de esos errores y compara
+  el paso. Interfaz: `avisosDeLosPasos` en `ui/guiado.js`.
 - **Diagnóstico en la interfaz:** `ui/diagnostico.js` (`diagnosticoEl`) en la corrección de `#/q/<id>`, en el panel del
   profe (práctica y revisión de un examen terminado) y al final del modo guiado; «Tus errores más repetidos» en Mi progreso.
 - **Errores del alumno** (`store/errores.js`, `localStorage` `nautica.errores.v1`): pasos fallados en el modo guiado y

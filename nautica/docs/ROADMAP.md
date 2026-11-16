@@ -3,7 +3,7 @@
 Una sola página para saber **dónde estamos, qué viene y qué está parado y por qué**. Se actualiza en el mismo commit
 que cambia el estado de algo. Las decisiones de diseño viven en su documento (`docs/*.md`); aquí solo se apuntan.
 
-_Última revisión: 10 de noviembre de 2026._
+_Última revisión: 16 de noviembre de 2026._
 
 ## Cómo se mantiene
 
@@ -60,6 +60,8 @@ _Última revisión: 10 de noviembre de 2026._
 | R-05 | Informe de fin de sesión y «Mi progreso» al estilo nuevo | Siguiente | Hoy conservan su aspecto antiguo (las insignias ya no) |
 | R-06 | Hoja propia en la galería para señales pirotécnicas sueltas y sonidos con texto | Siguiente | Hoy se funden con la hoja general (`socorro` + `solo`) |
 | R-07 | Animaciones que faltan: frentes en corte, búsqueda con reproductor | Siguiente | Confirmar contra el catálogo de animaciones antes de empezar |
+| R-54 | Carta en el móvil, función 1: paso a paso que enseña (primer paso «¿qué tipo es?», avisos Ojo / No olvides / Así se hace, ayuda en escalones, ejemplo resuelto y otro con huecos) | Siguiente | `docs/CARTA-MOVIL.md`; incluye R-52. Primero estima y loxodrómica, mareas y corrección total; la carta gráfica por intención, después |
+| R-55 | Catálogo de fallos típicos por paso: qué respuesta equivocada corresponde a qué fallo, tipo a tipo y comprobado por test | Siguiente | Cimiento de R-56; se escribe a la vez que R-54 y amplía el diagnóstico de H-31 |
 
 ## Después
 
@@ -88,8 +90,12 @@ _Última revisión: 10 de noviembre de 2026._
 | R-46 | Revisar la lista del día del examen y la estrategia con la convocatoria vigente de cada tribunal (Baleares sin leer; Andalucía 2026) y confirmar dónde publica cada uno las listas de admitidos y la sede | Después | Hoy el enlace por defecto es la página oficial del banco |
 | R-47 | Limpiar los alumnos de prueba que las pruebas automáticas dieron de alta en producción (10 de noviembre de 2026) | Después | Solo con decisión del dueño, filtrando por fecha y sin borrados generales (incidente de octubre) |
 | R-51 | Calibrar «¿Estás listo?» y los avisos por materia con las comparaciones predicción–resultado que vayan apuntando los alumnos | Después | Hoy solo en el aparato o la cuenta de cada alumno; juntarlas pide su consentimiento y la versión 2 (complementa R-14) |
-| R-52 | Llevar el paso a paso «de hoja de examen» (traigo, planteo, cuenta y croquis) al resto de tipos: corrección total, corrientes, abatimiento, demoras | Siguiente | Hecho en la estima analítica y las mareas (H-46); los demás siguen con la voz del profe y dan hechos los pasos intermedios |
+| R-52 | Llevar el paso a paso «de hoja de examen» (traigo, planteo, cuenta y croquis) al resto de tipos: corrección total, corrientes, abatimiento, demoras | Siguiente | Forma parte de R-54. Hecho en la estima analítica y las mareas (H-46); los demás siguen con la voz del profe y dan hechos los pasos intermedios |
 | R-53 | Ejercicio generado de estima analítica con corriente, cruce del 180° y hemisferio sur, como pone hoy el tribunal | Siguiente | Hoy genera 2 o 3 tramos sin corriente cerca del Estrecho |
+| R-56 | Carta en el móvil, función 2: cuaderno de fallos con nombre, dosis de uno o dos minutos con reloj y comprobación días después sin pistas | Después | `docs/CARTA-MOVIL.md`; necesita R-55. Empieza por mareas. Maqueta «Patrón, tu entrenador» |
+| R-57 | Carta en el móvil, función 3: simulacro con estrategia (primer minuto con el cuadernillo, reparto del tiempo, estimar y descartar, simulacro completo de teoría y carta seguidas) | Después | Cose H-35, H-36, H-37, H-42 y H-43; la carta en papel y el móvil de reloj y corrector |
+| R-58 | Corregir la hoja en papel por pasos: el alumno mete el resultado de cada paso y la app dice en cuál se desvió | Después | Lleva lo hecho en papel al cuaderno de fallos (R-56) |
+| R-59 | Más herramientas de dibujo de la mesa de cartas para el móvil | Descartado | La pantalla pequeña no da para trazar; la mesa queda para tablet y ordenador (`docs/CARTA-MOVIL.md`) |
 
 ## Bloqueado por fuente
 
@@ -114,6 +120,7 @@ _Última revisión: 10 de noviembre de 2026._
 ## Fuera de alcance (proyecto aparte)
 
 - Ideas sin planificar: `docs/IDEAS.md`.
+- La carta en el móvil (tres funciones, qué se descarta): `docs/CARTA-MOVIL.md`.
 - Vídeo y avatares de profesor. El aula virtual (R-25) no aloja vídeo: la voz y el vídeo van por un enlace externo.
 - Una app nativa: la PWA cubre el caso; solo se reconsidera si falla la instalación en un dispositivo concreto.
 

@@ -15,7 +15,9 @@ Qué cambia en la app para quien la usa, por fecha de publicación. Es la base d
 
 ## Sin publicar
 
-Nada pendiente.
+**Novedades**
+
+- **Trázalo en la carta.** En una pregunta de carta, junto a «Resolver paso a paso» y «Lo hice en papel», tienes «Trázalo en la carta»: pensado para el móvil, donde no se puede trazar a mano con precisión. En cada trazo eliges con botones grandes qué trazas (una demora, un arco de distancia, la oposición, la tangente, la corriente…), desde qué faro o punto, con qué valor (la demora ya corregida con la Ct, por ejemplo) y hacia dónde (desde el faro, la opuesta). La app lo dibuja exacto en la carta, con su rótulo, y te acerca la vista. Si te equivocas, te dice qué error has cometido («has usado el valor de aguja sin corregirlo», «has trazado desde el faro equivocado», «ese trazo va después») y te dibuja en discontinua lo que habrías trazado. Al terminar, compara lo que te habría salido con tus primeras elecciones con la resolución. Así entrenas el orden y qué trazar, que es donde se falla; la precisión del transportador, en tu hoja. El primer error con nombre va a tu cuaderno de fallos. Sirve para la situación por demoras, por demora y distancia, por oposición y enfilación, por traslado, el rumbo a un punto, la tangente, la corriente y el abatimiento; nunca durante un examen.
 
 ## 16 de noviembre de 2026, sexta publicación · versión `ffd09e8aa632`
 

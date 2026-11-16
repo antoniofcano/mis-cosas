@@ -257,6 +257,22 @@ exige que coincida con la plantilla oficial. Si cambias la carta o un motor, est
   paso a paso, ×2 lo medido); «casi» hasta el doble, salvo que coincida con un error típico. El primer fallo con nombre
   va a `store/errores.js` y al cuaderno (`anotarFallo`, origen `papel`). Lo escrito se guarda como borrador en el aparato
   (`nautica.papel.<id>`). Test `tests/papel.test.js` (barrido sobre las preguntas del estudio de todos los bancos).
+- **Carta gráfica por intención (R-54, «Trázalo en la carta»):** lógica en `exams/intencion.js` (sin DOM), interfaz en
+  `ui/intencion.js` (`intencionPanel`, `intencionDisponible`). Se abre en `#/q/<id>?traza=1`; nunca con un examen en
+  marcha. El kit apunta cada operación de primer nivel en `k.ops` (`{ op, args, ret, pasos, items }`: rangos de
+  `steps` e `items`; no cambia ningún resultado). `planIntencion` reparte cada operación con trazo en trazos (`TRAZOS`:
+  acción, argumento del objeto, argumentos de valor, sentido e índices de sus `items`) y arma las decisiones de cada uno:
+  acción (la buena, la del trazo siguiente —`orden-trazado`— y las que se confunden —`trazo-equivocado`—), objeto
+  (faros del problema y los más cercanos, o las situaciones ya en la carta —`faro-equivocado`—), valor (el argumento de
+  esa operación en el kit resuelto con cada variante de la taxonomía, agrupado: uno o dos errores) y sentido (error fijo
+  y su cambio). Las cuentas entre dos trazos (`ct`, `dv`, `abatimiento`…) no son trazos: su `plantea` es la pista del
+  valor, y las del final se enseñan al acabar. `resolverCon({ cambios, capturar })` resuelve con un `Proxy` del kit que,
+  en la operación j, sustituye argumentos (`{ i: valor | { suma } }`) o usa la variante del error: así se dibuja lo que
+  traza una elección equivocada (`intento`) y se compara el resultado de las primeras elecciones con la resolución
+  (`compararFinal`, encadenado). Los trazos que se pintan son los `items` del kit con rótulo (los arcos lo admiten);
+  el intento, con el estilo `intento` (discontinuo). El primer fallo con nombre va a `store/errores.js` y al cuaderno
+  (`anotarFallo`, origen `traza`). Errores del paso `trazado` en `ERRORES_DE_TRAZADO` (sin variante del kit). Test
+  `tests/intencion.test.js` (barrido sobre el banco de práctica).
 - **Avisos por paso (R-65):** `exams/avisos-pasos.js` (sin DOM) guarda el catálogo `AVISOS` (por error típico: `ojo`, `no`,
   `asi`, `has`; test: uno por cada `E(...)` del kit). El kit anota en cada paso preguntable `errores` (los `E(...)` que se
   consultan en su operación, afinados por paso con `erroresDelPaso`; no cambia ningún resultado) y `pasosGuiados` los pasa.
@@ -277,7 +293,7 @@ exige que coincida con la plantilla oficial. Si cambias la carta o un motor, est
 - **Fallo** (`course/cuaderno.js`, puro): un error típico de la taxonomía (`exams/taxonomia.js`) en un tipo de problema
   (el `ejercicio` de la solución o el id del ejercicio generado; `carta` si no tiene). Id `<error>.<tipo>`. Guarda las
   veces (`n`), las últimas con fecha y origen (`paso`, `pregunta`, `simulacro`, `examen`, `oficial`, `ejercicio`,
-  `comprobacion`, `papel`), la última dosis y las comprobaciones. Una misma pregunta (o semilla) con el mismo fallo el mismo día
+  `comprobacion`, `papel`, `traza`), la última dosis y las comprobaciones. Una misma pregunta (o semilla) con el mismo fallo el mismo día
   cuenta una vez: el paso guiado y la opción final de esa pregunta no se duplican.
 - **Estados y calendario:** abierto → (dosis superada, ≥ 4 de 5) comprobación a `DIAS_COMPROBACION` (3) días →
   bien: vigilando, la siguiente a `DIAS_VIGILANDO` (7) → bien otra vez: resuelto. Mal: abierto, dosis primero y la

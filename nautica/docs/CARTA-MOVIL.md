@@ -49,6 +49,41 @@ dibujo que manejar con el dedo.
 
 Orden: estima y loxodrómica, mareas y corrección total primero; la carta gráfica después.
 
+_Estado (noviembre de 2026): la hoja de examen en todos los tipos (H-46, H-56), el reloj (H-54), los avisos (H-55) y la
+carta gráfica por intención (H-66, abajo) están hechos. Falta el primer paso «¿qué tipo es?», la ayuda en escalones y el
+ejemplo resuelto seguido de otro con huecos: R-71 en `docs/ROADMAP.md`._
+
+#### La carta gráfica por intención («Trázalo en la carta», H-66) · hecha
+
+Se abre desde la pregunta de carta, junto a «Resolver paso a paso» y «Lo hice en papel» (`#/q/<id>?traza=1`); nunca con
+un examen en marcha. Lógica en `src/exams/intencion.js`, interfaz en `src/ui/intencion.js`.
+
+- **Cada trazo, en tres o cuatro elecciones cortas**, con botones de 44 px o más: la **acción** (trazar una demora desde
+  un faro, un arco de distancia con el compás, unir dos faros, un rumbo desde un punto, unir dos puntos y medir,
+  componer la corriente, la tangente, situarse «al S del faro», trasladar la primera línea, unir la estima con la
+  observada), el **objeto** (qué faro o qué situación), el **valor** (la demora verdadera ya corregida, el rumbo de
+  superficie, la distancia navegada) y el **sentido** (desde el faro, la opuesta; la corriente, hacia donde va el agua;
+  la banda de la tangente; trasladar o no la primera línea).
+- **La app lo traza exacto** en la carta, con su rótulo («Dv 341° Isla de Tarifa», «5,0 millas de Cabo Espartel»), y
+  acerca la vista al trazo. La carta no trae las herramientas de dibujo (solo «Ampliar» y el zoom): no se dibuja con el
+  dedo.
+- **Errores con nombre.** Cada opción equivocada es un error de la taxonomía: los valores salen del kit resuelto con cada
+  error típico (la demora de aguja sin corregir, la Ct con el signo cambiado, olvidar el desvío, los minutos leídos como
+  décimas…), las elecciones de sentido tienen su error fijo (demora sin la opuesta, al otro lado del faro, oposición al
+  revés, corriente al revés, sin corriente, la otra banda, rumbo directo, sin trasladar) y la acción y el objeto, los
+  tres errores nuevos del paso «trazado»: **faro o punto equivocado**, **trazo equivocado** y **fuera de orden** (elegir
+  lo que va después). Si dos errores dan el mismo valor, se dicen los dos y no se apunta ninguno. Un error que ya se
+  eligió en un trazo anterior no vuelve como valor de los siguientes.
+- **Lo que habrías trazado** se dibuja en discontinua y rotulado «Tu trazo»: el kit vuelve a resolver la pregunta con ese
+  único cambio. El alumno vuelve a elegir (o pide «Dímelo»).
+- **Al terminar**, la pregunta se resuelve con sus **primeras** elecciones (encadenadas: una situación equivocada es la
+  salida del rumbo siguiente) y se compara con la resolución: la situación, a cuántas millas; un rumbo o una velocidad,
+  con su diferencia. Las cuentas que quedan después del último trazo (el Ra con la Ct, el abatimiento) se enseñan
+  aparte.
+- **Al cuaderno**, solo el primer fallo con nombre, con el origen «traza».
+- **Fuera:** las distancias no simultáneas con dos arcos o con un arco y la demora trasladada (12 preguntas de práctica)
+  y la estima analítica, que no se traza.
+
 ### 2. Cuaderno de fallos con dosis cortas (R-56)
 - Cada respuesta equivocada de un paso se convierte en un fallo con nombre: «sumas el adelanto», «trazas la demora al
   revés». No «fallaste mareas».
@@ -94,7 +129,7 @@ H-42 y H-43) y añade:
 
 | Propuesta | Motivo |
 | --- | --- |
-| Más herramientas de dibujo de la mesa para el móvil (R-59) | La pantalla pequeña no da para trazar; se traza en papel |
+| Más herramientas de dibujo de la mesa para el móvil (R-59) | La pantalla pequeña no da para trazar; se traza en papel (y en el móvil, por intención: H-66) |
 | Voz y ayudante hablado | No ayuda a aprobar la carta |
 | Ideas vanguardistas sueltas | No resuelven ninguna de las carencias de arriba |
 | «Caza el error» como modo propio | Como mucho, un tipo de tarjeta dentro de las dosis |

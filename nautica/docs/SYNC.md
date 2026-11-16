@@ -132,6 +132,10 @@ dosis: { t, ok, n, a, de } | null, comp: { prox: 'AAAA-MM-DD'|null, seguidas, hi
 - **Origen «papel»** (R-58): el primer fallo con nombre de una hoja corregida por pasos (`ev[].o = 'papel'`). `falloValido`
   no mira los orígenes y una versión anterior de la app enseña el código tal cual: no hace falta tocar el Worker. Lo
   escrito en la hoja queda solo en el aparato (borrador `nautica.papel.<id>` en `localStorage`), no se sincroniza.
+- **Origen «traza»** (R-54): el primer fallo con nombre de «Trázalo en la carta» (`ev[].o = 'traza'`), también con los
+  errores nuevos del paso «trazado» (`faro-equivocado`, `trazo-equivocado`, `orden-trazado`). Como «papel», no toca el
+  Worker: `falloValido` no mira los orígenes, y una versión anterior de la app que reciba uno de esos errores nuevos lo
+  ignora al leer (su taxonomía no lo tiene) sin perder los demás.
 - Lo que sigue solo en el aparato: «Tus errores más repetidos» (`nautica.errores.v1`, para el «Ojo» del paso a paso y el
   simulacro de tus errores). El cuaderno no lo sustituye: se alimentan a la vez.
 

@@ -173,6 +173,24 @@ export const AVISOS = {
     asi: 'Comprueba con un rumbo conocido: al rumbo 000 todo es Δl, y al 090 todo es apartamiento.',
     has: 'Has cambiado el seno y el coseno',
   },
+  antimeridiano: {
+    ojo: 'Al cruzar el meridiano de 180° la longitud no pasa de 180°: cambia de E a W (o al revés), y la Δλ va por el camino corto.',
+    no: 'Si L llegada pasa de 180°: 360° − L y cambia la letra. Entre una L E y otra W junto al 180°: Δλ = (180° − L1) + (180° − L2).',
+    asi: 'Suma la Δλ con su signo; si pasa de 180°, resta de 360° y cambia E por W. Una Δλ de casi 360° es el camino largo.',
+    has: 'Has equivocado la Δλ o la letra al cruzar el meridiano de 180°',
+  },
+  'corriente-al-reves': {
+    ojo: 'En la estima, la corriente es un tramo más con su rumbo hacia donde va el agua: se suma como los demás.',
+    no: 'Fila de la corriente: R = Rc (hacia donde va) y d = Ihc × horas que actúa. Δl = d · cos Rc y A = d · sen Rc, sumados con su signo.',
+    asi: 'Pon la corriente como una fila más de la tabla, con su Rc y lo que arrastra, y súmala con los tramos.',
+    has: 'Has sumado la corriente al revés',
+  },
+  'lm-hemisferios': {
+    ojo: 'En el hemisferio S la latitud es negativa: ir hacia el S la hace mayor en número, y al cruzar el ecuador cambia la letra.',
+    no: 'Latitudes con signo, N + y S −: l llegada = l salida + Δl y lm = (l salida + l llegada) / 2, cada una con su signo.',
+    asi: 'Pasa las latitudes a números con signo antes de sumar y vuelve a N o S al final.',
+    has: 'Has tomado las latitudes sin su signo',
+  },
   'sonda-carta-olvidada': {
     ojo: 'La sonda de la carta es la del nivel de reducción, sin marea: no es la profundidad real.',
     no: 'Sonda en el momento = sonda de la carta + altura de la marea.',
@@ -236,12 +254,16 @@ export function erroresDelPaso(consultados, { paso, title, text = '' }) {
   if (paso === 'loxodromica') {
     const lm = ['lm-salida', 'sin-cos-lm', 'cos-lm-multiplica'];
     const de = (ids) => tipos.filter((t) => ids.includes(t));
-    if (/: Δl y apartamiento$/.test(title)) tipos = de(['seno-coseno']);
-    else if (['Sumo la tabla', 'Latitud de llegada', 'Diferencia de latitud'].includes(title)) tipos = [];
-    else if (title === 'Diferencia de longitud') tipos = de(['signo-dL']);
-    else if (title === 'Del apartamiento a la diferencia de longitud' || title === 'Apartamiento') tipos = de(lm);
-    else if (title === 'Rumbo y distancia') tipos = de([...lm, 'seno-coseno']);
-    else tipos = de([...lm, 'signo-dL']); // la situación de llegada
+    // R-53: corriente al revés (su fila), Δλ al cruzar el 180° y latitudes sin signo (hemisferio S o cambio de hemisferio).
+    // Solo están si la operación los consultó: el kit pregunta por ellos cuando hay corriente, se cruza o hay latitud S.
+    if (/^La corriente: Δl y apartamiento$/.test(title)) tipos = de(['seno-coseno', 'corriente-al-reves']);
+    else if (/: Δl y apartamiento$/.test(title)) tipos = de(['seno-coseno']);
+    else if (['Sumo la tabla', 'Diferencia de latitud'].includes(title)) tipos = [];
+    else if (title === 'Latitud de llegada') tipos = de(['lm-hemisferios']);
+    else if (title === 'Diferencia de longitud') tipos = de(['signo-dL', 'antimeridiano']);
+    else if (title === 'Del apartamiento a la diferencia de longitud' || title === 'Apartamiento') tipos = de([...lm, 'lm-hemisferios']);
+    else if (title === 'Rumbo y distancia') tipos = de([...lm, 'seno-coseno', 'antimeridiano', 'lm-hemisferios']);
+    else tipos = de([...lm, 'signo-dL', 'antimeridiano', 'lm-hemisferios']); // la situación de llegada
   }
   return tipos;
 }

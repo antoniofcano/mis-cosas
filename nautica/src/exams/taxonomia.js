@@ -64,6 +64,10 @@ export const ERRORES = {
   'cos-lm-multiplica': { paso: 'loxodromica', nombre: 'cos lm al revés', otraVez: 'multiplicar por el cos lm donde hay que dividir (o al revés)', si: 'multiplicas por el cos lm donde hay que dividir (o al revés)' },
   'signo-dL': { paso: 'loxodromica', nombre: 'Signo de ΔL', otraVez: 'cambiar el signo de la diferencia de longitud', si: 'cambias el signo de la diferencia de longitud (E +, W −)' },
   'seno-coseno': { paso: 'loxodromica', nombre: 'Seno y coseno cambiados', otraVez: 'cambiar seno y coseno', si: 'cambias seno y coseno (Δl = d · cos R y A = d · sen R)' },
+  // Estima analítica con corriente, meridiano 180° y hemisferio sur (R-53).
+  antimeridiano: { paso: 'loxodromica', nombre: 'Δλ al cruzar el 180°', otraVez: 'equivocarte con la Δλ al cruzar el meridiano de 180°', si: 'al cruzar el meridiano de 180° restas las longitudes por el camino largo (la Δλ sale al revés y casi de 360°) o, al pasar de 180°, no cambias E por W' },
+  'corriente-al-reves': { paso: 'loxodromica', nombre: 'Corriente al revés en la estima', otraVez: 'sumar la corriente al revés en la tabla de la estima', si: 'sumas la corriente al revés en la tabla de la estima (con el rumbo de donde viene, que es como restar su fila)' },
+  'lm-hemisferios': { paso: 'loxodromica', nombre: 'Latitudes sin su signo (S)', otraVez: 'tomar las latitudes sin su signo en el hemisferio sur o al cambiar de hemisferio', si: 'no tomas las latitudes con su signo (N +, S −): en el hemisferio S restas la Δl hacia el S, al cruzar el ecuador no cambias la letra, o haces la latitud media sumando una N y una S' },
   'sonda-carta-olvidada': { paso: 'sonda', nombre: 'Sin la sonda de la carta', otraVez: 'olvidarte de la sonda de la carta', si: 'no cuentas la sonda de la carta' },
   'sonda-carta-signo': { paso: 'sonda', nombre: 'Sonda de la carta al revés', otraVez: 'restar la sonda de la carta donde hay que sumarla (o al revés)', si: 'restas la sonda de la carta donde hay que sumarla (o al revés)' },
   'pleamar-bajamar': { paso: 'marea', nombre: 'Pleamar por bajamar', otraVez: 'contar el intervalo desde la pleamar en vez de desde la bajamar', si: 'cuentas el intervalo desde la pleamar en vez de desde la bajamar' },
@@ -86,6 +90,11 @@ export const VARIANTES = [
   'banda', 'directo', 'signo-abatimiento', 'sin-abatimiento',
   'sin-corriente', 'corriente-invertida', 'corriente-sumada', 'sin-traslado', 'horas-decimales',
   'lm-salida', 'sin-cos-lm', 'cos-lm-multiplica', 'signo-dL', 'seno-coseno',
+  'antimeridiano:letra', // al pasar de 180° resta de 360° pero deja la letra de la salida (tramos)
+  'antimeridiano:resta', // Δλ = L llegada − L salida tal cual, por el camino largo (rumboDirecto)
+  'corriente-al-reves', // la fila de la corriente con Rc + 180° (tramos)
+  'lm-hemisferios:llegada', // l llegada con los números como si todo fuera N, y la letra de la salida (tramos)
+  'lm-hemisferios:media', // lm = (|l1| + |l2|) / 2 con una latitud N y otra S (tramos y rumboDirecto)
   'sonda-carta-olvidada', 'sonda-carta-signo', 'pleamar-bajamar', 'lineal', 'sin-adelanto', 'adelanto-signo',
 ];
 

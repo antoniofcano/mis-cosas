@@ -21,10 +21,11 @@ import { tipoDePregunta, nombreTipo } from '../../course/velocidad.js';
 import { modoExamen } from '../modo-examen.js';
 import { conIcono } from '../iconos.js';
 import { cuenta, diaISO, fechaLarga } from '../../texto.js';
+import { anotarFallosDeExamen, seccionCuadernoExamen, textoCuadernoExamen } from '../cuaderno.js';
 
 const deTitEje = (x, tit, eje) => (x?.tit ?? 'per') === tit && x?.eje === eje;
 
-export function oficialView({ progress, params: route, tit }) {
+export function oficialView({ ctx, progress, params: route, tit }) {
   const T = TITULACIONES[tit];
   const E = T.estructura;
   let summaryText = `VISTA tu examen oficial ${T.sigla} (cargando)`;
@@ -149,10 +150,12 @@ export function oficialView({ progress, params: route, tit }) {
     a = apuntarResultado(a, c.fecha, { fallos: { ...previo, ...r.fallos }, modulo: r.modulo ?? a.resultados[c.fecha]?.modulo ?? null });
     if (!a.fue[c.fecha] && g.apto != null && !modulo) a = responderComoFue(a, c.fecha, g.apto ? 'aprobado' : 'suspenso');
     progress.setSetting(clave, a);
-    resultado(test, g, Ep, c, r);
+    // Cuaderno de fallos (R-55): los fallos con nombre de tu examen de verdad (opción falsa con un error reconocido).
+    const anotados = anotarFallosDeExamen({ preguntas: test.preguntas, detalle: g.detalle, chart: ctx?.chart ?? null, origen: 'oficial' });
+    resultado(test, g, Ep, c, r, anotados);
   }
 
-  function resultado(test, g, Ep, c, r) {
+  function resultado(test, g, Ep, c, r, anotados = []) {
     const hojas = hojasDe(test.preguntas, E);
     const numeroDe = (i) => {
       const x = hojas.findLast((y) => i >= y.desde) ?? hojas[0];
@@ -167,7 +170,7 @@ export function oficialView({ progress, params: route, tit }) {
     const moduloTx = r.modulo && r.modulo !== 'ninguno' ? E.modulos?.find((m) => m.id === r.modulo)?.titulo : null;
     summaryText = `RESULTADO examen oficial ${c.titulo}: ${g.aciertos}/${g.total} ${g.apto == null ? '' : g.apto ? 'APTO' : 'NO APTO'}\n` +
       g.bloques.map((b) => `${b.titulo}: ${b.aciertos}/${b.total}${b.maxErrores != null ? ` (máx. errores ${b.maxErrores})` : ''}`).join('\n') +
-      `\nFALLOS POR TIPO: ${grupos.map((x) => `${x.titulo} ${x.fallos.length}`).join(', ')}`;
+      `\nFALLOS POR TIPO: ${grupos.map((x) => `${x.titulo} ${x.fallos.length}`).join(', ')}` + textoCuadernoExamen(anotados);
     setChildren(el,
       h('h1', 'Tu examen, corregido con la plantilla oficial'),
       h('p', `${c.titulo}: ${g.aciertos} de ${cuenta(g.total, 'acierto')}${g.apto == null ? '' : g.apto ? '. Apto.' : '. No apto.'}${moduloTx ? ` Apruebas el ${moduloTx.replace(/^Módulo/, 'módulo')}.` : ''}`),
@@ -184,7 +187,9 @@ export function oficialView({ progress, params: route, tit }) {
         h('ul',
           h('li', `Tus ${cuenta(nf, 'fallo')} entran en tu repaso de fallos, espaciado en los próximos días.`),
           h('li', 'Este examen cuenta en «Tus fallos por materia» y el resultado queda apuntado en «La semana del examen».'),
+          anotados.length ? h('li', `Los fallos con nombre van a tu cuaderno de fallos: ${anotados.map((x) => `«${x.nombre.titulo}»`).join(', ')}.`) : null,
           moduloTx ? h('li', `«¿Estás listo?» y la semana del examen miran ahora solo el módulo que te queda.`) : null),
+        seccionCuadernoExamen(tit, anotados),
       ] : h('p', 'Sin fallos. Enhorabuena.'),
       h('div.botones-columna',
         nf ? h('a.btn.grande', { href: tlink(tit, ['teoria', 'repaso']) }, 'Repasar mis fallos ahora') : null,

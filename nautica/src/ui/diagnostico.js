@@ -12,25 +12,29 @@ import { SOLUCIONES } from '../bancos/soluciones.js';
 import { erroresAlumno } from '../store/errores.js';
 import { cuenta } from '../texto.js';
 import { entradaSimulacroErrores } from './simulacro-errores.js';
+import { anotarFallo, tipoDeFallo } from './cuaderno.js';
 
 const valores = (vs) => vs.map((v) => quantity(v.kind).format(v.value)).join(' · ');
 
 /**
  * «Has marcado la b). Es lo que sale si restas la Ct en vez de sumarla.» para una pregunta con resolución programada,
  * o null si no hay diagnóstico seguro (o hay un examen en marcha). Si hay un error único, lo apunta en los errores del
- * alumno (una vez por pregunta y día).
+ * alumno (una vez por pregunta y día) y en su cuaderno de fallos (src/ui/cuaderno.js; `origen`: de dónde sale).
  * @param {object} q  pregunta
  * @param {string} marcada  letra marcada
- * @param {{ chart: object, registrar?: boolean }} o
+ * @param {{ chart: object, registrar?: boolean, origen?: string }} o
  */
-export function diagnosticoEl(q, marcada, { chart, registrar = true } = {}) {
+export function diagnosticoEl(q, marcada, { chart, registrar = true, origen = 'pregunta' } = {}) {
   if (modoExamen() || !marcada || !chart) return null;
   const sol = SOLUCIONES[q.id];
   if (!sol) return null;
   let d;
   try { d = diagnosticar(q, marcada, { sol, chart }); } catch (e) { console.error(e); return null; }
   if (!diagnosticoUtil(d)) return null;
-  if (registrar && d.estado === 'unico') erroresAlumno().error(q.id, d.tipos[0]);
+  if (registrar && d.estado === 'unico') {
+    erroresAlumno().error(q.id, d.tipos[0]);
+    anotarFallo({ error: d.tipos[0], tipo: tipoDeFallo(q), origen, q: q.id });
+  }
   const conEse = d.tipos.length === 1
     ? `Con ese error sale ${valores(d.valores[d.tipos[0]])}.`
     : d.tipos.map((t) => `Con «${ERRORES[t].nombre.toLowerCase()}» sale ${valores(d.valores[t])}.`).join(' ');
@@ -67,6 +71,7 @@ export function seccionErrores(tit = null) {
     r.pasos.length ? h('p.small.muted', 'Pasos con fallos (modo paso a paso y errores reconocidos): ',
       r.pasos.slice(0, 4).map((p) => `${p.nombre} ${p.fallos}/${p.intentos}`).join(' · '), '.') : null,
     h('p.small.muted', 'Se guarda solo en este aparato.'),
+    tit ? h('p.small', h('a', { href: `#/${tit}/fallos` }, 'Tu cuaderno de fallos: cada fallo con su dosis de 2 minutos y su comprobación →')) : null,
     tit ? entradaSimulacroErrores(tit, { donde: 'progreso' }) : null);
 }
 

@@ -107,6 +107,7 @@ export function pasoDeActividad(a) {
     case 'chuleta': return paso('chuleta', 'Chuleta del tema', a.titulo, a.minutos, a);
     case 'mezclado': return paso('mezclado', 'Repaso mezclado', 'Temas ya vistos, revueltos', a.minutos, a);
     case 'fallos': return paso('fallos', 'Tus fallos', a.titulo, a.minutos, a);
+    case 'dosis': return paso('dosis', a.pide === 'comprobar' ? 'Comprueba un fallo' : 'Dosis de un fallo', a.titulo, a.minutos, a);
     case 'simulacro': return paso('simulacro', 'Simulacro', 'Examen completo con las reglas reales', a.minutos, a);
     case 'final': return paso('final', 'Examen final', 'Preguntas reservadas que no has visto', a.minutos, a);
     case 'examen-en-curso': return paso('examen-en-curso', 'Examen a medias', `Te quedan unos ${cuenta(a.minutos, 'minuto')}`, a.minutos, a);
@@ -131,15 +132,16 @@ export function componerSesion(st, fase, { objetivo = st.dia?.objetivo ?? 20 } =
   const aprender = de(APRENDER);
   const mezclado = de(new Set(['mezclado']));
   const fallosPlan = de(new Set(['fallos']));
+  const dosis = de(new Set(['dosis'])); // cuaderno de fallos (R-56): 2 minutos, justo detrás del primer paso
   const fallos = pasoFallos(st, fase === 'aprender' ? 'Tus fallos' : fase === 'mezclar' ? 'Lo que más fallas' : 'Lo que has fallado') ?? fallosPlan[0] ?? null;
   // El tema más flojo (acierto < 70 %), en tanda de preguntas: lo que más conviene atacar cuando ya se ha visto todo.
   const flojo = st.flojos?.temas?.[0];
   const tandaFloja = flojo ? paso('preguntas', 'Tu tema más flojo', `${flojo.titulo}: aciertas el ${flojo.pct} %`, MIN_TANDA, { ruta: ['teoria', 'ut', String(flojo.ut)], ut: flojo.ut }) : null;
 
   let candidatos;
-  if (fase === 'aprender') candidatos = [...enCurso, fallos, ...aprender.slice(0, 2), ...mezclado];
-  else if (fase === 'mezclar') candidatos = [...enCurso, fallos, tandaFloja, ...aprender.filter((p) => p.tipo === 'repaso'), ...mezclado, ...aprender.filter((p) => p.tipo !== 'repaso')];
-  else candidatos = [...enCurso, ...(enCurso.length ? [] : examen), fallos, ...aprender.slice(0, 1), ...mezclado];
+  if (fase === 'aprender') candidatos = [...enCurso, fallos, ...aprender.slice(0, 1), ...dosis, ...aprender.slice(1, 2), ...mezclado];
+  else if (fase === 'mezclar') candidatos = [...enCurso, fallos, ...dosis, tandaFloja, ...aprender.filter((p) => p.tipo === 'repaso'), ...mezclado, ...aprender.filter((p) => p.tipo !== 'repaso')];
+  else candidatos = [...enCurso, ...(enCurso.length ? [] : examen), fallos, ...dosis, ...aprender.slice(0, 1), ...mezclado];
 
   // Sin repetir una misma pantalla y, si no queda nada, lo que proponga el motor.
   const vistos = new Set();

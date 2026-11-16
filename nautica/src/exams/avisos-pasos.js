@@ -290,8 +290,10 @@ export function diagnosticarPaso({ sol, q, chart, i, errores, pide, valores, fac
   if (coincide(pide.campos)) return null;
   const hallados = new Set();
   for (const variante of VARIANTES.filter((v) => errores.includes(tipoDe(v)))) {
-    let k;
-    try { k = createKit(chart, { error: variante }); sol.solve(k, q); } catch { continue; }
+    // Si la resolución con el error se rompe más adelante (con el adelanto al revés, la hora UT puede caer fuera de la
+    // tabla de mareas), el paso `i` ya se calculó antes de romperse: vale para diagnosticar este paso.
+    let k = null;
+    try { k = createKit(chart, { error: variante }); sol.solve(k, q); } catch { if (!k) continue; }
     const campos = k.steps[i]?.pide?.campos;
     if (campos && k.steps[i].pide.paso === pide.paso && coincide(campos)) hallados.add(tipoDe(variante));
   }

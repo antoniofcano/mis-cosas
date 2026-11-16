@@ -27,9 +27,10 @@ export function objetivoDeTit(tit) {
  * @param {boolean} [o.compacto] una sola línea (preguntas de carta de la práctica)
  * @param {() => boolean} [o.vivo]  la vista sigue en pantalla (si no, el reloj se para solo)
  * @param {boolean} [o.pasos]    con la lista de pasos hechos (paso a paso)
+ * @param {{ s: number, texto: string }} [o.objetivo]  objetivo fijo (la dosis de 2 minutos, R-56) en vez del de la titulación
  * @returns {{ el: HTMLElement, segundos: () => number, parar: () => number, reinicia: () => void, marcaPaso: (ok?: boolean) => number }}
  */
-export function relojPaso({ tit = null, compacto = false, vivo = () => true, pasos = false } = {}) {
+export function relojPaso({ tit = null, compacto = false, vivo = () => true, pasos = false, objetivo: fijo = null } = {}) {
   let reloj = relojVisible({ vivo });
   const crono = cronoPasos();
   let objetivo = null;
@@ -77,7 +78,9 @@ export function relojPaso({ tit = null, compacto = false, vivo = () => true, pas
   const cancela = () => { if (timer != null) { clearInterval(timer); timer = null; } };
   function arranca() { cancela(); if (typeof setInterval === 'function') timer = setInterval(tic, 1000); }
 
-  if (tit) objetivoDeTit(tit).then((ob) => { objetivo = ob; if (ob) { meta.textContent = `objetivo ${mmssCorto(ob.s)}`; el.title = ob.texto; if (!compacto) nota.append(h('p.small.muted', ob.texto)); } pinta(); });
+  const fija = (ob) => { objetivo = ob; if (ob) { meta.textContent = `objetivo ${mmssCorto(ob.s)}`; el.title = ob.texto; if (!compacto) nota.append(h('p.small.muted', ob.texto)); } pinta(); };
+  if (fijo) fija(fijo);
+  else if (tit) objetivoDeTit(tit).then(fija);
   arranca();
   pinta();
 

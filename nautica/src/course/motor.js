@@ -18,6 +18,7 @@ import { cuenta, fechaLarga, diaISO } from '../texto.js';
 import { colaRepaso, repasoDelDia, sumaDias } from './repaso.js';
 import { siguienteEnRuta } from './ruta.js';
 import { focoModulo, datosDelModulo } from './foco.js';
+import { cuadernoDe } from './cuaderno.js';
 
 /**
  * @typedef {object} Entrada
@@ -61,6 +62,8 @@ export function estadoAlumno(e) {
     testEnCurso: e.testEnCurso ?? null, fechaExamen, ultimoMezclado: s[`mezclado_${tit}`] || null, segTarjeta, minutosDia: objetivo,
     minutosHoy: e.minutosHoy ?? 0, esencial, chuletasLeidas, ahora: e.ahora ?? Date.now(), reservadas: e.reservadas ?? new Set(),
     conceptos: e.conceptos ?? null,
+    // Cuaderno de fallos (R-55, R-56): ajustes compartidos `fallo_<id>` (src/course/cuaderno.js).
+    cuaderno: cuadernoDe(s, e.ahora ?? Date.now()),
   };
 
   // Día: minutos y meta.
@@ -125,7 +128,7 @@ export function estadoAlumno(e) {
   const ritmo = ritmoEstudio(d);
   const mensaje = mensajeDelDia({ dia, plan, ritmo, fechaExamen, objetivo, principal, ahora: d.ahora });
 
-  return { tit, datos: d, dia, temas, temasFuera, camino, plan, actividades, principal, ruta, ritmo, listo, moduloPendiente: pendiente, foco, final, repaso, flojos, mensaje, fechaExamen, diasAlExamen, orientativa: !!s[`examenOrientativo_${tit}`] };
+  return { tit, datos: d, cuaderno: d.cuaderno, dia, temas, temasFuera, camino, plan, actividades, principal, ruta, ritmo, listo, moduloPendiente: pendiente, foco, final, repaso, flojos, mensaje, fechaExamen, diasAlExamen, orientativa: !!s[`examenOrientativo_${tit}`] };
 }
 
 /**

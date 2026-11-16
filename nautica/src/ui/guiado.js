@@ -24,6 +24,8 @@ import { cuenta } from '../texto.js';
 import { relojPaso } from './reloj-paso.js';
 import { tiemposAlumno } from '../store/tiempos.js';
 import { tipoDePregunta } from '../course/velocidad.js';
+import { AVISOS, avisoPrevio, erroresDelTribunal, diagnosticarPaso } from '../exams/avisos-pasos.js';
+import { loadErroresFrecuentes } from '../store/datasets.js';
 
 let contador = 0;
 
@@ -31,6 +33,50 @@ let contador = 0;
 export function guiadoDisponible(q, sol, chart) {
   if (!sol || !chart || modoExamen()) return false;
   try { const k = createKit(chart); sol.solve(k, q); return tienePasosPreguntables(k.steps); } catch { return false; }
+}
+
+// Avisos «Ojo / No olvides / Así se hace» de cada paso (R-65, textos y lógica en src/exams/avisos-pasos.js).
+// - Antes de contestar: «Ojo» (la trampa) si el alumno ya ha fallado ese error o, sin datos suyos, el más frecuente del
+//   tribunal; con «No olvides» plegado debajo.
+// - Tras contestar: si falla y su respuesta es lo que sale con un error típico del paso, el error con nombre («Has
+//   sumado el adelanto en vez de restarlo») y la regla; si acierta, «Así se hace».
+function avisosDeLosPasos({ q, sol, chart, almacen, factor = 1, tit = null }) {
+  let tribunal = null; // errores del tribunal (data/comun/errores-frecuentes.json), cuando cargan
+  const pendientes = new Set();
+  loadErroresFrecuentes().then((d) => { tribunal = erroresDelTribunal(d?.porBanco, tit); for (const f of pendientes) f(); pendientes.clear(); }).catch(() => { tribunal = []; });
+  const previos = new Map(); // paso (índice) → { id, motivo }
+  const aviso = (clase, icono, rotulo, texto) => h(`p.guiado-aviso-txt.${clase}`, icono ? conIcono(icono, h('strong', `${rotulo} `), texto) : [h('strong', `${rotulo} `), texto]);
+  return {
+    /** El bloque que va antes de contestar (puede quedar vacío si no toca avisar). */
+    antes(p) {
+      const caja = h('div.guiado-ojo-caja');
+      if (!p.errores?.length) return caja;
+      const rellena = () => {
+        const previo = avisoPrevio(p.errores, { erroresAlumno: almacen.resumen().errores, erroresTribunal: tribunal ?? [] });
+        if (!previo) return;
+        previos.set(p.i, previo);
+        const a = AVISOS[previo.id];
+        caja.replaceChildren(
+          h('div.guiado-ojo', aviso('ojo', 'aviso', 'Ojo:', a.ojo),
+            h('p.small.muted.guiado-ojo-motivo', previo.motivo === 'tuyo' ? 'Te lo digo porque ya has fallado este error.' : 'Es de los errores que más repiten en el examen.')),
+          h('details.guiado-no', h('summary', 'No olvides'), h('p', a.no)));
+      };
+      const sinDatos = !almacen.resumen().errores.length;
+      if (sinDatos && tribunal == null) pendientes.add(rellena); else rellena();
+      return caja;
+    },
+    /** El bloque que va tras cerrar el paso: error con nombre si falla, «Así se hace» si acierta. */
+    despues(p, r) {
+      if (!p.pide || !p.errores?.length || !r) return null;
+      const previo = previos.get(p.i);
+      if (r.resultado === ESTADO.OK || r.resultado === 'dimelo') {
+        return previo ? h('div.guiado-ojo.hecho', aviso('asi', 'ok', 'Así se hace:', AVISOS[previo.id].asi)) : null;
+      }
+      const id = r.resultado === ESTADO.MAL ? diagnosticarPaso({ sol, q, chart, i: p.i, errores: p.errores, pide: p.pide, valores: r.valores ?? [], factor }) : null;
+      if (id) return h('div.guiado-ojo.error', aviso('ojo', 'aviso', `${AVISOS[id].has}.`, ''), aviso('no', null, 'No olvides:', AVISOS[id].no));
+      return previo ? h('div.guiado-ojo', aviso('no', 'libro', 'No olvides:', AVISOS[previo.id].no)) : null;
+    },
+  };
 }
 
 /**
@@ -54,6 +100,7 @@ export function guiadoPanel(o) {
   const pasos = pasosGuiados(k.steps);
   const narr = narrateSteps(k.steps, { seed: q.id });
   const almacen = erroresAlumno();
+  const avisos = avisosDeLosPasos({ q, sol, chart, almacen, factor: o.factor ?? 1, tit: o.glosas?.tit ?? null });
   const resultados = []; // { i, paso, resultado }
   let actual = -1; // último paso enseñado
   let terminado = false;
@@ -153,7 +200,8 @@ export function guiadoPanel(o) {
       h('h3.guiado-tit', cab),
       r && r.resultado !== ESTADO.OK && r.resultado !== 'dimelo' ? h('p.guiado-era', `Era ${valorTexto(p.pide)}${r.tuyo ? ` (escribiste ${r.tuyo})` : ''}.`) : null,
       r?.resultado === ESTADO.OK ? h('p.guiado-era', valorTexto(p.pide)) : null,
-      p.lineas ? [traigoEl(p), croquisEl(p), tablaEl(p, true), cuentaEl(p)] : deHoja ? h('p.guiado-nota', p.text) : explicacion(p.i));
+      p.lineas ? [traigoEl(p), croquisEl(p), tablaEl(p, true), cuentaEl(p)] : deHoja ? h('p.guiado-nota', p.text) : explicacion(p.i),
+      avisos.despues(p, r));
   }
 
   /** El paso que se pregunta ahora. */
@@ -180,6 +228,7 @@ export function guiadoPanel(o) {
     const form = h('form.answers.guiado-form', { onsubmit: (ev) => { ev.preventDefault(); comprobar(); } },
       p.tras.includes('traigo') ? null : traigoEl(p), p.tras.includes('croquis') ? null : croquisEl(p), tablaEl(p, false),
       p.plantea ? h('p.guiado-plantea', h('small', 'Planteo'), p.plantea) : null,
+      avisos.antes(p),
       h('p.guiado-pregunta', p.pide.pregunta),
       entradas.map(({ c, input, fb }) => h('label.field', { for: input.id }, h('span.lbl', `${c.label}${c.medido ? ' (en la carta)' : ''}`), input, fb)),
       tomar, aviso,
@@ -199,15 +248,15 @@ export function guiadoPanel(o) {
         aviso.textContent = r.estado === ESTADO.VACIO ? 'Escribe todos los datos, o pulsa «Dímelo».' : 'Revisa el formato.';
         return;
       }
-      cerrarPaso(r.estado, r.campos.map((f) => f.valorTexto).join(' · '));
+      cerrarPaso(r.estado, r.campos.map((f) => f.valorTexto).join(' · '), r.campos.map((f) => f.valor));
     }
     return li;
   }
 
   /** Cierra el paso actual con su resultado y sigue. */
-  function cerrarPaso(resultado, tuyo) {
+  function cerrarPaso(resultado, tuyo, valores) {
     const p = pasos[actual];
-    const r = { i: p.i, paso: p.pide.paso, resultado, tuyo };
+    const r = { i: p.i, paso: p.pide.paso, resultado, tuyo, valores };
     resultados.push(r);
     rp.marcaPaso(resultado === ESTADO.OK);
     if (resultado !== 'dimelo') almacen.paso(q.id, p.pide.paso, resultado === ESTADO.OK);

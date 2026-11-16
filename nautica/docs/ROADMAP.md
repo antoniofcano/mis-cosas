@@ -59,7 +59,7 @@ reloj de regata).
 | --- | --- | --- | --- | --- | --- |
 | 1 · Lo que más aprueba (diciembre) | ~~R-64~~ | ~~Reloj en el paso a paso y en las preguntas de carta, con objetivo por problema~~ | Hecho (H-54) | S | Sonnet |
 | | R-52 | Paso a paso «de hoja de examen» en corrientes, abatimiento, demoras y corrección total | Muy alta | M | Opus el primero, Sonnet el resto |
-| | R-65 | Avisos «Ojo / No olvides / Así se hace» en cada paso, sacados de los errores típicos | Alta | S | Sonnet |
+| | ~~R-65~~ | ~~Avisos «Ojo / No olvides / Así se hace» en cada paso, sacados de los errores típicos~~ | Hecho (H-55) | S | Sonnet |
 | 2 · Tu fallo, entrenado (diciembre–enero) | R-55 | Catálogo de fallos por paso (mareas, estima, corrección total primero) | Alta | M | Opus |
 | | R-56 | Dosis de 2 minutos sobre el fallo con nombre y comprobación a los 3 días (empieza por mareas) | Muy alta | M | Opus motor, Sonnet pantalla |
 | 3 · La cara nueva (diciembre–enero) | R-67 | Colores, letras, fondo de carta y modo noche de puente (claro, oscuro, automático) | Media | M | Sonnet |
@@ -213,6 +213,7 @@ Publicación: cada tanda al terminarla; en marzo, solo simulacros y repaso, sin 
 | H-53 | Huecos de la 3.ª de 2026 cubiertos (R-63): py-2-9 corriente de la costa norte de África (Ceuta al SE, Tres Forcas; concepto `meteo.corrientes.norte-africa`), py-2-4 siroco en la vanguardia de las depresiones, py-4-9 tramo de marea que cruza la medianoche; per-6-1 Regla 3 «no pueden apartarse», per-2-5 borneo y profundidad, per-11-7 enfilación y distancia; concepto `ripa.dst.sin-preferencia` (6 preguntas reetiquetadas) | Noviembre 2026 |
 | H-50 | Tu examen oficial (R-60): pasar la hoja del examen de verdad, corregirla con la plantilla y que sus fallos entren en el repaso, en «Tus fallos por materia» y en el resultado del examen; la convocatoria hecha sale del examen final del alumno | Noviembre 2026 |
 | H-54 | Reloj del paso a paso y de las preguntas de carta de la práctica (R-64): `course/reloj-paso.js` (objetivo = `tiempoDisponible` de R-42, estados, tiempo por paso), `ui/reloj-paso.js` y pausa en `relojVisible`; el paso a paso guarda su tiempo en `store/tiempos.js` (clave `guiado:<id>`); sin reloj en exámenes ni simulacros | Noviembre 2026 |
+| H-55 | Avisos «Ojo / No olvides / Así se hace» en cada paso del paso a paso (R-65): catálogo de los 32 errores típicos (`src/exams/avisos-pasos.js`), cada paso del kit lleva `errores` (los `E(...)` que evalúa, afinados por paso en `erroresDelPaso`), «Ojo» previo si el alumno ya ha fallado ese error o, sin datos, el más frecuente del tribunal (`data/comun/errores-frecuentes.json`), «No olvides» plegado, error con nombre al fallar (`diagnosticarPaso`, a nivel de paso) y «Así se hace» al acertar | Noviembre 2026 |
 
 ## Mantenimiento recurrente
 

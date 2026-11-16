@@ -2631,6 +2631,19 @@ table.ep-hoja-papel th, table.ep-hoja-papel td { padding: .2rem .7rem; border-bo
 .guiado-traigo small, .guiado-plantea small { display: block; font-size: .72rem; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
 .guiado-traigo div, .guiado-cuenta div, .guiado-tabla td { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-variant-numeric: tabular-nums; font-size: .95rem; }
 .guiado-plantea { margin: .35rem 0; }
+/* Avisos «Ojo / No olvides / Así se hace» de cada paso (R-65): mismos colores que el resto del modo guiado, sin movimiento. */
+.guiado-ojo-caja:empty { display: none; }
+.guiado-ojo { margin: .45rem 0; padding: .45rem .7rem; border-left: 4px solid var(--close); border-radius: 6px; background: color-mix(in srgb, var(--close) 10%, var(--surface)); color: var(--text); }
+.guiado-ojo.hecho { border-left-color: var(--ok); background: color-mix(in srgb, var(--ok) 9%, var(--surface)); }
+.guiado-ojo.error { border-left-color: var(--warn); background: color-mix(in srgb, var(--warn) 9%, var(--surface)); }
+.guiado-ojo p { margin: .15rem 0; }
+.guiado-ojo .guiado-ojo-motivo { margin-top: .1rem; }
+.guiado-aviso-txt .ico-t { color: var(--close); vertical-align: -.2em; margin-right: .3rem; }
+.guiado-ojo.hecho .ico-t { color: var(--ok); }
+.guiado-ojo.error .ico-t { color: var(--warn); }
+details.guiado-no { margin: .3rem 0; padding: 0 .7rem; background: transparent; border-style: dashed; }
+details.guiado-no summary { min-height: 44px; display: flex; align-items: center; margin: 0; padding: 0; }
+details.guiado-no p { margin: 0 0 .5rem; }
 .guiado-nota { margin: .2rem 0; }
 .guiado-cuenta { margin: .35rem 0; padding: .4rem .6rem; border-left: 3px solid var(--accent); background: var(--surface); display: grid; gap: .15rem; }
 .guiado-cuenta div.res { font-weight: 700; }

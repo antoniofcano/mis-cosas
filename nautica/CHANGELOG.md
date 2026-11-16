@@ -15,6 +15,10 @@ Qué cambia en la app para quien la usa, por fecha de publicación. Es la base d
 
 ## Sin publicar
 
+Nada pendiente.
+
+## 16 de noviembre de 2026, sexta publicación · versión `ffd09e8aa632`
+
 **Novedades**
 
 - **El primer minuto.** Antes de que empiece el reloj de un simulacro, una convocatoria o un ensayo en papel, una pantalla para hojear el cuadernillo como en el examen: dónde está la tabla de mareas, qué preguntas traen desvíos o la declinación de la carta, qué faros hay que buscar y qué tipos de problema trae, marcados como fáciles o caros para ti según tus tiempos y tus fallos (si aún no hay datos tuyos, lo que suele costar cada tipo).

@@ -1,5 +1,5 @@
 // Generado por tools/precache.mjs: no lo edites a mano.
-self.VERSION = '32f9031c575a';
+self.VERSION = 'ffd09e8aa632';
 self.APP = [
  "fonts/patron-mono.woff2",
  "fonts/patron-texto.woff2",
@@ -40,6 +40,7 @@ self.APP = [
  "src/course/cronometro.js",
  "src/course/cuaderno.js",
  "src/course/cuentas.js",
+ "src/course/descarte.js",
  "src/course/dia-examen.js",
  "src/course/dosis.js",
  "src/course/engine.js",
@@ -55,6 +56,7 @@ self.APP = [
  "src/course/mapas.js",
  "src/course/motor.js",
  "src/course/nivel.js",
+ "src/course/plan-examen.js",
  "src/course/plan.js",
  "src/course/reloj-paso.js",
  "src/course/repaso.js",
@@ -75,6 +77,7 @@ self.APP = [
  "src/exams/kit.js",
  "src/exams/motivo.js",
  "src/exams/options.js",
+ "src/exams/papel.js",
  "src/exams/solutions/andalucia-per-0.js",
  "src/exams/solutions/andalucia-per-1.js",
  "src/exams/solutions/andalucia-per-2.js",
@@ -333,8 +336,10 @@ self.APP = [
  "src/ui/motivo-carta.js",
  "src/ui/movimiento.js",
  "src/ui/pantalla-encendida.js",
+ "src/ui/papel.js",
  "src/ui/pasos.js",
  "src/ui/plan-estudio.js",
+ "src/ui/plan-examen.js",
  "src/ui/profe-steps.js",
  "src/ui/pwa.js",
  "src/ui/qr.js",

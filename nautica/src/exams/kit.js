@@ -13,7 +13,7 @@
 // comete (p. ej. 'signo-ct:aplicacion' resta la Ct en vez de sumarla). Las variantes están en src/exams/taxonomia.js.
 
 import { rhumbTo, rhumbDestination } from '../math/mercator.js';
-import { norm360, norm180, angleDist, toDeg } from '../math/angles.js';
+import { norm360, norm180, angleDist, toDeg, toDegMin } from '../math/angles.js';
 import { parseAngle, fmtBearing, fmtSigned, fmtSignedNum, fmtPos, fmtMiles, fmtKnots, fmtClock } from '../math/format.js';
 import { fixTwoBearings, fixBearingDistance, fixBearingAndRange, closestApproach } from '../nautical/positioning.js';
 import { toPlane, fromPlane, unitsPerMile } from '../math/mercator.js';
@@ -44,6 +44,13 @@ const vuelta = (raw, nombre) => {
 /** Nombre del rumbo en la rosa de 8 si cae justo en él («NE»); si no, el número. */
 /** Minutos de arco con signo: «−170′». */
 const minArco = (x) => `${Math.round(x) < 0 ? '−' : Math.round(x) > 0 ? '+' : ''}${Math.abs(Math.round(x))}′`;
+/** Latitud con signo de cálculo: «−25° 25,0′» (S negativa). */
+const latSigno = (x) => { const { deg, min } = toDegMin(x, 1); return `${x < 0 ? '−' : '+'}${deg}° ${coma(min, 1).padStart(4, '0')}′`; };
+/** Grados y minutos sin letra: «180° 15,0′». */
+const gm = (x) => { const { deg, min } = toDegMin(x, 1); return `${deg}° ${coma(min, 1).padStart(4, '0')}′`; };
+/** Número con signo entre paréntesis si es negativo: «(−26,47°)». */
+const dec2 = (x) => `${x < 0 ? '−' : ''}${coma(Math.abs(x), 2)}°`;
+const par = (x) => (x < 0 ? `(${dec2(x)})` : dec2(x));
 const deDonde =(d) => DIR_NAME[norm360(d)] ?? fmtBearing(d);
 /** Por qué banda entra el viento, escrito: viento − rumbo, de 0° a 180° estribor; de 180° a 360°, babor. */
 const bandaLineas = (viento, rumbo, banda) => {
@@ -577,16 +584,26 @@ export function createKit(chart, { error = null, fijos = null } = {}) {
       mark(A); mark(B);
       return mark(p);
     },
-    /** Estima por varios tramos {rumbo, millas, nombre?} sumando Δl y apartamiento (sin carta si se sale). */
+    /**
+     * Estima por varios tramos {rumbo, millas, nombre?} sumando Δl y apartamiento (sin carta si se sale). Un tramo cuyo
+     * nombre dice «corriente» es la corriente: su rumbo (hacia donde va) y lo que arrastra en el tiempo que actúa.
+     * Fórmulas del curso (data/comun/formulas.json: estima-tramo, estima-directa y meridiano-180; clases py-3-4 y py-4-10):
+     * Δl = d · cos R, A = d · sen R, l llegada = l salida + Δl, lm = (l salida + l llegada) / 2 con signo, ΔL = A / cos lm,
+     * L llegada = L salida + ΔL y, si pasa de 180°, 360° − L con la letra cambiada.
+     */
     tramos(from, lista, label = 'Situación de estima') {
       let dl = 0; let ap = 0;
       const min = (v, lab) => ({ kind: 'minutos', value: v, label: lab });
       const lt = (p) => fmtPos(p).split('  ')[0];
       const lg = (p) => fmtPos(p).split('  ')[1];
+      const esCorriente = (t) => /corriente/i.test(t.nombre ?? '');
+      // Corriente al revés (R-53): su fila con el rumbo de donde viene, que es lo mismo que restarla.
+      const alReves = lista.some(esCorriente) && E('corriente-al-reves');
       const filas = lista.map((t) => {
-        const r = t.rumbo * Math.PI / 180;
+        const corriente = esCorriente(t);
+        const r = (corriente && alReves ? t.rumbo + 180 : t.rumbo) * Math.PI / 180;
         const [a, b] = E('seno-coseno') ? [t.millas * Math.sin(r), t.millas * Math.cos(r)] : [t.millas * Math.cos(r), t.millas * Math.sin(r)];
-        return { nombre: t.nombre ?? fmtBearing(t.rumbo), rumbo: t.rumbo, millas: t.millas, dl: a, ap: b, corriente: /corriente/i.test(t.nombre ?? '') };
+        return { nombre: t.nombre ?? fmtBearing(t.rumbo), rumbo: t.rumbo, millas: t.millas, dl: a, ap: b, corriente };
       });
       // Un paso por tramo (la corriente es un tramo más): es la tabla que se hace en el examen, fila a fila.
       filas.forEach((f, i) => {
@@ -607,26 +624,45 @@ export function createKit(chart, { error = null, fijos = null } = {}) {
         pide('loxodromica', '¿Cuánto suman la Δl y el apartamiento?', [min(dl, 'Δl total'), min(ap, 'A total')]),
         { tabla: { ...tabla, suma: true }, croquis: { tipo: 'tramos', legs: filas.map((f) => ({ dl: f.dl, ap: f.ap, corriente: f.corriente })) }, plantea: 'Suma cada columna con su signo: N y E suman, S y W restan.',
           lineas: [`Δl total = ${filas.map((f) => sg(f.dl)).join(' ')} = ${sg(dl)}′${hacia(dl, 'N', 'S')}`, `A total = ${filas.map((f) => sg(f.ap)).join(' ')} = ${sg(ap)}′${hacia(ap, 'E', 'W')}`] });
-      const lat = F(from.lat + dl / 60);
-      const lm = E('lm-salida') ? from.lat : (from.lat + lat) / 2;
+      // Hemisferio sur o cambio de hemisferio (R-53): las latitudes van con su signo (N +, S −).
+      const lat0 = from.lat + dl / 60;
+      const conSur = from.lat < 0 || lat0 < 0;
+      // Latitud sin signo: se opera con los números como si todo fuera N y se deja la letra de la salida.
+      const lat = F(conSur && E('lm-hemisferios:llegada') ? (from.lat < 0 ? -1 : 1) * Math.abs(Math.abs(from.lat) + dl / 60) : lat0);
+      const distintos = from.lat * lat < 0;
+      let lm = E('lm-salida') ? from.lat : (from.lat + lat) / 2;
+      // Media con hemisferios distintos sumando las latitudes sin signo.
+      if (distintos && E('lm-hemisferios:media')) lm = (Math.abs(from.lat) + Math.abs(lat)) / 2;
       const cos = Math.cos(lm * Math.PI / 180);
       const dL = F(E('sin-cos-lm') ? ap : E('cos-lm-multiplica') ? ap * cos : ap / cos, 0, 1);
       let p = { lat, lon: from.lon + (E('signo-dL') ? -dL : dL) / 60 };
-      step('Latitud de llegada', `l = ${lt(from)} ${dl < 0 ? '−' : '+'} ${coma(Math.abs(dl), 1)}′ = ${lt(p)}.`, pide('loxodromica', '¿Cuál es la latitud de llegada?', [{ kind: 'lat', value: p.lat, label: 'Latitud' }]),
-        { traigo: [`l salida = ${lt(from)}`, `Δl total = ${sg(dl)}′`], plantea: 'l llegada = l salida + Δl   (los minutos de Δl son minutos de latitud)',
-          lineas: [`${lt(from)} ${dl < 0 ? '−' : '+'} ${coma(Math.abs(dl), 1)}′`, `l llegada = ${lt(p)}`] });
-      step('Del apartamiento a la diferencia de longitud', `Latitud media ${coma(Math.abs(lm), 1)}°: ΔL = A / cos lm = ${sg(ap)}′ / ${coma(cos, 3)} = ${sg(dL)}′.`,
+      const cruzaEcuador = from.lat * p.lat < 0;
+      step('Latitud de llegada', `l = ${lt(from)} ${dl < 0 ? '−' : '+'} ${coma(Math.abs(dl), 1)}′ = ${lt(p)}.${conSur ? ` Con signo: ${latSigno(from.lat)} ${dl < 0 ? '−' : '+'} ${coma(Math.abs(dl), 1)}′ = ${latSigno(p.lat)}${cruzaEcuador ? ': cambia de signo, hemos cruzado el ecuador' : ''}.` : ''}`,
+        pide('loxodromica', '¿Cuál es la latitud de llegada?', [{ kind: 'lat', value: p.lat, label: 'Latitud' }]),
+        { traigo: [`l salida = ${lt(from)}`, `Δl total = ${sg(dl)}′`],
+          plantea: conSur
+            ? 'l llegada = l salida + Δl, con signo (N +, S −). En el hemisferio S, ir hacia el S hace la latitud más negativa; si cambia de signo, has cruzado el ecuador y cambia la letra.'
+            : 'l llegada = l salida + Δl   (los minutos de Δl son minutos de latitud)',
+          lineas: conSur
+            ? [`l salida = ${latSigno(from.lat)}`, `${latSigno(from.lat)} ${dl < 0 ? '−' : '+'} ${coma(Math.abs(dl), 1)}′ = ${latSigno(p.lat)}`, ...(cruzaEcuador ? ['Cambia de signo: cruzamos el ecuador'] : []), `l llegada = ${lt(p)}`]
+            : [`${lt(from)} ${dl < 0 ? '−' : '+'} ${coma(Math.abs(dl), 1)}′`, `l llegada = ${lt(p)}`] });
+      const lmTxt = `${coma(Math.abs(lm), 1)}°${conSur ? ` ${lm < 0 ? 'S' : 'N'}` : ''}`;
+      step('Del apartamiento a la diferencia de longitud', `Latitud media ${lmTxt}: ΔL = A / cos lm = ${sg(ap)}′ / ${coma(cos, 3)} = ${sg(dL)}′.`,
         pide('loxodromica', '¿Cuánto vale la diferencia de longitud (ΔL)?', [min(dL, 'ΔL (E +, W −)')]),
-        { traigo: [`A total = ${sg(ap)}′`, `l salida = ${lt(from)}`, `l llegada = ${lt(p)}`], plantea: 'lm = (l salida + l llegada) / 2   ·   ΔL = A / cos lm   (el apartamiento son millas; ΔL, minutos de longitud)',
-          lineas: [`lm = ${coma(Math.abs(lm), 1)}°`, `cos lm = ${coma(cos, 3)}`, `ΔL = ${sg(ap)} / ${coma(cos, 3)} = ${sg(dL)}′${hacia(dL, 'E', 'W')}`] });
+        { traigo: [`A total = ${sg(ap)}′`, `l salida = ${lt(from)}`, `l llegada = ${lt(p)}`],
+          plantea: `lm = (l salida + l llegada) / 2   ·   ΔL = A / cos lm   (el apartamiento son millas; ΔL, minutos de longitud)${cruzaEcuador ? '. Con hemisferios distintos la media va con signo: una latitud resta a la otra' : ''}`,
+          lineas: [...(conSur ? [`lm = (${dec2(from.lat)} + ${par(p.lat)}) / 2 = ${dec2(lm)}`] : []), `lm = ${lmTxt}`, `cos lm = ${coma(cos, 3)}`, `ΔL = ${sg(ap)} / ${coma(cos, 3)} = ${sg(dL)}′${hacia(dL, 'E', 'W')}`] });
       const bruta = p.lon;
       let cruce = '';
       const lineasL = [`${lg(from)} ${(bruta - from.lon) * (from.lon < 0 ? -1 : 1) < 0 ? '−' : '+'} ${coma(Math.abs(dL), 1)}′`];
       if (Math.abs(p.lon) > 180) {
-        const a = Math.abs(p.lon);
+        const a = gm(Math.abs(p.lon));
         p = { lat: p.lat, lon: norm180(p.lon) };
-        cruce = ` La longitud sale ${Math.floor(a)}° ${coma((a % 1) * 60, 1)}′ ${p.lon < 0 ? 'E' : 'W'}, más de 180°: hemos cruzado el meridiano 180°. Restando de 360° queda ${lg(p)}.`;
-        lineasL.push(`= ${Math.floor(a)}° ${coma((a % 1) * 60, 1)}′ ${p.lon < 0 ? 'E' : 'W'}  → ¡pasa de 180°!`, `360° − ${Math.floor(a)}° ${coma((a % 1) * 60, 1)}′ = ${lg(p)}`);
+        const letra = p.lon < 0 ? 'E' : 'W'; // la de la salida, que se pasa de 180°
+        cruce = ` La longitud sale ${a} ${letra}, más de 180°: hemos cruzado el meridiano 180°. Restando de 360° queda ${lg(p)}.`;
+        lineasL.push(`= ${a} ${letra}  → ¡pasa de 180°!`, `360° − ${a} = ${lg(p)}`, `Cambia la letra: de ${letra} a ${letra === 'E' ? 'W' : 'E'}`);
+        // Δλ al cruzar el 180° (R-53): resta de 360° pero deja la letra de la salida.
+        if (E('antimeridiano:letra')) p = { lat: p.lat, lon: -p.lon };
       } else lineasL.push(`L llegada = ${lg(p)}`);
       p = FP(p);
       step(label, `${fmtPos(p)}.${cruce}`, pide('loxodromica', `¿Cuál es la ${label.toLowerCase()}?`, posCampos(p, false)),
@@ -712,18 +748,23 @@ export function createKit(chart, { error = null, fijos = null } = {}) {
       const lt = (p) => fmtPos(p).split('  ')[0];
       const lg = (p) => fmtPos(p).split('  ')[1];
       const dl = F((b.lat - a.lat) * 60);
-      const dL = F(norm180(b.lon - a.lon) * 60 * (E('signo-dL') ? -1 : 1), 0, 1);
-      const cruza = Math.abs((b.lon - a.lon) * 60 - dL) > 1e-6;
+      // Por el camino corto: si la resta pasa de 180°, se cruza el meridiano 180° (data/comun/formulas.json, meridiano-180).
+      const cruza = Math.abs(b.lon - a.lon) > 180;
+      // Δλ al cruzar el 180° (R-53): restar las longitudes tal cual, por el camino largo (sale al revés y casi 360°).
+      const dLbase = cruza && E('antimeridiano:resta') ? (b.lon - a.lon) * 60 : norm180(b.lon - a.lon) * 60;
+      const dL = F(dLbase * (E('signo-dL') ? -1 : 1), 0, 1);
       step('Diferencia de latitud', `De ${lt(a)} a ${lt(b)}: Δl = ${coma(Math.abs(dl), 1)}′ ${dl < 0 ? 'S' : 'N'}.`,
         pide('loxodromica', '¿Cuánto vale la diferencia de latitud (Δl)?', [min(dl, 'Δl (N +, S −)')]),
         { traigo: [`l salida = ${lt(a)}`, `l llegada = ${lt(b)}`], plantea: 'Δl = l llegada − l salida, en minutos. Si vas hacia el N es +; hacia el S, −. Con distinto hemisferio, se suman.',
-          lineas: [`${lt(b)} − ${lt(a)}`, `Δl = ${sg(dl)}′${hacia(dl, 'N', 'S')}`] });
+          lineas: [a.lat < 0 || b.lat < 0 ? `${latSigno(b.lat)} − (${latSigno(a.lat)})   (N +, S −)` : `${lt(b)} − ${lt(a)}`, `Δl = ${sg(dl)}′${hacia(dl, 'N', 'S')}`] });
       step('Diferencia de longitud', `De ${lg(a)} a ${lg(b)}: ΔL = ${coma(Math.abs(dL), 1)}′ ${dL < 0 ? 'W' : 'E'}${cruza ? ' (por el camino corto, cruzando el meridiano 180°)' : ''}.`,
         pide('loxodromica', '¿Cuánto vale la diferencia de longitud (ΔL)?', [min(dL, 'ΔL (E +, W −)')]),
         { traigo: [`L salida = ${lg(a)}`, `L llegada = ${lg(b)}`],
           plantea: 'ΔL = L llegada − L salida, en minutos, por el camino corto. Si una es E y otra W junto al 180°, suma lo que le falta a cada una hasta 180°.',
           lineas: cruza ? [`Cruzo el 180°: (180° − ${lg(a).replace(/ [EW]$/, '')}) + (180° − ${lg(b).replace(/ [EW]$/, '')})`, `ΔL = ${sg(dL)}′${hacia(dL, 'E', 'W')}`] : [`${lg(b)} − ${lg(a)}`, `ΔL = ${sg(dL)}′${hacia(dL, 'E', 'W')}`] });
-      const lm = E('lm-salida') ? a.lat : (a.lat + b.lat) / 2;
+      let lm = E('lm-salida') ? a.lat : (a.lat + b.lat) / 2;
+      // Media con hemisferios distintos sumando las latitudes sin signo.
+      if (a.lat * b.lat < 0 && E('lm-hemisferios:media')) lm = (Math.abs(a.lat) + Math.abs(b.lat)) / 2;
       const cos = Math.cos(lm * Math.PI / 180);
       const A = F(E('sin-cos-lm') ? dL : E('cos-lm-multiplica') ? dL / cos : dL * cos);
       let r = norm360(toDeg(Math.atan2(A, dl)));

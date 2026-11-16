@@ -2,7 +2,7 @@
 // Cada tipo sabe leer la entrada del usuario, formatear un valor y medir el error frente a la solución.
 // Añadir un tipo de magnitud nuevo = añadir una entrada aquí.
 
-import { angleDist, norm360 } from '../math/angles.js';
+import { angleDist, norm360, norm180 } from '../math/angles.js';
 import {
   parseAngle, parseNumber, parseDuration, parseClock,
   fmtBearing, fmtSigned, fmtLat, fmtLon, fmtMiles, fmtKnots, fmtDuration, fmtClock,
@@ -51,7 +51,8 @@ export const QUANTITIES = {
     placeholder: "p.ej. 5 36,5 W",
     parse: (t) => { const v = parseAngle(t); return Number.isNaN(v) ? NaN : (/[EW]/i.test(t) ? v : -Math.abs(v)); },
     format: (v) => fmtLon(v),
-    error: (a, b) => Math.abs(a - b) * 60,
+    // Por el camino corto: 179° 59,5′ E y 179° 59,5′ W están a 1′, no a 359° (cruce del meridiano 180°).
+    error: (a, b) => Math.abs(norm180(a - b)) * 60,
     errorUnit: "'",
     tolerance: 1,
   },

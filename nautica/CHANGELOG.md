@@ -15,7 +15,10 @@ Qué cambia en la app para quien la usa, por fecha de publicación. Es la base d
 
 ## Sin publicar
 
-Nada pendiente.
+**Mejoras**
+
+- **Toda la app con la cara nueva.** Temario, Examen, las clases, las preguntas, las fichas de ideas, los ejercicios de carta resueltos, Más, la estrategia, el día del examen, la víspera, el ensayo, el cuaderno de fallos y el aviso diario usan los mismos colores, letras y tarjetas que Hoy, en claro y en oscuro. Las láminas de las clases siguen con sus colores.
+- **Icono nuevo.** El icono de la app en el móvil pasa a los colores de la noche: fondo oscuro, rosa de los vientos y el norte en magenta.
 
 ## 16 de noviembre de 2026, sexta publicación · versión `ffd09e8aa632`
 

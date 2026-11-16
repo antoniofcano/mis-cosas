@@ -321,11 +321,13 @@ button.mc-imprimir { display: inline-flex; align-items: center; gap: .3rem; min-
 /* ---- Hoy y la Travesía en estilo C (src/ui/views/hoy.js, src/ui/views/travesia.js; la carta, src/illustrations/derrota-c.js) ----
    La entrada con el lenguaje de las láminas: tarjetas de papel de carta con doble filete (cartelas), rótulos en versalitas
    magenta, títulos en la condensada de la app (Barlow Condensed), cifras en monoespaciada y botones de tinta. Dentro de .entrada y
-   .travesia-pantalla los colores de la app se reasignan a los --lc-*: lo de siempre (enlaces, avisos, tarjetas
+   .travesia-pantalla (y, desde R-69, la estrategia, el día del examen, la víspera, el ensayo, el cuaderno de fallos y el aviso
+   diario) los --lc-* se reasignan a los colores de la app (la lista de selectores de abajo): lo de siempre (enlaces, avisos, tarjetas
    secundarias) se pinta con la paleta de la carta en claro y en oscuro. Sin animaciones nuevas: las de siempre (faros,
    rango, insignias, barras) siguen igual y con «reducir movimiento» no se mueven. Ningún texto por debajo de .68rem
    (12 px con la raíz de 18 px). */
-.entrada, .travesia-pantalla, .semana-pantalla {
+.entrada, .travesia-pantalla, .semana-pantalla,
+.mc-hoja:is(.estrategia, .dia-examen, .vispera, .ensayo-papel), .aviso-diario, .ensayo-cuerpo, .fallos, .oficial {
   --lc-fondo: var(--panel); --lc-papel: var(--surface); --lc-tinta: var(--text); --lc-apagado: var(--muted); --lc-magenta: var(--accent);
   --lc-azul-texto: var(--accent); --lc-linea-agua: var(--border); --lc-agua: var(--panel); --lc-agua-2: var(--accent-2);
   --lc-tierra: var(--tierra); --lc-amarillo: var(--amarillo); --lc-verde-texto: var(--ok); --lc-rojo-texto: var(--warn);
@@ -571,6 +573,63 @@ button.fm-ir:focus-visible { outline: 3px solid var(--accent); outline-offset: 2
   .fm-tabla thead th { font-size: 7pt; background: none; }
 }
 
+/* ---- Resto de pantallas con el lenguaje de Hoy (R-69) ----
+   Temario, Examen (lista, inicio y resultado), clase, fichas de idea y ejercicios de carta resueltos: las cartelas de Hoy
+   (papel, filete fino, esquinas rectas), títulos en la condensada, cifras en monoespaciada y el botón principal de acento.
+   Solo colores de la app (tokens): las láminas SVG de las clases siguen con sus --lc-* de siempre. Sin estructura nueva. */
+:is(.temario, .tema, .examenes, .leccion, .ficha-idea, .cps-lista, .test, .practice) {
+  --cartela-r: 0;
+}
+:is(.temario, .tema, .examenes, .leccion, .ficha-idea, .cps-lista, .test, .practice) :is(.card, .qcard, a.clase, .tema-card, .tarjeta-hoy, .examen-final, .ensayo-tarjeta, .chuleta-panel, section.objetivos, section.chuleta, .option, .cps-card, .mas-opciones, .radio-tema, .repaso-examen, .sim-errores-entrada, .caja-trabajado, .caja-manana) {
+  border-radius: 0; box-shadow: none;
+}
+:is(.temario, .tema, .examenes, .ficha-idea, .cps-lista) :is(a.card, .tema-card, .ensayo-tarjeta, .examen-final) { background: var(--surface); border: 1px solid var(--border); }
+:is(.temario, .tema, .examenes, .ficha-idea, .cps-lista) :is(a.card, .ensayo-tarjeta):hover { border-color: var(--accent); }
+.examenes .examen-final.abierto { border: 1.5px solid var(--accent); background: var(--surface); }
+.examenes .examen-final.cerrado { border: 1px dashed var(--borde-fuerte); }
+.examenes .ensayo-tarjeta { background: var(--surface); border: 1px solid var(--border); }
+.examenes .ensayo-tarjeta a.mas-fila:hover { background: var(--accent-2); }
+:is(.temario, .tema, .examenes, .leccion, .ficha-idea, .cps-lista, .test, .practice) :is(.mas-fila-ico, .tema-faro) { border-radius: 0; }
+:is(.temario, .tema, .examenes, .leccion, .ficha-idea, .cps-lista, .test, .practice) :is(.tema-faro) { border-radius: 999px; }
+a.clase .clase-meta :is(.badge, .estado, .chip-estado), a.clase .clase-meta > span:not(.ico) { border-radius: 0; }
+/* Rótulos y píldoras: versalitas con filete, sin píldora redonda */
+:is(.temario, .tema, .examenes, .leccion, .ficha-idea, .cps-lista, .test, .practice) :is(.badge, .hoy-toca, .chip-limite, .chip-concepto) { border-radius: 0; border: 1px solid var(--accent); background: transparent; color: var(--accent); font-weight: 700; }
+:is(.temario, .tema, .examenes, .leccion, .ficha-idea, .cps-lista, .test, .practice) .badge.muted { border-color: var(--border); color: var(--muted); }
+/* Títulos de tarjeta en la condensada; cifras en mono */
+:is(.temario, .tema, .examenes, .cps-lista) :is(.tema-card h3, .cps-card h3, .examen-final h2, .examen-final h3) { font-family: var(--fuente-titulos); font-weight: 700; letter-spacing: .01em; }
+:is(.temario, .tema, .examenes, .leccion, .practice, .test) :is(.tema-ideas-tx, .ba-derecha, .datos-examen strong) { font-family: var(--fuente-mono); font-variant-numeric: tabular-nums; }
+.tema-ideas-tx, .ba-derecha { letter-spacing: 0; }
+.tema-ideas-tx { font-size: .8rem; }
+/* Barras: regla de papel con filete y el avance en acento */
+:is(.temario, .tema, .examenes, .leccion, .practice, .test) :is(.bar, .barra-fina, .barra-trav, .ba-progreso) { border-radius: 0; background: var(--surface); border: 1px solid var(--borde-fuerte); }
+:is(.temario, .tema, .examenes, .leccion, .practice, .test) :is(.bar, .barra-fina, .barra-trav, .ba-progreso) > span { border-radius: 0; background: var(--accent); }
+:is(.leccion, .practice, .test) .ba-progreso { height: 8px !important; border-left: 0; border-right: 0; }
+/* Botones: principal de acento (mayúsculas, condensada), secundario con filete de tinta; esquinas de carta */
+:is(.temario, .tema, .examenes, .leccion, .ficha-idea, .cps-lista, .test, .practice) :is(.btn, button.grande, .fila-inferior button, .actions button, .actions .btn) { border-radius: 0; border-width: 1.5px; }
+:is(.temario, .tema, .examenes, .leccion, .ficha-idea, .cps-lista, .test, .practice) :is(.btn.secondary, button.secondary, button.grande.secondary) { background: var(--surface); color: var(--text); border: 1.5px solid var(--text); }
+:is(.temario, .tema, .examenes, .leccion, .ficha-idea, .cps-lista, .test, .practice) :is(.btn.secondary, button.secondary):hover { border-color: var(--accent); }
+/* Clase: la tarjeta de «Ojo» con filete de aviso y la chuleta con cartela; opciones de pregunta con filete */
+.leccion .paso.ojo { border-radius: 0; background: var(--aviso-bg); border: 1px solid var(--aviso-borde); border-left: 4px solid var(--aviso-borde); }
+.leccion section.chuleta { background: var(--surface); border: 1px dashed var(--borde-fuerte); }
+.leccion .paso h3, .leccion .paso h2 { font-family: var(--fuente-titulos); font-weight: 700; }
+:is(.practice, .test, .leccion) .option { border: 1px solid var(--borde-fuerte); background: var(--surface); }
+:is(.practice, .test, .leccion) .option.correct { border: 1.5px solid var(--ok); }
+:is(.practice, .test, .leccion) .option.wrong { border: 1.5px dashed var(--warn); }
+.test :is(.datos-examen li, .resultado-examen, .resultado) { border-radius: 0; }
+/* Fichas de idea y ejercicios de carta resueltos */
+.ficha-idea h1, .cps-lista h1 { font-family: var(--fuente-titulos); }
+.cps-lista .cps-card .badge { font-size: .8rem; }
+/* El botón de imprimir de las hojas es el principal: acento, como en Hoy */
+.mc-hoja button.mc-imprimir { background: var(--boton); color: var(--on-boton); border-color: var(--boton); font-family: var(--fuente-titulos); letter-spacing: .03em; }
+/* Las hojas (estrategia, día del examen, víspera, ensayo): rotulación de la app en vez de la serifa de las láminas, que sigue en las láminas */
+.mc-hoja:is(.estrategia, .dia-examen, .vispera, .ensayo-papel) { --lc-serif: var(--fuente-texto); --lc-mono: var(--fuente-mono); }
+.mc-hoja:is(.estrategia, .dia-examen, .vispera, .ensayo-papel) :is(.lc-titulo, .mc-clase-tit, .lc-cifra, .est-tabla caption, .dx-linea) { font-family: var(--fuente-titulos); font-style: normal; letter-spacing: .01em; }
+.mc-hoja:is(.estrategia, .dia-examen, .vispera, .ensayo-papel) .lc-cifra { font-family: var(--fuente-mono); }
+:is(.leccion, .practice, .test) button:not(.ba-salir) { border-radius: 0; }
+/* Más y Ajustes: la lista de entradas como una cartela */
+ul.mas-lista { border-radius: 0; }
+ul.mas-lista .mas-fila-ico { border-radius: 0; }
+.mas-grupo > .eti { color: var(--accent); letter-spacing: .16em; }
 /* Aviso de una pregunta de carta sin resolución programada o anulada (src/ui/views/exams.js, avisoMotivo; motivo de
    src/exams/motivo.js). Estilo C: papel, tinta y una etiqueta que dice el tipo con palabras (no solo con el color). */
 .motivo-carta { margin: .75rem 0; padding: .7rem .85rem .8rem; background: var(--lc-papel); color: var(--lc-tinta);
@@ -583,3 +642,4 @@ button.fm-ir:focus-visible { outline: 3px solid var(--accent); outline-offset: 2
 .motivo-carta.motivo-discrepancia { border-left-color: var(--lc-magenta); }
 .motivo-carta.motivo-sin-calculo { border-left-color: var(--lc-linea-agua); }
 .motivo-carta.motivo-por-poco { border-left-color: var(--lc-apagado); }
+

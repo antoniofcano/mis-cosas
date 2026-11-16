@@ -39,7 +39,10 @@ nautica/
 ├── styles/app.css        Colores como tokens CSS en `:root` (claro), `@media (prefers-color-scheme: dark)` con `:root:not([data-theme="light"])`
 │                         (automático) y `:root[data-theme="dark"]` (forzado): los dos bloques oscuros son idénticos (tests/tema.test.js).
 │                         Letras: Patron Texto / Titulos (condensada) / Mono, en fonts/ (fonts/README.md). Retícula de carta en `body`.
-├── styles/laminas.css    Láminas (`--lc-*`, con su claro y oscuro propios) y Hoy, Travesía y la semana en estilo carta
+├── styles/laminas.css    Láminas (`--lc-*`, con su claro y oscuro propios) y Hoy, Travesía y la semana en estilo carta;
+│                         desde R-69 también la estrategia, el día del examen, la víspera, el ensayo, el cuaderno de fallos y el aviso
+│                         diario (mismo patrón: los `--lc-*` se reasignan a los tokens) y un bloque «Resto de pantallas» (Temario, Examen,
+│                         clase, fichas…) solo con tokens. Las clases y las láminas no reasignan `--lc-*`. Icono: icons/icono.svg (PNG de él)
 └── tests/                node --test
 ```
 

@@ -36,12 +36,23 @@ nautica/
 │   ├── ai/               INTERFAZ IA        resúmenes de texto compactos y API window.nautica
 │   └── ui/               INTERFAZ           router por hash (#/<tit>/… por titulación), barra inferior, vistas; ui/chart/: carta interactiva (zoom, capas,
 │                                            herramientas de dibujo) y capa raster de la carta del usuario
-├── styles/app.css
+├── styles/app.css        Colores como tokens CSS en `:root` (claro), `@media (prefers-color-scheme: dark)` con `:root:not([data-theme="light"])`
+│                         (automático) y `:root[data-theme="dark"]` (forzado): los dos bloques oscuros son idénticos (tests/tema.test.js).
+│                         Letras: Patron Texto / Titulos (condensada) / Mono, en fonts/ (fonts/README.md). Retícula de carta en `body`.
+├── styles/laminas.css    Láminas (`--lc-*`, con su claro y oscuro propios) y Hoy, Travesía y la semana en estilo carta
 └── tests/                node --test
 ```
 
 Dependencias permitidas (de abajo arriba): `math` ← `nautical` ← `chart` ← `exercises` ← `analysis`
 ← `graphics` ← `ai` ← `ui`. `store` solo lo usa `ui`.
+
+## Aspecto: claro, oscuro, automático (R-67)
+
+`ui/tema.js` guarda el ajuste `aspecto` (del aparato; no está en la lista de ajustes compartidos de la sincronización) y lo
+copia a `localStorage['nautica.aspecto']`, que lee un script de `<head>` de `index.html` antes de cargar la hoja de estilos para
+poner `data-theme` en `<html>` y la meta `theme-color` sin parpadeo. Sin ajuste (automático) no hay `data-theme` y manda
+`prefers-color-scheme`. Los colores de cada pantalla salen siempre de los tokens (`--bg`, `--surface`, `--text`, `--accent`,
+`--boton`, `--aviso-*`…), nunca de una regla `@media` suelta; las láminas conservan sus `--lc-*`.
 
 ## Organización por titulación y navegación
 

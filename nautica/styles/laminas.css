@@ -74,7 +74,7 @@ h1.lc-titulo { font-size: 1.75rem; }
    «Nota»; el avance con los faros de la Travesía. El volteo solo se anima sin «reducir movimiento». */
 .tc-mazos { list-style: none; margin: 1rem 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr)); gap: .75rem; }
 a.tc-mazo { display: flex; gap: .8rem; align-items: flex-start; min-height: 44px; padding: .9rem 1rem; background: var(--lc-fondo); color: var(--lc-tinta); text-decoration: none;
-  border: 1.5px solid var(--lc-tinta); box-shadow: inset 0 0 0 3px var(--lc-fondo), inset 0 0 0 3.7px var(--lc-tinta); }
+  border: 1.5px solid var(--lc-tinta); box-shadow: none; }
 a.tc-mazo:hover { border-color: var(--lc-magenta); }
 a.tc-mazo:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
 .tc-mazo-ico { flex: none; width: 40px; height: 40px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; background: var(--lc-papel); border: 1px solid var(--lc-tinta); color: var(--lc-tinta); }
@@ -177,7 +177,7 @@ a.tc-mazo:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px;
 /* Lista de mapas: tarjetas de papel con doble filete */
 .mc-lista { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr)); gap: .75rem; }
 a.mc-tarjeta { display: flex; gap: .8rem; align-items: flex-start; height: 100%; min-height: 44px; padding: .9rem 1rem; background: var(--lc-fondo); color: var(--lc-tinta); text-decoration: none;
-  border: 1.5px solid var(--lc-tinta); box-shadow: inset 0 0 0 3px var(--lc-fondo), inset 0 0 0 3.7px var(--lc-tinta); }
+  border: 1.5px solid var(--lc-tinta); box-shadow: none; }
 a.mc-tarjeta:hover { border-color: var(--lc-magenta); }
 a.mc-tarjeta:focus-visible, a.mapa-vecino:focus-visible, .mc-lienzo:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
 .mc-tarjeta-ico { flex: none; width: 40px; height: 40px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; background: var(--lc-papel); border: 1px solid var(--lc-tinta); }
@@ -205,7 +205,7 @@ a.mc-tarjeta:focus-visible, a.mapa-vecino:focus-visible, .mc-lienzo:focus-visibl
 .mapa-grupo h3, .mc-grupo-tit { margin: 0 0 .4rem; font-size: .78rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--lc-magenta); display: flex; align-items: center; gap: .3em; }
 .mc-vecinos { list-style: none; margin: 0; padding: 0; display: grid; gap: .45rem; }
 .mapa-vecino { display: flex; align-items: center; gap: .7rem; width: 100%; min-height: 64px; margin: .35rem 0; padding: .45rem .6rem; text-align: left; text-decoration: none;
-  background: var(--lc-papel); color: var(--lc-tinta); border: 1.5px solid var(--lc-tinta); border-radius: 0; box-shadow: inset 0 0 0 2.5px var(--lc-papel), inset 0 0 0 3.1px var(--lc-tinta); font: inherit; cursor: pointer; }
+  background: var(--lc-papel); color: var(--lc-tinta); border: 1.5px solid var(--lc-tinta); border-radius: 0; box-shadow: none; font: inherit; cursor: pointer; }
 .mc-vecinos .mapa-vecino { margin: 0; }
 a.mapa-vecino { text-decoration: none; }
 a.mapa-vecino:hover { border-color: var(--lc-magenta); }
@@ -257,7 +257,7 @@ button.mapa-opcion.fallada { border: 2.5px dashed var(--lc-rojo-texto); color: v
 .mc-botones label.check { display: inline-flex; align-items: center; gap: .4rem; min-height: 44px; }
 button.mc-imprimir { display: inline-flex; align-items: center; gap: .3rem; min-height: 44px; background: var(--lc-tinta); color: var(--lc-papel); border-color: var(--lc-tinta); border-radius: 0; }
 .mc-hoja-cab { display: flex; flex-direction: column; gap: .35rem; padding: 1rem 1rem .9rem; background: var(--lc-fondo); color: var(--lc-tinta);
-  border: 1.5px solid var(--lc-tinta); border-bottom: 0; box-shadow: inset 0 0 0 3px var(--lc-fondo), inset 0 0 0 3.7px var(--lc-tinta); }
+  border: 1.5px solid var(--lc-tinta); border-bottom: 0; box-shadow: none; }
 .mc-impresion { display: none; }
 .mc-clases { background: var(--lc-fondo); color: var(--lc-tinta); border: 1.5px solid var(--lc-tinta); border-top: 3px double var(--lc-tinta); padding: .2rem 1rem 1rem; }
 .mc-clase { break-inside: avoid; padding: .7rem 0 .5rem; border-bottom: 1px dashed var(--lc-linea-agua); }
@@ -270,7 +270,7 @@ button.mc-imprimir { display: inline-flex; align-items: center; gap: .3rem; min-
 .mc-claves li > p, .mc-trampa p { margin: 0; display: inline; }
 .mc-claves strong { font-variant-numeric: tabular-nums; }
 .mc-hoja .mc-rotulo { display: flex; align-items: center; gap: .3em; margin: 0 0 .15rem; font-size: .72rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--lc-magenta); }
-.mc-regla { margin: .45rem 0; padding: .45rem .6rem; background: var(--lc-papel); border: 1.2px solid var(--lc-tinta); box-shadow: inset 0 0 0 2.5px var(--lc-papel), inset 0 0 0 3.1px var(--lc-tinta); }
+.mc-regla { margin: .45rem 0; padding: .45rem .6rem; background: var(--lc-papel); border: 1.2px solid var(--lc-tinta); box-shadow: none; }
 .mc-regla p { margin: 0; font-family: var(--lc-serif); line-height: 1.4; }
 .mc-trampa { margin: .45rem 0; padding: .4rem .6rem; border: 1px dashed var(--lc-magenta); border-left: 4px solid var(--lc-magenta); background: transparent; }
 .mc-hoja.sin-trampas .mc-trampa { display: none; }
@@ -320,26 +320,23 @@ button.mc-imprimir { display: inline-flex; align-items: center; gap: .3rem; min-
 
 /* ---- Hoy y la Travesía en estilo C (src/ui/views/hoy.js, src/ui/views/travesia.js; la carta, src/illustrations/derrota-c.js) ----
    La entrada con el lenguaje de las láminas: tarjetas de papel de carta con doble filete (cartelas), rótulos en versalitas
-   magenta, títulos en la serifa de la app (Bitter), cifras en monoespaciada y botones de tinta. Dentro de .entrada y
+   magenta, títulos en la condensada de la app (Barlow Condensed), cifras en monoespaciada y botones de tinta. Dentro de .entrada y
    .travesia-pantalla los colores de la app se reasignan a los --lc-*: lo de siempre (enlaces, avisos, tarjetas
    secundarias) se pinta con la paleta de la carta en claro y en oscuro. Sin animaciones nuevas: las de siempre (faros,
    rango, insignias, barras) siguen igual y con «reducir movimiento» no se mueven. Ningún texto por debajo de .68rem
    (12 px con la raíz de 18 px). */
-.entrada, .travesia-pantalla {
-  --surface: var(--lc-fondo); --bg: var(--lc-papel); --text: var(--lc-tinta); --muted: var(--lc-apagado); --border: var(--lc-linea-agua);
-  --accent: var(--lc-azul-texto); --accent-2: var(--lc-agua-2); --ok: var(--lc-verde-texto); --warn: var(--lc-rojo-texto); --close: var(--lc-magenta);
-  --sesion-bg: var(--lc-fondo); --sesion-fg: var(--lc-tinta); --sesion-fila: var(--lc-papel); --sesion-boton: var(--lc-tinta); --sesion-boton-fg: var(--lc-papel);
-  --trav-bg: var(--lc-fondo); --trav-fg: var(--lc-tinta); --trav-oro: var(--lc-magenta); --trav-disco: var(--lc-papel);
-  --faro-on-bg: var(--lc-papel); --faro-on-borde: var(--lc-magenta); --faro-on-texto: var(--lc-tinta); --faro-luz: var(--lc-amarillo);
-  --faro-off-bg: var(--lc-papel); --faro-off-borde: var(--lc-apagado); --faro-off-texto: var(--lc-apagado);
-  --on-accent: var(--lc-papel);
+.entrada, .travesia-pantalla, .semana-pantalla {
+  --lc-fondo: var(--panel); --lc-papel: var(--surface); --lc-tinta: var(--text); --lc-apagado: var(--muted); --lc-magenta: var(--accent);
+  --lc-azul-texto: var(--accent); --lc-linea-agua: var(--border); --lc-agua: var(--panel); --lc-agua-2: var(--accent-2);
+  --lc-tierra: var(--tierra); --lc-amarillo: var(--amarillo); --lc-verde-texto: var(--ok); --lc-rojo-texto: var(--warn);
 }
-/* Cartela: filete de tinta y otro fino por dentro (como las cartelas de las láminas y las tarjetas de los mapas) */
+/* Tarjeta de carta: papel, esquinas rectas y un filete fino (la maqueta «Elegida»; sin doble filete) */
 .entrada :is(.sesion-hoy, .entrada-dato, .nivel-oferta, .podcast-hoy, .guia-oferta, details.mas-progreso, .aviso-copia, .aviso-instalar, .aviso-diario-hoy, .entrada-fase-cuerpo),
 .travesia-pantalla :is(.trav-rango, .trav-detalle, .trav-semana, .trav-insignias-enlace, .insignia, .rangos-lista li.actual) {
-  background: var(--lc-fondo); color: var(--lc-tinta); border: 1.5px solid var(--lc-tinta); border-radius: 0;
-  box-shadow: inset 0 0 0 3px var(--lc-fondo), inset 0 0 0 3.7px var(--lc-tinta);
+  background: var(--lc-papel); color: var(--lc-tinta); border: 1px solid var(--border); border-radius: 0; box-shadow: none;
 }
+/* La tarjeta de «Siguiente parada» manda: filete de acento, un punto más grueso */
+.entrada .sesion-hoy.entrada-cta { border: 1.5px solid var(--lc-magenta); }
 /* Rótulos (eyebrow): versalitas espaciadas en magenta */
 .entrada :is(.entrada-cta-eti, .entrada-dato-eti, .entrada-fase-eti), .travesia-pantalla :is(h2.eti, h3.eti, .trav-cab p, .trav-rango-tx .small),
 .entrada .entrada-cta .entrada-cta-eti {
@@ -349,15 +346,15 @@ button.mc-imprimir { display: inline-flex; align-items: center; gap: .3rem; min-
 .entrada :is(.entrada-saludo, .entrada-parada, .entrada-dato strong, .meta-hoy p strong, .listo h2, h2),
 .travesia-pantalla :is(h1, h2:not(.eti), .trav-rango-tx strong, .rango-tx strong, .trav-insignias-tx strong) { font-family: var(--fuente-titulos); color: var(--lc-tinta); }
 .entrada :is(.sesion-min, .ps-min), .travesia-pantalla :is(.trav-cuenta, .trav-rango-cifra b, .rango-num) {
-  font-family: var(--lc-mono); font-variant-numeric: tabular-nums;
+  font-family: var(--fuente-mono); font-variant-numeric: tabular-nums;
 }
 .entrada :is(button, a, summary):focus-visible, .travesia-pantalla :is(button, a, summary):focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
 /* Botones: de tinta (el principal) o con filete de tinta (los secundarios); esquinas de carta */
-.entrada :is(.btn, button.secondary, button.small), .travesia-pantalla .btn { border-radius: 0; background: var(--lc-tinta); color: var(--lc-papel); border: 1.5px solid var(--lc-tinta); }
-.entrada :is(.btn.secondary, button.secondary, button.small.secondary), .travesia-pantalla .btn.secondary { background: var(--lc-papel); color: var(--lc-tinta); }
-.entrada .boton-sesion, .travesia-pantalla .boton-sesion { border-radius: 0; box-shadow: 0 0 0 2px var(--lc-fondo), 0 0 0 3px var(--lc-tinta); }
+.entrada :is(.btn, button.secondary, button.small), .travesia-pantalla .btn { border-radius: 0; background: var(--boton); color: var(--on-boton); border: 1.5px solid var(--boton); }
+.entrada :is(.btn.secondary, button.secondary, button.small.secondary), .travesia-pantalla .btn.secondary { background: var(--lc-papel); color: var(--lc-tinta); border-color: var(--lc-tinta); }
+.entrada .boton-sesion, .travesia-pantalla .boton-sesion { border-radius: 0; box-shadow: none; }
 .entrada .boton-sesion.secundario, .travesia-pantalla .boton-sesion.secundario { background: var(--lc-papel); color: var(--lc-tinta); border: 1.5px solid var(--lc-tinta); box-shadow: none; }
-.travesia-pantalla .boton-sesion.trav-seguir { background: var(--lc-tinta); color: var(--lc-papel); margin: .2rem 3px .9rem; }
+.travesia-pantalla .boton-sesion.trav-seguir { background: var(--boton); color: var(--on-boton); margin: .2rem 3px .9rem; }
 .entrada .sesion-hoy .boton-sesion:focus-visible, .travesia-pantalla .boton-sesion:focus-visible { outline: 3px solid var(--accent); outline-offset: 5px; }
 
 /* Cabecera: la línea de contexto en una cartela pequeña */
@@ -376,7 +373,7 @@ button.mc-imprimir { display: inline-flex; align-items: center; gap: .3rem; min-
 .entrada button.fase .fase-num { opacity: 1; }
 /* «Siguiente parada»: la cartela grande de la entrada */
 .entrada .sesion-hoy.entrada-cta { padding: 1rem 1rem 1.05rem; gap: .65rem; }
-.entrada .entrada-parada { font-size: 1.45rem; line-height: 1.2; }
+.entrada .entrada-parada { font-size: 1.85rem; line-height: 1.08; }
 .entrada :is(.entrada-parada-tipo, .sesion-linea, .sesion-nota) { opacity: 1; color: var(--lc-apagado); }
 .entrada .sesion-min { color: var(--lc-tinta); opacity: 1; }
 .entrada .entrada-cta details.entrada-pasos > summary { border-top: 1px dashed var(--lc-linea-agua); padding-top: .2rem; }
@@ -426,7 +423,7 @@ button.mc-imprimir { display: inline-flex; align-items: center; gap: .3rem; min-
 /* La Travesía: rango, faro elegido, semana, nota real e insignias */
 .travesia-pantalla .trav-rango-cifra { color: var(--lc-apagado); }
 .travesia-pantalla .trav-rango-cifra b { color: var(--lc-tinta); }
-.travesia-pantalla .trav-disco { background: var(--lc-papel); color: var(--lc-magenta); border: 1.5px solid var(--lc-tinta); box-shadow: inset 0 0 0 2.5px var(--lc-papel), inset 0 0 0 3.2px var(--lc-tinta); }
+.travesia-pantalla .trav-disco { background: var(--lc-papel); color: var(--lc-magenta); border: 1.5px solid var(--lc-tinta); box-shadow: none; }
 .travesia-pantalla .trav-fila-cab .muted.small { color: var(--lc-apagado); }
 .travesia-pantalla .trav-flojas li { border-radius: 0; background: var(--lc-papel); border: 1px solid var(--lc-linea-agua); }
 .travesia-pantalla a.trav-ficha { border-radius: 0; background: var(--lc-papel); color: var(--lc-tinta); border: 1.5px solid var(--lc-tinta); }
@@ -452,7 +449,7 @@ button.mc-imprimir { display: inline-flex; align-items: center; gap: .3rem; min-
    en la Travesía. 44 px de alto, foco visible y los mismos tokens en claro y en oscuro. */
 .compartir-fila { display: flex; justify-content: flex-start; margin: .2rem 3px .6rem; }
 button.boton-compartir { display: inline-flex; align-items: center; justify-content: center; gap: .5rem; min-height: 44px; padding: .45rem 1rem;
-  border-radius: 0; background: var(--lc-papel); color: var(--lc-tinta); border: 1.5px solid var(--lc-tinta); box-shadow: inset 0 0 0 2px var(--lc-papel), inset 0 0 0 2.7px var(--lc-tinta);
+  border-radius: 0; background: var(--lc-papel); color: var(--lc-tinta); border: 1.5px solid var(--lc-tinta); box-shadow: none;
   font-size: 1rem; font-weight: 700; line-height: 1.2; cursor: pointer; }
 button.boton-compartir .ico { width: 20px; height: 20px; color: var(--lc-magenta); }
 button.boton-compartir:hover { border-color: var(--lc-magenta); }
@@ -496,7 +493,7 @@ button.fm-ir:focus-visible { outline: 3px solid var(--accent); outline-offset: 2
 .fm-formula { min-width: 0; padding: .6rem 0 .7rem; border-bottom: 1px dashed var(--lc-linea-agua); }
 .fm-bloque > .fm-formula:last-child { border-bottom: 0; }
 .fm-tit { margin: 0 0 .35rem; font-family: var(--lc-serif); font-size: 1.12rem; line-height: 1.25; color: var(--lc-tinta); }
-.fm-expr { margin: .2rem 0 .45rem; padding: .45rem .65rem; background: var(--lc-papel); border: 1.2px solid var(--lc-tinta); box-shadow: inset 0 0 0 2.5px var(--lc-papel), inset 0 0 0 3.1px var(--lc-tinta); }
+.fm-expr { margin: .2rem 0 .45rem; padding: .45rem .65rem; background: var(--lc-papel); border: 1.2px solid var(--lc-tinta); box-shadow: none; }
 .fm-linea { margin: .12rem 0; font-family: var(--lc-serif); font-size: 1.1rem; font-weight: 700; line-height: 1.35; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; color: var(--lc-tinta); }
 .fm-letras { display: grid; grid-template-columns: fit-content(40%) 1fr; align-items: baseline; gap: .2rem .65rem; margin: .35rem 0; font-size: .95rem; line-height: 1.4; }
 .fm-letras dt { font-family: var(--lc-serif); font-weight: 700; overflow-wrap: anywhere; }

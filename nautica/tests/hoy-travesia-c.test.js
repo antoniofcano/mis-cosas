@@ -159,18 +159,18 @@ test('CSS de Hoy y la Travesía: sin colores fijos, cada variable existe (en cla
   for (const v of new Set(css.match(/var\(--[a-z0-9-]+/g))) {
     const k = v.slice(4);
     if (k.startsWith('--lc-')) { const c = CLARO[k.slice(2)]; assert.ok(c, `${k} no definida`); if (c.startsWith('#')) assert.ok(OSCURO[k.slice(2)], `${k} sin oscuro`); continue; }
-    assert.ok(['--fuente-texto', '--fuente-titulos', '--accent'].includes(k), `${k}: usa un --lc-*`);
+    // Fuera de --lc-*, solo tokens de la app (R-67), definidos en :root de app.css y, los de color, también en oscuro.
     assert.ok(APP.includes(`${k}:`), `${k} no definida`);
   }
   assert.ok(oscuroApp.length > 0);
 });
 
-test('CSS de Hoy y la Travesía: los colores de la app se reasignan a la paleta de la carta dentro de la entrada', () => {
-  const raiz = BLOQUE.slice(BLOQUE.indexOf('.entrada, .travesia-pantalla {'));
-  const reasignadas = Object.fromEntries([...raiz.slice(0, raiz.indexOf('}')).matchAll(/(--[a-z0-9-]+):\s*var\((--lc-[a-z0-9-]+)\)/g)].map((m) => [m[1], m[2]]));
-  for (const k of ['--surface', '--bg', '--text', '--muted', '--accent', '--ok', '--warn', '--sesion-bg', '--sesion-fg', '--sesion-boton', '--sesion-boton-fg',
-    '--trav-bg', '--trav-fg', '--trav-oro', '--trav-disco', '--faro-on-bg', '--faro-on-borde', '--faro-luz', '--faro-off-bg', '--faro-off-borde', '--faro-off-texto', '--on-accent']) {
-    assert.ok(reasignadas[k], `${k} sin reasignar a un --lc-*`);
+test('CSS de Hoy y la Travesía: dentro de la entrada los --lc-* de la carta siguen los colores de la app (claro y oscuro)', () => {
+  const raiz = BLOQUE.slice(BLOQUE.indexOf('.entrada, .travesia-pantalla, .semana-pantalla {'));
+  const mapa = Object.fromEntries([...raiz.slice(0, raiz.indexOf('}')).matchAll(/(--lc-[a-z0-9-]+):\s*var\((--[a-z0-9-]+)\)/g)].map((m) => [m[1], m[2]]));
+  for (const k of ['--lc-fondo', '--lc-papel', '--lc-tinta', '--lc-apagado', '--lc-magenta', '--lc-azul-texto', '--lc-linea-agua', '--lc-tierra', '--lc-amarillo', '--lc-verde-texto', '--lc-rojo-texto']) {
+    assert.ok(mapa[k], `${k} sin mapear a un color de la app`);
+    assert.ok(APP.includes(`${mapa[k]}:`), `${mapa[k]} no existe`);
   }
 });
 

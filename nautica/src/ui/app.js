@@ -13,6 +13,7 @@ import { setSharedProgress } from './chart-widget.js';
 import { transicion } from './movimiento.js';
 import { icono, conIcono } from './iconos.js';
 import { voice } from './voice.js';
+import { iniciarAspecto } from './tema.js';
 import { configurarEfectos, escucharPrimerGesto } from './efectos.js';
 import { pedirPersistencia } from '../store/persistencia.js';
 import { escucharInstalacion } from './instalar.js';
@@ -262,6 +263,8 @@ async function main() {
   const aplicaLetra = () => { document.documentElement.dataset.letra = progress.settings().letra ?? 'normal'; };
   aplicaLetra();
   window.addEventListener('ajustes-letra', aplicaLetra);
+  // Aspecto (claro, oscuro o automático; ajuste del aparato): el <head> ya lo puso antes de pintar, aquí se deja en regla.
+  iniciarAspecto(progress);
 
   function render() {
     const route = parseHash();

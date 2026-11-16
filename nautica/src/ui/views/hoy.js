@@ -417,14 +417,15 @@ export function hoyView({ progress, tit }) {
         h('div.entrada-principal', faseEl, sesionEl)),
       // Pasado el examen, cómo fue (sin obligar); si salió del modo semana, volver a él.
       sx.estado.preguntar ? tarjetaComoFue(progress, tit, sx.estado.preguntar) : null,
-      // ¿De qué te examinas? (PY): se pregunta si no se sabe; si no, lo que preparas (y el módulo aprobado, si lo hay).
-      sx.estado.activo ? null : tarjetaFoco(progress, tit, st),
+      // Cómo vas (rango, semana, ¿estás listo?) justo debajo de lo principal, como en la maqueta «Elegida».
+      estadoEl,
       // Cuaderno de fallos (R-56): las dosis y comprobaciones que tocan hoy, en una tarjeta breve.
       tarjetaCuaderno(tit, st.cuaderno),
+      // ¿De qué te examinas? (PY): se pregunta si no se sabe; si no, lo que preparas (y el módulo aprobado, si lo hay).
+      sx.estado.activo ? null : tarjetaFoco(progress, tit, st),
       sx.estado.salido ? h('p.semana-volver', 'Tu examen está cerca. ', botonVolver(progress, tit)) : null,
       momento ? tarjetaExamenCerca(progress, tit, { momento, dias: st.diasAlExamen, fecha: st.fechaExamen, conv, ficha, ahora: d.ahora }) : null,
       aviso.mostrar ? tarjetaAdmitidos(progress, tit, { dias: aviso.dias, conv, ficha, ahora: d.ahora }) : null,
-      estadoEl,
       // Lo secundario, debajo: nada compite con «Seguir».
       ofertaNivel(),
       ritmo,

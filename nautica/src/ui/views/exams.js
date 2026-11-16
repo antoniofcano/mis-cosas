@@ -21,6 +21,7 @@ import { botonBloc } from '../bloc.js';
 import { ID_BLOC } from '../../bloc/notas.js';
 import { guiadoPanel, guiadoDisponible } from '../guiado.js';
 import { papelPanel, papelDisponible } from '../papel.js';
+import { intencionPanel, intencionDisponible } from '../intencion.js';
 import { diagnosticoEl, diagnosticoTexto } from '../diagnostico.js';
 
 /** Quita la referencia a la «UT» (unidad del temario) de las descripciones de los bancos. */
@@ -145,6 +146,10 @@ export function preguntaView({ ctx, progress, params: route }) {
     const conPapel = !!run && papelDisponible(q, run.sol, ctx.chart);
     const papelBox = h('div.papel-box', { hidden: true });
     let papel = null;
+    // «Trázalo en la carta» (R-54, src/ui/intencion.js): se abre con el botón o con ?traza=1. Nunca en un examen.
+    const conTraza = !!run && run.k.items.length > 0 && intencionDisponible(q, run.sol, ctx.chart);
+    const trazaBox = h('div.intencion-box', { hidden: true });
+    let traza = null;
     const refresh = () => {
       summaryText = examQuestionSummary(q, choice, run && {
         steps: run.k.steps, values: run.values.map((v) => quantity(v.kind).format(v.value)), choice: run.pick.choice,
@@ -152,6 +157,7 @@ export function preguntaView({ ctx, progress, params: route }) {
       if (choice && result.childElementCount) { const d = diagnosticoTexto(q, choice, ctx.chart); if (d) summaryText += `\n${d}`; }
       if (guiado) summaryText += `\n${guiado.summary()}`;
       if (papel) summaryText += `\n${papel.summary()}`;
+      if (traza) summaryText += `\n${traza.summary()}`;
       aiPre.textContent = summaryText;
     };
 
@@ -203,6 +209,7 @@ export function preguntaView({ ctx, progress, params: route }) {
         h('button.secondary', { type: 'button', onclick: () => { showSolution(); if (ws && currentWorkspace() === ws) ws.show('tutorial'); } }, 'Ver solución'),
         conGuiado ? h('button.secondary.boton-guiado', { type: 'button', onclick: () => abrirGuiado(true) }, conIcono('diana', 'Resolver paso a paso')) : null,
         conPapel ? h('button.secondary.boton-papel', { type: 'button', onclick: () => abrirPapel(true) }, conIcono('documento', 'Lo hice en papel')) : null,
+        conTraza ? h('button.secondary.boton-traza', { type: 'button', onclick: () => abrirTraza(true) }, conIcono('transportador', 'Trázalo en la carta')) : null,
       ),
       result);
     const factor = () => progress.settings().toleranceFactor ?? 1;
@@ -211,6 +218,7 @@ export function preguntaView({ ctx, progress, params: route }) {
     function abrirGuiado(enfocar) {
       if (!conGuiado) return;
       if (papel) cerrarPapel({ sinNavegar: true });
+      if (traza) cerrarTraza({ sinNavegar: true });
       if (ws && currentWorkspace() === ws) ws.close();
       const w = run.k.items.length ? chartWidget(ctx.chart, { items: run.k.items, focus: run.k.focus, step: 0 }) : null;
       guiado = guiadoPanel({ q, sol: run.sol, chart: ctx.chart, dibujar: (n) => w?.setStep(n), carta: () => w, factor: factor(), glosas,
@@ -218,7 +226,7 @@ export function preguntaView({ ctx, progress, params: route }) {
       setChildren(guiadoBox, guiado.el, w ? h('div.guiado-carta', w.el) : null);
       guiadoBox.hidden = false;
       answerBlock.hidden = true;
-      const { papel: _p, ...sinPapel } = route.query;
+      const { papel: _p, traza: _t, ...sinPapel } = route.query;
       navigate(['q', q.id], { ...sinPapel, guiado: '1' }, { replace: true });
       refresh();
       if (enfocar) requestAnimationFrame(() => { guiadoBox.scrollIntoView({ block: 'start' }); guiadoBox.querySelector('input, h2')?.focus({ preventScroll: true }); });
@@ -227,13 +235,14 @@ export function preguntaView({ ctx, progress, params: route }) {
     function abrirPapel(enfocar) {
       if (!conPapel) return;
       if (guiado) cerrarGuiado();
+      if (traza) cerrarTraza({ sinNavegar: true });
       if (ws && currentWorkspace() === ws) ws.close();
       papel = papelPanel({ q, sol: run.sol, chart: ctx.chart, factor: factor(), tit: q.tit, onCerrar: () => cerrarPapel(),
         onGuiado: conGuiado ? () => abrirGuiado(true) : null, onCorregido: () => refresh() });
       papelBox.replaceChildren(papel.el);
       papelBox.hidden = false;
       answerBlock.hidden = true;
-      const { guiado: _g, ...resto } = route.query;
+      const { guiado: _g, traza: _t, ...resto } = route.query;
       navigate(['q', q.id], { ...resto, papel: '1' }, { replace: true });
       refresh();
       if (enfocar) requestAnimationFrame(() => { papelBox.scrollIntoView({ block: 'start' }); papelBox.querySelector('input')?.focus({ preventScroll: true }); });
@@ -249,12 +258,39 @@ export function preguntaView({ ctx, progress, params: route }) {
       }
       refresh();
     }
+    /** Abre la carta por intención en lugar del bloque de respuesta. */
+    function abrirTraza(enfocar) {
+      if (!conTraza) return;
+      if (guiado) cerrarGuiado();
+      if (papel) cerrarPapel({ sinNavegar: true });
+      if (ws && currentWorkspace() === ws) ws.close();
+      traza = intencionPanel({ q, sol: run.sol, chart: ctx.chart, tit: q.tit, onCerrar: () => cerrarTraza(),
+        onGuiado: conGuiado ? () => abrirGuiado(true) : null });
+      trazaBox.replaceChildren(traza.el);
+      trazaBox.hidden = false;
+      answerBlock.hidden = true;
+      const { guiado: _g, papel: _p, ...resto } = route.query;
+      navigate(['q', q.id], { ...resto, traza: '1' }, { replace: true });
+      refresh();
+      if (enfocar) requestAnimationFrame(() => { trazaBox.scrollIntoView({ block: 'start' }); trazaBox.querySelector('.int-pregunta, h2')?.focus({ preventScroll: true }); });
+    }
+    function cerrarTraza({ sinNavegar = false } = {}) {
+      traza = null;
+      trazaBox.replaceChildren();
+      trazaBox.hidden = true;
+      answerBlock.hidden = false;
+      if (!sinNavegar) {
+        const { traza: _t, ...resto } = route.query;
+        navigate(['q', q.id], Object.keys(resto).length ? resto : undefined, { replace: true });
+      }
+      refresh();
+    }
     function cerrarGuiado() {
       guiado = null;
       guiadoBox.replaceChildren();
       guiadoBox.hidden = true;
       answerBlock.hidden = false;
-      const { guiado: _g, papel: _p, ...resto } = route.query;
+      const { guiado: _g, papel: _p, traza: _t, ...resto } = route.query;
       navigate(['q', q.id], Object.keys(resto).length ? resto : undefined, { replace: true });
       refresh();
     }
@@ -263,6 +299,7 @@ export function preguntaView({ ctx, progress, params: route }) {
     const openTable = (tab) => {
       if (guiado) cerrarGuiado(); // en la mesa, el paso a paso va en su pestaña
       if (papel) cerrarPapel();
+      if (traza) cerrarTraza();
       if (ws) { ws.show(tab); return; }
       ws = openWorkspace({
         chart: ctx.chart, title: `${titulacion} · ${q.convocatoria}${q.numero ? ` · P${q.numero}` : ''}`, statement: q.enunciado,
@@ -289,6 +326,7 @@ export function preguntaView({ ctx, progress, params: route }) {
       h('section.statement', enunciadoEl, h('div.actions.bloc-acciones', botonBloc(bloc, { texto: 'Bloc de notas' })), tableButtons ? avisoCartaMovil(progress) : null, tableButtons),
       guiadoBox,
       papelBox,
+      trazaBox,
       answerBlock,
       h('div.actions',
         prev ? h('a.btn.secondary', { href: enLista(prev) }, '← Anterior') : null,
@@ -306,6 +344,7 @@ export function preguntaView({ ctx, progress, params: route }) {
     refresh();
     if (route.query.guiado === '1') abrirGuiado(false);
     else if (route.query.papel === '1') abrirPapel(false);
+    else if (route.query.traza === '1') abrirTraza(false);
   }
 
   return { el, summary: () => (currentWorkspace() ? currentWorkspace().summary() : summaryText) };

@@ -209,6 +209,25 @@ export const AVISOS = {
     asi: 'Piensa que la hora oficial va por delante de UT: de oficial a UT, atrasa el reloj.',
     has: 'Has aplicado el adelanto al revés',
   },
+  // ---- Carta por intención (R-54, src/exams/intencion.js): elegir qué trazar, desde dónde y en qué orden.
+  'faro-equivocado': {
+    ojo: 'Lee otra vez el enunciado: cada demora, distancia o marcación es de un faro concreto.',
+    no: 'Subraya en el enunciado el nombre de cada faro con su dato antes de coger el transportador.',
+    asi: 'Localiza el faro en la carta antes de trazar y comprueba que es el que nombra el enunciado.',
+    has: 'Has trazado desde el faro (o el punto) equivocado',
+  },
+  'trazo-equivocado': {
+    ojo: 'Cada dato es una construcción distinta: una demora es una recta desde el faro, una distancia es un arco con el compás.',
+    no: 'Demora: recta desde el faro con la opuesta. Distancia: arco con centro en el faro. Rumbo: desde tu situación.',
+    asi: 'Antes de trazar, di en voz alta qué es el dato: demora, distancia, rumbo o corriente.',
+    has: 'Has elegido una construcción que no es la de este paso',
+  },
+  'orden-trazado': {
+    ojo: 'El orden importa: primero te sitúas y después trazas lo que sale de esa situación.',
+    no: 'Primero la situación (las líneas de posición y su corte); después el rumbo, la corriente o la estima desde ella.',
+    asi: 'Escribe en la hoja el orden de los trazos antes de empezar: qué necesitas para cada uno.',
+    has: 'Has elegido un trazo que va después: antes hay que hacer otro',
+  },
 };
 
 /** Ids de error con aviso (todos los de la taxonomía). */

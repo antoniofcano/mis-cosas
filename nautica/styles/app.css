@@ -2878,3 +2878,57 @@ button.dosis-op.elegida-mal { border-color: var(--warn); box-shadow: inset 0 0 0
 .papel .guiado-cab button, .papel-acciones button, .boton-papel { min-height: 44px; }
 .papel-acciones { margin-top: .9rem; }
 .oficial-hoja { display: inline-flex; align-items: center; min-height: 44px; }
+
+/* ==== Trázalo en la carta: carta gráfica por intención (R-54, src/ui/intencion.js) ==== */
+.intencion-box { margin: 1rem 0; }
+.intencion .guiado-cab button, .boton-traza { min-height: 44px; }
+.int-cuerpo { display: grid; gap: .8rem; min-width: 0; }
+.int-carta { min-width: 0; }
+.int-panel { min-width: 0; overflow-wrap: break-word; }
+.int-hechos { margin: 0 0 .6rem; padding-left: 1.4rem; }
+.int-hechos:empty { display: none; }
+.int-hechos li { margin: .15rem 0; }
+.int-hechos .ico { color: var(--ok); }
+.int-n { margin: 0 0 .2rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+.int-pregunta { margin: .3rem 0 .5rem; font-size: 1.1rem; }
+.int-pregunta:focus { outline: none; }
+.int-pregunta:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.int-resp { list-style: none; margin: 0 0 .3rem; padding: 0; color: var(--muted); }
+.int-resp li { margin: .1rem 0; }
+.int-resp strong { color: var(--text); }
+.int-resp .ico { color: var(--ok); }
+.int-opciones { display: grid; gap: .45rem; }
+button.int-opcion { display: flex; align-items: center; gap: .4rem; width: 100%; min-height: 48px; padding: .5rem .8rem; text-align: left; background: var(--surface); color: var(--text); border: 2px solid var(--borde-fuerte); border-radius: var(--radius); font-size: 1rem; line-height: 1.25; }
+button.int-opcion:hover:not(:disabled) { border-color: var(--accent); }
+button.int-opcion:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+button.int-opcion.mal { border-style: dashed; border-color: var(--warn); color: var(--muted); opacity: 1; }
+button.int-opcion.mal .int-tx { text-decoration: line-through; text-decoration-thickness: 1px; }
+button.int-opcion.mal .ico { color: var(--warn); }
+.int-marca { font-weight: 700; display: inline-block; }
+.int-dimelo { margin: .5rem 0 0; }
+.int-dimelo button { min-height: 44px; }
+.int-error { margin-top: .5rem; padding: .5rem .7rem; border: 2px solid var(--warn); border-radius: var(--radius); }
+.int-error p { margin: .25rem 0; }
+.int-error .ico { color: var(--warn); }
+.int-cuaderno a { display: inline-flex; align-items: center; min-height: 44px; }
+.int-pista { margin: .2rem 0 .4rem; }
+.int-pista summary { min-height: 44px; display: flex; align-items: center; cursor: pointer; }
+.int-asi { border-left: 3px solid var(--ok); padding-left: .6rem; }
+.int-final { margin-top: .6rem; padding: .6rem .7rem; border: 1px solid var(--accent); border-radius: var(--radius); background: var(--accent-2); }
+.int-final:focus { outline: none; }
+.int-final:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.int-final h3 { margin: .2rem 0 .4rem; }
+.int-final .actions button { min-height: 44px; }
+.int-cmp { border-collapse: collapse; width: 100%; font-variant-numeric: tabular-nums; font-size: .95rem; }
+.int-cmp th, .int-cmp td { text-align: left; padding: .3rem .4rem; border-bottom: 1px solid var(--border); vertical-align: top; }
+.int-dif { display: block; color: var(--muted); }
+.int-cuentas summary { min-height: 44px; display: flex; align-items: center; cursor: pointer; }
+/* La carta del trazado no es para dibujar a mano: solo «Ampliar» y «Más» (zoom); a pantalla completa, todo. */
+.int-carta .ichart:not(.completa) .tools.dibujo > :not(.entrar-completa):not(.mas-herramientas) { display: none; }
+.int-carta .ichart:not(.completa) .readout { display: none; }
+svg.chart .c-intento { stroke: var(--warn); stroke-width: 2.5; stroke-dasharray: 3 4; fill: none; }
+@media (min-width: 900px) {
+  .int-cuerpo { grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); align-items: start; }
+  .int-carta { position: sticky; top: .5rem; }
+}
+/* ==== fin de Trázalo en la carta ==== */

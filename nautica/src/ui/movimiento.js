@@ -15,6 +15,8 @@ export function transicion(cambiar, sentido = 'pantalla') {
   const raiz = document.documentElement;
   raiz.dataset.vt = sentido;
   const t = document.startViewTransition(cambiar);
+  // Si otra transición empieza antes de acabar esta, el navegador la salta y rechaza `ready`: no es un error de la app.
+  t.ready?.catch(() => {});
   t.finished.finally(() => { if (raiz.dataset.vt === sentido) delete raiz.dataset.vt; });
 }
 

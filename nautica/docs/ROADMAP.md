@@ -170,6 +170,8 @@ _Última revisión: 10 de noviembre de 2026._
 | H-47 | `RAMAS.md` con la dirección completa del repositorio en cada comando (no depende de la carpeta) y las ramas nuevas: 186, 7 a conservar | Noviembre 2026 |
 | H-48 | Limpieza de ramas remotas hecha: 179 borradas, quedan las 7 a conservar; `RAMAS.md` reducido a las que se conservan y a cómo borrar las nuevas | Noviembre 2026 |
 | H-49 | Andalucía, 3.ª convocatoria de 2026 (14 de noviembre): PER y PY en el banco y reservadas para el examen final (sale de la reserva la 1.ª de 2025); los dos cuadernillos del PY venían enlazados con el nombre del otro módulo: corrección en `config.json` (`documentos`) y aviso del adaptador por la portada | Noviembre 2026 |
+| H-51 | ¿De qué te examinas? (R-61): elección de módulo en el PY (`modulos_<tit>`, `src/course/foco.js`); el motor recorta estructura, curso, ruta y preguntas al módulo (siguiente parada, plan con fecha —rehecho al cambiar—, avance, «¿Estás listo?», simulacro). Sin elección, el módulo que queda tras un resultado apuntado | Noviembre 2026 |
+| H-52 | Clase: la tanda de 10 preguntas se retoma donde se dejó (ajuste del aparato `tandaClase`, `src/course/tanda-clase.js`) y se puede ir directo a ella (primera tarjeta, aviso de apoyos y lista de clases del tema) | Noviembre 2026 |
 | H-50 | Tu examen oficial (R-60): pasar la hoja del examen de verdad, corregirla con la plantilla y que sus fallos entren en el repaso, en «Tus fallos por materia» y en el resultado del examen; la convocatoria hecha sale del examen final del alumno | Noviembre 2026 |
 
 ## Mantenimiento recurrente

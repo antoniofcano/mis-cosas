@@ -26,7 +26,8 @@ import { ideasFlojas, tandaDeIdeas, rotuloSemana, lineaFaltan, resumenPlan, DIAS
 import { ENSAYOS_RECOMENDADOS } from '../../theory/ensayo.js';
 import { calcularSemana, apuntarSemana, botonSalir, botonVolver, activarAMano, tarjetaComoFue } from '../semana.js';
 import { convocatoriaDe, lineaConvocatoria } from '../convocatoria.js';
-import { fotografiar, resultadosRecientes, avisoModulo, tablaFallos } from '../tras-examen.js';
+import { fotografiar, resultadosRecientes, tablaFallos } from '../tras-examen.js';
+import { tarjetaFoco } from '../foco.js';
 
 export function semanaView(o) {
   return o.params.parts[1] === 'ideas' ? ideasView(o) : planSemanaView(o);
@@ -113,7 +114,7 @@ function planSemanaView({ progress, tit }) {
         estado.preguntar ? tarjetaComoFue(progress, tit, estado.preguntar) : null,
         // Tras el examen: el resultado por materia frente a la predicción, y el módulo que queda (src/ui/tras-examen.js).
         resultadosRecientes(progress, tit, ahora),
-        avisoModulo(progress, tit, d.st),
+        tarjetaFoco(progress, tit, d.st),
         h('section.semana-intro',
           h('p', 'Un repaso comprimido para los últimos días: lo que más cae en tu examen y las ideas que más te cuestan, repartido día a día hasta la fecha. A mitad, un simulacro; el penúltimo día, un repaso ligero; y la víspera, nada nuevo.'),
           estado.salido ? h('p', 'Saliste del modo para este examen. ', botonVolver(progress, tit)) : null,
@@ -150,7 +151,7 @@ function planSemanaView({ progress, tit }) {
         listaPasos(hoyDia.pasos),
         accion,
         enlacesUltimosDias(tit, hoyDia.k)),
-      avisoModulo(progress, tit, d.st),
+      tarjetaFoco(progress, tit, d.st),
       hoyDia.k >= 1 ? tablaFallos(tit, d.st) : null,
       plan.dias.length > 1 ? h('section.semana-dias', { 'aria-labelledby': 'semana-dias-t' },
         h('h2.eti#semana-dias-t', 'Los días que quedan'),

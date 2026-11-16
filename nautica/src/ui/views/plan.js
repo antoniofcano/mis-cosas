@@ -76,11 +76,11 @@ export function planView({ progress, tit }) {
       h('div.ritmo', { class: d.st.mensaje.aviso ? 'warn' : '' }, h('p', marcaEstado(d.st.mensaje.tipo === 'toca' ? seg.estado : 'al-dia')[0], d.st.mensaje.texto),
         d.st.mensaje.detalle ? h('p.muted.small', d.st.mensaje.detalle) : null,
         d.st.mensaje.aviso ? botonSubirMinutos(progress, ps, () => pinta(), tit) : null),
-      avisoEsencial(progress, tit, T.estructura, () => pinta()),
+      avisoEsencial(progress, tit, d.estructura, () => pinta()),
       // Los días de simulacro pasan del tope diario: se avisa al principio para reservarlos.
       (() => { const sims = seg.futuro.dias.filter((dia) => dia.unidades.some((u) => u.tipo === 'simulacro') && dia.minutos > plan.minutosDia);
-        return sims.length ? h('p.aviso-simulacros', icono('reloj'), ` ${sims.length === 1 ? 'Un día' : `${cuenta(sims.length, 'día')}`} del final ${sims.length === 1 ? 'es' : 'son'} de simulacro (${duracion(T.estructura.duracionMin)} cada uno, más que tus ${cuenta(plan.minutosDia, 'minuto')}): resérvalos. Son ${sims.map((dia) => fechaLarga(dia.fecha)).join(', ')}.`) : null; })(),
-      (() => { const quedan = Math.round((new Date(`${plan.fechaExamen}T12:00`) - new Date(`${hoy}T12:00`)) / 864e5); return quedan > 0 && quedan <= DIAS_MAPAS ? repasoMapas(tit, T.estructura, quedan) : null; })(),
+        return sims.length ? h('p.aviso-simulacros', icono('reloj'), ` ${sims.length === 1 ? 'Un día' : `${cuenta(sims.length, 'día')}`} del final ${sims.length === 1 ? 'es' : 'son'} de simulacro (${duracion(d.estructura.duracionMin)} cada uno, más que tus ${cuenta(plan.minutosDia, 'minuto')}): resérvalos. Son ${sims.map((dia) => fechaLarga(dia.fecha)).join(', ')}.`) : null; })(),
+      (() => { const quedan = Math.round((new Date(`${plan.fechaExamen}T12:00`) - new Date(`${hoy}T12:00`)) / 864e5); return quedan > 0 && quedan <= DIAS_MAPAS ? repasoMapas(tit, d.estructura, quedan) : null; })(),
       // El mismo avance que en Hoy y Progreso.
       (() => { const c = d.st.camino; return [
         h('div.bar', { role: 'progressbar', 'aria-label': 'Camino hecho', 'aria-valuemin': 0, 'aria-valuemax': 100, 'aria-valuenow': Math.round(c.fraccion * 100) },

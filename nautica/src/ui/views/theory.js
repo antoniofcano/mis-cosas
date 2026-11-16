@@ -394,8 +394,10 @@ export function examenesView({ ctx, progress, tit }) {
       aviso,
       tarjetaFinal(T0, fin),
       h('section.simulacro',
-        h('a.btn.grande', { href: tlink(T0.id, ['test', 'simulacro'], { s: randomSeed() }), class: aMedias || fin.sugerir ? 'secondary' : '' }, 'Hacer un simulacro'),
-        h('p.centrado.muted', `${cuenta(totalPreguntas(E0), 'pregunta')} · ${cuenta(E0.duracionMin, 'minuto')} · como el de verdad`),
+        // Con un módulo elegido (src/course/foco.js), el simulacro principal es el de ese módulo.
+        (() => { const Ef = st.foco ? estructuraModulo(E0, st.foco.id) : null; return [
+          h('a.btn.grande', { href: tlink(T0.id, ['test', 'simulacro'], { s: randomSeed(), ...(Ef ? { m: st.foco.id } : {}) }), class: aMedias || fin.sugerir ? 'secondary' : '' }, Ef ? `Simulacro del ${Ef.titulo.replace(/^Módulo/, 'módulo')}` : 'Hacer un simulacro'),
+          h('p.centrado.muted', `${cuenta(totalPreguntas(Ef ?? E0), 'pregunta')} · ${cuenta((Ef ?? E0).duracionMin, 'minuto')} · como el de verdad`)]; })(),
         h('p.centrado.enlace-estrategia', h('a', { href: tlink(T0.id, ['estrategia']) }, conIcono('diana', 'Cómo hacer el examen: tu estrategia'))),
         // Por módulos (PY): practicar uno mientras se aprende el otro.
         E0.modulos?.length ? h('div.simulacro-modulos', h('p.muted.small', 'O solo un módulo, para practicarlo mientras aprendes el otro:'),

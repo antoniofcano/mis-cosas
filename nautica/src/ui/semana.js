@@ -39,7 +39,7 @@ export function calcularSemana(progress, tit, d, ahora = Date.now()) {
   const ajuste = ajusteSemana(progress, tit);
   const estado = estadoModo({ ajuste, fechaExamen: st.fechaExamen, orientativa: st.orientativa, ahora });
   // Con un módulo aprobado (PY), la semana prepara solo el que queda: sus temas y su simulacro.
-  const solo = st.moduloPendiente?.id ?? null;
+  const solo = st.foco?.id ?? null; // el módulo que preparas (elegido o el que queda: src/course/foco.js)
   const Em = solo ? estructuraModulo(T.estructura, solo) : T.estructura;
   const base = { estructura: Em, preguntas: d.banco.practica, respuestas: d.respuestas, reservadas: d.banco.reservadas };
   const ideas = ideasPriorizadas({ ic: d.indiceConceptos, ...base });

@@ -2637,3 +2637,12 @@ svg.guiado-croquis { display: block; width: 100%; max-width: 340px; height: auto
 @media (prefers-reduced-motion: reduce) { .guiado-croquis .cq-traza { animation: none; stroke-dasharray: none; stroke-dashoffset: 0; } .guiado-croquis .cq-sale { animation: none; opacity: 1; } }
 .guiado-tabla tr.marcada td, .guiado-tabla tr.marcada th { font-weight: 700; background: var(--accent-2); }
 .guiado-tabla-tit { margin: 0 0 .2rem; }
+
+/* «¿De qué te examinas?» en Hoy (src/ui/foco.js) */
+.foco { display: grid; gap: .5rem; padding: .8rem 1rem; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); }
+.foco p { margin: 0; overflow-wrap: anywhere; }
+.foco h2 { margin: 0; font-size: 1.2rem; }
+.foco-pregunta { border-color: var(--accent); }
+.foco-opciones { display: grid; gap: .5rem; }
+.foco-opciones button { min-height: 44px; width: 100%; }
+.foco-cambiar summary { cursor: pointer; min-height: 44px; display: flex; align-items: center; color: var(--accent); }

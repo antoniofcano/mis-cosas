@@ -35,6 +35,7 @@ import { fotografiar, tablaFallos } from '../tras-examen.js';
 import { tarjetaFoco } from '../foco.js';
 import { momentoExamen, recordatorioAdmitidos, claveConvocatoria } from '../../course/convocatoria.js';
 import { convocatoriaDe, tarjetaExamenCerca, tarjetaAdmitidos, lineaConvocatoria } from '../convocatoria.js';
+import { tarjetaCuaderno } from '../cuaderno.js';
 
 const CIRC = 2 * Math.PI * 32; // perímetro del anillo de la meta (r = 32)
 
@@ -329,6 +330,7 @@ export function hoyView({ progress, tit }) {
         `SEGUIR: #/${tit}/sesion (ejecutor) · DÍA: ${m.tipo} · ${m.texto}${m.detalle ? ` ${m.detalle}` : ''}\nLISTO: ${lineaListo(listo)}\n` +
         (cuesta ? `DIAGNÓSTICO: ${cuesta}\n` : '') +
         (nivel ? `NIVEL: ${nivel.aciertos}/${nivel.total} bien · saltables ${saltables.map((x) => x.l.id).join(', ') || '—'}\n` : ic && nuevo ? `NIVEL: sin hacer (oferta${s[claveNoNivel(eje, tit)] ? ' descartada' : ''}) → #/${tit}/nivel\n` : '') +
+        (st.cuaderno && (st.cuaderno.dosis.length || st.cuaderno.comprobar.length) ? `CUADERNO DE FALLOS: dosis ${st.cuaderno.dosis.map((f) => f.id).join(', ') || '—'} · comprobar ${st.cuaderno.comprobar.map((f) => f.id).join(', ') || '—'} → #/${tit}/fallos\n` : '') +
         (enSemana ? `SEMANA: ${rotuloSemana(sx.estado.dias)} · hoy ${sx.plan.dias[0].tipo} (${sx.plan.dias[0].titulo}) → #/${tit}/semana\n` : '') +
         `AVANCE: ${a.temasAlDia}/${cuenta(a.temasTotal, 'tema')} al día · ${Math.round(a.fraccion * 100)} % · hoy ${minutos}/${objetivo} min · racha ${cuenta(racha, 'día')}`;
     };
@@ -417,6 +419,8 @@ export function hoyView({ progress, tit }) {
       sx.estado.preguntar ? tarjetaComoFue(progress, tit, sx.estado.preguntar) : null,
       // ¿De qué te examinas? (PY): se pregunta si no se sabe; si no, lo que preparas (y el módulo aprobado, si lo hay).
       sx.estado.activo ? null : tarjetaFoco(progress, tit, st),
+      // Cuaderno de fallos (R-56): las dosis y comprobaciones que tocan hoy, en una tarjeta breve.
+      tarjetaCuaderno(tit, st.cuaderno),
       sx.estado.salido ? h('p.semana-volver', 'Tu examen está cerca. ', botonVolver(progress, tit)) : null,
       momento ? tarjetaExamenCerca(progress, tit, { momento, dias: st.diasAlExamen, fecha: st.fechaExamen, conv, ficha, ahora: d.ahora }) : null,
       aviso.mostrar ? tarjetaAdmitidos(progress, tit, { dias: aviso.dias, conv, ficha, ahora: d.ahora }) : null,

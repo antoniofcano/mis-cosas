@@ -17,6 +17,18 @@ Qué cambia en la app para quien la usa, por fecha de publicación. Es la base d
 
 Nada pendiente.
 
+## 16 de noviembre de 2026, cuarta publicación · versión `67b743b4bad0`
+
+**Novedades**
+
+- **Tu cuaderno de fallos.** Patrón apunta cada fallo con nombre: no «fallaste mareas», sino «Adelanto al revés» en «Marea y sonda · Hora oficial y UT». Salen de donde se reconocen: un paso del paso a paso, la opción que marcas en una pregunta de examen, un ejercicio, un simulacro o tu examen oficial. Cada uno dice cuántas veces y de dónde ha salido. Está en Hoy, en Más («Tu cuaderno de fallos») y en el resultado de cada examen, que te dice qué fallo se abre.
+- **Dosis de 2 minutos.** Para cada fallo abierto, cinco tarjetas sobre ese paso y nada más, con números nuevos y reloj: hora oficial y UT, intervalo desde la bajamar, corrección de la marea, sonda de la carta, Ct = dm + Δ, la declinación del año, el abatimiento, la corriente… Si caes en la trampa, te dice cuál es y la regla. Para los fallos sin tarjetas, la dosis es un ejercicio con números nuevos o dos o tres preguntas de examen con esa trampa.
+- **Comprobación días después.** Tres días después de la dosis, un problema completo del tipo, sin pistas. Bien: el fallo pasa a «vigilando» y vuelve a comprobarse una semana después; con dos seguidas bien, queda resuelto. Mal: vuelve a abrirse y toca otra dosis. Si lo vuelves a cometer, se reabre. Hoy te propone la dosis o la comprobación cuando toca, detrás de lo principal. El cuaderno viaja a tus otros aparatos.
+
+**Arreglos**
+
+- En el paso a paso de mareas, si sumabas el adelanto en vez de restarlo, el aviso no lo reconocía como «adelanto al revés». Ahora sí, y ese fallo entra en tu cuaderno.
+
 ## 16 de noviembre de 2026, tercera publicación · versión `41e80a673ccb`
 
 **Novedades**
@@ -26,6 +38,8 @@ Nada pendiente.
 
 **Mejoras**
 
+- **El paso a paso reconoce el adelanto al revés aunque con él la hora caiga fuera de la tabla de mareas**, y el fallo de un paso ya cuenta en «Tus errores más repetidos» (sin contarlo dos veces si luego marcas la opción con el mismo error).
+- **El ejercicio de mareas reconoce el adelanto aplicado al revés** y te lo dice con nombre.
 - **Resolver paso a paso, como en la hoja del examen, en toda la carta.** Lo que ya tenían la estima analítica y las
   mareas llega a la corrección total, las demoras (dos demoras, oposición, enfilación, no simultáneas), el abatimiento y
   las corrientes (efectiva, rumbo a dar y desconocida): cada paso te dice qué datos traes, qué regla aplicas (Ct = dm + Δ,

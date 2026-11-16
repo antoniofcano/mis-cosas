@@ -26,6 +26,7 @@ import { tiemposAlumno } from '../store/tiempos.js';
 import { tipoDePregunta } from '../course/velocidad.js';
 import { AVISOS, avisoPrevio, erroresDelTribunal, diagnosticarPaso } from '../exams/avisos-pasos.js';
 import { loadErroresFrecuentes } from '../store/datasets.js';
+import { anotarFallo } from './cuaderno.js';
 
 let contador = 0;
 
@@ -72,8 +73,13 @@ function avisosDeLosPasos({ q, sol, chart, almacen, factor = 1, tit = null }) {
       if (r.resultado === ESTADO.OK || r.resultado === 'dimelo') {
         return previo ? h('div.guiado-ojo.hecho', aviso('asi', 'ok', 'Así se hace:', AVISOS[previo.id].asi)) : null;
       }
-      const id = r.resultado === ESTADO.MAL ? diagnosticarPaso({ sol, q, chart, i: p.i, errores: p.errores, pide: p.pide, valores: r.valores ?? [], factor }) : null;
-      if (id) return h('div.guiado-ojo.error', aviso('ojo', 'aviso', `${AVISOS[id].has}.`, ''), aviso('no', null, 'No olvides:', AVISOS[id].no));
+      // El diagnóstico se hace una vez, al cerrar el paso (cerrarPaso lo deja en r.diag y lo apunta en el cuaderno).
+      const id = r.diag !== undefined ? r.diag : r.resultado === ESTADO.MAL ? diagnosticarPaso({ sol, q, chart, i: p.i, errores: p.errores, pide: p.pide, valores: r.valores ?? [], factor }) : null;
+      if (id) {
+        const cu = r.cuaderno;
+        return h('div.guiado-ojo.error', aviso('ojo', 'aviso', `${AVISOS[id].has}.`, ''), aviso('no', null, 'No olvides:', AVISOS[id].no),
+          cu ? h('p.small.guiado-cuaderno', h('a', { href: `#/${tit ?? 'py'}/fallos` }, cu.nuevo ? `Apuntado en tu cuaderno de fallos: «${cu.nombre.titulo}».` : cu.reabierto ? `«${cu.nombre.titulo}» vuelve a abrirse en tu cuaderno de fallos.` : `«${cu.nombre.titulo}», en tu cuaderno de fallos.`)) : null);
+      }
       return previo ? h('div.guiado-ojo', aviso('no', 'libro', 'No olvides:', AVISOS[previo.id].no)) : null;
     },
   };
@@ -383,6 +389,14 @@ export function guiadoPanel(o) {
     resultados.push(r);
     rp.marcaPaso(resultado === ESTADO.OK);
     if (resultado !== 'dimelo') almacen.paso(q.id, p.pide.paso, resultado === ESTADO.OK);
+    // Fallo con nombre (R-55): si lo escrito es lo que sale con un error típico del paso, a tus errores y a tu cuaderno de
+    // fallos. La opción final de la misma pregunta con el mismo error, el mismo día, ya no cuenta otra vez.
+    r.diag = resultado === ESTADO.MAL && p.errores?.length
+      ? diagnosticarPaso({ sol, q, chart, i: p.i, errores: p.errores, pide: p.pide, valores: valores ?? [], factor: o.factor ?? 1 }) : null;
+    if (r.diag) {
+      almacen.error(q.id, r.diag);
+      r.cuaderno = anotarFallo({ error: r.diag, tipo: tipoDePregunta(q, sol, { deCarta: true }), origen: 'paso', q: q.id });
+    }
     lista.lastElementChild.replaceWith(pasoHecho(p, r));
     o.dibujar?.(p.i + 1);
     avanzar(true);

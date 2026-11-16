@@ -74,6 +74,7 @@ un banco concreto; las vistas piden `cargarBanco(currentEje(progress), tit)`.
 | `#/<tit>/vispera` | `views/vispera.js`: repaso exprés de la víspera, 15 min (R-45). `src/course/vispera.js` (`repasoExpres`, `erroresDeLaVispera`): trampas (pasos «ojo» del curso = las de las chuletas) de los temas con límite, por la prioridad de las ideas de su clase (`ideasPriorizadas`), recortadas a 1950 palabras (130 p/min); errores del tribunal (`data/comun/errores-frecuentes.json`, de `tools/errores-frecuentes.mjs`) y del alumno (`store/errores.js`). Paso del día k = 1 de «la semana antes» (`planSemana({ repasoExpres })`). Imprimible; nunca en un examen |
 | `#/<tit>/ensayo[?p=<parte>&s=<semilla>]`, `#/<tit>/ensayo/cuadernillo?p=…&s=…`, `#/<tit>/test/ensayo?p=…&s=…` | Ensayo general en papel (R-41): `views/ensayo.js` (preparación: parte, material del tribunal sacado de `data/comun/estrategia.json` → `tribunales.<eje>.dia` vía `textosEstrategia`, aviso de la carta de papel; y cuadernillo imprimible con la hoja en blanco), `views/theory.js` → `testView` (`tipo: 'ensayo'`, `correrPapel`) y `ui/ensayo.js` (cuadernillo en pantalla, reloj del tribunal y hoja de respuestas). Lógica pura en `src/theory/ensayo.js` (`partesEnsayo`, `estructuraEnsayo`: PY módulo de navegación con su tiempo oficial; PER navegación y carta, temas 10 y 11, con el tiempo orientativo del presupuesto de la estrategia; o el examen completo; `corregirHoja` con `grade`; `cuentaEnsayos`). Sin ninguna ayuda de la práctica (`SIN_AYUDAS`, `tests/ensayo.test.js`) |
 | `#/<tit>/oficial[/<convocatoria>]` | Tu examen oficial (R-60): `views/oficial.js` (lista de convocatorias recientes con `banco.convocatoriasTodas()`, qué parte, aviso de la reserva, hojas por módulo con `hojaRespuestasEl` de `ui/ensayo.js`, corrección con `corregirHoja` y resultado por tipo de problema). Lógica pura en `src/course/examen-oficial.js` (`convocatoriasApuntables`, `marcarHecha`, `hojasDe`, `resultadoDe`, `fallosAgrupados`). Guarda `recordExam` por pregunta, `recordTest({ tipo: 'real', oficial: true })` y `apuntarResultado` en `semana_<tit>`; marca la convocatoria como hecha en el ajuste compartido `hechas_<eje>_<tit>` (lo lee `reservaEfectiva` de `src/bancos/index.js`). Enlazada desde Examen y desde «¿Cuántas fallaste en cada materia?» |
+| `#/<tit>/fallos[/dosis\|comprobar/<fallo>]` | Tu cuaderno de fallos (R-55, R-56): `views/fallos.js` (lista por estado, dosis de 2 minutos con micro-tarjetas y reloj, comprobación sin pistas). Lógica pura en `src/course/cuaderno.js` y `src/course/dosis.js`; anotar y la tarjeta de Hoy en `ui/cuaderno.js`. Ver «Cuaderno de fallos, dosis y comprobación» |
 | Elección de módulo (Hoy, `ui/foco.js`) | «¿De qué te examinas?» en el PY: ajuste compartido `modulos_<tit>` (`ambos` · id de módulo). `src/course/foco.js` (`focoModulo`, `datosDelModulo`): `estadoAlumno` recorta estructura, curso (con su ruta) y preguntas al módulo, y devuelve `foco`; sin elección, el módulo que queda tras un resultado apuntado (`moduloPendiente`). El plan guardado lleva `foco` y se rehace si cambia |
 | `#/<tit>/formulas[?t=<tema>]` | `views/formulas.js`: «Fórmulas y tablas en una hoja» (`data/comun/formulas.json`, `src/course/formulas.js`). Por bloques, cada fórmula con su ejemplo resuelto; imprimible. Nunca en un examen (ver «Ayudas del alumno») |
 | `#/<tit>/cuentas[/<id>]` | `views/cuentas.js` y `leccionView`: apéndice «Las cuentas del patrón» (`data/curso/apendice-matematicas.json`, `src/course/apendice.js` y `cuentas.js`). Fuera del curso: no entra en temas, plan ni «¿Estás listo?». Sus enlaces «Repasa: …» salen de `usadoEn` en los datos |
@@ -227,6 +228,47 @@ exige que coincida con la plantilla oficial. Si cambias la carta o un motor, est
   errores diagnosticados (también los de los ejercicios generados), una vez por pregunta y día, 400 anotaciones y 180
   días. Solo en el aparato: no va al progreso, ni a la sincronización, ni a la copia. Los `sup` (superado) restan uno al
   error al resumir (ver abajo).
+
+### Cuaderno de fallos, dosis y comprobación (R-55, R-56)
+
+«Patrón sabe cómo fallas tú, y te arregla eso» (`docs/CARTA-MOVIL.md`, función 2).
+
+- **Fallo** (`course/cuaderno.js`, puro): un error típico de la taxonomía (`exams/taxonomia.js`) en un tipo de problema
+  (el `ejercicio` de la solución o el id del ejercicio generado; `carta` si no tiene). Id `<error>.<tipo>`. Guarda las
+  veces (`n`), las últimas con fecha y origen (`paso`, `pregunta`, `simulacro`, `examen`, `oficial`, `ejercicio`,
+  `comprobacion`), la última dosis y las comprobaciones. Una misma pregunta (o semilla) con el mismo fallo el mismo día
+  cuenta una vez: el paso guiado y la opción final de esa pregunta no se duplican.
+- **Estados y calendario:** abierto → (dosis superada, ≥ 4 de 5) comprobación a `DIAS_COMPROBACION` (3) días →
+  bien: vigilando, la siguiente a `DIAS_VIGILANDO` (7) → bien otra vez: resuelto. Mal: abierto, dosis primero y la
+  comprobación a `DIAS_TRAS_FALLO` (2) días de la nueva dosis. Si reaparece (vigilando, resuelto o esperando la
+  comprobación), abierto. `pendiente(f, ahora)` → `'dosis' | 'comprobar' | null`; todas las fechas entran como `ahora`.
+- **Se alimenta** (`ui/cuaderno.js`, `anotarFallo`): `diagnosticarPaso` al fallar un paso del modo guiado (`ui/guiado.js`,
+  en `cerrarPaso`; también a `store/errores.js`); `diagnosticoEl` al marcar una opción con diagnóstico único (práctica,
+  `#/q`, final del modo guiado, revisión); `anotarFallosDeExamen` al corregir un examen en `testView` (simulacro,
+  módulo, convocatoria, final, ensayo, simulacro de tus errores) y tu examen oficial (`views/oficial.js`), que además
+  enseñan qué fallo se abre (`seccionCuadernoExamen`); y los `mistakes` de los ejercicios generados (`views/exercise.js`).
+  `diagnosticarPaso` usa el paso calculado con el error aunque la resolución con el error se rompa más adelante (el
+  adelanto al revés puede sacar la hora UT de la tabla de mareas).
+- **Dosis** (`course/dosis.js`, puro): micro-tarjetas con números de una semilla para 21 errores (mareas: `adelanto-signo`,
+  `sin-adelanto`, `pleamar-bajamar`, `lineal`, `sonda-carta-*`; corrección total: `signo-ct`, `sin-ct`, `signo-dm`,
+  `signo-desvio`, `olvida-desvio`, `variacion-signo`, `dm-sin-actualizar`; viento y corriente: `signo-abatimiento`,
+  `sin-abatimiento`, `corriente-invertida`, `sin-corriente`; y `banda-marcacion`, `marcacion-como-demora`,
+  `demora-sin-opuesta`, `horas-decimales`). Cada tarjeta: opciones (o teclear hora o rumbo) con la correcta y las
+  trampas exactas de cada error, calculadas con los motores del kit (`correccionTabla`, `effectiveCourse`, `windSide`…);
+  test en `tests/dosis.test.js`. Sin tarjetas: `preguntasConTrampa` (2–3 de `banco.practica` con ese distractor en el
+  índice de abajo) o `ejercicioParaFallo` (un ejercicio con `?dosis=<fallo>`).
+- **Comprobación** (`elegirComprobacion`): pregunta real de `banco.practica` de ese tipo con esa trampa (nunca reservadas:
+  cuarentena) y no usada antes en ese fallo; si no, el ejercicio generado de su tipo (`#/ej/<id>?s=…&comprobar=<fallo>`:
+  sin pista, solución, chuleta ni resolución en la mesa hasta corregir); si no, una pregunta de otro tipo; si no, en
+  papel («Me salió bien / Caí otra vez»).
+- **Dónde se ve:** `#/<tit>/fallos` (`views/fallos.js`: lista, `dosis/<fallo>` con `relojPaso` compacto de objetivo fijo
+  2:00, `comprobar/<fallo>`; los cierres usan `cierre()`, así un paso de la sesión queda hecho). En Hoy, `tarjetaCuaderno`
+  (dosis y comprobaciones de hoy). El motor (`estadoAlumno` → `datos.cuaderno`, `cuadernoDe(settings, ahora)`) y `planHoy`
+  proponen una actividad `dosis` (`actividadCuaderno`: la comprobación que toca o la dosis más reciente) detrás de lo
+  principal y antes del repaso mezclado; `componerSesion` la mete justo detrás del primer paso. Enlaces en Más y en «Tus
+  errores más repetidos».
+- **Dónde se guarda:** ajustes compartidos `fallo_<id>` (docs/SYNC.md, «Cuaderno de fallos»): viaja entre aparatos sin
+  tocar el Worker.
 
 ### Simulacro de tus errores (R-43)
 

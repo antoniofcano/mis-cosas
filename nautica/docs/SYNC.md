@@ -103,12 +103,41 @@ El alumno puede cambiar el tema (y, si quiere, la clase) en que cuenta una pregu
   nada) y sigue funcionando; al actualizarse, vuelve a plegar el registro y pasan a `correcciones`.
 - **Tamaño**: unos 150 bytes por corrección.
 
+### Cuaderno de fallos (R-55, R-56)
+
+El cuaderno de fallos del alumno (`#/<tit>/fallos`, `src/course/cuaderno.js`) viaja entre sus aparatos. Cada fallo es un
+error típico con nombre en un tipo de problema, con id `<error>.<tipo>` (`adelanto-signo.marea-sonda`), y se guarda como
+**un ajuste compartido por fallo**: clave `fallo_<id>` de la colección `settings` (prefijo `fallo_` en
+`PREFIJOS_COMPARTIDOS`). Valor:
+
+`{ e: error, y: tipo, n: veces, ev: [{ t, o: origen, q? }] (las 8 últimas), est: 'abierto'|'vigilando'|'resuelto',
+dosis: { t, ok, n, a, de } | null, comp: { prox: 'AAAA-MM-DD'|null, seguidas, hist: [{ t, ok, q? }] (las 6 últimas) } }`
+
+- **Por qué así.** El Worker desplegado acepta cualquier clave de `settings` (`[\w\-./:]{1,120}`, valor ≤ 64 KB) sin
+  tocarlo ni redesplegarlo, como las correcciones de tema. Un tipo de operación o una colección nuevos los rechazaría el
+  Worker de hoy (`tipo`, `coleccion`) y no se reintentarían. Integrarlo en `src/store/errores.js` no servía: ese almacén
+  vive solo en el aparato (R-39).
+- **Una clave por fallo y no un cuaderno entero en una clave.** Cada escritura es una operación del registro que se
+  guarda para siempre: con el cuaderno entero, cada fallo anotado reescribiría todos (decenas de KB por operación); con una
+  clave por fallo, cada operación ocupa menos de 1 KB (test). Y dos aparatos que tocan fallos distintos no se pisan.
+- **Fusión.** Gana el último por fallo (instante y, si empatan, id), como cualquier ajuste. Si dos aparatos anotan el
+  mismo fallo sin conexión, se queda la versión más reciente (se pueden perder veces de la otra: el cuaderno puede
+  quedarse corto, nunca inventa un fallo). El valor se comprueba al leer (`falloValido`): uno roto o de una versión futura
+  se ignora.
+- **Tamaño y recorte.** El valor guarda solo las últimas veces y comprobaciones (`MAX_VECES`, `MAX_COMP`); `n` cuenta
+  todas. El número de fallos distintos está acotado por la taxonomía (errores × tipos de problema) y el cuaderno enseña
+  los `MAX_FALLOS` más recientes. No se borran claves (no hay borrado de ajustes en el almacén).
+- **Fechas.** La comprobación es un día local (`prox`); lo que piden los fallos hoy se calcula al leer, con la fecha
+  inyectable (`cuadernoDe(settings, ahora)`).
+- Lo que sigue solo en el aparato: «Tus errores más repetidos» (`nautica.errores.v1`, para el «Ojo» del paso a paso y el
+  simulacro de tus errores). El cuaderno no lo sustituye: se alimentan a la vez.
+
 ### Ajustes compartidos (lista blanca)
 
 `level`, `toleranceFactor`, `minutosDia`, `diasEstudio`, `eje`, `onboarded`, `segTarjeta` (ritmo de lectura del
 alumno), `configProfe`, `podcasts` y `podcastUltimo` (por dónde va en la radio), y los que empiezan por `examen_`,
 `examenOrientativo_`, `guiaVista_`, `planEsencial_`, `mezclado_`, `reserva_`, `chuletasLeidas_`, `nivelNo_`,
-`convocatoria_`, `listadia_` (tu convocatoria y la lista del día del examen), `semana_` (el modo «la semana antes»: activado a mano, salido, días hechos y cómo fue el examen; y, antes y después del examen real, la foto de la predicción, el resultado por materia y el módulo pendiente descartado; `src/course/semana.js`, `src/course/tras-examen.js`). `modulos_<tit>` (de qué se examina en el PY: `ambos`, `generico` o `navegacion`; `src/course/foco.js`). `hechas_<eje>_<tit>` (lista de convocatorias que el alumno hizo de verdad y apuntó con su hoja, `#/<tit>/oficial`, R-60: salen de su examen final; gana el último valor, no como `reserva_`; colección `settings`, sin tocar el Worker).
+`convocatoria_`, `listadia_` (tu convocatoria y la lista del día del examen), `semana_` (el modo «la semana antes»: activado a mano, salido, días hechos y cómo fue el examen; y, antes y después del examen real, la foto de la predicción, el resultado por materia y el módulo pendiente descartado; `src/course/semana.js`, `src/course/tras-examen.js`). `modulos_<tit>` (de qué se examina en el PY: `ambos`, `generico` o `navegacion`; `src/course/foco.js`). `fallo_<error>.<tipo>` (el cuaderno de fallos, R-55 y R-56: ver «Cuaderno de fallos»). `hechas_<eje>_<tit>` (lista de convocatorias que el alumno hizo de verdad y apuntó con su hoja, `#/<tit>/oficial`, R-60: salen de su examen final; gana el último valor, no como `reserva_`; colección `settings`, sin tocar el Worker).
 Es una clave más de `settings`: el Worker desplegado la acepta sin tocarlo.
 
 También `convocatoria_<tit>` (`{ para, hora, sede, enlace, admitidos }`: hora `HH:MM`, sede texto ≤ 120, enlace http(s) ≤ 300, día en que marcó la lista de admitidos) y `listadia_<tit>` (`{ para, marcadas: [id…] }`: casillas de la lista del día del examen), R-44. `para` es la fecha del examen para la que se guardó: si la fecha cambia cuando esa ya pasó, hora, sede, admitidos y casillas se ignoran (el enlace se conserva); si cambia antes del examen, se conservan. Dos claves y no una para que marcar una casilla en un aparato y editar la hora en otro no se pisen. Comprobado contra `validarOperacion` de `origin/main` (el desplegado): colección `settings` con clave `[\w\-./:]{1,120}` y cualquier valor ≤ 64 KB, aceptadas; sin tocar el Worker.

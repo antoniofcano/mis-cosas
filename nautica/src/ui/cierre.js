@@ -46,7 +46,7 @@ export function hrefActividad(tit, a) {
 
 /** Tipo de actividad → [icono de línea, nombre]. */
 export const TIPO_TXT = {
-  clase: ['clase', 'Clase'], chuleta: ['temario', 'Chuleta del tema'], preguntas: ['lapiz', 'Preguntas'], repaso: ['repaso', 'Repaso'], fallos: ['aviso', 'Repaso de fallos'],
+  clase: ['clase', 'Clase'], chuleta: ['temario', 'Chuleta del tema'], preguntas: ['lapiz', 'Preguntas'], repaso: ['repaso', 'Repaso'], fallos: ['aviso', 'Repaso de fallos'], dosis: ['diana', 'Cuaderno de fallos'],
   simulacro: ['examen', 'Simulacro de examen'], mezclado: ['repaso', 'Repaso mezclado'], 'examen-en-curso': ['reloj', 'Examen a medias'], final: ['examen', 'Examen final'],
 };
 

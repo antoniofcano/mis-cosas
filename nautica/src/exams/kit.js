@@ -728,7 +728,8 @@ export function createKit(chart, { error = null } = {}) {
         let t = hrb(...x.hora.split(':').map(Number));
         const prev = ext.at(-1);
         while (prev && t < prev.t) t += 1440;
-        ext.push({ t, h: x.altura_m, hora: x.hora });
+        // `cuenta`: la hora como se escribe en la cuenta (una del día siguiente, con 24 h sumadas: 00:23 → 24:23).
+        ext.push({ t, h: x.altura_m, hora: x.hora, cuenta: t >= 1440 ? `${Math.floor(t / 60)}:${String(t % 60).padStart(2, '0')}` : x.hora });
       }
       const [a, b] = desde != null ? [ext[desde], ext[desde + 1]] : ext.slice(0, -1).map((e, i) => [e, ext[i + 1]]).find(([u, v]) => cual >= u.t && cual <= v.t);
       const bm = a.h < b.h ? a : b; const pm = a.h < b.h ? b : a;
@@ -742,8 +743,8 @@ export function createKit(chart, { error = null } = {}) {
           tras: ['traigo', 'croquis'],
           traigo: [`${nom(a)}: ${a.hora} UT, ${coma(a.h)} m`, `${nom(b)}: ${b.hora} UT, ${coma(b.h)} m`],
           plantea: 'Elige en la tabla la pleamar y la bajamar entre las que cae tu hora (o las que nombra el enunciado): la altura mayor es la pleamar.   ·   D = tiempo entre las dos   ·   A = altura de la pleamar − altura de la bajamar',
-          lineas: [`D = ${b.hora} − ${a.hora} = ${hm(D)}`, `A = ${coma(pm.h)} − ${coma(bm.h)} = ${coma(A)} m`],
-          croquis: { tipo: 'marea', a: { hora: a.hora, h: a.h }, b: { hora: b.hora, h: b.h } } });
+          lineas: [`D = ${b.cuenta} − ${a.cuenta} = ${hm(D)}`, `A = ${coma(pm.h)} − ${coma(bm.h)} = ${coma(A)} m`],
+          croquis: { tipo: 'marea', a: { hora: a.cuenta, h: a.h }, b: { hora: b.cuenta, h: b.h } } });
       return { a, b, bm, pm, D, A };
     },
     /** Hora oficial → UT. */
@@ -760,11 +761,11 @@ export function createKit(chart, { error = null } = {}) {
       const C = E('lineal') ? (tr.A * Math.min(I, tr.D)) / tr.D : correccionTabla(tr.A, I, tr.D);
       const alt = tr.bm.h + C;
       const ang = (90 * I) / tr.D; const s2 = Math.sin(ang * Math.PI / 180) ** 2;
-      const cro = { tipo: 'marea', a: { hora: tr.a.hora, h: tr.a.h }, b: { hora: tr.b.hora, h: tr.b.h }, x: (t - tr.a.t) / (tr.b.t - tr.a.t), hora: fmtClock(t) };
+      const cro = { tipo: 'marea', a: { hora: tr.a.cuenta, h: tr.a.h }, b: { hora: tr.b.cuenta, h: tr.b.h }, x: (t - tr.a.t) / (tr.b.t - tr.a.t), hora: fmtClock(t) };
       step('Intervalo desde la bajamar', `Desde la bajamar de las ${tr.bm.hora} UT hasta las ${fmtClock(t)} UT: I = ${hm(I)}.`,
         pide('marea', '¿Cuánto tiempo hay entre la bajamar y nuestra hora (el intervalo I)?', [{ kind: 'duration', value: I / 60, label: 'Intervalo I' }]),
         { traigo: [`Nuestra hora = ${fmtClock(t)} UT`, `Bajamar = ${tr.bm.hora} UT`], plantea: 'I = tiempo entre la bajamar y nuestra hora. Siempre desde la bajamar, esté antes o después.',
-          lineas: [tr.bm.t <= t ? `${fmtClock(t)} − ${tr.bm.hora}` : `${tr.bm.hora} − ${fmtClock(t)}`, `I = ${hm(I)}`], croquis: cro });
+          lineas: [tr.bm.t <= t ? `${fmtClock(t)} − ${tr.bm.cuenta}` : `${tr.bm.cuenta} − ${fmtClock(t)}`, `I = ${hm(I)}`], croquis: cro });
       step('Corrección de altura', `C = A · sen²(90° · I / D) = ${coma(tr.A)} × sen²(90° × ${hm(I)} / ${hm(tr.D)}) = ${coma(C)} m.`,
         pide('marea', '¿Cuánto ha subido la marea sobre la bajamar (la corrección C)?', [{ kind: 'meters', value: C, label: 'Corrección C' }]),
         { traigo: [`A = ${coma(tr.A)} m`, `I = ${hm(I)}  (${Math.round(I)} min)`, `D = ${hm(tr.D)}  (${Math.round(tr.D)} min)`],
@@ -808,8 +809,8 @@ export function createKit(chart, { error = null } = {}) {
         pide('marea', '¿A qué hora UT hay esa altura?', [{ kind: 'clock', value: t, label: 'Hora UT' }]),
         { traigo: [`Bajamar = ${tr.bm.hora} UT`, `I = ${hm(I)}`, `En este tramo la marea ${sube ? 'sube (bajamar → pleamar)' : 'baja (pleamar → bajamar)'}`],
           plantea: 'Si la marea sube, hora = bajamar + I. Si baja, hora = bajamar − I (la bajamar está al final del tramo).',
-          lineas: [`${tr.bm.hora} ${sube ? '+' : '−'} ${hm(I)} = ${fmtClock(t)} UT`],
-          croquis: { tipo: 'marea', a: { hora: tr.a.hora, h: tr.a.h }, b: { hora: tr.b.hora, h: tr.b.h }, x: (t - tr.a.t) / (tr.b.t - tr.a.t), hora: '¿hora?' } });
+          lineas: [`${tr.bm.cuenta} ${sube ? '+' : '−'} ${hm(I)} = ${fmtClock(t)} UT`],
+          croquis: { tipo: 'marea', a: { hora: tr.a.cuenta, h: tr.a.h }, b: { hora: tr.b.cuenta, h: tr.b.h }, x: (t - tr.a.t) / (tr.b.t - tr.a.t), hora: '¿hora?' } });
       const of = E('sin-adelanto') ? t : E('adelanto-signo') ? t - adelanto * 60 : t + adelanto * 60;
       step('Hora oficial', `${fmtClock(t)} UT + adelanto ${adelanto} h = ${fmtClock(of)}.`, pide('hora-legal', '¿Y en hora oficial?', [{ kind: 'clock', value: of, label: 'Hora oficial' }]),
         { traigo: [`Hora UT = ${fmtClock(t)}`, `Adelanto = ${adelanto} h`], plantea: 'Hora oficial = UT + adelanto', lineas: [`${fmtClock(t)} + ${adelanto} h = ${fmtClock(of)}`] });

@@ -43,7 +43,9 @@ export function relojPaso({ tit = null, compacto = false, vivo = () => true, pas
   const barra = h('span.rp-barra-in');
   const boton = h('button.rp-pausa.secondary', { type: 'button', 'aria-label': 'Pausar el reloj', 'aria-pressed': 'false', onclick: () => alternar() }, icono('pausa'));
   const lista = pasos ? h('ul.rp-pasos.small') : null;
-  const nota = h('p.rp-nota.small.muted', 'El reloj se para con la pausa y cuando la pestaña no está a la vista. Sigue contando mientras miras las ayudas.');
+  // Las explicaciones, plegadas: en el móvil el reloj tiene que ocupar una línea, no media pantalla.
+  const nota = h('details.rp-nota.small.muted', h('summary', 'Sobre el reloj'),
+    h('p', 'Se para con la pausa y cuando la pestaña no está a la vista. Sigue contando mientras miras las ayudas.'));
   const el = h('div.reloj-paso', { class: compacto ? 'compacto' : '', role: 'group', 'aria-label': 'Reloj de la pregunta' },
     h('div.rp-fila', h('span.rp-ico', { 'aria-hidden': 'true' }, icono('reloj')), tiempo, meta, estado, boton),
     h('div.rp-barra', { 'aria-hidden': 'true' }, barra),
@@ -75,7 +77,7 @@ export function relojPaso({ tit = null, compacto = false, vivo = () => true, pas
   const cancela = () => { if (timer != null) { clearInterval(timer); timer = null; } };
   function arranca() { cancela(); if (typeof setInterval === 'function') timer = setInterval(tic, 1000); }
 
-  if (tit) objetivoDeTit(tit).then((ob) => { objetivo = ob; if (ob) { meta.textContent = `objetivo ${mmssCorto(ob.s)}`; el.title = ob.texto; el.append(h('p.rp-nota.small.muted', ob.texto)); } pinta(); });
+  if (tit) objetivoDeTit(tit).then((ob) => { objetivo = ob; if (ob) { meta.textContent = `objetivo ${mmssCorto(ob.s)}`; el.title = ob.texto; if (!compacto) nota.append(h('p.small.muted', ob.texto)); } pinta(); });
   arranca();
   pinta();
 

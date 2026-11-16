@@ -2691,3 +2691,7 @@ svg.guiado-croquis { display: block; width: 100%; max-width: 340px; height: auto
 .foco-opciones { display: grid; gap: .5rem; }
 .foco-opciones button { min-height: 44px; width: 100%; }
 .foco-cambiar summary { cursor: pointer; min-height: 44px; display: flex; align-items: center; color: var(--accent); }
+
+/* Reloj del paso a paso: las explicaciones, plegadas */
+details.rp-nota summary { cursor: pointer; min-height: 44px; display: flex; align-items: center; }
+details.rp-nota p { margin: .2rem 0; }

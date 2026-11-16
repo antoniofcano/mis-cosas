@@ -13,6 +13,33 @@ export const idEpisodio = (tit, n) => `${tit}-${String(n).replace('.', '-')}`;
 // Palabras de más de tres letras, sin cifras (en el guion las cifras van en letra).
 const norm = (s) => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-zñ ]/g, ' ').split(/\s+/).filter((w) => w.length > 3);
 
+/**
+ * Lo que se sintetiza de un guion, como lo lee podcast/audio.py (`piezas`): [{ q, x }] por intervención y { pausa: true }
+ * por cada [pausa larga] suelta. [pausa] dentro de una intervención se lee «…»; las demás acotaciones no se leen.
+ */
+export function piezasGuion(md) {
+  // Como md.split('\n---\n', 2)[-1] en Python: lo que queda tras el segundo separador (o tras el primero, si solo hay uno).
+  const partes = md.split('\n---\n');
+  const cuerpo = md.startsWith('---') ? (partes.length > 2 ? partes.slice(2).join('\n---\n') : partes.at(-1)) : md;
+  const out = [];
+  for (const bloque of cuerpo.split(/\n\s*\n/)) {
+    const b = bloque.trim();
+    const m = b.match(/^\*\*([A-ZÁÉÍÓÚÑ]+):\*\*\s*([\s\S]+)$/);
+    if (m) {
+      const x = m[2].replace(/\[pausa\]/g, '…').replace(/\[[^\]]*\]/g, '').replace(/\s+/g, ' ').trim();
+      if (x) out.push({ q: m[1], x });
+    } else if (b === '[pausa larga]') out.push({ pausa: true });
+  }
+  return out;
+}
+
+/** ¿Lo grabado (los tramos de la línea de tiempo) es lo que dice hoy el guion? Si no, hay que regenerar el audio. */
+export const audioAlDia = (md, tramos) => {
+  const a = piezasGuion(md).map((p) => (p.pausa ? '|' : p.x));
+  const b = tramos.map((t) => (t.pausa ? '|' : t.x));
+  return a.length === b.length && a.every((x, i) => x === b[i]);
+};
+
 /** Asigna a cada pausa larga la pregunta del minijuego cuyo enunciado se acaba de leer (o ninguna). */
 export function preguntasEnPausas(tramos, preguntas, banco) {
   let i = 0;

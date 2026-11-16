@@ -3,7 +3,7 @@
 Una sola página para saber **dónde estamos, qué viene y qué está parado y por qué**. Se actualiza en el mismo commit
 que cambia el estado de algo. Las decisiones de diseño viven en su documento (`docs/*.md`); aquí solo se apuntan.
 
-_Última revisión: 16 de noviembre de 2026 (plan hacia 2027; R-71 hecho)._
+_Última revisión: 16 de noviembre de 2026 (plan hacia 2027; R-71 hecho; R-09: guiones del PER revisados)._
 
 ## Cómo se mantiene
 
@@ -97,7 +97,7 @@ Publicación: cada tanda al terminarla; en marzo, solo simulacros y repaso, sin 
 
 | Id | Qué | Estado | Notas |
 | --- | --- | --- | --- |
-| R-09 | Regenerar el podcast (fase 2) con el contenido corregido | Después | Necesita presupuesto de síntesis de voz; el audio del PER aún dice el ejemplo antiguo de la tangente (2,5 millas, 14,5°, 019°; el curso usa ya 2,6 millas y 15°), «sin aflojarlo» (torniquete) y «aguas costeras hasta 20 millas» (cifra retirada del curso por no verificada) y hay citas a preguntas reservadas que revisar |
+| R-09 | Regenerar el podcast (fase 2) con el contenido corregido | En curso | **Guiones del PER revisados** (16-11-2026, `podcast/REVISION-PER.md`): al día con el curso y sin preguntas reservadas. **Audio:** regenerados los 7 que cambiaban (per-0, per-1-0, per-1-2, per-1-3, per-5-0, per-5-1, per-5-2) y generados 17 nuevos (tema 6 entero, tema 11 entero y 10-0 a 10-3): el PER tiene 28 de 55 con audio. **Faltan 27** (unos 311.000 caracteres: 10-4, 10-5 y los temas 2, 3, 4, 7, 8 y 9), con el saldo del mes siguiente de ElevenLabs (`podcast/audio.py`; la clave va en `nautica/.env.local`, fuera del repositorio). Los guiones del PY están sin revisar (su bienvenida aún dice «convocatorias de 2020 a 2026»). |
 | ~~R-10~~ | ~~Pulido de PWA: insignia de la app, notificaciones, pantalla de arranque iOS~~ | — | Se partió: las notificaciones (recordatorio diario) están hechas (H-18); la insignia y la pantalla de arranque pasan a R-18 |
 | R-18 | Pulido de PWA: insignia de la app y pantalla de arranque iOS | Después | Media Session, pantalla encendida y compartir el parte ya hechos (H-17) |
 | R-11 | Nuevas convocatorias: incorporar las que se publiquen y pasar la reservada a banco | Después | Cada incorporación pasa por la extracción y la cuarentena. Última: Andalucía 3.ª de 2026 (H-49); la reserva sigue siendo de las 5 más recientes |

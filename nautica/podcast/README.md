@@ -618,7 +618,7 @@ Recorrido por todo el tema de teoría de navegación: coordenadas, corrección t
 - El GNSS: COG es el rumbo efectivo, SOG la velocidad efectiva, XTE el error transversal, ETA la hora estimada de llegada y MOB el hombre al agua; antes de pasar la posición a la carta, mismo datum.
 - Cartas electrónicas y AIS: solo hay dos tipos de carta, raster (RNC) y vectorial (ENC); el AIS trabaja en VHF, ayuda a prevenir abordajes pero no sustituye al radar ni a la vigilancia visual.
 
-**Minijuego** (312 preguntas reales de examen en estas clases):
+**Minijuego** (298 preguntas reales de examen en estas clases):
 
 - ¿El Angulo que separa el Norte Verdadero del Norte de Aguja se conoce cómo? *(and-py-2021-c2-n10)*
 - ¿El rumbo que describe una embarcación cuando ha sido abatido por el viento se denomina? *(and-py-2021-c2-n04)*
@@ -672,7 +672,7 @@ De qué depende la declinación magnética, el desvío y la corrección total, c
 - Declinación (dm): de Nv a Nm; depende de la zona geográfica y del paso del tiempo, no del barco. Desvío (Δ): de Nm a Na; depende del propio barco y del rumbo de aguja.
 - Ct = dm + Δ, cada una con su signo (E +, W −); Rv = Ra + Ct y Ra = Rv − Ct.
 - La dm de la carta se actualiza sumando, con su signo, la variación anual multiplicada por los años: dm 1° 40′ W de 2016 con variación 7′ E da 0° 30′ W en 2026.
-- La Polar está prácticamente en el norte verdadero: Ct = 0° − Da, así que una Da de 357° da Ct +3°.
+- La Polar está prácticamente en el norte verdadero: Ct = 000° − Za (su azimut o demora de aguja), así que un Za de 357° da Ct +3°.
 - En una enfilación o una oposición (demoras que difieren 180°), Ct = Dv medida en la carta menos Da, y el desvío es Δ = Ct − dm.
 - Si el desvío es 0, el rumbo de aguja es igual al magnético y Rv = Rm + dm.
 - Navegando al Ra 000°, si la Ct es positiva el norte verdadero queda por babor; si es negativa, por estribor.
@@ -1202,7 +1202,7 @@ Episodio de bienvenida a «PER en voz alta»: cómo es el examen teórico del Pa
 - Hay tres bloques con límite propio de fallos (eliminatorios): Reglamento de abordajes (RIPA), 10 preguntas y máximo 5 errores; Balizamiento, 5 preguntas y máximo 2 errores; Carta de navegación, 4 preguntas y máximo 2 errores.
 - Son 11 temas: Nomenclatura náutica (4 preguntas), Amarre y fondeo (2), Seguridad (4), Legislación (2), Balizamiento (5), RIPA (10), Maniobra y navegación (2), Emergencias en la mar (3), Meteorología (4), Teoría de navegación (5) y Carta de navegación (4).
 - Orden de estudio recomendado: primero el vocabulario (tema 1) y después lo que más pesa y más práctica pide: balizamiento, RIPA, teoría de navegación y carta; luego amarre y fondeo, seguridad, legislación, maniobra, emergencias y meteorología.
-- Las preguntas de la serie son de exámenes reales de Andalucía de 2020 a 2026.
+- Las preguntas de la serie son de exámenes reales de Andalucía ya publicados; las convocatorias más recientes no salen, porque se guardan para el examen final.
 
 ### Tema 1 · Nomenclatura náutica
 
@@ -1231,7 +1231,7 @@ Panorama del tema de nomenclatura náutica: el casco y sus referencias, la cubie
 **Minijuego** (116 preguntas reales de examen en estas clases):
 
 - El lado o costado contrario a aquel por el que viene o entra el viento se denomina: *(and-2023-c1-t02)*
-- El eje alrededor del cual gira la pala del timón se denomina: *(and-2026-c1-t03)*
+- Qué es la limera *(and-2015-c3-t03)*
 - ¿Qué entendemos por asiento de una embarcación? *(and-2021-c1-t01)*
 
 #### 1.1 · El casco, la cubierta y la estructura
@@ -1298,9 +1298,9 @@ Las partes del timón y de la hélice, hacia dónde cae la proa con caña y con 
 
 **Minijuego** (28 preguntas reales de examen en estas clases):
 
-- Indique cuál de las siguientes NO es una parte del timón: *(and-2026-c2-t02)*
+- El orificio por el que la mecha del timón atraviesa el casco se llama: *(and-2020-c3-t03)*
 - Si miramos de popa hacia proa, una hélice de giro levógira es: *(and-2020-c1-t02)*
-- En una embarcación con dos hélices gemelas de giro al exterior, la hélice de estribor es: *(and-2025-c2-t03)*
+- En hélices gemelas de giro al exterior: *(and-2022-c1-t03)*
 
 **Relacionados:** 1.0, 1.1, 7.2.
 
@@ -1335,7 +1335,7 @@ El equipo de fondeo (molinete, ancla, línea de fondeo y las voces de la maniobr
 
 - Cuando tenemos el ancla rozando el agua y lista para fondear, el ancla se encuentra: *(and-2022-c1-t01)*
 - En las embarcaciones de más de 6 metros de eslora, la longitud del tramo de cadena de la línea de fondeo será como mínimo igual a: *(and-2023-c1-t01)*
-- La distancia vertical comprendida entre la superficie de flotación y la cubierta completa más alta con medios permanentes de cierre, medida en el centro del costado del buque, se denomina: *(and-2026-c2-t04)*
+- A la distancia medida en el costado del buque y en el centro, comprendida entre la superficie de flotación hasta la cubierta completa más alta con medios permanentes de cierre se denomina: *(and-2018-c1-t04)*
 
 **Relacionados:** 1.0, 2.2, 3.1.
 
@@ -1768,7 +1768,7 @@ El mapa del balizamiento IALA: laterales y bifurcaciones, cardinales, peligro ai
 
 **Minijuego** (139 preguntas reales de examen en estas clases):
 
-- Al entrar en puerto ¿qué color tienen las marcas laterales de babor y estribor, respectivamente?: *(and-2025-c3-t13)*
+- En el sistema de balizamiento IALA, ¿qué indican las marcas laterales rojas?: *(and-2024-c2-t16)*
 - Una marca cuya marca de tope consiste en dos conos negros superpuestos con los vértices hacia arriba indica que se debe pasar al … de ella (completar con la opción que proceda). *(and-2024-c1-t16)*
 - Una marca que emite una luz blanca cuyo ritmo consiste en un destello largo cada 10 segundos es una marca: *(and-2025-c1-t14)*
 
@@ -1803,7 +1803,7 @@ Cómo funciona el sistema IALA, qué cambia entre la región A y la B, y todo so
 
 - Si de noche divisamos una boya de la cual no distinguimos la forma, pero sí divisamos una luz de color amarillo se trata de: *(and-2021-c2-t13)*
 - Saliendo de puerto debemos dejar por estribor las marcas laterales de color: *(and-2024-c3-t13)*
-- En una bifurcación de canal, si vemos una marca lateral modificada con luz verde en grupos de dos más un destello GpD (2+1) ¿dónde se encuentra el canal principal?: *(and-2025-c3-t15)*
+- Entrando en puerto por un canal balizado vemos una marca que emite una luz consistente en un grupo de 2 + 1 destellos verdes. Si queremos seguir por el canal principal, dejaremos esta marca por nuestra banda de: *(and-2020-c1-t16)*
 
 **Relacionados:** 5.0, 5.4, 5.3.
 
@@ -1836,7 +1836,7 @@ Las cuatro cardinales: qué dicen, por dónde se pasan, cómo son sus colores y 
 
 - Una marca cardinal Sur indica: *(and-2022-c3-t17)*
 - Para indicar que hay que pasar al oeste de un peligro, se utilizará una marca de color: *(and-2023-c2-t16)*
-- ¿Qué características de luz tiene una marca cardinal ESTE?: *(and-2025-c3-t14)*
+- ¿Cuál de los siguientes ritmos de luces corresponde a una marca cardinal este? *(and-2023-c3-t17)*
 
 **Relacionados:** 5.0, 5.4, 5.1.
 
@@ -2239,7 +2239,7 @@ Recorrido por todo el tema de maniobra: el vocabulario de los cabos, las amarras
 - Atracar: con dextrógira se atraca por babor y con levógira por estribor; con viento de tierra o corriente de proa el primer cabo es el largo de proa.
 - Desatracar: primero se largan los cabos que no trabajan; para abrir la popa te quedas con el esprín de proa y das avante con el timón al muelle, y para abrir la proa, con el esprín de popa y das atrás.
 
-**Minijuego** (60 preguntas reales de examen en estas clases):
+**Minijuego** (57 preguntas reales de examen en estas clases):
 
 - ¿Qué nombre recibe la acción de dar tensión a los cabos?: *(and-2023-c2-t28)*
 - Una embarcación con hélice dextrógira, en marcha atrás, hacia donde tendera a caer la popa. *(and-2021-c1-t29)*
@@ -2341,7 +2341,7 @@ Los agentes que no controlas, viento, corriente y olas, y cómo usarlos para atr
 - Falso: atracando de punta con viento de costado conviene encapillar los largos en el noray de sotavento, o uno en cada noray. Cierto: los dos al noray de barlovento, para que tiren contra el viento.
 - Falso: la escora o el tipo de fondo son agentes de la maniobra. Cierto: los agentes son viento, corriente y olas; el fondo importa para fondear.
 
-**Minijuego** (15 preguntas reales de examen en estas clases):
+**Minijuego** (12 preguntas reales de examen en estas clases):
 
 - El agente externo que influye en la maniobra, al incidir en la obra muerta del barco, es: *(and-2022-c3-t28)*
 - Atracados de costado al muelle con corriente de proa, si queremos desatracar, el último cabo a largar será: *(and-2019-c1-t28)*
@@ -2366,7 +2366,7 @@ Panorama de las emergencias a bordo: primeros auxilios, ayuda médica a distanci
 **Para llevarse:**
 
 - Heridas y hemorragias: contusión con frío, elevación y pomada de heparina, sin pinchar el hematoma; ante una hemorragia externa, primero presión directa y elevar el miembro, y el torniquete solo como último recurso.
-- Quemaduras, calor y mareo: la quemadura térmica se enfría con agua fresca, no helada, y la química se lava con agua abundante un mínimo de 15 minutos; la insolación cursa con temperatura alta y se enfría al paciente hasta bajar de unos 39 grados.
+- Quemaduras, calor y mareo: la quemadura térmica se enfría con agua fresca, no helada, y la química se lava con agua abundante un mínimo de 15 minutos; la insolación cursa con temperatura alta y se enfría al paciente hasta unos 39 grados, dejando de enfriar a 38,5.
 - Ayuda médica a distancia: el Centro Radio-Médico Español atiende gratis las 24 horas, por radio a través de una costera o por teléfono al 91 310 34 75, y la Guía Sanitaria a Bordo se descarga gratis de la web del Instituto Social de la Marina.
 - Varada y abordaje: tras embarrancar, primero evaluar daños, sondar y mirar la marea, nunca dar atrás toda de entrada; tras un abordaje, lo prioritario es evaluar las vías de agua bajo la flotación antes de separar los barcos.
 - Vías de agua: el agua entra por donde algo atraviesa el casco (bocina, limera, grifos de fondo, escape); se achica con todo, con el motor encendido, se tapona y se vigila el nivel.
@@ -2375,7 +2375,7 @@ Panorama de las emergencias a bordo: primeros auxilios, ayuda médica a distanci
 - Abandono: solo cuando el barco protege menos que la balsa y por orden del patrón, tras el socorro y con la radiobaliza; las bengalas, por sotavento y cuando alguien pueda verlas.
 - Hipotermia: por debajo de 35 grados de temperatura interna; en el agua, quieto, en postura fetal si llevas chaleco, agrupados y subidos a lo que flote, y nunca nadar para entrar en calor.
 
-**Minijuego** (86 preguntas reales de examen en estas clases):
+**Minijuego** (85 preguntas reales de examen en estas clases):
 
 - Señale la afirmación correcta sobre accidentes personales: *(and-2023-c2-t32)*
 - En caso de una vía de agua, entre las primeras medidas a tomar estarán: *(and-2023-c1-t32)*
@@ -2393,10 +2393,10 @@ Primeros auxilios a bordo: contusiones, heridas, hemorragias externas e internas
 
 - Contusión leve: inmovilizar y elevar la zona, frío envuelto en un paño y, si hay hematoma, pomada de heparina; nunca pinchar el hematoma ni dar calor.
 - Hemorragia arterial: rojo vivo y a borbotones; venosa: rojo oscuro, continua y con poca presión.
-- Hemorragia externa: presión directa con gasas o un paño limpio y elevar el miembro; torniquete solo si la presión no controla una hemorragia que amenaza la vida, cinco a siete centímetros por encima, anotando la hora y sin aflojarlo.
+- Hemorragia externa: presión directa con gasas o un paño limpio y elevar el miembro; torniquete solo si la presión no controla una hemorragia que amenaza la vida, entre la herida y el tronco y anotando la hora; hoy no se afloja salvo indicación médica (la Guía Sanitaria a Bordo decía cada 15 minutos).
 - Sospecha de hemorragia interna: consejo Radio-Médico cuanto antes, abrigo, posición lateral de seguridad si pierde el conocimiento, y nada de comer ni beber aunque lo pida.
 - Quemadura térmica: agua fresca, no helada, al menos 10 minutos y mejor 20, sin reventar ampollas; si es extensa, se enfría solo la zona quemada. Química: agua abundante un mínimo de 15 minutos, también en el ojo.
-- Insolación: dolor de cabeza intenso, vértigo, vómitos y temperatura alta; a la sombra, quitar ropa, enfriar con agua a unos 20 grados y parar al bajar de unos 39 grados, sin llegar a 37.
+- Insolación: dolor de cabeza intenso, vértigo, vómitos y temperatura alta; a la sombra, quitar ropa, enfriar con agua a unos 20 grados hasta unos 39, medir cada 10 minutos y dejar de enfriar a 38,5, nunca hasta 37.
 - Radio-Médico: del Instituto Social de la Marina, gratis las 24 horas, por radio a través de una costera indicando «consulta médica» o por teléfono al 91 310 34 75; la Guía Sanitaria a Bordo se descarga gratis de la web del Instituto.
 
 **Trampas del examen:**
@@ -2405,7 +2405,7 @@ Primeros auxilios a bordo: contusiones, heridas, hemorragias externas e internas
 - Falso: para detener una hemorragia en el brazo se baja por debajo del corazón. Cierto: se eleva mientras se hace presión directa.
 - Falso: ante una hemorragia en una extremidad siempre se aplica un torniquete. Cierto: primero presión directa; el torniquete es el último recurso.
 - Falso: una quemadura química en el ojo se lava 5 minutos con agua oxigenada, o se cubre primero con una gasa. Cierto: se lava con agua abundante un mínimo de 15 minutos, y nunca agua oxigenada.
-- Falso: el descenso de la temperatura corporal es un síntoma de insolación, y se enfría al paciente hasta 37 grados. Cierto: la insolación sube la temperatura y se para de enfriar al bajar de unos 39 grados.
+- Falso: el descenso de la temperatura corporal es un síntoma de insolación, y se enfría al paciente hasta 37 grados. Cierto: la insolación sube la temperatura; se enfría hasta unos 39 grados y se deja de enfriar a 38,5.
 - Falso: la consulta radio-médica solo se puede hacer por teléfono móvil. Cierto: también por radio a través de las estaciones costeras.
 
 **Minijuego** (25 preguntas reales de examen en estas clases):
@@ -2513,7 +2513,7 @@ Cuándo y cómo se abandona el barco, qué se prepara antes, cómo se usan benga
 - Falso: se salta al agua con las piernas plegadas sobre el estómago. Cierto: se salta con las piernas juntas y estiradas; la postura fetal es para flotar quieto.
 - Falso: sin chaleco hay que nadar para entrar en calor. Cierto: nadar acelera la hipotermia; vertical, movimientos lentos y agrupados.
 
-**Minijuego** (12 preguntas reales de examen en estas clases):
+**Minijuego** (11 preguntas reales de examen en estas clases):
 
 - ¿Cuál de las siguientes medidas a tomar antes de abandonar la embarcación es correcta?: *(and-2023-c2-t31)*
 - Las señales pirotécnicas en caso de emergencia se utilizarán: *(and-2021-c2-t32)*
@@ -2634,7 +2634,7 @@ La escala Beaufort para el viento y la Douglas para la mar, los tres factores qu
 - La mar crece con tres factores: intensidad (la fuerza del viento), persistencia (el tiempo que lleva soplando igual) y fetch (la extensión de mar sobre la que sopla con la misma dirección e intensidad).
 - Mar de viento es la que levanta el viento del momento y del lugar, corta e irregular; mar de fondo es la que llega de lejos, larga y regular, aunque haya calma.
 - La escala Douglas clasifica el estado de la mar por la altura de las olas en 10 grados, de 0 a 9: marejadilla hasta medio metro, marejada hasta 1,25 metros y fuerte marejada hasta 2,5.
-- La fuente oficial es AEMET, con predicción para aguas costeras hasta 20 millas y avisos; la difunden también Salvamento Marítimo por VHF, anunciada en el canal 16, y el NAVTEX en 518 y 490 kilohercios.
+- La fuente oficial es AEMET, con predicción para aguas costeras y alta mar y avisos; la difunden también Salvamento Marítimo por VHF, anunciada en el canal 16, y el NAVTEX en 518 y 490 kilohercios.
 - Antes de salir: viento y mar dentro de lo que barco y tripulación llevan con comodidad, avisos en vigor y plan B con puerto de refugio y hora límite; si el barómetro cae deprisa, se vuelve antes.
 
 **Trampas del examen:**
@@ -2878,7 +2878,7 @@ El mapa del examen de carta: las cuatro últimas preguntas (de la 42 a la 45) se
 **Para llevarse:**
 
 - La carta del Estrecho es Mercator: la latitud se lee en los márgenes laterales (siempre N), la longitud arriba o abajo (siempre W), y las distancias se miden en la escala de latitudes, porque allí un minuto de longitud vale solo unas 0,8 millas.
-- Primer paso de casi todo: corrección total = declinación + desvío, actualizando la declinación de la carta al año y redondeando al grado; con una enfilación u oposición, Ct = Dv − Da, sin usar el rumbo que dé el enunciado.
+- Primer paso de casi todo: corrección total = declinación + desvío, actualizando la declinación de la carta al año y redondeando al grado si el enunciado lo pide; con una enfilación u oposición, Ct = Dv − Da, sin usar el rumbo que dé el enunciado.
 - Rumbo directo: situar salida y llegada (la luz exacta que pide el enunciado), medir el Rv y la distancia, y dar al timón Ra = Rv − Ct; tiempo = distancia ÷ velocidad, sumado a la HRB de salida.
 - Estima: Rv = Ra + Ct, distancia = velocidad × tiempo, y desde la salida se traza el Rv y se mide la distancia; si el rumbo ya es verdadero, la corrección total sobra.
 - Demora y distancia: se pasa la observación a verdadera y desde el faro se traza la opuesta (Dv ± 180°), cortándola con el arco de la distancia.
@@ -2905,7 +2905,7 @@ Lo primero del examen de carta: leer y situar coordenadas, medir distancias, rum
 
 - Todo lo que se traza en la carta es verdadero; el timón solo entiende de aguja: «el rumbo de aguja nunca se dibuja».
 - Las distancias, en la escala de latitudes: a unos 36° N un minuto de longitud vale unas 0,8 millas, así que 10′ de longitud son unas 8 millas, no 10.
-- Corrección total = declinación + desvío, con E o NE positivo y W o NW negativo; si la declinación sale de la rosa, se actualiza al año (variación anual por años) y se redondea al grado: «2° 50′ W 2005 (7′ E)» da 1° W en 2024 y 0° en 2026.
+- Corrección total = declinación + desvío, con E o NE positivo y W o NW negativo; si la declinación sale de la rosa, se actualiza al año (variación anual por años) y, si el enunciado lo pide, se redondea al grado: «2° 50′ W 2005 (7′ E)» da 1° W en 2024 y 0° en 2026.
 - Con una enfilación u oposición, Ct = Dv − Da: la Dv se mide en la carta con la recta entre los dos faros, en el sentido del faro marcado; y el desvío, si lo piden, es Ct − dm.
 - El orden del rumbo directo: situar salida, situar la llegada en la luz exacta, medir el Rv desde la salida, medir la distancia, calcular la corrección total y dar Ra = Rv − Ct.
 - Hora de llegada: tiempo = distancia ÷ velocidad, y los decimales por 60: 12,7 millas a 8 nudos son 1,59 h, una hora y 35 minutos; de 20:00 a 21:35 (un minuto arriba o abajo es normal).
@@ -3009,7 +3009,7 @@ El rumbo para pasar a una distancia de seguridad de un faro o un cabo: la tangen
 - Las millas de paso son la distancia mínima a la que pasarás del faro: el rumbo buscado es la recta tangente a la circunferencia de ese radio con centro en el faro.
 - Orden: situarse, trazar con centro en el faro la circunferencia del radio pedido (medido en la escala de latitudes), trazar desde la situación la tangente correcta, medir su Rv y dar Ra = Rv − Ct.
 - Dejar el faro por estribor es pasar con el faro a la derecha: se toma la tangente que queda a la izquierda de la visual al faro, Rv = Dv − α. Por babor, la de la derecha, Rv = Dv + α.
-- El ángulo de la tangente cumple seno de alfa = distancia de paso ÷ distancia al faro: a 10 millas de un faro en Dv 004°, pasar a 2,5 millas por babor da alfa ≈ 14,5° y Rv ≈ 019°.
+- El ángulo de la tangente cumple seno de alfa = distancia de paso ÷ distancia al faro: a 10 millas de un faro en Dv 004°, pasar a 2,6 millas por babor da alfa ≈ 15° y Rv = 019°.
 - Si no dicen la banda, la tangente buena es la que pasa por fuera, por el lado del mar: para pasar a 4 millas de Cabo Trafalgar hacia el WNW desde Tarifa, o a 5 de Cabo Roche hacia el NW, se deja el faro por estribor.
 - Situarse por dos distancias da dos puntos de corte: el enunciado siempre trae una pista para elegir («al este de la bahía de Algeciras», «más al este que Punta Paloma»).
 

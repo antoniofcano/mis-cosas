@@ -129,11 +129,11 @@ voces:
 
 **ANDRÉS:** Pues ya no vuelvo a entrar de noche sin contar.
 
-**ELENA:** Así me gusta. Vamos con el minijuego: tres preguntas de exámenes reales, de tres bloques distintos. Yo leo, tú piensas. Y tú, que nos escuchas, piensa también. Primera: «Al entrar en puerto, ¿qué color tienen las marcas laterales de babor y estribor, respectivamente?». A: verde a babor y roja a estribor. Be: roja a babor y verde a estribor. Ce: amarilla a babor y negra a estribor. De: blanca a babor y roja a estribor.
+**ELENA:** Así me gusta. Vamos con el minijuego: tres preguntas de exámenes reales, de tres bloques distintos. Yo leo, tú piensas. Y tú, que nos escuchas, piensa también. Primera: «En el sistema de balizamiento IALA, ¿qué indican las marcas laterales rojas?». A: indican el lado de estribor de un canal al entrar en puerto. Be: indican el lado de babor de un canal al entrar en puerto. Ce: señalan un peligro aislado. De: marcan una bifurcación de canal.
 
 [pausa larga]
 
-**ANDRÉS:** La be. Roja a babor y verde a estribor. La a es la región be, la de América, que es la trampa. Y amarilla, negra o blanca no son colores de lateral.
+**ANDRÉS:** La be. Entrando, rojo a babor: la roja marca el lado de babor del canal. El de estribor es el de las verdes, el peligro aislado es negro con bandas rojas, y la bifurcación lleva además una banda del otro color.
 
 **ELENA:** Correcto. Segunda: «Una marca cuya marca de tope consiste en dos conos negros superpuestos con los vértices hacia arriba indica que se debe pasar al… de ella». A: este. Be: norte. Ce: oeste. De: sur.
 

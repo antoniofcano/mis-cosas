@@ -17,6 +17,17 @@ Qué cambia en la app para quien la usa, por fecha de publicación. Es la base d
 
 Nada pendiente.
 
+## 16 de noviembre de 2026, novena publicación · versión `04e9320160b0`
+
+**Novedades**
+
+- **17 episodios nuevos del podcast del PER**: el reglamento (RIPA) entero, el examen de carta entero (corrección total, estima, demoras y enfilaciones, la tangente) y los primeros de teoría de navegación. Ya hay 28 de 55 con audio; el resto, en las próximas semanas.
+- **Siete episodios del PER vueltos a grabar** con el guion al día: la bienvenida, las partes del barco y el balizamiento. Ya no leen ninguna pregunta de las que se guardan para tu examen final.
+
+**Correcciones**
+
+- **Fichas del podcast del PER al día con el curso.** Los «para llevarse» y las trampas de varios episodios dicen ya lo que dicen las clases: el torniquete (hoy no se afloja salvo indicación médica), el golpe de calor (se enfría hasta unos 39 °C y se para a 38,5 °C), la predicción de aguas costeras sin la cifra de 20 millas y el redondeo de la declinación solo si lo pide el enunciado. Y ningún minijuego del PER lee ya una pregunta reservada para tu examen final (R-09).
+
 ## 16 de noviembre de 2026, octava publicación · versión `4da31d70509f`
 
 **Novedades**

@@ -46,9 +46,9 @@ voces:
 
 **ANDRÉS:** Una vez, y solo una. ¿Y el segundo sitio?
 
-**ELENA:** El signo de babor. Prueba: rumbo verdadero trescientos. Marcas el faro A cuarenta grados por babor y el faro B setenta por estribor.
+**ELENA:** El signo de babor. Prueba: rumbo verdadero trescientos. Marcas el faro A cuarenta grados por babor y el faro be setenta por estribor.
 
-**ANDRÉS:** A, babor, resta: trescientos menos cuarenta, doscientos sesenta. B, estribor, suma: trescientos más setenta, trescientos setenta.
+**ANDRÉS:** A, babor, resta: trescientos menos cuarenta, doscientos sesenta. Be, estribor, suma: trescientos más setenta, trescientos setenta.
 
 **ELENA:** ¿Trescientos setenta grados?
 
@@ -94,7 +94,7 @@ voces:
 
 **ANDRÉS:** Entendido. ¿Y por qué me lo cuentas, si no entra?
 
-**ELENA:** Por una trampa de lectura. Muchos enunciados empiezan con una situación, «a las doce estamos a cuatro millas al Sur de Punta Carnero, navegando al rumbo de aguja tal», y siguen con «más tarde obtenemos marcación al faro A y marcación al faro B».
+**ELENA:** Por una trampa de lectura. Muchos enunciados empiezan con una situación, «a las doce estamos a cuatro millas al Sur de Punta Carnero, navegando al rumbo de aguja tal», y siguen con «más tarde obtenemos marcación al faro a y marcación al faro be».
 
 **ANDRÉS:** Y con ese «más tarde» yo me pondría a trasladar líneas.
 

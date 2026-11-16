@@ -105,7 +105,7 @@ voces:
 
 **ANDRÉS:** ¿Y algo caliente? ¿Un coñac, como en las películas?
 
-**ELENA:** [ríe] Ni se te ocurra. Si está consciente, bebidas calientes y dulces. Nunca alcohol, que aumenta la pérdida de calor. Y tampoco se le frota la piel. Si está inconsciente, compruebas si respira, lo pones en posición lateral de seguridad y llamas al Radio-Médico o a Salvamento enseguida.
+**ELENA:** [ríe] Ni se te ocurra. Si está consciente, bebidas calientes y dulces. Nunca alcohol, que aumenta la pérdida de calor, ni café, como dice la Guía Sanitaria a Bordo. Y tampoco se le frota la piel. Si está inconsciente, compruebas si respira, lo pones en posición lateral de seguridad y llamas al Radio-Médico o a Salvamento enseguida.
 
 **ANDRÉS:** Caldito sí, coñac no.
 

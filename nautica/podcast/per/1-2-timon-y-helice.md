@@ -164,11 +164,11 @@ voces:
 
 **ANDRÉS:** Suspendido, porque la pala cuelga de la mecha sin nada por abajo. Y ya que estaba ahí mirando desde popa, si la hélice girase como las agujas del reloj dando avante, sería dextrógira.
 
-**ELENA:** Ya puedes volver a la varada y presumir. Vamos con el minijuego. Tres preguntas de exámenes reales. Yo las leo, tú piensas, y tú que nos escuchas también. Primera: «Indique cuál de las siguientes no es una parte del timón». A: mecha. Be: limera. Ce: guardines. De: bocina.
+**ELENA:** Ya puedes volver a la varada y presumir. Vamos con el minijuego. Tres preguntas de exámenes reales. Yo las leo, tú piensas, y tú que nos escuchas también. Primera: «El orificio por el que la mecha del timón atraviesa el casco se llama…». A: prensaestopas. Be: guardines. Ce: limera. De: bocina.
 
 [pausa larga]
 
-**ANDRÉS:** La de, la bocina. La mecha es el eje, la limera el agujero y los guardines los cables de la rueda. La bocina es de la hélice.
+**ANDRÉS:** La ce, la limera. La bocina también es un agujero, pero el de la hélice. Los guardines son los cables de la rueda, y el prensaestopas es el cierre estanco que lleva la limera, no el agujero.
 
 **ELENA:** Correcto. Segunda: «Si miramos de popa hacia proa, una hélice de giro levógira es…». A: aquella que en máquina avante gira en el sentido de las agujas del reloj. Be: aquella que en máquina atrás gira en sentido contrario a las agujas del reloj. Ce: aquella que en máquina atrás gira en el sentido de las agujas del reloj. De: las respuestas a y be son correctas.
 
@@ -176,11 +176,11 @@ voces:
 
 **ANDRÉS:** A ver. La levógira, avante, gira al contrario que el reloj. Así que la a es falsa, esa es la dextrógira. Dando atrás se invierte, así que gira como el reloj. Es la ce.
 
-**ELENA:** La ce. Y fíjate que la de era el cebo, porque juntaba dos falsas. Tercera: «En una embarcación con dos hélices gemelas de giro al exterior, la hélice de estribor es…». A: levógira. Be: dextrógira. Ce: ambas son iguales. De: depende del sentido de marcha.
+**ELENA:** La ce. Y fíjate que la de era el cebo, porque juntaba dos falsas. Tercera: «En hélices gemelas de giro al exterior…». A: la de estribor es levógira y la de babor dextrógira. Be: ambas son levógiras. Ce: ambas son dextrógiras. De: la de estribor es dextrógira y la de babor levógira.
 
 [pausa larga]
 
-**ANDRÉS:** Al exterior, cada una hacia su lado. Estribor, a la derecha: dextrógira. La be. Y la ce y la de, descartadas de entrada.
+**ANDRÉS:** Al exterior, cada una hacia su lado. Estribor, a la derecha: dextrógira; y babor, levógira. La de. La be y la ce, descartadas de entrada, que nunca giran las dos igual. Y la a es el giro al interior.
 
 **ELENA:** Tres de tres, Andrés.
 

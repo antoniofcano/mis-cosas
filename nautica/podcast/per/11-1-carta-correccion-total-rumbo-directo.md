@@ -70,7 +70,7 @@ voces:
 
 **ANDRÉS:** Menos dos grados cincuenta, más dos grados trece… menos treinta y siete minutos.
 
-**ELENA:** Que, redondeando al grado más próximo, es menos uno: un grado oeste. Y en dos mil veintiséis, con veintiún años, queda menos veintitrés minutos, que se redondea a cero. Redondea siempre al grado: lo piden los enunciados recientes y así salen las plantillas.
+**ELENA:** Que, redondeando al grado más próximo, es menos uno: un grado oeste. Y en dos mil veintiséis, con veintiún años, queda menos veintitrés minutos, que se redondea a cero. Haz lo que diga el enunciado: si pide redondear al grado más próximo, como los recientes, redondeas; si no dice nada, sigues con el valor exacto y redondeas solo el resultado final.
 
 **ANDRÉS:** Entonces, una declinación oeste con variación este va creciendo con los años.
 
@@ -140,7 +140,7 @@ voces:
 
 **ANDRÉS:** [ríe] Si llego a saber esto antes, me ahorro la tarde.
 
-**ELENA:** Resumen para llevarse. Uno: la latitud se lee en los márgenes laterales y las distancias se miden siempre en esa escala; un minuto de longitud en el Estrecho vale unas ocho décimas de milla. Dos: en la carta todo es verdadero; un rumbo se mide desde la salida y una demora desde el barco, y «desde el faro» no es lo mismo que «al faro». Tres: corrección total igual a declinación más desvío, con la declinación de la carta puesta al día y redondeada al grado; con sentidos contrarios, disminuye. Cuatro: con una enfilación u oposición, corrección total igual a demora verdadera menos demora de aguja, en el sentido del faro marcado y sin usar el rumbo del enunciado. Y cinco: rumbo directo, salida, llegada en la luz exacta, rumbo verdadero, distancia, y al timón verdadero menos corrección; la hora, distancia entre velocidad, con los decimales por sesenta.
+**ELENA:** Resumen para llevarse. Uno: la latitud se lee en los márgenes laterales y las distancias se miden siempre en esa escala; un minuto de longitud en el Estrecho vale unas ocho décimas de milla. Dos: en la carta todo es verdadero; un rumbo se mide desde la salida y una demora desde el barco, y «desde el faro» no es lo mismo que «al faro». Tres: corrección total igual a declinación más desvío, con la declinación de la carta puesta al día y redondeada al grado si el enunciado lo pide; con sentidos contrarios, disminuye. Cuatro: con una enfilación u oposición, corrección total igual a demora verdadera menos demora de aguja, en el sentido del faro marcado y sin usar el rumbo del enunciado. Y cinco: rumbo directo, salida, llegada en la luz exacta, rumbo verdadero, distancia, y al timón verdadero menos corrección; la hora, distancia entre velocidad, con los decimales por sesenta.
 
 **ANDRÉS:** Y la escala de arriba, ni mirarla.
 

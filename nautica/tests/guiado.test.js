@@ -7,7 +7,7 @@ import { SOLUCIONES } from '../src/bancos/soluciones.js';
 import { QUANTITIES } from '../src/analysis/quantities.js';
 import { corregirPaso, toleranciaCampo, tienePasosPreguntables, resumenGuiado, ESTADO } from '../src/exams/guiado.js';
 import { diagnosticar, resolverVariantes, variantesQueLlevanA } from '../src/exams/diagnostico.js';
-import { PASOS, ERRORES, VARIANTES, tipoDe, errorComun, fraseError } from '../src/exams/taxonomia.js';
+import { PASOS, ERRORES, VARIANTES, ERRORES_DE_TRAZADO, tipoDe, errorComun, fraseError } from '../src/exams/taxonomia.js';
 import { estadoVacio, anotaError, anotaPaso, resumen, leerEstado, crearAlmacenErrores } from '../src/store/errores.js';
 import { rhumbTo } from '../src/math/mercator.js';
 import { norm360 } from '../src/math/angles.js';
@@ -232,7 +232,8 @@ test('el modo guiado corrige con la tolerancia de examen (el doble en lo medido 
 test('taxonomía: cada variante es de un error conocido y cada error tiene variante y paso', () => {
   for (const v of VARIANTES) assert.ok(ERRORES[tipoDe(v)], v);
   for (const [id, e] of Object.entries(ERRORES)) {
-    assert.ok(VARIANTES.some((v) => tipoDe(v) === id), `${id} sin variante`);
+    // Los de elegir el trazo (carta por intención, R-54) no son una cuenta: no tienen variante del kit.
+    if (!ERRORES_DE_TRAZADO.includes(id)) assert.ok(VARIANTES.some((v) => tipoDe(v) === id), `${id} sin variante`);
     assert.ok(PASOS[e.paso], `${id}: paso ${e.paso}`);
   }
   assert.equal(errorComun('resta-al-reves'), 'signo-ct'); // los ids de los ejercicios generados

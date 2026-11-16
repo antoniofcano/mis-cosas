@@ -17,6 +17,25 @@ Qué cambia en la app para quien la usa, por fecha de publicación. Es la base d
 
 Nada pendiente.
 
+## 16 de noviembre de 2026, séptima publicación · versión `d3c9b2ed3320`
+
+**Novedades**
+
+- **Estima analítica como la pone hoy el tribunal.** El ejercicio generado trae de 2 a 5 rumbos y, casi siempre, una corriente (su rumbo y su intensidad horaria) que actúa toda la navegación o desde una hora hasta el final. Muchas veces sales junto al meridiano de 180° y lo cruzas, navegas en el hemisferio sur o cruzas el ecuador. A veces pide también el rumbo y la distancia directos.
+- **Resolver paso a paso en la estima analítica.** Como en una pregunta de examen: la tabla de tramos con la corriente como una fila más, la latitud de llegada con su signo, la latitud media, la diferencia de longitud y el paso del meridiano de 180°, cada paso con lo que traes, lo que planteas y la cuenta. Termina con cuatro opciones, como en el examen.
+- **Tres trampas nuevas con nombre:** equivocarte con la diferencia de longitud o con la letra al cruzar el meridiano de 180°, sumar la corriente al revés y tomar las latitudes sin su signo en el hemisferio sur o al cruzar el ecuador. Se avisan antes del paso, se reconocen si caes en ellas (también en tu hoja en papel) y van a tu cuaderno de fallos; la dosis y la comprobación de esas trampas te ponen un ejercicio que las tiene.
+- **Trázalo en la carta.** En una pregunta de carta, junto a «Resolver paso a paso» y «Lo hice en papel», tienes «Trázalo en la carta»: pensado para el móvil, donde no se puede trazar a mano con precisión. En cada trazo eliges con botones grandes qué trazas (una demora, un arco de distancia, la oposición, la tangente, la corriente…), desde qué faro o punto, con qué valor (la demora ya corregida con la Ct, por ejemplo) y hacia dónde (desde el faro, la opuesta). La app lo dibuja exacto en la carta, con su rótulo, y te acerca la vista. Si te equivocas, te dice qué error has cometido («has usado el valor de aguja sin corregirlo», «has trazado desde el faro equivocado», «ese trazo va después») y te dibuja en discontinua lo que habrías trazado. Al terminar, compara lo que te habría salido con tus primeras elecciones con la resolución. Así entrenas el orden y qué trazar, que es donde se falla; la precisión del transportador, en tu hoja. El primer error con nombre va a tu cuaderno de fallos. Sirve para la situación por demoras, por demora y distancia, por oposición y enfilación, por traslado, el rumbo a un punto, la tangente, la corriente y el abatimiento; nunca durante un examen.
+
+**Mejoras**
+
+- **Toda la app con la cara nueva.** Temario, Examen, las clases, las preguntas, las fichas de ideas, los ejercicios de carta resueltos, Más, la estrategia, el día del examen, la víspera, el ensayo, el cuaderno de fallos y el aviso diario usan los mismos colores, letras y tarjetas que Hoy, en claro y en oscuro. Las láminas de las clases siguen con sus colores.
+- **Icono nuevo.** El icono de la app en el móvil pasa a los colores de la noche: fondo oscuro, rosa de los vientos y el norte en magenta.
+
+**Correcciones**
+
+- Una longitud junto al meridiano de 180° (por ejemplo 179° 59,8′ E frente a 179° 59,8′ W) ya no se corrige como si estuviera a casi 360° de la buena.
+- En la estima analítica ya no aparece «Tomar la situación de la carta», que no tiene carta.
+
 ## 16 de noviembre de 2026, sexta publicación · versión `ffd09e8aa632`
 
 **Novedades**

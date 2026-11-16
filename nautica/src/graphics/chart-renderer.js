@@ -167,7 +167,8 @@ export function drawItem(it, z) {
     case 'arc': {
       const pts = [];
       for (let d = -it.span / 2; d <= it.span / 2 + 1e-9; d += 2) pts.push(toWorld(rhumbDestination(it.center, norm360(it.around + d), it.radius)));
-      return `<path class="${cls} arc" d="${pathOf(pts)}"${data}/>`;
+      // Con rótulo (carta por intención, R-54): en el centro del arco.
+      return `<path class="${cls} arc" d="${pathOf(pts)}"${data}/>` + (it.label ? label(it.label, pts[Math.floor(pts.length / 2)], z) : '');
     }
     case 'guide': {
       // Guía de la escala del margen: paralelo (axis 'lat') o meridiano (axis 'lon') de lado a lado.

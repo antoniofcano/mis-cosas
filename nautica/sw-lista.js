@@ -1,5 +1,5 @@
 // Generado por tools/precache.mjs: no lo edites a mano.
-self.VERSION = 'b0e497443db3';
+self.VERSION = 'd3c9b2ed3320';
 self.APP = [
  "fonts/patron-mono.woff2",
  "fonts/patron-texto.woff2",
@@ -73,7 +73,9 @@ self.APP = [
  "src/course/vispera.js",
  "src/exams/avisos-pasos.js",
  "src/exams/diagnostico.js",
+ "src/exams/ejercicios.js",
  "src/exams/guiado.js",
+ "src/exams/intencion.js",
  "src/exams/kit.js",
  "src/exams/motivo.js",
  "src/exams/options.js",
@@ -328,6 +330,7 @@ self.APP = [
  "src/ui/iconos.js",
  "src/ui/illustration.js",
  "src/ui/instalar.js",
+ "src/ui/intencion.js",
  "src/ui/lamina-estado.js",
  "src/ui/lamina-marco.js",
  "src/ui/lamina.js",

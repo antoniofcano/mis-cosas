@@ -27,7 +27,10 @@ import { erroresAlumno } from '../../store/errores.js';
 import { tiemposAlumno } from '../../store/tiempos.js';
 import { relojVisible } from '../reloj-visible.js';
 import { anotarFallo, registrarComprobacion, registrarDosis, falloDe } from '../cuaderno.js';
-import { nombreFallo } from '../../course/cuaderno.js';
+import { nombreFallo, partesFallo } from '../../course/cuaderno.js';
+import { guiadoDeEjercicio, CARTA_NUMEROS } from '../../exams/ejercicios.js';
+import { guiadoPanel } from '../guiado.js';
+import { modoExamen } from '../modo-examen.js';
 
 const STATUS_TEXT = {
   [STATUS.OK]: ['ok', 'Correcto'],
@@ -49,7 +52,8 @@ export function exerciseView({ ctx, progress, params: route }) {
   const modoFallo = idFallo && falloDe(idFallo) ? (route.query.comprobar ? 'comprobar' : 'dosis') : null;
   const sinPistas = modoFallo === 'comprobar';
 
-  const params = exercise.generate(createRng(seed), ctx);
+  // En una dosis o comprobación, el ejercicio pone a prueba ese error (p. ej. la estima analítica cruza el 180°).
+  const params = exercise.generate(createRng(seed), modoFallo ? { ...ctx, foco: partesFallo(idFallo).error } : ctx);
   const statement = exercise.statement(params, ctx);
   const solution = exercise.solve(params, ctx);
   const answers = answersFor(exercise, params);
@@ -79,7 +83,7 @@ export function exerciseView({ ctx, progress, params: route }) {
   const inLat = inputs.find((x) => x.a.kind === 'lat');
   const inLon = inputs.find((x) => x.a.kind === 'lon');
   const avisoPunto = h('p.muted.aviso-punto', { 'aria-live': 'polite' });
-  const tomarDeCarta = inLat && inLon ? h('div.tomar-carta',
+  const tomarDeCarta = inLat && inLon && solution.drawing ? h('div.tomar-carta',
     h('button.secondary', { type: 'button', onclick: () => {
       const api = ws?.chart ?? widget;
       const punto = api?.getUserItems().filter((u) => u.t === 'pos').at(-1);
@@ -206,11 +210,27 @@ export function exerciseView({ ctx, progress, params: route }) {
     if (sinPistas) { pistas.hidden = false; }
   }
 
+  // --- Paso a paso «de hoja de examen» (R-53): los ejercicios que se resuelven con el kit de los exámenes (hoy, la estima
+  // analítica) se hacen paso a paso como una pregunta real, con avisos, diagnóstico por paso y cuaderno de fallos.
+  const guiadoEj = sinPistas ? null : guiadoDeEjercicio(exercise.id, params, seed, statement);
+  let guiado = null;
+  const cajaGuiado = h('div.ejercicio-guiado');
+  const botonGuiado = guiadoEj ? h('button.secondary', { type: 'button', onclick: () => abrirGuiado() }, conIcono('lapiz', 'Resolver paso a paso')) : null;
+  function abrirGuiado() {
+    if (modoExamen()) return;
+    guiado = guiadoPanel({ ...guiadoEj, chart: CARTA_NUMEROS, factor: progress.settings().toleranceFactor ?? 1, glosas,
+      onCerrar: () => { guiado = null; cajaGuiado.replaceChildren(); botonGuiado.hidden = false; refreshAi(); } });
+    botonGuiado.hidden = true;
+    cajaGuiado.replaceChildren(guiado.el);
+    requestAnimationFrame(() => guiado?.el.scrollIntoView?.({ block: 'start', behavior: 'smooth' }));
+    refreshAi();
+  }
+
   // --- Resumen para IA
   const aiPre = h('pre.ai-text');
   const refreshAi = () => { aiPre.textContent = summary(); };
   const summary = () => exerciseSummary({ exercise, seed, params, solution, inputs: state.inputs, result: state.result, revealed: state.revealed, statement })
-    + (widget?.summary() ? `\nDIBUJO ALUMNO: ${widget.summary()}` : '');
+    + (widget?.summary() ? `\nDIBUJO ALUMNO: ${widget.summary()}` : '') + (guiado ? `\n${guiado.summary()}` : '');
   const fullSummary = () => (ws && currentWorkspace() === ws ? ws.summary() : summary());
 
   // La resolución, las pistas y el método: en una comprobación, ocultos hasta corregir (sin pistas).
@@ -235,6 +255,7 @@ export function exerciseView({ ctx, progress, params: route }) {
         h('section.statement', h('h2', 'Enunciado'), statementEl, repasa, h('div.actions.bloc-acciones', botonBloc(bloc, { texto: 'Bloc de notas' })), solution.drawing ? avisoCartaMovil(progress) : null, tableButtons),
         modoFallo ? h('p.aviso-fallo', conIcono('diana', modoFallo === 'comprobar' ? 'Comprobación de tu cuaderno de fallos: resuélvelo entero, sin pistas.' : 'Dosis de tu cuaderno de fallos: resuélvelo y fíjate en el paso que fallas.')) : null,
         h('section', h('h2', 'Tu respuesta'), form, diag, cajaFallo, solutionBox),
+        guiadoEj ? h('section.ejercicio-paso-a-paso', botonGuiado ? h('div.actions', botonGuiado) : null, cajaGuiado) : null,
         pistas,
       ),
       widget ? h('div.col.chart-col', h('section', h('h2', 'Carta'), widget.el)) : null,

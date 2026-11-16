@@ -7,7 +7,7 @@
 // De dónde salen (origen de cada vez): un paso del paso a paso que falla con un error reconocido (diagnosticarPaso), la
 // opción falsa marcada en una pregunta real con diagnóstico único (diagnosticar: práctica, simulacros, exámenes y tu
 // examen oficial), los errores típicos de un ejercicio generado (`mistakes`) y el primer fallo con nombre de una hoja
-// hecha en papel y corregida por pasos (R-58). Una misma pregunta (o semilla) con el
+// hecha en papel y corregida por pasos (R-58) o de la carta por intención («Trázalo en la carta», R-54). Una misma pregunta (o semilla) con el
 // mismo fallo el mismo día cuenta una vez: así el paso guiado y la opción final de esa pregunta no se cuentan dos veces.
 //
 // Estados y calendario:
@@ -55,6 +55,8 @@ export const ORIGENES = {
   comprobacion: 'comprobación',
   // La hoja en papel corregida por pasos (R-58, src/exams/papel.js): solo el primer fallo con nombre, no los arrastrados.
   papel: 'tu hoja en papel',
+  // La carta por intención (R-54, src/exams/intencion.js): el primer fallo con nombre al elegir qué trazar.
+  traza: 'trázalo en la carta',
 };
 
 const TIPO_RE = /^[a-z0-9-]{1,60}$/;

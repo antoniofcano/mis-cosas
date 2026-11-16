@@ -166,7 +166,7 @@ test('CSS de Hoy y la Travesía: sin colores fijos, cada variable existe (en cla
 });
 
 test('CSS de Hoy y la Travesía: dentro de la entrada los --lc-* de la carta siguen los colores de la app (claro y oscuro)', () => {
-  const raiz = BLOQUE.slice(BLOQUE.indexOf('.entrada, .travesia-pantalla, .semana-pantalla {'));
+  const raiz = BLOQUE.slice(BLOQUE.indexOf('.entrada, .travesia-pantalla, .semana-pantalla,'));
   const mapa = Object.fromEntries([...raiz.slice(0, raiz.indexOf('}')).matchAll(/(--lc-[a-z0-9-]+):\s*var\((--[a-z0-9-]+)\)/g)].map((m) => [m[1], m[2]]));
   for (const k of ['--lc-fondo', '--lc-papel', '--lc-tinta', '--lc-apagado', '--lc-magenta', '--lc-azul-texto', '--lc-linea-agua', '--lc-tierra', '--lc-amarillo', '--lc-verde-texto', '--lc-rojo-texto']) {
     assert.ok(mapa[k], `${k} sin mapear a un color de la app`);
@@ -222,4 +222,11 @@ test('Hoy y la Travesía: el foco se ve (contorno de 3 px) y los botones de la c
   assert.match(BLOQUE, /\.entrada :is\(button, a, summary\):focus-visible, \.travesia-pantalla :is\(button, a, summary\):focus-visible \{ outline: 3px solid/);
   assert.match(APP, /\.carta-trav button\.faro \{ width: 48px; min-width: 48px; height: 48px; min-height: 48px;/);
   assert.match(APP, /\.carta-trav button\.faro:focus-visible \{ outline: 3px solid/);
+});
+
+test('R-69: la estrategia, el día del examen, la víspera, el ensayo, el cuaderno de fallos y el aviso diario reasignan los --lc-* a la app; las clases y las láminas no', () => {
+  const i = BLOQUE.indexOf('.entrada, .travesia-pantalla, .semana-pantalla,');
+  const cab = BLOQUE.slice(i, BLOQUE.indexOf('{', i));
+  for (const s of ['.estrategia', '.dia-examen', '.vispera', '.ensayo-papel', '.aviso-diario', '.fallos']) assert.ok(cab.includes(s), s + ' sin reasignar');
+  for (const s of ['.leccion', '.lc-marco', 'svg.il', '.cps']) assert.ok(!cab.includes(s), s + ' no debe reasignarse (sus láminas conservan los colores)');
 });

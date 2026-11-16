@@ -39,7 +39,10 @@ nautica/
 ├── styles/app.css        Colores como tokens CSS en `:root` (claro), `@media (prefers-color-scheme: dark)` con `:root:not([data-theme="light"])`
 │                         (automático) y `:root[data-theme="dark"]` (forzado): los dos bloques oscuros son idénticos (tests/tema.test.js).
 │                         Letras: Patron Texto / Titulos (condensada) / Mono, en fonts/ (fonts/README.md). Retícula de carta en `body`.
-├── styles/laminas.css    Láminas (`--lc-*`, con su claro y oscuro propios) y Hoy, Travesía y la semana en estilo carta
+├── styles/laminas.css    Láminas (`--lc-*`, con su claro y oscuro propios) y Hoy, Travesía y la semana en estilo carta;
+│                         desde R-69 también la estrategia, el día del examen, la víspera, el ensayo, el cuaderno de fallos y el aviso
+│                         diario (mismo patrón: los `--lc-*` se reasignan a los tokens) y un bloque «Resto de pantallas» (Temario, Examen,
+│                         clase, fichas…) solo con tokens. Las clases y las láminas no reasignan `--lc-*`. Icono: icons/icono.svg (PNG de él)
 └── tests/                node --test
 ```
 
@@ -120,6 +123,15 @@ un banco concreto; las vistas piden `cargarBanco(currentEje(progress), tit)`.
   partes para después de contestar (en `tramoMarea`, elegir el tramo en la tabla es parte del problema; en `ctFrom` y
   `ctPolar`, el croquis sería la respuesta). `tests/guiado.test.js` exige en todas las soluciones reales que cada paso
   preguntado traiga, plantee y escriba una cuenta que acabe en el valor pedido.
+- **Ejercicio generado con el kit** (R-53, `exams/ejercicios.js`): la estima analítica generada
+  (`exercises/types/estima-analitica.js`: corriente como una fila más, cruce del meridiano 180°, hemisferio sur y ecuador)
+  se resuelve también con el kit (`resolverEstima`: salida, distancias y `k.tramos` con la fila de la corriente, y
+  `k.rumboDirecto` si se pide). `guiadoDeEjercicio(id, params, seed)` da `{ q, sol }` (cuatro opciones de la semilla: la
+  buena y las de tres variantes del kit) y `views/exercise.js` abre con ellos `guiadoPanel` («Resolver paso a paso») sobre
+  `CARTA_NUMEROS` (sin dibujo). Para respetar las capas, el ejercicio no importa el kit: su `calcular(p, error)` hace la
+  misma cuenta y simula sus `mistakes` (ids de la taxonomía) con el mismo efecto que las variantes del kit, y
+  `tests/estima-analitica.test.js` lo comprueba. En una dosis o comprobación del cuaderno, `generate` recibe `ctx.foco` (el
+  error) y pone el ejercicio que lo prueba.
 - **Antes y después del examen real** (R-48 a R-50; `course/tras-examen.js`, funciones puras; tests
   `tests/tras-examen.test.js`): `fallosPorMateria` (los 3 últimos exámenes con `porTema` completo de cada materia:
   simulacro, real, final, módulo y ensayo; nunca el simulacro de tus errores ni las tandas) con `estadoFrente` (holgado,
@@ -234,7 +246,9 @@ exige que coincida con la plantilla oficial. Si cambias la carta o un motor, est
 - **Taxonomía común** (`exams/taxonomia.js`): `PASOS` (Ct, declinación, aguja, marcación, oposición/enfilación,
   situación, medida, tiempo, tangente, abatimiento, corriente, traslado, estima, loxodrómica, marea, sonda, hora oficial),
   `ERRORES` (cada error típico con su paso y su frase «Es lo que sale si…»; ids iguales a los de los ejercicios
-  generados, con `ALIAS` para los que no) y `VARIANTES` (cómo se comete cada error en el kit).
+  generados, con `ALIAS` para los que no) y `VARIANTES` (cómo se comete cada error en el kit). Los de R-53: `antimeridiano` (`:letra` en `tramos`, `:resta` en `rumboDirecto`),
+  `corriente-al-reves` y `lm-hemisferios` (`:llegada`, `:media`); el kit solo los consulta si hay corriente, se cruza el
+  180° o hay latitudes S, así su «Ojo» sale solo donde toca.
 - **Kit con un error típico:** `createKit(chart, { error: 'signo-ct:aplicacion' })` calcula igual salvo donde ese error
   se comete. `exams/diagnostico.js` resuelve la pregunta con cada variante y dice qué error lleva a la opción marcada
   (mismo criterio que `chooseOption`, cada valor dentro de la tolerancia de examen, sin empate, nunca la oficial ni la
@@ -257,6 +271,22 @@ exige que coincida con la plantilla oficial. Si cambias la carta o un motor, est
   paso a paso, ×2 lo medido); «casi» hasta el doble, salvo que coincida con un error típico. El primer fallo con nombre
   va a `store/errores.js` y al cuaderno (`anotarFallo`, origen `papel`). Lo escrito se guarda como borrador en el aparato
   (`nautica.papel.<id>`). Test `tests/papel.test.js` (barrido sobre las preguntas del estudio de todos los bancos).
+- **Carta gráfica por intención (R-54, «Trázalo en la carta»):** lógica en `exams/intencion.js` (sin DOM), interfaz en
+  `ui/intencion.js` (`intencionPanel`, `intencionDisponible`). Se abre en `#/q/<id>?traza=1`; nunca con un examen en
+  marcha. El kit apunta cada operación de primer nivel en `k.ops` (`{ op, args, ret, pasos, items }`: rangos de
+  `steps` e `items`; no cambia ningún resultado). `planIntencion` reparte cada operación con trazo en trazos (`TRAZOS`:
+  acción, argumento del objeto, argumentos de valor, sentido e índices de sus `items`) y arma las decisiones de cada uno:
+  acción (la buena, la del trazo siguiente —`orden-trazado`— y las que se confunden —`trazo-equivocado`—), objeto
+  (faros del problema y los más cercanos, o las situaciones ya en la carta —`faro-equivocado`—), valor (el argumento de
+  esa operación en el kit resuelto con cada variante de la taxonomía, agrupado: uno o dos errores) y sentido (error fijo
+  y su cambio). Las cuentas entre dos trazos (`ct`, `dv`, `abatimiento`…) no son trazos: su `plantea` es la pista del
+  valor, y las del final se enseñan al acabar. `resolverCon({ cambios, capturar })` resuelve con un `Proxy` del kit que,
+  en la operación j, sustituye argumentos (`{ i: valor | { suma } }`) o usa la variante del error: así se dibuja lo que
+  traza una elección equivocada (`intento`) y se compara el resultado de las primeras elecciones con la resolución
+  (`compararFinal`, encadenado). Los trazos que se pintan son los `items` del kit con rótulo (los arcos lo admiten);
+  el intento, con el estilo `intento` (discontinuo). El primer fallo con nombre va a `store/errores.js` y al cuaderno
+  (`anotarFallo`, origen `traza`). Errores del paso `trazado` en `ERRORES_DE_TRAZADO` (sin variante del kit). Test
+  `tests/intencion.test.js` (barrido sobre el banco de práctica).
 - **Avisos por paso (R-65):** `exams/avisos-pasos.js` (sin DOM) guarda el catálogo `AVISOS` (por error típico: `ojo`, `no`,
   `asi`, `has`; test: uno por cada `E(...)` del kit). El kit anota en cada paso preguntable `errores` (los `E(...)` que se
   consultan en su operación, afinados por paso con `erroresDelPaso`; no cambia ningún resultado) y `pasosGuiados` los pasa.
@@ -277,7 +307,7 @@ exige que coincida con la plantilla oficial. Si cambias la carta o un motor, est
 - **Fallo** (`course/cuaderno.js`, puro): un error típico de la taxonomía (`exams/taxonomia.js`) en un tipo de problema
   (el `ejercicio` de la solución o el id del ejercicio generado; `carta` si no tiene). Id `<error>.<tipo>`. Guarda las
   veces (`n`), las últimas con fecha y origen (`paso`, `pregunta`, `simulacro`, `examen`, `oficial`, `ejercicio`,
-  `comprobacion`, `papel`), la última dosis y las comprobaciones. Una misma pregunta (o semilla) con el mismo fallo el mismo día
+  `comprobacion`, `papel`, `traza`), la última dosis y las comprobaciones. Una misma pregunta (o semilla) con el mismo fallo el mismo día
   cuenta una vez: el paso guiado y la opción final de esa pregunta no se duplican.
 - **Estados y calendario:** abierto → (dosis superada, ≥ 4 de 5) comprobación a `DIAS_COMPROBACION` (3) días →
   bien: vigilando, la siguiente a `DIAS_VIGILANDO` (7) → bien otra vez: resuelto. Mal: abierto, dosis primero y la

@@ -648,7 +648,7 @@ a.clase .clase-meta :is(.badge, .estado, .chip-estado), a.clase .clase-meta > sp
 }
 /* Lecturas: rumbo, distancia y situación en mono */
 .ichart .readout, .ichart .protractor-bar { font-family: var(--fuente-mono); font-weight: 500; font-variant-numeric: tabular-nums; letter-spacing: 0; font-size: .78rem; line-height: 1.4; }
-.ichart.completa .ichart-pie .readout { max-height: calc(2.8em + .7rem); }
+.ichart .readout:not(.abierta) { max-height: calc(2.8em + .4rem); padding-bottom: 0; overflow: hidden; }
 .ichart .readout { border-top-color: var(--borde-fuerte); color: var(--text); }
 .protractor-bar { border-top-color: var(--borde-fuerte); background: var(--surface); }
 .protractor-bar input.bearing { font-family: var(--fuente-mono); font-weight: 600; border-radius: 0; min-height: 44px; }
@@ -663,7 +663,7 @@ a.clase .clase-meta :is(.badge, .estado, .chip-estado), a.clase .clase-meta > sp
 .completa-acciones button.secondary[aria-expanded="true"] { background: var(--accent-2); color: var(--accent); border-color: var(--accent); box-shadow: inset 0 -4px 0 var(--accent); }
 .ichart.completa .tools-mas { border-radius: 0; border-color: var(--text); box-shadow: 0 6px 18px rgba(0, 0, 0, .35); background: var(--surface); }
 @media (orientation: landscape) and (max-height: 500px) and (min-width: 480px) {
-  .ichart.completa .ichart-pie .readout { border-radius: 0; border: 1px solid var(--borde-fuerte); box-shadow: 0 2px 8px rgba(0, 0, 0, .25); }
+  .ichart.completa .ichart-pie .readout:not(.abierta) { border-radius: 0; border: 1px solid var(--borde-fuerte); box-shadow: 0 2px 8px rgba(0, 0, 0, .25); padding: .25rem .6rem 0; line-height: 1.9; max-height: calc(1.9em + .25rem); }
 }
 .ichart.completa svg.chart.interactive { border-right-color: var(--borde-fuerte); }
 /* Ayudas (chuleta, calculadora) dentro de la carta y de la mesa: mismas esquinas rectas y filete de tinta */

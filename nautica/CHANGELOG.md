@@ -15,7 +15,14 @@ Qué cambia en la app para quien la usa, por fecha de publicación. Es la base d
 
 ## Sin publicar
 
-Nada pendiente.
+**Mejoras**
+
+- **Resolver paso a paso, como en la hoja del examen, en toda la carta.** Lo que ya tenían la estima analítica y las
+  mareas llega a la corrección total, las demoras (dos demoras, oposición, enfilación, no simultáneas), el abatimiento y
+  las corrientes (efectiva, rumbo a dar y desconocida): cada paso te dice qué datos traes, qué regla aplicas (Ct = dm + Δ,
+  Rv = Ra + Ct, Rs = Rv + Ab según la banda, el triángulo de velocidades…) y, al contestar, la cuenta escrita con sus
+  signos, como la pondrías en el papel. Con tres dibujos nuevos: los nortes (verdadero, magnético y de aguja), la proa
+  con el viento y el triángulo de velocidades; lo que buscas aparece cuando contestas.
 
 ## 16 de noviembre de 2026, segunda publicación · versión `d7108aa0c424`
 

@@ -17,7 +17,7 @@ import { pasosGuiados, tienePasosPreguntables, corregirPaso, valorTexto, resumen
 import { PASOS } from '../exams/taxonomia.js';
 import { quantity } from '../analysis/quantities.js';
 import { narrateSteps } from '../teacher/narrate.js';
-import { fmtLat, fmtLon } from '../math/format.js';
+import { fmtLat, fmtLon, fmtSigned } from '../math/format.js';
 import { erroresAlumno } from '../store/errores.js';
 import { diagnosticoEl } from './diagnostico.js';
 import { cuenta } from '../texto.js';
@@ -83,7 +83,7 @@ export function guiadoPanel(o) {
   const SVGNS = 'http://www.w3.org/2000/svg';
   const sv = (tag, attrs = {}, texto = null) => { const e = document.createElementNS(SVGNS, tag); for (const [k2, v] of Object.entries(attrs)) e.setAttribute(k2, v); if (texto != null) e.textContent = texto; return e; };
   /** El croquis del paso, como el que se hace a lápiz en la hoja: la curva de la marea o los tramos encadenados. */
-  function croquisEl(p) {
+  function croquisEl(p, hecho = false) {
     const c = p.croquis;
     if (!c) return null;
     const svg = sv('svg', { viewBox: '0 0 320 150', role: 'img', class: 'guiado-croquis' });
@@ -112,6 +112,9 @@ export function guiadoPanel(o) {
       }
       return svg;
     }
+    if (c.tipo === 'ct') return croquisCt(svg, c, hecho, traza, sale);
+    if (c.tipo === 'abatimiento') return croquisAbatimiento(svg, c, hecho, traza, sale);
+    if (c.tipo === 'corriente') return croquisCorriente(svg, c, hecho, traza, sale);
     // Tramos: de la salida a la llegada, cada tramo a continuación del anterior (N arriba); la corriente, a trazos.
     svg.setAttribute('aria-label', 'Croquis de los tramos, con el norte arriba');
     let x = 0; let yy = 0; const P = [{ x: 0, y: 0 }];
@@ -134,6 +137,126 @@ export function guiadoPanel(o) {
     return svg;
   }
 
+  // ---- Croquis de la carta (R-52): los tres nortes, el abatimiento y el triángulo de velocidades. Antes de contestar
+  // solo se dibuja lo que da el enunciado; al contestar, lo que se buscaba. Los ángulos pequeños se exageran (y se dice).
+  const rumboA = (o2, b, r) => ({ x: o2.x + r * Math.sin(b * Math.PI / 180), y: o2.y - r * Math.cos(b * Math.PI / 180) });
+  const grad = (b) => `${String(Math.round(((b % 360) + 360) % 360) % 360).padStart(3, '0')}°`;
+  const nudos = (v) => `${v.toFixed(1).replace('.', ',')} nudos`;
+  /** Vector con su punta: [línea, punta]. `cls` = tinta | raya | efec. */
+  function flecha(a, b, cls) {
+    const L = Math.hypot(b.x - a.x, b.y - a.y) || 1; const u = { x: (b.x - a.x) / L, y: (b.y - a.y) / L };
+    const pta = sv('polygon', { points: `${b.x.toFixed(1)},${b.y.toFixed(1)} ${(b.x - 8 * u.x + 4 * u.y).toFixed(1)},${(b.y - 8 * u.y - 4 * u.x).toFixed(1)} ${(b.x - 8 * u.x - 4 * u.y).toFixed(1)},${(b.y - 8 * u.y + 4 * u.x).toFixed(1)}`, class: `cq-pta ${cls}` });
+    return [sv('line', { x1: a.x.toFixed(1), y1: a.y.toFixed(1), x2: b.x.toFixed(1), y2: b.y.toFixed(1), class: `cq-${cls}` }), pta];
+  }
+  /** Leyenda (arriba a la izquierda): una muestra del trazo y su texto. */
+  function leyenda(svg, filas, sale, y0 = 16) {
+    filas.forEach(([cls, texto], i) => {
+      const y = y0 + i * 17;
+      const m = cls ? sv('line', { x1: 6, y1: y - 4, x2: 20, y2: y - 4, class: `cq-${cls}` }) : null;
+      svg.append(...sale(...[m, sv('text', { x: cls ? 25 : 6, y, class: 'cq-ley' }, texto)].filter(Boolean)));
+    });
+  }
+  const norteEl = (x, y) => [sv('line', { x1: x, y1: y + 22, x2: x, y2: y, class: 'cq-eje' }), sv('polygon', { points: `${x},${y - 3} ${x - 3.5},${y + 5} ${x + 3.5},${y + 5}`, class: 'cq-pta raya' }), sv('text', { x, y: y - 6, 'text-anchor': 'middle' }, 'N')];
+
+  /** Los tres nortes: Nv, Nm (a la dm) y Na (a Δ del Nm); la Ct, de Nv a Na. Sin dm (Ct por enfilación o Polar), Nv y Na. */
+  function croquisCt(svg, c, hecho, traza, sale) {
+    svg.setAttribute('aria-label', `Los nortes: verdadero, ${c.dm != null ? 'magnético y ' : ''}de aguja${hecho ? `; la corrección total es ${fmtSigned(c.ct)}` : ''}`);
+    const O = { x: 200, y: 140 };
+    const ex = (v) => (Math.abs(v) < 1e-9 ? 0 : Math.sign(v) * Math.min(30, 7 + 2.2 * Math.abs(v)));
+    const arco = (a, b, r, cls) => { const A = rumboA(O, a, r); const B = rumboA(O, b, r);
+      return sv('path', { d: `M${A.x.toFixed(1)},${A.y.toFixed(1)} A${r},${r} 0 0 ${b > a ? 1 : 0} ${B.x.toFixed(1)},${B.y.toFixed(1)}`, class: `cq-${cls}` }); };
+    const tip = (b, r, texto, cls) => { const t = rumboA(O, b, r + 9); return sv('text', { x: t.x.toFixed(1), y: (t.y + 3).toFixed(1), 'text-anchor': b < -2 ? 'end' : b > 2 ? 'start' : 'middle', class: cls }, texto); };
+    svg.append(sv('text', { x: O.x - 78, y: O.y - 4, 'text-anchor': 'middle' }, '← W (−)'), sv('text', { x: O.x + 78, y: O.y - 4, 'text-anchor': 'middle' }, 'E (+) →'));
+    svg.append(traza(sv('line', { x1: O.x, y1: O.y, x2: O.x, y2: O.y - 116, class: 'cq-eje cq-nv' }), 0.4), ...sale(tip(0, 116, 'Nv', 'cq-ley')));
+    const filas = [];
+    let aNa;
+    if (c.dm != null) {
+      const aNm = ex(c.dm); aNa = aNm + ex(c.dz);
+      const m = rumboA(O, aNm, 98);
+      svg.append(...sale(sv('line', { x1: O.x, y1: O.y, x2: m.x.toFixed(1), y2: m.y.toFixed(1), class: 'cq-raya' }), tip(aNm, 98, 'Nm', 'cq-ley')));
+      if (aNm) svg.append(...sale(arco(0, aNm, 70, 'raya')));
+      filas.push(['raya', `dm ${fmtSigned(c.dm)}`]);
+      const a = rumboA(O, aNa, 82);
+      svg.append(traza(sv('line', { x1: O.x, y1: O.y, x2: a.x.toFixed(1), y2: a.y.toFixed(1), class: 'cq-tinta' }), 0.5), ...sale(tip(aNa, 82, 'Na', 'cq-ley')));
+      if (aNa !== aNm) svg.append(...sale(arco(aNm, aNa, 54, 'tinta')));
+      filas.push(['tinta', `Δ ${fmtSigned(c.dz)}`]);
+    } else if (hecho) {
+      aNa = ex(c.ct);
+      const a = rumboA(O, aNa, 82);
+      svg.append(traza(sv('line', { x1: O.x, y1: O.y, x2: a.x.toFixed(1), y2: a.y.toFixed(1), class: 'cq-tinta' }), 0.5), ...sale(tip(aNa, 82, 'Na', 'cq-ley')));
+    }
+    if (hecho && aNa) svg.append(...sale(arco(0, aNa, 38, 'efec')));
+    if (hecho) filas.push(['efec', `Ct ${fmtSigned(c.ct)}`]);
+    leyenda(svg, filas, sale);
+    svg.append(sv('text', { x: 6, y: 146, class: 'cq-nota' }, 'ángulos exagerados'));
+    return svg;
+  }
+
+  /** Abatimiento: la proa (Rv), el viento que entra por una banda y el rumbo de superficie (Rs), con el norte arriba. */
+  function croquisAbatimiento(svg, c, hecho, traza, sale) {
+    const nombre = { Rv: 'Rv (proa)', Rs: 'Rs' };
+    svg.setAttribute('aria-label', `Abatimiento: ${c.sabido.n} ${grad(c.sabido.r)}, viento del ${grad(c.viento)}${hecho ? `, ${c.busca.n} ${grad(c.busca.r)}` : ''}`);
+    const C = { x: 205, y: 80 };
+    const v0 = rumboA(C, c.viento, 68); const v1 = rumboA(C, c.viento, 20);
+    svg.append(...norteEl(304, 14));
+    svg.append(...sale(...flecha(v0, v1, 'raya'), sv('text', { x: v0.x.toFixed(1), y: (v0.y + (v0.y < C.y ? -5 : 13)).toFixed(1), 'text-anchor': 'middle' }, 'viento')));
+    svg.append(...sale(sv('circle', { cx: C.x, cy: C.y, r: 3.5, class: 'cq-punto' })));
+    const ls = c.sabido.n === 'Rv' ? 64 : 50; const lb = c.sabido.n === 'Rv' ? 50 : 64;
+    const [l1, p1] = flecha(C, rumboA(C, c.sabido.r, ls), c.sabido.n === 'Rv' ? 'tinta' : 'efec');
+    const t1 = rumboA(C, c.sabido.r, ls + 11);
+    svg.append(traza(l1, 0.5), ...sale(p1, sv('text', { x: t1.x.toFixed(1), y: (t1.y + 4).toFixed(1), 'text-anchor': 'middle', class: 'cq-ley' }, c.sabido.n)));
+    const filas = [[c.sabido.n === 'Rv' ? 'tinta' : 'efec', `${nombre[c.sabido.n]} ${grad(c.sabido.r)}`], ['raya', `viento del ${grad(c.viento)}`]];
+    if (hecho) {
+      const [l2, p2] = flecha(C, rumboA(C, c.busca.r, lb), c.busca.n === 'Rv' ? 'tinta' : 'efec');
+      const t2 = rumboA(C, c.busca.r, lb + 11);
+      svg.append(traza(l2, 0.5), ...sale(p2, sv('text', { x: t2.x.toFixed(1), y: (t2.y + 4).toFixed(1), 'text-anchor': 'middle', class: 'cq-ley' }, c.busca.n)));
+      filas.push([c.busca.n === 'Rv' ? 'tinta' : 'efec', `${nombre[c.busca.n]} ${grad(c.busca.r)}`], [null, `Ab ${c.ab > 0 ? '+' : c.ab < 0 ? '−' : ''}${Math.abs(c.ab)}°`]);
+    }
+    leyenda(svg, filas, sale);
+    return svg;
+  }
+
+  /**
+   * Triángulo de velocidades (una hora), con el norte arriba. `modo`: 'efectivo' (barco y, a continuación, corriente →
+   * efectivo), 'rumbo' (corriente y la línea del Ref → barco y efectivo) o 'velocidad' (corriente y efectivo → barco).
+   */
+  function croquisCorriente(svg, c, hecho, traza, sale) {
+    const V = (b, l) => ({ x: l * Math.sin(b * Math.PI / 180), y: -l * Math.cos(b * Math.PI / 180) });
+    const mas = (a, b) => ({ x: a.x + b.x, y: a.y + b.y });
+    const O = { x: 0, y: 0 };
+    const efec = c.modo === 'efectivo';
+    const M = efec ? V(c.rs, c.vb) : V(c.rc, c.ic); // el vértice intermedio
+    const F = efec ? mas(M, V(c.rc, c.ic)) : V(c.ref, c.vef);
+    const guia = c.modo === 'rumbo' && !hecho ? V(c.ref, c.vef * 1.15) : null;
+    const pts = [O, M, F, ...(guia ? [guia] : [])];
+    const xs = pts.map((q2) => q2.x); const ys = pts.map((q2) => q2.y);
+    const w = Math.max(1, Math.max(...xs) - Math.min(...xs)); const hh = Math.max(1, Math.max(...ys) - Math.min(...ys));
+    // Más alto que los demás: la leyenda va debajo, a lo ancho, para que el triángulo tenga sitio.
+    svg.setAttribute('viewBox', '0 0 320 196');
+    const esc = Math.min(230 / w, 100 / hh);
+    const ox = 160 - ((Math.max(...xs) + Math.min(...xs)) / 2) * esc; const oy = 64 - ((Math.max(...ys) + Math.min(...ys)) / 2) * esc;
+    const T = (q2) => ({ x: ox + q2.x * esc, y: oy + q2.y * esc });
+    svg.setAttribute('aria-label', `Triángulo de velocidades: barco, corriente y efectivo${hecho ? '' : ' (falta lo que se busca)'}`);
+    svg.append(...norteEl(304, 14));
+    const o = T(O); const m = T(M); const f = T(F);
+    const barco = efec ? [o, m] : [m, f]; const corr = efec ? [m, f] : [o, m];
+    const verEfec = c.modo === 'velocidad' || hecho;
+    svg.append(...sale(sv('circle', { cx: o.x.toFixed(1), cy: o.y.toFixed(1), r: 3.5, class: 'cq-punto' })));
+    if (guia) { const g = T(guia); svg.append(...sale(sv('line', { x1: o.x.toFixed(1), y1: o.y.toFixed(1), x2: g.x.toFixed(1), y2: g.y.toFixed(1), class: 'cq-guia' }))); }
+    const pinta = (seg, cls, dur) => { const [l, p] = flecha(seg[0], seg[1], cls); if (cls === 'raya') svg.append(...sale(l, p)); else svg.append(traza(l, dur), ...sale(p)); };
+    if (efec) { pinta(barco, 'tinta', 0.6); pinta(corr, 'raya'); } else { pinta(corr, 'raya'); if (c.modo === 'velocidad') pinta([o, f], 'efec', 0.6); }
+    if (hecho) { if (!efec) pinta(barco, 'tinta', 0.6); if (c.modo !== 'velocidad') pinta([o, f], 'efec', 0.6); }
+    const q = (v, txt) => (v ? txt : '?');
+    const sabeRs = efec || hecho; const sabeVb = efec || c.modo === 'rumbo' || hecho;
+    leyenda(svg, [
+      ['tinta', `barco: Rs ${q(sabeRs, grad(c.rs))} · ${q(sabeVb, nudos(c.vb))}`],
+      ['raya', `corriente: ${grad(c.rc)} · ${nudos(c.ic)}`],
+      ['efec', `efectivo: Ref ${q(!efec || hecho, grad(c.ref))} · ${q(verEfec, nudos(c.vef))}`],
+    ], sale, 140);
+    svg.append(sv('text', { x: 314, y: 191, 'text-anchor': 'end', class: 'cq-nota' }, 'en una hora'));
+    return svg;
+  }
+
   // En negrita, los resultados: la última línea o, si el paso pide dos diferencias (Δl y A), las dos.
   const cuentaEl = (p) => { const n = p.pide?.campos?.length === 2 && p.pide.campos.every((c) => c.kind === 'minutos') && p.lineas.length === 2 ? 2 : 1;
     return h('div.guiado-cuenta', p.lineas.map((l, i) => h('div', { class: i >= p.lineas.length - n ? 'res' : '' }, l))); };
@@ -148,7 +271,7 @@ export function guiadoPanel(o) {
       h('h3.guiado-tit', cab),
       r && r.resultado !== ESTADO.OK && r.resultado !== 'dimelo' ? h('p.guiado-era', `Era ${valorTexto(p.pide)}${r.tuyo ? ` (escribiste ${r.tuyo})` : ''}.`) : null,
       r?.resultado === ESTADO.OK ? h('p.guiado-era', valorTexto(p.pide)) : null,
-      p.lineas ? [traigoEl(p), croquisEl(p), tablaEl(p, true), cuentaEl(p)] : deHoja ? h('p.guiado-nota', p.text) : explicacion(p.i));
+      p.lineas ? [traigoEl(p), croquisEl(p, true), tablaEl(p, true), cuentaEl(p)] : deHoja && !p.pide ? h('p.guiado-nota', p.text) : explicacion(p.i));
   }
 
   /** El paso que se pregunta ahora. */
@@ -173,7 +296,7 @@ export function guiadoPanel(o) {
     } }, conIcono('lugar', 'Tomar la situación de la carta')) : null;
     const titulo = h('h3.guiado-tit', { tabindex: '-1' }, `${p.title}`);
     const form = h('form.answers.guiado-form', { onsubmit: (ev) => { ev.preventDefault(); comprobar(); } },
-      p.tras.includes('traigo') ? null : traigoEl(p), p.tras.includes('croquis') ? null : croquisEl(p), tablaEl(p, false),
+      p.tras.includes('traigo') ? null : traigoEl(p), p.tras.includes('croquis') ? null : croquisEl(p, false), tablaEl(p, false),
       p.plantea ? h('p.guiado-plantea', h('small', 'Planteo'), p.plantea) : null,
       h('p.guiado-pregunta', p.pide.pregunta),
       entradas.map(({ c, input, fb }) => h('label.field', { for: input.id }, h('span.lbl', `${c.label}${c.medido ? ' (en la carta)' : ''}`), input, fb)),

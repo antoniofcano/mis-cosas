@@ -60,6 +60,7 @@ export const ERRORES = {
   'corriente-invertida': { paso: 'corriente', nombre: 'Corriente al revés', otraVez: 'aplicar la corriente en sentido contrario', si: 'aplicas la corriente en sentido contrario (su rumbo dice hacia dónde va el agua)' },
   'corriente-sumada': { paso: 'corriente', nombre: 'Corriente sumada', otraVez: 'sumar la velocidad de la corriente en vez de componer los vectores', si: 'sumas la velocidad de la corriente a la del barco en vez de componer los vectores' },
   'sin-traslado': { paso: 'traslado', nombre: 'Sin trasladar la primera línea', otraVez: 'cruzar las dos líneas sin trasladar la primera', si: 'cruzas las dos líneas como si fueran simultáneas, sin trasladar la primera lo navegado' },
+  'traslado-al-reves': { paso: 'traslado', nombre: 'Traslado al revés', otraVez: 'trasladar la primera línea hacia atrás', si: 'trasladas la primera línea (o el centro del primer arco) hacia atrás, con el rumbo opuesto al navegado' },
   'horas-decimales': { paso: 'tiempo', nombre: 'Minutos y décimas de hora', otraVez: 'confundir minutos con décimas de hora', si: 'confundes minutos y décimas de hora (1 h 30 min son 1,5 h, no 1,30 h)' },
   'lm-salida': { paso: 'loxodromica', nombre: 'Latitud de salida por la media', otraVez: 'usar la latitud de salida en vez de la media', si: 'usas la latitud de salida en vez de la latitud media' },
   'sin-cos-lm': { paso: 'loxodromica', nombre: 'Apartamiento por ΔL', otraVez: 'tomar el apartamiento como diferencia de longitud, sin el cos lm', si: 'tomas el apartamiento como diferencia de longitud, sin el cos lm' },
@@ -95,7 +96,7 @@ export const VARIANTES = [
   'sin-ct', 'signo-dm', 'signo-desvio', 'olvida-desvio', 'dm-sin-actualizar', 'variacion-signo',
   'banda-marcacion', 'marcacion-como-demora', 'sentido-recta', 'demora-sin-opuesta', 'lado-del-faro',
   'banda', 'directo', 'signo-abatimiento', 'sin-abatimiento',
-  'sin-corriente', 'corriente-invertida', 'corriente-sumada', 'sin-traslado', 'horas-decimales',
+  'sin-corriente', 'corriente-invertida', 'corriente-sumada', 'sin-traslado', 'traslado-al-reves', 'horas-decimales',
   'lm-salida', 'sin-cos-lm', 'cos-lm-multiplica', 'signo-dL', 'seno-coseno',
   'antimeridiano:letra', // al pasar de 180° resta de 360° pero deja la letra de la salida (tramos)
   'antimeridiano:resta', // Δλ = L llegada − L salida tal cual, por el camino largo (rumboDirecto)

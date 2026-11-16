@@ -88,6 +88,8 @@ export function createKit(chart, { error = null, fijos = null } = {}) {
   const pide = (paso, pregunta, campos) => ({ paso, pregunta, campos });
   const posCampos = (p, medido = true) => [{ kind: 'lat', value: p.lat, label: 'Latitud', medido }, { kind: 'lon', value: p.lon, label: 'Longitud', medido }];
   /** Minutos navegados → horas, o como los lee quien confunde minutos y décimas de hora (1 h 30 min → 1,30 h). */
+  /** El rumbo con el que se traslada la 1ª línea, o el opuesto para quien la traslada hacia atrás. */
+  const rumboTraslado = (rumbo) => (E('traslado-al-reves') ? norm360(rumbo + 180) : rumbo);
   const horasDe = (min) => (E('horas-decimales') ? Math.floor(min / 60) + (min % 60) / 100 : min / 60);
   const P = (id) => (typeof id === 'string' ? chart.point(id) : id);
   const nm = (id) => (P(id).name ?? 'el punto').replace(/^Faro de /, 'faro de ');
@@ -517,7 +519,7 @@ export function createKit(chart, { error = null, fijos = null } = {}) {
     },
     /** Demoras no simultáneas: la 1ª línea se traslada lo navegado (rumbo, millas) y se corta con la 2ª. */
     traslado(a, dvA, b, dvB, rumbo, millas, label = 'Situación') {
-      const pA2 = rhumbDestination(P(a), rumbo, E('sin-traslado') ? 0 : millas);
+      const pA2 = rhumbDestination(P(a), rumboTraslado(rumbo), E('sin-traslado') ? 0 : millas);
       let p = lineCut(pA2, dvA, P(b), dvB);
       if (!p) throw new Error('Sin corte');
       p = FP(p, 1);
@@ -525,7 +527,7 @@ export function createKit(chart, { error = null, fijos = null } = {}) {
         { traigo: [`1ª demora: Dv ${nm(a)} = ${fmtBearing(dvA)}`, `Navegado entre las dos: ${fmtBearing(rumbo)}, ${fmtMiles(millas, 1)}`],
           plantea: TRASLADO, lineas: [`1ª línea, desde ${nm(a)}: ${fmtBearing(dvA + 180)}`, `Traslado: ${fmtBearing(rumbo)}, ${fmtMiles(millas, 1)}`, `Paralela a ${fmtBearing(dvA + 180)} por el punto trasladado`] });
       items.push({ t: 'ray', from: P(a), bearing: norm360(dvA + 180), length: rhumbTo(P(a), p).distance + 2, style: 'lop', step: n },
-        { t: 'vec', from: P(a), bearing: rumbo, length: millas, style: 'construction', step: n },
+        { t: 'vec', from: P(a), bearing: rumboTraslado(rumbo), length: millas, style: 'construction', step: n },
         { t: 'line', through: p, bearing: dvA, length: 8, label: 'trasladada', style: 'lop2', step: n });
       step(label, `Desde ${nm(b)} trazamos ${fmtBearing(dvB + 180)}: corta a la línea trasladada en ${fmtPos(p)}.`, pide('traslado', `Marca o escribe la ${label.toLowerCase()}.`, posCampos(p)),
         { traigo: [`Línea trasladada: paralela a ${fmtBearing(dvA + 180)}`, `2ª demora: Dv ${nm(b)} = ${fmtBearing(dvB)}`],
@@ -542,15 +544,23 @@ export function createKit(chart, { error = null, fijos = null } = {}) {
      */
     trasladoArco(a, dvA, b, dist, rumbo, millas, elegir, label = 'Situación') {
       const A = P(a); const B = P(b);
-      const cortes = cortesRectaArco(rhumbDestination(A, rumbo, E('sin-traslado') ? 0 : millas), dvA, B, dist);
-      let p = elegir(cortes);
-      if (!p) throw new Error('Sin corte');
+      const rT = rumboTraslado(rumbo);
+      const pA2 = rhumbDestination(A, rT, E('sin-traslado') ? 0 : millas);
+      const cortes = cortesRectaArco(pA2, dvA, B, dist);
+      let p = cortes.length ? elegir(cortes) : null;
+      if (!p) {
+        // Sin corte (un traslado equivocado): queda dibujado lo trasladado, para enseñar que no llega al arco.
+        items.push({ t: 'ray', from: A, bearing: norm360(dvA + 180), length: rhumbTo(A, B).distance + dist, style: 'lop', step: n },
+          { t: 'vec', from: A, bearing: rT, length: millas, style: 'construction', step: n },
+          { t: 'line', through: pA2, bearing: dvA, length: 2 * (rhumbTo(pA2, B).distance + dist), label: 'trasladada', style: 'lop2', step: n });
+        throw new Error('Sin corte');
+      }
       p = FP(p, 1);
       step('Traslado de la 1ª línea', `Desde ${nm(a)} llevamos el rumbo ${fmtBearing(rumbo)} y ${fmtMiles(millas)} navegadas: por ese punto trazamos una paralela a la 1ª demora (${fmtBearing(dvA + 180)} desde el faro).`, null,
         { traigo: [`1ª demora: Dv ${nm(a)} = ${fmtBearing(dvA)}`, `Navegado entre las dos: ${fmtBearing(rumbo)}, ${fmtMiles(millas)}`],
           plantea: TRASLADO, lineas: [`1ª línea, desde ${nm(a)}: ${fmtBearing(dvA + 180)}`, `Traslado: ${fmtBearing(rumbo)}, ${fmtMiles(millas)}`, `Paralela a ${fmtBearing(dvA + 180)} por el punto trasladado`] });
       items.push({ t: 'ray', from: A, bearing: norm360(dvA + 180), length: rhumbTo(A, p).distance + 2, style: 'lop', step: n },
-        { t: 'vec', from: A, bearing: rumbo, length: millas, style: 'construction', step: n },
+        { t: 'vec', from: A, bearing: rT, length: millas, style: 'construction', step: n },
         { t: 'line', through: p, bearing: dvA, length: 8, label: 'trasladada', style: 'lop2', step: n });
       step(label, `Con centro en ${nm(b)} trazamos el arco de ${fmtMiles(dist)}: corta a la línea trasladada en ${cortes.map((c) => fmtPos(c)).join(' y en ')}. Nos quedamos con ${fmtPos(p)}, el corte en el mar y coherente con la derrota.`, pide('traslado', `Marca o escribe la ${label.toLowerCase()}.`, posCampos(p)),
         { traigo: [`Línea trasladada: paralela a ${fmtBearing(dvA + 180)}`, `Distancia a ${nm(b)} = ${fmtMiles(dist)}`],
@@ -564,16 +574,28 @@ export function createKit(chart, { error = null, fijos = null } = {}) {
     /** Distancias no simultáneas: el centro del 1er arco se traslada lo navegado y se corta con el 2º arco. */
     trasladoDosArcos(a, da, b, db, rumbo, millas, elegir, label = 'Situación') {
       const A = P(a); const B = P(b);
-      const A2 = rhumbDestination(A, rumbo, E('sin-traslado') ? 0 : millas);
+      const rT = rumboTraslado(rumbo);
+      const A2 = rhumbDestination(A, rT, E('sin-traslado') ? 0 : millas);
       const cortes = cortesDosArcos(A2, da, B, db);
-      let p = elegir(cortes);
-      if (!p) throw new Error('Sin corte');
+      let p = cortes.length ? elegir(cortes) : null;
+      if (!p) {
+        // Sin corte (un traslado equivocado): queda dibujado lo trasladado, para enseñar que no llega al 2º arco.
+        const hacia = rhumbTo(A2, B).bearing;
+        items.push({ t: 'arc', center: A, radius: da, around: rhumbTo(A, B).bearing, span: 40, style: 'lop', step: n },
+          { t: 'vec', from: A, bearing: rT, length: millas, style: 'construction', step: n },
+          { t: 'arc', center: A2, radius: da, around: hacia, span: 40, label: 'trasladada', style: 'lop2', step: n });
+        throw new Error('Sin corte');
+      }
       p = FP(p, 1);
       step('Traslado de la 1ª línea', `La 1ª línea de posición es el arco de ${fmtMiles(da)} con centro en ${nm(a)}. Trasladamos su centro lo navegado entre las dos observaciones, ${fmtBearing(rumbo)} y ${fmtMiles(millas)}: nuevo centro en ${fmtPos(A2)}, y desde él trazamos de nuevo el arco de ${fmtMiles(da)}.`, null,
         { traigo: [`1ª distancia: ${fmtMiles(da)} a ${nm(a)}`, `Navegado entre las dos: ${fmtBearing(rumbo)}, ${fmtMiles(millas)}`],
           plantea: 'Distancias no simultáneas: el centro del 1er arco se traslada lo navegado entre las dos observaciones (mismo rumbo y distancia), y desde el centro nuevo se traza el mismo arco.',
           lineas: [`Centro trasladado: ${fmtBearing(rumbo)}, ${fmtMiles(millas)} desde ${nm(a)}`, `Arco de ${fmtMiles(da)} desde el centro nuevo`] });
-      items.push({ t: 'vec', from: A, bearing: rumbo, length: millas, style: 'construction', step: n },
+      // El 1er arco, donde se tomó la distancia (a la hora de la 1ª observación: la situación, deshecho lo navegado), y
+      // el traslado de su centro (carta por intención: «trazar el arco, trasladar el centro y cortar»).
+      const p1 = rhumbDestination(p, norm360(rT + 180), E('sin-traslado') ? 0 : millas);
+      items.push({ t: 'arc', center: A, radius: da, around: rhumbTo(A, p1).bearing, span: 40, style: 'lop', step: n },
+        { t: 'vec', from: A, bearing: rT, length: millas, style: 'construction', step: n },
         { t: 'arc', center: A2, radius: da, around: rhumbTo(A2, p).bearing, span: 40, label: 'trasladada', style: 'lop2', step: n });
       step(label, `Con centro en ${nm(b)} trazamos el arco de ${fmtMiles(db)}: los dos arcos se cortan en ${cortes.map((c) => fmtPos(c)).join(' y en ')}. Nos quedamos con ${fmtPos(p)}, el corte en el mar.`, pide('traslado', `Marca o escribe la ${label.toLowerCase()}.`, posCampos(p)),
         { traigo: [`Arco trasladado: ${fmtMiles(da)}`, `2ª distancia: ${fmtMiles(db)} a ${nm(b)}`],
@@ -936,6 +958,9 @@ export function cortesDosArcos(a, ra, b, rb) {
   const u = unitsPerMile((a.lat + b.lat) / 2);
   const pa = toPlane(a); const pb = toPlane(b); const RA = ra * u; const RB = rb * u;
   const dx = pb.x - pa.x; const dy = pb.y - pa.y; const d = Math.hypot(dx, dy);
+  // Con el mismo centro no hay corte. Si los arcos no llegan a tocarse, el punto más cercano (como el tribunal en alguna
+  // opción de una pregunta real: la de no trasladar).
+  if (d < 1e-9) return [];
   const x = (RA * RA - RB * RB + d * d) / (2 * d); const h = Math.sqrt(Math.max(0, RA * RA - x * x));
   const m = { x: pa.x + (dx * x) / d, y: pa.y + (dy * x) / d };
   return [{ x: m.x - (dy * h) / d, y: m.y + (dx * h) / d }, { x: m.x + (dy * h) / d, y: m.y - (dx * h) / d }].map(fromPlane);

@@ -27,6 +27,7 @@ import { tipoDePregunta } from '../course/velocidad.js';
 import { AVISOS, avisoPrevio, erroresDelTribunal, diagnosticarPaso } from '../exams/avisos-pasos.js';
 import { loadErroresFrecuentes } from '../store/datasets.js';
 import { anotarFallo } from './cuaderno.js';
+import { preguntaDeTipo, escalones, pasosRellenos, textoAyudas, resumenAyudas } from '../exams/ensena.js';
 
 let contador = 0;
 
@@ -96,6 +97,12 @@ function avisosDeLosPasos({ q, sol, chart, almacen, factor = 1, tit = null }) {
  * @param {object} [o.glosas]   contexto de las siglas ({ tit, ut })
  * @param {(letra: string, ok: boolean) => void} [o.onOpcion]  al comprobar la opción final
  * @param {() => void} [o.onCerrar]  botón «Cerrar el paso a paso» (si se da)
+ * @param {'normal'|'resuelto'|'huecos'} [o.modo]  R-71: 'resuelto' enseña todos los pasos hechos (el ejemplo resuelto);
+ *   'huecos', la primera mitad de los pasos rellena y el alumno completa el resto. Ninguno de los dos lleva reloj ni el
+ *   primer paso «¿qué tipo es?».
+ * @param {boolean} [o.tipo]   el primer paso «¿Qué tipo de problema es?» (por defecto, sí en el modo normal)
+ * @param {{ resuelto: () => HTMLElement, huecos?: (() => HTMLElement)|null }|null} [o.ejemplos]  R-71: el ejemplo resuelto
+ *   y el de huecos de otra pregunta del mismo tipo (los monta la vista, con su carta); sin ellos, no se ofrecen
  */
 export function guiadoPanel(o) {
   const { q, sol, chart } = o;
@@ -107,17 +114,27 @@ export function guiadoPanel(o) {
   const narr = narrateSteps(k.steps, { seed: q.id });
   const almacen = erroresAlumno();
   const avisos = avisosDeLosPasos({ q, sol, chart, almacen, factor: o.factor ?? 1, tit: o.glosas?.tit ?? null });
-  const resultados = []; // { i, paso, resultado }
+  const resultados = []; // { i, paso, resultado, ayudas }
   let actual = -1; // último paso enseñado
   let terminado = false;
   let eleccion = null;
+  // R-71: el modo (la pregunta del alumno, el ejemplo resuelto o el de huecos), el primer paso «¿qué tipo es?» y las ayudas.
+  const modo = o.modo ?? 'normal';
+  const normal = modo === 'normal';
+  const rellenos = modo === 'resuelto' ? new Set(pasos.filter((p) => p.pide).map((p) => p.i)) : modo === 'huecos' ? pasosRellenos(pasos) : new Set();
+  const tipoProblema = tipoDePregunta(q, sol, { deCarta: true });
+  const pasoTipo = normal && o.tipo !== false ? preguntaDeTipo(q, tipoProblema) : null;
+  let tipoHecho = null; // { ok, elegido } del primer paso
+  let ayudasPaso = 0; // escalones de ayuda usados en el paso en curso
 
   // Reloj (R-64): el tiempo de la resolución y de cada paso; al terminar los pasos se guarda con los de carta (R-42).
-  const rp = relojPaso({ tit: o.glosas?.tit ?? null, pasos: true, vivo: () => el.isConnected });
+  // Solo en la pregunta del alumno: el ejemplo resuelto y el de huecos no son un problema entero hecho por él.
+  const rp = normal ? relojPaso({ tit: o.glosas?.tit ?? null, pasos: true, vivo: () => el.isConnected }) : null;
   const lista = h('ol.guiado-lista');
   const progreso = h('p.guiado-progreso.small.muted', { 'aria-live': 'polite' });
   const final = h('div.guiado-final');
-  const totalPreguntas = pasos.filter((p) => p.pide).length;
+  const ejemploBox = normal ? h('div.guiado-ejemplo', { hidden: true, tabindex: '-1' }) : null;
+  const totalPreguntas = pasos.filter((p) => p.pide && !rellenos.has(p.i)).length;
 
   const explicacion = (i) => {
     const n = narr[i];
@@ -322,12 +339,15 @@ export function guiadoPanel(o) {
   /** Un paso ya resuelto (o una nota): título, resultado y explicación. */
   function pasoHecho(p, r) {
     const cab = r == null ? conIcono('libro', p.title)
+      : r.resultado === 'relleno' ? conIcono('libro', `${p.title}: ${valorTexto(p.pide)}`)
       : r.resultado === ESTADO.OK ? conIcono('ok', `${p.title}: correcto`)
         : r.resultado === 'dimelo' ? conIcono('bombilla', `${p.title}: ${valorTexto(p.pide)}`)
           : conIcono(r.resultado === ESTADO.CASI ? 'casi' : 'no', `${p.title}: ${r.resultado === ESTADO.CASI ? 'casi' : 'no'}`);
     return h('li.guiado-paso.hecho', { class: r ? `r-${r.resultado}` : 'nota', 'data-paso': String(p.i + 1) },
       h('h3.guiado-tit', cab),
-      r && r.resultado !== ESTADO.OK && r.resultado !== 'dimelo' ? h('p.guiado-era', `Era ${valorTexto(p.pide)}${r.tuyo ? ` (escribiste ${r.tuyo})` : ''}.`) : null,
+      r?.resultado === 'relleno' && modo === 'huecos' ? h('p.guiado-relleno.small.muted', 'Ya relleno: míralo y sigue.') : null,
+      r?.ayudas && r.resultado !== 'dimelo' ? h('p.guiado-con-ayudas.small', conIcono('bombilla', textoAyudas(r.ayudas))) : null,
+      r && r.resultado !== ESTADO.OK && r.resultado !== 'dimelo' && r.resultado !== 'relleno' ? h('p.guiado-era', `Era ${valorTexto(p.pide)}${r.tuyo ? ` (escribiste ${r.tuyo})` : ''}.`) : null,
       r?.resultado === ESTADO.OK ? h('p.guiado-era', valorTexto(p.pide)) : null,
       p.lineas ? [traigoEl(p), croquisEl(p, true), tablaEl(p, true), cuentaEl(p)] : deHoja && !p.pide ? h('p.guiado-nota', p.text) : explicacion(p.i),
       avisos.despues(p, r));
@@ -336,7 +356,7 @@ export function guiadoPanel(o) {
   /** El paso que se pregunta ahora. */
   function pasoActual(p) {
     const n = actual + 1;
-    const pedidos = pasos.slice(0, p.i + 1).filter((x) => x.pide).length;
+    const pedidos = pasos.slice(0, p.i + 1).filter((x) => x.pide && !rellenos.has(x.i)).length;
     progreso.textContent = `Paso ${pedidos} de ${totalPreguntas} que se preguntan · ${PASOS[p.pide.paso]?.nombre ?? ''}`;
     const entradas = p.pide.campos.map((c, j) => {
       const qn = quantity(c.kind);
@@ -354,16 +374,32 @@ export function guiadoPanel(o) {
       aviso.textContent = `Tomada de tu último punto: ${fmtLat(punto.at.lat)}, ${fmtLon(punto.at.lon)}. Pulsa «Comprobar».`;
     } }, conIcono('lugar', 'Tomar la situación de la carta')) : null;
     const titulo = h('h3.guiado-tit', { tabindex: '-1' }, `${p.title}`);
+    // Ayuda por escalones (R-71): la pista, la fórmula con los datos y, por último, «Dímelo». No es fallar, pero se apunta.
+    ayudasPaso = 0;
+    const esc = escalones(p);
+    const ayudaCaja = h('div.guiado-ayudas', { 'aria-live': 'polite' });
+    const rotuloAyuda = () => (ayudasPaso < esc.length - 1 ? `${esc[ayudasPaso].titulo === 'La fórmula con tus datos' ? 'La fórmula' : esc[ayudasPaso].titulo} · ${ayudasPaso + 1} de ${esc.length}` : `Dímelo · ${esc.length} de ${esc.length}`);
+    const botonAyuda = h('button.secondary.guiado-ayuda-btn', { type: 'button', onclick: () => siguienteAyuda() }, conIcono('bombilla', rotuloAyuda()));
+    function siguienteAyuda() {
+      if (ayudasPaso >= esc.length - 1) { cerrarPaso('dimelo'); return; }
+      const e = esc[ayudasPaso];
+      ayudasPaso += 1;
+      ayudaCaja.append(h('div.guiado-escalon', { 'data-escalon': e.id },
+        h('p.guiado-escalon-tit.small', h('strong', `${e.titulo} `), h('span.muted', `(ayuda ${ayudasPaso} de ${esc.length})`)),
+        e.texto ? h('p', e.texto) : null,
+        e.lineas?.length ? h('div.guiado-cuenta.guiado-escalon-cuenta', e.lineas.map((l) => h('div', l))) : null));
+      botonAyuda.replaceChildren(...conIcono('bombilla', rotuloAyuda()));
+    }
     const form = h('form.answers.guiado-form', { onsubmit: (ev) => { ev.preventDefault(); comprobar(); } },
       p.tras.includes('traigo') ? null : traigoEl(p), p.tras.includes('croquis') ? null : croquisEl(p, false), tablaEl(p, false),
       p.plantea ? h('p.guiado-plantea', h('small', 'Planteo'), p.plantea) : null,
       avisos.antes(p),
       h('p.guiado-pregunta', p.pide.pregunta),
       entradas.map(({ c, input, fb }) => h('label.field', { for: input.id }, h('span.lbl', `${c.label}${c.medido ? ' (en la carta)' : ''}`), input, fb)),
-      tomar, aviso,
+      tomar, aviso, ayudaCaja,
       h('div.actions',
         h('button', { type: 'submit' }, 'Comprobar'),
-        h('button.secondary', { type: 'button', onclick: () => cerrarPaso('dimelo') }, conIcono('bombilla', 'Dímelo'))));
+        botonAyuda));
     const li = h('li.guiado-paso.actual', { 'data-paso': String(p.i + 1) }, titulo, form);
 
     function comprobar() {
@@ -385,9 +421,9 @@ export function guiadoPanel(o) {
   /** Cierra el paso actual con su resultado y sigue. */
   function cerrarPaso(resultado, tuyo, valores) {
     const p = pasos[actual];
-    const r = { i: p.i, paso: p.pide.paso, resultado, tuyo, valores };
+    const r = { i: p.i, paso: p.pide.paso, resultado, tuyo, valores, ayudas: ayudasPaso };
     resultados.push(r);
-    rp.marcaPaso(resultado === ESTADO.OK);
+    rp?.marcaPaso(resultado === ESTADO.OK);
     if (resultado !== 'dimelo') almacen.paso(q.id, p.pide.paso, resultado === ESTADO.OK);
     // Fallo con nombre (R-55): si lo escrito es lo que sale con un error típico del paso, a tus errores y a tu cuaderno de
     // fallos. La opción final de la misma pregunta con el mismo error, el mismo día, ya no cuenta otra vez.
@@ -407,6 +443,11 @@ export function guiadoPanel(o) {
     while (actual + 1 < pasos.length) {
       actual += 1;
       const p = pasos[actual];
+      if (p.pide && rellenos.has(p.i)) {
+        lista.append(pasoHecho(p, { i: p.i, paso: p.pide.paso, resultado: 'relleno' }));
+        o.dibujar?.(p.i + 1);
+        continue;
+      }
       if (p.pide) {
         const li = pasoActual(p);
         lista.append(li);
@@ -422,10 +463,19 @@ export function guiadoPanel(o) {
   function terminar(enfocar) {
     if (terminado) return;
     terminado = true;
+    if (modo === 'resuelto') {
+      // El ejemplo resuelto acaba con la opción que sale, sin preguntarla.
+      progreso.textContent = 'Ejemplo resuelto entero.';
+      const letra = q.correcta ?? pick.choice;
+      setChildren(final, h('p.guiado-ejemplo-opcion', h('strong', 'Opción: '), letra ? `${letra}) ${q.opciones?.[letra] ?? ''}` : '—'));
+      return;
+    }
     // Tu velocidad en carta: el tiempo de la resolución completa (clave aparte de la de la tanda: no se pisan).
-    const seg = rp.parar();
-    const limpio = resultados.length > 0 && resultados.every((r) => r.resultado === ESTADO.OK);
-    tiemposAlumno().anota({ y: tipoDePregunta(q, sol, { deCarta: true }), s: seg, o: limpio, q: `guiado:${q.id}` });
+    if (rp) {
+      const seg = rp.parar();
+      const limpio = resultados.length > 0 && resultados.every((r) => r.resultado === ESTADO.OK);
+      tiemposAlumno().anota({ y: tipoProblema, s: seg, o: limpio, q: `guiado:${q.id}` });
+    }
     progreso.textContent = 'Pasos terminados: ahora, la opción.';
     const fb = h('div.guiado-opcion-fb', { 'aria-live': 'polite' });
     const titulo = h('h3.guiado-tit', { tabindex: '-1' }, conIcono('diana', '¿Qué opción marcarías?'));
@@ -449,13 +499,15 @@ export function guiadoPanel(o) {
 
   function resumenEl() {
     const s = resumenGuiado(resultados);
+    const ay = resumenAyudas(resultados);
     const pasoFlojo = (() => { const x = almacen.resumen().peorPaso; return x ? `En lo que llevas, fallas sobre todo ${x.al}.` : null; })();
     return h('section.guiado-resumen', { 'aria-label': 'Resumen del paso a paso' },
       h('h3', 'Resumen'),
-      h('p', `Bien: ${s.aciertos} de ${cuenta(s.total, 'paso')}${s.dichos ? ` · con «Dímelo»: ${s.dichos}` : ''}${s.fallos ? ` · por repasar: ${s.fallos}` : ''}.`),
+      tipoHecho ? h('p', conIcono(tipoHecho.ok ? 'ok' : 'casi', `Tipo de problema: ${tipoHecho.ok ? 'a la primera' : 'con explicación'}.`)) : null,
+      h('p', `Bien: ${s.aciertos} de ${cuenta(s.total, 'paso')}${s.dichos ? ` · con «Dímelo»: ${s.dichos}` : ''}${ay.pasos ? ` · con ayudas: ${ay.pasos}` : ''}${s.fallos ? ` · por repasar: ${s.fallos}` : ''}.`),
       h('ul.guiado-resumen-lista', resultados.map((r) => h('li', { class: `r-${r.resultado}` },
         conIcono(r.resultado === ESTADO.OK ? 'ok' : r.resultado === 'dimelo' ? 'bombilla' : r.resultado === ESTADO.CASI ? 'casi' : 'no',
-          `${pasos[r.i].title}: ${r.resultado === ESTADO.OK ? 'bien' : r.resultado === 'dimelo' ? 'te lo dije' : r.resultado === ESTADO.CASI ? 'casi' : 'fallado'}`)))),
+          `${pasos[r.i].title}: ${r.resultado === ESTADO.OK ? 'bien' : r.resultado === 'dimelo' ? 'te lo dije' : r.resultado === ESTADO.CASI ? 'casi' : 'fallado'}${r.ayudas && r.resultado !== 'dimelo' ? ` (${textoAyudas(r.ayudas)})` : ''}`)))),
       h('p', h('strong', 'Opción oficial: '), q.correcta ? `${q.correcta}) ${q.opciones?.[q.correcta] ?? ''}` : 'sin respuesta oficial (anulada)',
         pick.choice && q.correcta && pick.choice !== q.correcta ? ` (la resolución llega a la ${pick.choice})` : ''),
       pasoFlojo ? h('p.small', conIcono('diana', pasoFlojo)) : null,
@@ -463,25 +515,99 @@ export function guiadoPanel(o) {
   }
 
   function reiniciar() {
-    resultados.length = 0; actual = -1; terminado = false; eleccion = null;
-    rp.reinicia();
+    resultados.length = 0; actual = -1; terminado = false; eleccion = null; tipoHecho = null;
+    rp?.reinicia();
     lista.replaceChildren(); final.replaceChildren();
     o.dibujar?.(0);
-    avanzar(true);
+    empezar(true);
   }
 
-  const el = h('section.guiado', { 'aria-labelledby': `${uid}-t` },
+  // ---- El primer paso (R-71): «¿Qué tipo de problema es?». Fallarlo no va al cuaderno: se explica qué lo delata.
+  function pasoDeTipo() {
+    const t = pasoTipo;
+    const preguntaId = `${uid}-tipo`;
+    const fb = h('div.guiado-tipo-fb', { 'aria-live': 'polite' });
+    const li = h('li.guiado-paso.actual.guiado-tipo', { 'data-paso': 'tipo' }, h('h3.guiado-tit', { id: preguntaId, tabindex: '-1' }, t.pregunta),
+      h('p.small.muted', 'Antes de la primera cuenta: ¿qué problema es? Así sabes qué pasos vienen.'));
+    const botones = t.opciones.map((op) => h('button.secondary.guiado-tipo-op', { type: 'button', 'data-op': op.id, onclick: () => elegirTipo(op) }, h('span', op.texto)));
+    li.append(h('div.guiado-tipo-ops', { role: 'group', 'aria-labelledby': preguntaId }, botones), fb);
+    function elegirTipo(op) {
+      tipoHecho = { ok: op.ok, elegido: op.id };
+      for (const b of botones) {
+        b.disabled = true;
+        const o2 = t.opciones.find((x) => x.id === b.dataset.op);
+        if (o2.ok) { b.classList.add('bien'); b.replaceChildren(...conIcono('ok', h('span', o2.texto))); }
+        else if (o2.id === op.id) { b.classList.add('mal'); b.replaceChildren(...conIcono('no', h('span.guiado-tipo-marca', 'No:'), h('span', o2.texto))); }
+      }
+      const seguir = h('button', { type: 'button', onclick: () => { li.replaceWith(tipoResuelto()); avanzar(true); } }, 'Seguir con el problema');
+      const [es, ...resto] = t.partes(op.ok ? null : op.id);
+      setChildren(fb, h(`div.guiado-ojo.${op.ok ? 'hecho' : 'error'}`,
+        h(`p.guiado-aviso-txt.${op.ok ? 'asi' : 'ojo'}`, conIcono(op.ok ? 'ok' : 'aviso', h('strong', op.ok ? 'Bien visto. ' : 'No es ese. '), es)),
+        resto.map((x) => h('p.small', x))),
+      h('div.actions', seguir));
+      requestAnimationFrame(() => seguir.focus());
+    }
+    return li;
+  }
+  const tipoResuelto = () => h('li.guiado-paso.hecho.guiado-tipo', { class: tipoHecho?.ok ? 'r-ok' : 'r-casi', 'data-paso': 'tipo' },
+    h('h3.guiado-tit', conIcono(tipoHecho?.ok ? 'ok' : 'casi', `Tipo: ${pasoTipo.opciones.find((x) => x.ok).texto}`)),
+    tipoHecho?.ok ? null : h('p.small', pasoTipo.explica()));
+
+  function empezar(enfocar) {
+    if (pasoTipo) {
+      const li = pasoDeTipo();
+      lista.append(li);
+      progreso.textContent = 'Primer paso: ¿qué tipo de problema es?';
+      if (enfocar) requestAnimationFrame(() => li.querySelector('h3')?.focus());
+      return;
+    }
+    avanzar(enfocar);
+  }
+
+  // ---- El ejemplo resuelto y, después, otro con huecos (R-71): otras preguntas reales del mismo tipo.
+  function verEjemplo() {
+    setChildren(ejemploBox,
+      h('div.guiado-cab', h('h3', conIcono('libro', 'Ejemplo resuelto')), h('button.small.secondary', { type: 'button', onclick: cerrarEjemplo }, conIcono('salir', 'Cerrar'))),
+      h('p.small.muted', 'Otra pregunta real del mismo tipo, resuelta entera paso a paso. Después, prueba tú otra con huecos.'),
+      o.ejemplos.resuelto(),
+      h('div.actions', o.ejemplos.huecos ? h('button', { type: 'button', onclick: verHuecos }, conIcono('lapiz', 'Ahora tú, con huecos')) : null,
+        h('button.secondary', { type: 'button', onclick: cerrarEjemplo }, 'Volver a tu pregunta')));
+    ejemploBox.hidden = false;
+    requestAnimationFrame(() => { ejemploBox.scrollIntoView({ block: 'start' }); ejemploBox.focus({ preventScroll: true }); });
+  }
+  function verHuecos() {
+    setChildren(ejemploBox,
+      h('div.guiado-cab', h('h3', conIcono('lapiz', 'Ahora tú, con huecos')), h('button.small.secondary', { type: 'button', onclick: cerrarEjemplo }, conIcono('salir', 'Cerrar'))),
+      h('p.small.muted', 'Otra pregunta del mismo tipo con la primera mitad de los pasos ya rellena: completa tú el resto.'),
+      o.ejemplos.huecos(),
+      h('div.actions', h('button.secondary', { type: 'button', onclick: cerrarEjemplo }, 'Volver a tu pregunta')));
+    ejemploBox.hidden = false;
+    requestAnimationFrame(() => { ejemploBox.scrollIntoView({ block: 'start' }); ejemploBox.querySelector('input')?.focus({ preventScroll: true }); });
+  }
+  function cerrarEjemplo() {
+    ejemploBox.replaceChildren(); ejemploBox.hidden = true;
+    requestAnimationFrame(() => el.scrollIntoView({ block: 'start' }));
+  }
+
+  const intro = normal
+    ? 'Te pido cada paso y te lo corrijo al momento. Si te atascas, la ayuda va por escalones: la pista (qué buscar), la fórmula con tus datos y, al final, «Dímelo». Usar una ayuda no es fallar, pero queda apuntado. Escribe los rumbos como 045, la Ct como 3 W o −3, las coordenadas como 36 05,2 N, las horas como 14:35 y las diferencias en minutos con su signo o su letra (−68,9 o 68,9 W).'
+    : null;
+  const el = h('section.guiado', { 'aria-labelledby': `${uid}-t`, class: normal ? '' : `guiado-${modo}` },
     h('div.guiado-cab',
-      h('h2', { id: `${uid}-t` }, conIcono('lapiz', 'Resolver paso a paso')),
+      normal ? h('h2', { id: `${uid}-t` }, conIcono('lapiz', 'Resolver paso a paso')) : h('h4', { id: `${uid}-t` }, `${q.convocatoria ?? ''}${q.numero ? ` · pregunta ${q.numero}` : ''}`),
       o.onCerrar ? h('button.small.secondary', { type: 'button', onclick: o.onCerrar }, conIcono('salir', 'Cerrar')) : null),
-    h('p.small.muted', 'Te pido cada paso y te lo corrijo al momento. «Dímelo» te da el valor sin contar como fallo. Escribe los rumbos como 045, la Ct como 3 W o −3, las coordenadas como 36 05,2 N, las horas como 14:35 y las diferencias en minutos con su signo o su letra (−68,9 o 68,9 W).'),
-    rp.el, progreso, lista, final);
+    normal ? null : h('p.guiado-ejemplo-enunciado', q.enunciado),
+    intro ? h('p.small.muted', intro) : null,
+    normal && o.ejemplos?.resuelto ? h('div.actions.guiado-ejemplo-acc', h('button.secondary', { type: 'button', onclick: verEjemplo }, conIcono('libro', 'Ver un ejemplo resuelto'))) : null,
+    ejemploBox,
+    rp?.el, progreso, lista, final);
   o.dibujar?.(0);
-  avanzar(false);
+  empezar(false);
 
   return {
     el,
-    summary: () => `MODO PASO A PASO ${q.id}: paso ${Math.max(0, actual + 1)}/${pasos.length}` +
-      `\n${resultados.map((r) => `${pasos[r.i].title}: ${r.resultado}`).join('\n')}${terminado ? '\nPASOS TERMINADOS (falta o ya está la opción)' : ''}`,
+    summary: () => `MODO PASO A PASO ${q.id}${normal ? '' : ` (${modo === 'resuelto' ? 'ejemplo resuelto' : 'ejemplo con huecos'})`}: paso ${Math.max(0, actual + 1)}/${pasos.length}` +
+      `${pasoTipo ? `\nTipo de problema: ${tipoHecho ? (tipoHecho.ok ? 'acertado' : `fallado (eligió ${tipoHecho.elegido})`) : 'sin contestar'}` : ''}` +
+      `\n${resultados.map((r) => `${pasos[r.i].title}: ${r.resultado}${r.ayudas && r.resultado !== 'dimelo' ? ` (${textoAyudas(r.ayudas)})` : ''}`).join('\n')}${terminado ? '\nPASOS TERMINADOS (falta o ya está la opción)' : ''}`,
   };
 }

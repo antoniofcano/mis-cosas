@@ -627,6 +627,82 @@ a.clase .clase-meta :is(.badge, .estado, .chip-estado), a.clase .clase-meta > sp
 .mc-hoja:is(.estrategia, .dia-examen, .vispera, .ensayo-papel) :is(.lc-titulo, .mc-clase-tit, .lc-cifra, .est-tabla caption, .dx-linea) { font-family: var(--fuente-titulos); font-style: normal; letter-spacing: .01em; }
 .mc-hoja:is(.estrategia, .dia-examen, .vispera, .ensayo-papel) .lc-cifra { font-family: var(--fuente-mono); }
 :is(.leccion, .practice, .test) button:not(.ba-salir) { border-radius: 0; }
+/* ---- Mesa de cartas al lenguaje de Hoy (R-04) ----
+   La carta interactiva (en la página, ampliada y en la mesa): cartelas de esquinas rectas con filete fino, rótulos de las
+   herramientas en la condensada, lecturas (rumbo, distancia y situación) en mono, botón principal de acento y secundario con
+   filete de tinta. Solo colores de la app (tokens): el mar, la tierra y los trazos de la carta (--sea, --land, --c-*) y la
+   geometría de los instrumentos no se tocan. Lo pulsado se distingue por el relleno y por la barra inferior, no solo por el color. */
+.ichart, .ichart.completa.fija { border-radius: 0; border-color: var(--borde-fuerte); }
+.ichart-toolbar { background: var(--surface); border-bottom: 1px solid var(--borde-fuerte); }
+.ichart-toolbar .tools.vista { border-left-color: var(--borde-fuerte); }
+.ichart button.tool, .completa-acciones button, .ws-head button, .protractor-bar button, .note-bar button { border-radius: 0; border-width: 1px; }
+.ichart button.tool { border-color: var(--borde-fuerte); background: var(--surface); font-family: var(--fuente-titulos); font-weight: 700; letter-spacing: .03em; }
+.ichart button.tool:hover { border-color: var(--accent); }
+.ichart button.tool[aria-pressed="true"] { background: var(--boton); color: var(--on-boton); border-color: var(--boton); box-shadow: inset 0 -4px 0 var(--on-boton); }
+.ichart-toolbar.abierta button.mas-herramientas, .ichart.completa .ichart-toolbar.abierta button.mas-herramientas { background: var(--accent-2); color: var(--accent); border-color: var(--accent); box-shadow: inset 0 -4px 0 var(--accent); }
+.ichart-toolbar button[aria-pressed="true"].secondary { background: var(--accent-2); color: var(--accent); border-color: var(--accent); }
+.ichart select { border-radius: 0; border-width: 1.5px; }
+@media (max-width: 600px) {
+  /* El nombre bajo el icono y sin cortar palabras: «Transportador» cabe en su casilla. */
+  .ichart-toolbar .tools button.tool { flex-direction: column; font-size: .74rem; padding: .15rem .05rem; overflow-wrap: anywhere; align-self: stretch; }
+}
+/* Lecturas: rumbo, distancia y situación en mono */
+.ichart .readout, .ichart .protractor-bar { font-family: var(--fuente-mono); font-weight: 500; font-variant-numeric: tabular-nums; letter-spacing: 0; font-size: .78rem; line-height: 1.4; }
+.ichart.completa .ichart-pie .readout { max-height: calc(2.8em + .7rem); }
+.ichart .readout { border-top-color: var(--borde-fuerte); color: var(--text); }
+.protractor-bar { border-top-color: var(--borde-fuerte); background: var(--surface); }
+.protractor-bar input.bearing { font-family: var(--fuente-mono); font-weight: 600; border-radius: 0; min-height: 44px; }
+.protractor-bar label { font-family: var(--fuente-texto); }
+.note-bar { background: var(--surface); border-top-color: var(--borde-fuerte); border-left: 4px solid var(--accent); }
+.note-bar input.note-text { border-radius: 0; min-height: 44px; }
+/* Pantalla completa: barras y hojas con filete, sin esquinas redondas ni sombras de tarjeta */
+.ichart.completa .ichart-toolbar { border-top-color: var(--borde-fuerte); }
+.ichart.completa .ichart-pie { border-top-color: var(--borde-fuerte); background: var(--surface); }
+.completa-acciones button { font-family: var(--fuente-titulos); font-weight: 700; letter-spacing: .04em; text-transform: uppercase; }
+.completa-acciones button.secondary { background: var(--surface); color: var(--text); border: 1.5px solid var(--text); }
+.completa-acciones button.secondary[aria-expanded="true"] { background: var(--accent-2); color: var(--accent); border-color: var(--accent); box-shadow: inset 0 -4px 0 var(--accent); }
+.ichart.completa .tools-mas { border-radius: 0; border-color: var(--text); box-shadow: 0 6px 18px rgba(0, 0, 0, .35); background: var(--surface); }
+@media (orientation: landscape) and (max-height: 500px) and (min-width: 480px) {
+  .ichart.completa .ichart-pie .readout { border-radius: 0; border: 1px solid var(--borde-fuerte); box-shadow: 0 2px 8px rgba(0, 0, 0, .25); }
+}
+.ichart.completa svg.chart.interactive { border-right-color: var(--borde-fuerte); }
+/* Ayudas (chuleta, calculadora) dentro de la carta y de la mesa: mismas esquinas rectas y filete de tinta */
+.workspace .ayudas button, .ichart .ayudas button, .ichart .tools-mas button:not(.tool), .ichart .tools.extras button { border-radius: 0; background: var(--surface); color: var(--text); border: 1.5px solid var(--text); font-family: var(--fuente-titulos); letter-spacing: .04em; text-transform: uppercase; }
+.workspace .ayudas button[aria-expanded="true"], .ichart .tools-mas button:not(.tool)[aria-expanded="true"] { background: var(--accent-2); color: var(--accent); border-color: var(--accent); box-shadow: inset 0 -4px 0 var(--accent); }
+.ws-head > button:last-of-type { margin-left: auto; }
+/* La mesa: cabecera, pestañas y panel */
+.workspace { background: var(--bg); }
+.ws-head { background: var(--surface); border-bottom: 1px solid var(--text); flex-wrap: wrap; row-gap: .2rem; }
+.ws-title { font-family: var(--fuente-titulos); font-size: 1.15rem; letter-spacing: .02em; flex: 1 1 8rem; min-width: 0; }
+.ws-head .spacer { display: none; }
+.ws-head button { white-space: nowrap; font-family: var(--fuente-titulos); letter-spacing: .04em; text-transform: uppercase; }
+.ws-head button.secondary, .ws-panel button.secondary { background: var(--surface); color: var(--text); border: 1.5px solid var(--text); }
+.ws-panel button, .ws-panel .chip { border-radius: 0; }
+.ws-panel { border-left: 1px solid var(--text); background: var(--surface); }
+.ws-tabs { border-bottom: 1px solid var(--borde-fuerte); }
+.ws-tabbtn { background: transparent; border: 0; font-family: var(--fuente-titulos); font-size: 1.05rem; letter-spacing: .04em; text-transform: uppercase; color: var(--muted); }
+.ws-tabbtn[aria-pressed="true"] { color: var(--accent); box-shadow: inset 0 -4px 0 var(--accent); }
+.ws-panel-body h2, .ws-panel-body h3 { font-family: var(--fuente-titulos); font-weight: 700; letter-spacing: .01em; }
+.ws-statement { background: var(--panel); border: 1px solid var(--border); border-left: 4px solid var(--accent); border-radius: 0; }
+button.chip { border-radius: 0; background: var(--surface); color: var(--text); border: 1px solid var(--accent); min-height: 44px; font-weight: 500; }
+button.chip:hover { background: var(--accent-2); }
+.ws-counter { font-family: var(--fuente-mono); font-weight: 600; letter-spacing: 0; }
+.ws-caption { background: var(--panel); border: 1px solid var(--border); border-radius: 0; }
+.ws-caption .profe { border-radius: 0; }
+.ws-instrument { color: var(--accent); font-weight: 600; }
+ol.ws-steps li.current { font-weight: 700; color: var(--accent); }
+@media (max-width: 860px) {
+  .ws-panel { border-left: 0; border-top: 1px solid var(--text); }
+}
+@media (max-width: 860px), (max-height: 500px) {
+  .workspace.carta-completa .ws-panel { border-radius: 0; border-bottom: 1.5px solid var(--text); box-shadow: 0 8px 20px rgba(0, 0, 0, .35); }
+}
+@media (orientation: landscape) and (max-height: 500px) and (min-width: 480px) {
+  .workspace.carta-completa .ws-panel { border-bottom: 0; border-right: 1.5px solid var(--text); }
+}
+/* Noche: el transportador es un cristal más claro para que sus cifras (tinta oscura) se lean sobre el mar oscuro */
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) svg.chart .protractor .body { fill: rgba(255, 255, 255, .78); } }
+:root[data-theme="dark"] svg.chart .protractor .body { fill: rgba(255, 255, 255, .78); }
 /* Más y Ajustes: la lista de entradas como una cartela */
 ul.mas-lista { border-radius: 0; }
 ul.mas-lista .mas-fila-ico { border-radius: 0; }

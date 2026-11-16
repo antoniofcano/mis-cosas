@@ -15,7 +15,9 @@ Qué cambia en la app para quien la usa, por fecha de publicación. Es la base d
 
 ## Sin publicar
 
-Nada pendiente.
+**Mejoras**
+
+- **La mesa de cartas, con la cara nueva.** La carta a pantalla completa y la mesa (con «Ampliar» desde una pregunta o desde la carta suelta) estrenan el estilo del resto de la app: esquinas rectas, letras condensadas en las herramientas y los botones, y las lecturas de rumbo, distancia y situación en cifras de ancho fijo, más fáciles de leer de un vistazo. La herramienta que tienes activa se ve por el relleno y por una barra, no solo por el color. Funciona en claro, en oscuro y en automático, y en el móvil estrecho el nombre de cada herramienta ya no se corta. La carta y lo que trazas no cambian; de noche, el transportador se lee mejor sobre el mar oscuro.
 
 ## 16 de noviembre de 2026, séptima publicación · versión `d3c9b2ed3320`
 

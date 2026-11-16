@@ -40,7 +40,7 @@ nautica/
 │                         (automático) y `:root[data-theme="dark"]` (forzado): los dos bloques oscuros son idénticos (tests/tema.test.js).
 │                         Letras: Patron Texto / Titulos (condensada) / Mono, en fonts/ (fonts/README.md). Retícula de carta en `body`.
 ├── styles/laminas.css    Láminas (`--lc-*`, con su claro y oscuro propios) y Hoy, Travesía y la semana en estilo carta;
-│                         desde R-69 también la estrategia, el día del examen, la víspera, el ensayo, el cuaderno de fallos y el aviso
+│                         desde R-69 también la mesa de cartas (carta interactiva, ampliada y mesa), la estrategia, el día del examen, la víspera, el ensayo, el cuaderno de fallos y el aviso
 │                         diario (mismo patrón: los `--lc-*` se reasignan a los tokens) y un bloque «Resto de pantallas» (Temario, Examen,
 │                         clase, fichas…) solo con tokens. Las clases y las láminas no reasignan `--lc-*`. Icono: icons/icono.svg (PNG de él)
 └── tests/                node --test
@@ -391,6 +391,8 @@ en `src/bancos/ejes/<eje>.js`. Datos de la carta: `node tools/build-chart.mjs` r
   mejora). Barra compacta de iconos abajo (vertical) o a la derecha (móvil tumbado), «Más» desplegable, zonas seguras
   con `env()` (se añade `viewport-fit=cover` solo mientras dura). Incrustada en una página, la carta pasa a `<body>` y
   vuelve a su hueco al salir; en la mesa, el panel se abre encima con «Enunciado». Lo dibujado no se toca.
+  Estilo (R-04): el bloque «Mesa de cartas» de `styles/laminas.css` (cartelas rectas con filete, rótulos en `--fuente-titulos`, lecturas en
+  `--fuente-mono`, herramienta activa con relleno `--boton` y barra) se apoya en los tokens; el mar y la tierra (`--sea`, `--land`) no cambian.
 - Tutorial (`ui/chart/tutorial.js`): a partir de las primitivas con `step` de cualquier solución deduce el
   instrumento de cada trazo (`ray`/`line` → transportador, `arc`/`circle` → compás, `seg` → regla, `vec` →
   transportador + compás) y lo reproduce con encuadre automático. Cualquier tipo de ejercicio nuevo que dibuje

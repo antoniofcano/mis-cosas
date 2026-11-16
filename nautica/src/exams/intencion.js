@@ -42,6 +42,7 @@ export const ACCIONES = {
   tangente: { texto: 'Trazar la tangente al arco de un faro', objeto: '¿A qué faro?' },
   'al-del-faro': { texto: 'Situarte a un rumbo y una distancia de un faro', objeto: '¿Desde qué faro?' },
   trasladar: { texto: 'Trasladar la primera línea lo navegado', objeto: null },
+  'trasladar-arco': { texto: 'Trasladar el centro del primer arco lo navegado', objeto: null },
   'unir-situaciones': { texto: 'Unir la situación de estima con la observada', objeto: null },
 };
 
@@ -49,7 +50,8 @@ export const ACCIONES = {
 const CONFUNDE = {
   demora: ['rumbo', 'arco'], arco: ['distancia', 'demora'], distancia: ['arco', 'rumbo'], 'unir-faros': ['demora', 'unir'],
   rumbo: ['demora', 'unir'], unir: ['rumbo', 'demora'], corriente: ['rumbo', 'unir'], tangente: ['rumbo', 'arco'],
-  'al-del-faro': ['demora', 'rumbo'], trasladar: ['rumbo', 'demora'], 'unir-situaciones': ['corriente', 'unir'],
+  'al-del-faro': ['demora', 'rumbo'], trasladar: ['rumbo', 'demora'], 'trasladar-arco': ['rumbo', 'distancia'],
+  'unir-situaciones': ['corriente', 'unir'],
 };
 
 /** Operaciones del kit que son cuentas (sin trazo): sus pasos son la pista de los valores del trazo siguiente. */
@@ -68,6 +70,8 @@ const V = (arg, kind, nombre) => ({ arg, kind, nombre });
 const DV = (arg) => V(arg, 'bearing', 'demora verdadera (Dv)');
 const DIST = (arg) => V(arg, 'distance', 'distancia');
 const demora = (faro, v, items) => ({ accion: 'demora', objeto: { arg: faro }, valores: [DV(v)], sentido: { tipo: 'demora', arg: v }, items, etiqueta: (o, c) => `Dv ${fmtBearing(o.args[v])} ${c.corto(o.args[faro])}` });
+/** El traslado de la 1ª línea (args 4 y 5 del kit: rumbo y millas navegados): primero qué se hace con ella. */
+const trasladar = (tipo, accion = 'trasladar') => ({ accion, sentido: { tipo }, valores: [V(4, 'bearing', 'rumbo navegado'), V(5, 'distance', 'distancia navegada')], items: [1, 2], primeroSentido: true, etiqueta: (o) => `${fmtBearing(o.args[4])} · ${fmtMiles(o.args[5])}` });
 const arco = (faro, d, items) => ({ accion: 'arco', objeto: { arg: faro }, valores: [DIST(d)], items, etiqueta: (o, c) => `${fmtMiles(o.args[d])} de ${c.corto(o.args[faro])}` });
 
 export const TRAZOS = {
@@ -97,9 +101,11 @@ export const TRAZOS = {
   fromMark: () => [{ accion: 'al-del-faro', objeto: { arg: 0 }, valores: [DIST(2)], sentido: { tipo: 'al-del-faro', arg: 1 }, items: [0, 1], etiqueta: (o) => `${fmtBearing(o.args[1])} · ${fmtMiles(o.args[2])}` }],
   cardinal2: () => [{ accion: 'al-del-faro', objeto: { arg: 0 }, sentido: { tipo: 'al-del-faro', arg: 1 }, items: [0], etiqueta: (o) => `Al ${rosa(o.args[1])}` },
     { accion: 'al-del-faro', objeto: { arg: 2 }, sentido: { tipo: 'al-del-faro', arg: 3 }, items: [1, 2], etiqueta: (o) => `Al ${rosa(o.args[3])}` }],
-  traslado: () => [demora(0, 1, [0]),
-    { accion: 'trasladar', sentido: { tipo: 'traslado' }, valores: [V(4, 'bearing', 'rumbo navegado'), V(5, 'distance', 'distancia navegada')], items: [1, 2], primeroSentido: true, etiqueta: (o) => `${fmtBearing(o.args[4])} · ${fmtMiles(o.args[5])}` },
-    demora(2, 3, [3, 4])],
+  traslado: () => [demora(0, 1, [0]), trasladar('traslado'), demora(2, 3, [3, 4])],
+  // Distancias no simultáneas (R-54, las 12 que faltaban): la demora y el arco, o los dos arcos. La 1ª línea (la demora o
+  // el arco) se traslada con el rumbo y la distancia navegados entre las dos observaciones; el arco, moviendo su centro.
+  trasladoArco: () => [demora(0, 1, [0]), trasladar('traslado-arco'), arco(2, 3, [3, 4])],
+  trasladoDosArcos: () => [arco(0, 1, [0]), trasladar('traslado-dos-arcos', 'trasladar-arco'), arco(2, 3, [3, 4])],
 };
 
 // ---- Resolver con cambios en algunas operaciones
@@ -122,14 +128,18 @@ export function resolverCon({ sol, q, chart, cambios = {}, capturar = null }) {
       if (typeof f !== 'function' || nombre === 'P') return f;
       return (...args) => {
         j += 1;
+        const yo = j === capturar;
         const c = cambios[j];
         const a = [...args];
         for (const [i, v] of Object.entries(c?.args ?? {})) a[i] = v && typeof v === 'object' && 'suma' in v ? norm360(a[i] + v.suma) : v;
         const kk = c?.error ? kitDe(c.error) : base;
         const i0 = kk.items.length;
-        const r = kk[nombre](...a);
-        if (j === capturar) { items = kk.items.slice(i0); ret = r; }
-        return r;
+        // Lo que dibuja la operación se toma aunque se rompa (un traslado equivocado sin corte deja su traslado dibujado).
+        try {
+          const r = kk[nombre](...a);
+          if (yo) ret = r;
+          return r;
+        } finally { if (yo && kk.items.length > i0) items = kk.items.slice(i0); }
       };
     },
   });
@@ -201,7 +211,7 @@ export function puntosDe(items) {
 
 /**
  * El plan de la carta por intención de una pregunta, o null si no se puede (sin resolución, sin trazos, o con una
- * construcción que aún no tiene trazo por intención: distancias no simultáneas con arcos).
+ * construcción sin trazo por intención: la estima analítica, que no se traza).
  * @returns {{ trazos: object[], values: object[], finales: {title, text}[], focus: object[], inicio: object[] } | null}
  */
 export function planIntencion({ sol, q, chart }) {
@@ -286,6 +296,7 @@ function tituloTrazo(s, o, { corto }) {
     case 'tangente': return `Tangente a ${corto(a[1])}`;
     case 'al-del-faro': return `Al ${rosa(a[s.sentido.arg])} de ${corto(a[s.objeto.arg])}`;
     case 'trasladar': return 'Traslado de la primera línea';
+    case 'trasladar-arco': return 'Traslado del centro del primer arco';
     case 'unir-situaciones': return 'La corriente: de la estima a la observada';
     default: return ACCIONES[s.accion]?.texto ?? 'Trazo';
   }
@@ -417,9 +428,19 @@ function sentido(se, o, { corto }, clave) {
       break;
     }
     case 'traslado':
-      pregunta = 'Las demoras no son simultáneas: ¿qué haces con la primera línea?';
+    case 'traslado-arco': {
+      const [que, con] = se.tipo === 'traslado' ? ['Las demoras no son simultáneas', 'la segunda'] : ['La demora y la distancia no son simultáneas', 'el arco'];
+      pregunta = `${que}: ¿qué haces con la línea de la primera demora?`;
       opciones = [op('trasladar', 'La traslado lo navegado entre las dos (mismo rumbo y distancia)', true),
-        op('tal-cual', 'La corto tal cual con la segunda', false, { errores: ['sin-traslado'], cambio: { error: 'sin-traslado' } })];
+        op('reves', 'La traslado hacia atrás (el rumbo opuesto al navegado)', false, { errores: ['traslado-al-reves'], cambio: { error: 'traslado-al-reves' } }),
+        op('tal-cual', `La corto tal cual con ${con}`, false, { errores: ['sin-traslado'], cambio: { error: 'sin-traslado' } })];
+      break;
+    }
+    case 'traslado-dos-arcos':
+      pregunta = 'Las dos distancias no son simultáneas: ¿qué haces con el primer arco?';
+      opciones = [op('trasladar', 'Traslado su centro lo navegado entre las dos (mismo rumbo y distancia) y trazo otra vez el arco', true),
+        op('reves', 'Traslado su centro hacia atrás (el rumbo opuesto al navegado)', false, { errores: ['traslado-al-reves'], cambio: { error: 'traslado-al-reves' } }),
+        op('tal-cual', 'Lo corto tal cual con el segundo arco', false, { errores: ['sin-traslado'], cambio: { error: 'sin-traslado' } })];
       break;
     default: return null;
   }

@@ -126,8 +126,9 @@ test('situación por traslado: la línea se traslada; cortarla tal cual (sin tra
   assert.deepEqual(p.trazos.map((t) => t.accion), ['demora', 'trasladar', 'demora']);
   const tr = p.trazos[1];
   assert.equal(tr.decisiones[1].id, 'sentido', 'primero, qué se hace con la línea');
-  const sin = opc(dec(tr, 'sentido'), (o) => !o.ok);
+  const sin = opc(dec(tr, 'sentido'), (o) => o.id === 'tal-cual');
   assert.equal(elegir(dec(tr, 'sentido'), sin.id).error, 'sin-traslado');
+  assert.equal(elegir(dec(tr, 'sentido'), 'reves').error, 'traslado-al-reves');
   // La distancia navegada con minutos leídos como décimas: su error con nombre.
   const dist = tr.decisiones.find((d) => d.pregunta === '¿Qué distancia navegada?');
   assert.deepEqual(elegir(dist, opc(dist, (o) => !o.ok).id).error, 'horas-decimales');
@@ -219,14 +220,18 @@ test('barrido del banco de práctica: cada plan cuadra con su resolución y cada
     // Con todas las elecciones bien, la pregunta se resuelve igual que la resolución (y en la mitad, comprobado).
     if (j % 2 === 0) assert.ok(compararFinal({ sol: s, q, chart, plan: p, primeras: bienSalvo(p) }).igual, `${q.id}: bien a la primera no da la resolución`);
   }
-  // Solo quedan fuera las distancias no simultáneas con arcos (trasladoArco, trasladoDosArcos), la estima analítica
-  // (tramos) y las que solo sitúan puntos dados (sin nada que trazar).
+  // Todas las que tienen algo que trazar (también las distancias no simultáneas con arcos). Solo quedarían fuera la
+  // estima analítica (tramos, que no se traza) y las que solo sitúan puntos dados.
+  let fuera = 0;
   for (const id of sinPlan) {
     const k = createKit(chart); SOLUCIONES[id].solve(k, porId.get(id));
     const trazos = k.ops.filter((o) => o.op !== 'pos' && o.items[1] > o.items[0]);
-    assert.ok(!trazos.length || trazos.some((o) => ['trasladoArco', 'trasladoDosArcos', 'tramos'].includes(o.op)), `${id} sin plan`);
+    assert.ok(!trazos.length || trazos.every((o) => o.op === 'tramos'), `${id} sin plan`);
+    fuera += 1;
   }
-  assert.ok(conPlan / n > 0.95, `${conPlan} de ${n}`);
+  // Las 1124 de práctica con algo que trazar, todas (antes, 1112: faltaban las 12 de arcos no simultáneos).
+  assert.equal(conPlan, n - fuera);
+  assert.ok(conPlan >= 1124, `solo ${conPlan} preguntas con trazo por intención`);
   assert.ok(opciones > 5000, `solo ${opciones} opciones equivocadas`);
 });
 
@@ -256,7 +261,7 @@ test('cobertura del PY de Andalucía: situación por demoras, corrección total,
     if (!p) continue;
     for (const t of p.trazos) tipos[t.op] = (tipos[t.op] ?? 0) + 1;
   }
-  for (const op of ['fix2', 'tangent', 'efectivo', 'rumboConCorriente', 'rumboYVelocidad', 'corrienteDesconocida', 'oposicion', 'enfilacion', 'fromMark', 'traslado']) {
+  for (const op of ['fix2', 'tangent', 'efectivo', 'rumboConCorriente', 'rumboYVelocidad', 'corrienteDesconocida', 'oposicion', 'enfilacion', 'fromMark', 'traslado', 'trasladoArco', 'trasladoDosArcos']) {
     assert.ok(tipos[op] > 0, `${op} sin preguntas del PY de Andalucía`);
     assert.ok(TRAZOS[op], op);
   }
@@ -264,7 +269,7 @@ test('cobertura del PY de Andalucía: situación por demoras, corrección total,
 
 test('cuaderno: los fallos del trazado se anotan con el origen «traza»', () => {
   assert.equal(ORIGENES.traza, 'trázalo en la carta');
-  for (const e of [...ERRORES_DE_TRAZADO, 'demora-sin-opuesta', 'banda']) {
+  for (const e of [...ERRORES_DE_TRAZADO, 'demora-sin-opuesta', 'banda', 'traslado-al-reves']) {
     const r = anotar(null, { error: e, tipo: 'corriente-desconocida', origen: 'traza', q: DEMORAS }, Date.UTC(2026, 10, 16));
     assert.ok(falloValido(r.f), e);
     assert.equal(r.f.ev[0].o, 'traza');
@@ -272,4 +277,110 @@ test('cuaderno: los fallos del trazado se anotan con el origen «traza»', () =>
   for (const e of ERRORES_DE_TRAZADO) assert.equal(ERRORES[e].paso, 'trazado');
   // Un rumbo de un faro a otro, por si acaso: la distancia entre faros no cambia por el plan.
   assert.ok(rhumbTo(chart.point('isla-tarifa'), chart.point('punta-cires')).distance > 5);
+});
+
+// ---- Distancias no simultáneas con arcos (las 12 que faltaban): trazar el arco (o la demora), trasladar la línea o el
+// centro del arco con el rumbo y la distancia navegados, y cortar con el segundo arco.
+const ARCOS = {
+  trasladoDosArcos: ['and-py-2022-c3-n17', 'and-py-2023-c2-n16', 'and-py-2015-c2-n12', 'and-py-2018-c1-n17', 'and-py-2019-c1-n17', 'and-py-2019-c3-n16', 'bal-py-2021-06-ac-36', 'bal-py-2025-12-a-33'],
+  trasladoArco: ['and-py-2022-c2-n17', 'and-py-2025-c1-n14', 'dgmm-py-2023-11-34', 'bal-py-2020-12-b-38'],
+};
+
+test('arcos no simultáneos: las 12 preguntas tienen su plan, con el traslado entre el primer trazo y el arco', () => {
+  for (const [op, ids] of Object.entries(ARCOS)) {
+    for (const id of ids) {
+      assert.ok(porId.has(id), `${id} no está en la práctica`);
+      const p = plan(id);
+      assert.ok(p, `${id} sin plan`);
+      const i = p.trazos.findIndex((t) => t.op === op);
+      const [a, b, c] = p.trazos.slice(i, i + 3);
+      assert.deepEqual([a.accion, b.accion, c.accion], op === 'trasladoDosArcos' ? ['arco', 'trasladar-arco', 'arco'] : ['demora', 'trasladar', 'arco'], id);
+      // Primero qué se hace con la primera línea; después el rumbo y la distancia navegados, si hay valores equivocados.
+      assert.equal(b.decisiones[1].id, 'sentido', id);
+      const s = dec(b, 'sentido');
+      assert.equal(elegir(s, 'tal-cual').error, 'sin-traslado', id);
+      assert.equal(elegir(s, 'reves').error, 'traslado-al-reves', id);
+      // El corte, rotulado, sale con el segundo arco.
+      assert.ok(c.items.some((it) => it.t === 'arc' && it.label) && c.items.some((it) => it.t === 'pos' && /^Situación/.test(it.label)), id);
+      assert.ok(compararFinal({ sol: sol(id), q: porId.get(id), chart, plan: p, primeras: bienSalvo(p) }).igual, id);
+    }
+  }
+});
+
+test('dos distancias no simultáneas: el primer arco, el traslado de su centro y el corte con el segundo', () => {
+  const id = 'and-py-2022-c3-n17'; const q = porId.get(id); const p = plan(id);
+  const k = createKit(chart); sol(id).solve(k, q);
+  const op = k.ops.find((o) => o.op === 'trasladoDosArcos');
+  const [, , , , rumbo, millas] = op.args;
+  // 1. El arco de 4 millas con centro en Cabo Espartel (el del kit, donde se tomó la distancia).
+  const [t1, t2, t3] = p.trazos;
+  assert.equal(t1.titulo, 'Distancia a Cabo Espartel');
+  const arc1 = t1.items.find((it) => it.t === 'arc');
+  assert.deepEqual(arc1.center, chart.point('cabo-espartel'));
+  assert.equal(arc1.radius, 4);
+  assert.equal(arc1.label, '4,0 millas de Cabo Espartel');
+  // 2. El centro, trasladado 070° y 6 millas; el arco trasladado, con el mismo radio.
+  assert.equal(t2.titulo, 'Traslado del centro del primer arco');
+  const vec = t2.items.find((it) => it.t === 'vec');
+  assert.equal(vec.bearing, rumbo); assert.equal(vec.length, millas);
+  assert.equal(vec.label, '070° · 6,0 millas');
+  const arc2 = t2.items.find((it) => it.t === 'arc');
+  assert.equal(arc2.radius, 4);
+  assert.ok(Math.abs(rhumbTo(chart.point('cabo-espartel'), arc2.center).distance - 6) < 1e-6);
+  // 3. El 2º arco desde Punta Malabata y la situación.
+  assert.equal(t3.titulo, 'Distancia a Punta Malabata');
+  // Traslado al revés: la app traza el centro llevado con el rumbo opuesto y sale otra situación.
+  const reves = opc(dec(t2, 'sentido'), (o) => o.id === 'reves');
+  const iv = intento({ sol: sol(id), q, chart, plan: p, t: 1, opcion: reves });
+  assert.ok(angleDist(iv.find((it) => it.t === 'vec').bearing, norm360(rumbo + 180)) < 1e-9);
+  assert.equal(iv[0].style, 'intento');
+  assert.match(iv[0].label, /^Tu trazo: Traslado su centro hacia atrás/);
+  const r = compararFinal({ sol: sol(id), q, chart, plan: p, primeras: bienSalvo(p, { 1: { sentido: 'reves' } }) });
+  assert.ok(!r.igual && r.millas > 1, `a ${r.millas} millas`);
+  // Sin trasladar: el arco se queda en su sitio y sale otra situación.
+  const sin = compararFinal({ sol: sol(id), q, chart, plan: p, primeras: bienSalvo(p, { 1: { sentido: 'tal-cual' } }) });
+  assert.ok(!sin.igual && sin.millas > 1);
+  // Al acabar, «Trazo n de 3» y su resumen.
+  assert.match(textoIntencion(p, { t: 3, hechos: 3, fallos: ['traslado-al-reves'] }), /3 de 3 trazos hechos\.\n {2}1\. Distancia a Cabo Espartel\n {2}2\. Traslado del centro del primer arco\n {2}3\. Distancia a Punta Malabata\n {2}Errores al elegir: Traslado al revés/);
+});
+
+test('arcos no simultáneos: la distancia navegada y el rumbo navegado equivocados tienen su error con nombre', () => {
+  // La distancia navegada con los minutos leídos como décimas (1 h 30 min → 1,30 h): 7,8 millas en vez de 9.
+  const p = plan('and-py-2019-c3-n16');
+  const dist = p.trazos[1].decisiones.find((d) => d.pregunta === '¿Qué distancia navegada?');
+  assert.equal(opc(dist, (o) => o.ok).texto, '9,0 millas');
+  const mal = opc(dist, (o) => !o.ok);
+  assert.equal(mal.texto, '7,8 millas');
+  assert.equal(elegir(dist, mal.id).error, 'horas-decimales');
+  const q = porId.get('and-py-2019-c3-n16');
+  const iv = intento({ sol: sol('and-py-2019-c3-n16'), q, chart, plan: p, t: 1, opcion: mal });
+  assert.ok(Math.abs(iv.find((it) => it.t === 'vec').length - mal.valor) < 1e-9, 'el traslado se dibuja con la distancia equivocada');
+  // El rumbo navegado con la Ct cambiada (la corrección total, antes del traslado).
+  const p2 = plan('and-py-2015-c2-n12');
+  const rumbo = p2.trazos[1].decisiones.find((d) => d.pregunta === '¿Qué rumbo navegado?');
+  assert.equal(opc(rumbo, (o) => o.ok).texto, '073°');
+  assert.equal(elegir(rumbo, opc(rumbo, (o) => o.texto === '075°').id).error, 'sin-ct');
+  // Demora y distancia no simultáneas (Baleares): la demora con la Ct y, en el traslado, la distancia de 5 h 15 min.
+  const p3 = plan('bal-py-2020-12-b-38');
+  const d3 = p3.trazos[1].decisiones.find((d) => d.pregunta === '¿Qué distancia navegada?');
+  assert.equal(elegir(d3, opc(d3, (o) => !o.ok).id).error, 'horas-decimales');
+});
+
+test('demora y distancia no simultáneas: un traslado equivocado que no llega al arco se dibuja igual', () => {
+  const id = 'and-py-2022-c2-n17'; const q = porId.get(id); const p = plan(id);
+  const t = p.trazos.findIndex((x) => x.accion === 'trasladar');
+  for (const s of ['reves', 'tal-cual']) {
+    const o = opc(dec(p.trazos[t], 'sentido'), (x) => x.id === s);
+    const iv = intento({ sol: sol(id), q, chart, plan: p, t, opcion: o });
+    assert.deepEqual(iv.map((it) => it.t), ['vec', 'line'], s);
+    const r = compararFinal({ sol: sol(id), q, chart, plan: p, primeras: bienSalvo(p, { [t]: { sentido: s } }) });
+    assert.ok(r.roto, `${s}: la línea trasladada no corta el arco`);
+  }
+  // El kit con el traslado al revés: la variante del error (la misma en el diagnóstico y en la hoja en papel).
+  const k = createKit(chart, { error: 'traslado-al-reves' });
+  assert.throws(() => sol(id).solve(k, q), /Sin corte/);
+  const k2 = createKit(chart, { error: 'traslado-al-reves' });
+  const v = sol('and-py-2022-c3-n17').solve(k2, porId.get('and-py-2022-c3-n17'));
+  const b = sol('and-py-2022-c3-n17').solve(createKit(chart), porId.get('and-py-2022-c3-n17'));
+  assert.ok(rhumbTo({ lat: v[0].value, lon: v[1].value }, { lat: b[0].value, lon: b[1].value }).distance > 1);
 });

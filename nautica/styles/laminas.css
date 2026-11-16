@@ -597,7 +597,8 @@ a.clase .clase-meta :is(.badge, .estado, .chip-estado), a.clase .clase-meta > sp
 :is(.temario, .tema, .examenes, .leccion, .ficha-idea, .cps-lista, .test, .practice) .badge.muted { border-color: var(--border); color: var(--muted); }
 /* Títulos de tarjeta en la condensada; cifras en mono */
 :is(.temario, .tema, .examenes, .cps-lista) :is(.tema-card h3, .cps-card h3, .examen-final h2, .examen-final h3) { font-family: var(--fuente-titulos); font-weight: 700; letter-spacing: .01em; }
-:is(.temario, .tema, .examenes, .leccion, .practice, .test) :is(.tema-ideas-tx, .ba-derecha, .datos-examen strong) { font-family: var(--fuente-mono); font-variant-numeric: tabular-nums; }
+:is(.temario, .tema, .examenes, .leccion, .practice, .test) :is(.ba-derecha, .datos-examen strong) { font-family: var(--fuente-mono); font-variant-numeric: tabular-nums; }
+:is(.temario, .tema) .tema-ideas-tx { font-variant-numeric: tabular-nums; }
 .tema-ideas-tx, .ba-derecha { letter-spacing: 0; }
 .tema-ideas-tx { font-size: .8rem; }
 /* Barras: regla de papel con filete y el avance en acento */

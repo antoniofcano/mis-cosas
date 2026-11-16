@@ -15,6 +15,10 @@ Qué cambia en la app para quien la usa, por fecha de publicación. Es la base d
 
 ## Sin publicar
 
+Nada pendiente.
+
+## 16 de noviembre de 2026, séptima publicación · versión `d3c9b2ed3320`
+
 **Novedades**
 
 - **Estima analítica como la pone hoy el tribunal.** El ejercicio generado trae de 2 a 5 rumbos y, casi siempre, una corriente (su rumbo y su intensidad horaria) que actúa toda la navegación o desde una hora hasta el final. Muchas veces sales junto al meridiano de 180° y lo cruzas, navegas en el hemisferio sur o cruzas el ecuador. A veces pide también el rumbo y la distancia directos.

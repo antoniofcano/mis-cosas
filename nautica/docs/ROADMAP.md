@@ -60,8 +60,8 @@ reloj de regata).
 | 1 · Lo que más aprueba (diciembre) | ~~R-64~~ | ~~Reloj en el paso a paso y en las preguntas de carta, con objetivo por problema~~ | Hecho (H-54) | S | Sonnet |
 | | ~~R-52~~ | ~~Paso a paso «de hoja de examen» en corrientes, abatimiento, demoras y corrección total~~ | Hecho (H-56) | M | Opus el primero, Sonnet el resto |
 | | ~~R-65~~ | ~~Avisos «Ojo / No olvides / Así se hace» en cada paso, sacados de los errores típicos~~ | Hecho (H-55) | S | Sonnet |
-| 2 · Tu fallo, entrenado (diciembre–enero) | R-55 | Catálogo de fallos por paso (mareas, estima, corrección total primero) | Alta | M | Opus |
-| | R-56 | Dosis de 2 minutos sobre el fallo con nombre y comprobación a los 3 días (empieza por mareas) | Muy alta | M | Opus motor, Sonnet pantalla |
+| 2 · Tu fallo, entrenado (diciembre–enero) | ~~R-55~~ | ~~Catálogo de fallos por paso (mareas, estima, corrección total primero)~~ | Hecho (H-57) | M | Opus |
+| | ~~R-56~~ | ~~Dosis de 2 minutos sobre el fallo con nombre y comprobación a los 3 días (empieza por mareas)~~ | Hecho (H-58) | M | Opus motor, Sonnet pantalla |
 | 3 · La cara nueva (diciembre–enero) | R-67 | Colores, letras, fondo de carta y modo noche de puente (claro, oscuro, automático) | Media | M | Sonnet |
 | | R-68 | Hoy rediseñado según la maqueta | Media | M | Sonnet |
 | 4 · Examen de verdad (enero–febrero) | R-57 | Simulacro con estrategia: primer minuto con el cuadernillo, reparto del tiempo, descartar | Alta | M | Opus |
@@ -90,7 +90,7 @@ Publicación: cada tanda al terminarla; en marzo, solo simulacros y repaso, sin 
 | R-06 | Hoja propia en la galería para señales pirotécnicas sueltas y sonidos con texto | Siguiente | Hoy se funden con la hoja general (`socorro` + `solo`) |
 | R-07 | Animaciones que faltan: frentes en corte, búsqueda con reproductor | Siguiente | Confirmar contra el catálogo de animaciones antes de empezar |
 | R-54 | Carta en el móvil, función 1: paso a paso que enseña (primer paso «¿qué tipo es?», avisos Ojo / No olvides / Así se hace, ayuda en escalones, ejemplo resuelto y otro con huecos) | Siguiente | `docs/CARTA-MOVIL.md`; parte de la hoja de examen ya hecha en todos los tipos (H-46, H-54). Primero estima y loxodrómica, mareas y corrección total; la carta gráfica por intención, después |
-| R-55 | Catálogo de fallos típicos por paso: qué respuesta equivocada corresponde a qué fallo, tipo a tipo y comprobado por test | Siguiente | Cimiento de R-56; se escribe a la vez que R-54 y amplía el diagnóstico de H-31 |
+| ~~R-55~~ | ~~Catálogo de fallos típicos por paso: qué respuesta equivocada corresponde a qué fallo, tipo a tipo y comprobado por test~~ | Hecho | H-55 (catálogo y diagnóstico por paso) y H-57 (cuaderno de fallos) |
 
 ## Después
 
@@ -120,7 +120,7 @@ Publicación: cada tanda al terminarla; en marzo, solo simulacros y repaso, sin 
 | R-47 | Limpiar los alumnos de prueba que las pruebas automáticas dieron de alta en producción (10 de noviembre de 2026) | Después | Solo con decisión del dueño, filtrando por fecha y sin borrados generales (incidente de octubre) |
 | R-51 | Calibrar «¿Estás listo?» y los avisos por materia con las comparaciones predicción–resultado que vayan apuntando los alumnos | Después | Hoy solo en el aparato o la cuenta de cada alumno; juntarlas pide su consentimiento y la versión 2 (complementa R-14) |
 | R-53 | Ejercicio generado de estima analítica con corriente, cruce del 180° y hemisferio sur, como pone hoy el tribunal | Siguiente | Hoy genera 2 o 3 tramos sin corriente cerca del Estrecho |
-| R-56 | Carta en el móvil, función 2: cuaderno de fallos con nombre, dosis de uno o dos minutos con reloj y comprobación días después sin pistas | Después | `docs/CARTA-MOVIL.md`; necesita R-55. Empieza por mareas. Maqueta «Patrón, tu entrenador» |
+| ~~R-56~~ | ~~Carta en el móvil, función 2: cuaderno de fallos con nombre, dosis de uno o dos minutos con reloj y comprobación días después sin pistas~~ | Hecho | H-58. Queda: que el cuaderno y el tiempo por tipo alimenten «¿Estás listo?» y llevar a él lo corregido en papel (R-58) |
 | R-57 | Carta en el móvil, función 3: simulacro con estrategia (primer minuto con el cuadernillo, reparto del tiempo, estimar y descartar, simulacro completo de teoría y carta seguidas) | Después | Cose H-35, H-36, H-37, H-42 y H-43; la carta en papel y el móvil de reloj y corrector |
 | R-58 | Corregir la hoja en papel por pasos: el alumno mete el resultado de cada paso y la app dice en cuál se desvió | Después | Lleva lo hecho en papel al cuaderno de fallos (R-56) |
 | R-59 | Más herramientas de dibujo de la mesa de cartas para el móvil | Descartado | La pantalla pequeña no da para trazar; la mesa queda para tablet y ordenador (`docs/CARTA-MOVIL.md`) |
@@ -214,6 +214,8 @@ Publicación: cada tanda al terminarla; en marzo, solo simulacros y repaso, sin 
 | H-54 | Reloj del paso a paso y de las preguntas de carta de la práctica (R-64): `course/reloj-paso.js` (objetivo = `tiempoDisponible` de R-42, estados, tiempo por paso), `ui/reloj-paso.js` y pausa en `relojVisible`; el paso a paso guarda su tiempo en `store/tiempos.js` (clave `guiado:<id>`); sin reloj en exámenes ni simulacros | Noviembre 2026 |
 | H-55 | Avisos «Ojo / No olvides / Así se hace» en cada paso del paso a paso (R-65): catálogo de los 32 errores típicos (`src/exams/avisos-pasos.js`), cada paso del kit lleva `errores` (los `E(...)` que evalúa, afinados por paso en `erroresDelPaso`), «Ojo» previo si el alumno ya ha fallado ese error o, sin datos, el más frecuente del tribunal (`data/comun/errores-frecuentes.json`), «No olvides» plegado, error con nombre al fallar (`diagnosticarPaso`, a nivel de paso) y «Así se hace» al acertar | Noviembre 2026 |
 | H-56 | Paso a paso «de hoja de examen» en el resto de la carta (R-52): corrección total (dm del año, Ct = dm + Δ, Rv/Ra/Dv con su signo, marcación, Ct por enfilación, oposición y Polar), líneas de posición y traslado, abatimiento (banda y Rs = Rv ± Ab), corriente (efectiva, rumbo a dar, rumbo y velocidad, desconocida) y estima; croquis nuevos `ct` (tres nortes), `abatimiento` y `corriente` (triángulo de velocidades), que enseñan lo buscado solo al contestar. Test: en todas las soluciones reales, la cuenta de cada paso llega al valor pedido | Noviembre 2026 |
+| H-57 | Cuaderno de fallos (R-55, cierre): cada fallo es un error típico con nombre en un tipo de problema (`<error>.<tipo>`), con sus veces, fechas y origen (paso a paso, opción marcada, ejercicio generado, simulacro, examen, tu examen oficial), sin contar dos veces la misma pregunta el mismo día; `#/<tit>/fallos`; ajustes compartidos `fallo_<id>` (docs/SYNC.md); el paso a paso ya apunta el error del paso y lo reconoce aunque la resolución con el error se salga de la tabla de mareas; el ejercicio de mareas reconoce el adelanto al revés | Noviembre 2026 |
+| H-58 | Dosis de 2 minutos y comprobación (R-56): micro-tarjetas con números generados y trampas exactas para 21 errores (mareas, corrección total, viento y corriente, marcación, opuesta, horas decimales) con reloj compacto (`src/course/dosis.js`); sin tarjetas, preguntas del estudio con esa trampa o un ejercicio; comprobación a los 3 días con un problema completo sin pistas (vigilando a 7 días, resuelto con dos seguidas; mal, dosis antes); tarjeta en Hoy, actividad `dosis` del motor detrás de lo principal y fallos que se abren en el resultado de simulacros y del examen oficial | Noviembre 2026 |
 
 ## Mantenimiento recurrente
 

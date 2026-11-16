@@ -26,6 +26,8 @@ import { ID_BLOC } from '../../bloc/notas.js';
 import { erroresAlumno } from '../../store/errores.js';
 import { tiemposAlumno } from '../../store/tiempos.js';
 import { relojVisible } from '../reloj-visible.js';
+import { anotarFallo, registrarComprobacion, registrarDosis, falloDe } from '../cuaderno.js';
+import { nombreFallo } from '../../course/cuaderno.js';
 
 const STATUS_TEXT = {
   [STATUS.OK]: ['ok', 'Correcto'],
@@ -40,7 +42,12 @@ export function exerciseView({ ctx, progress, params: route }) {
   if (!exercise) return { el: h('p', 'Tipo de ejercicio no encontrado. ', h('a', { href: tlink(currentTit(progress), ['carta']) }, 'Volver')), summary: () => 'ERROR tipo no encontrado' };
 
   const seed = Number(route.query.s) || randomSeed();
-  if (!route.query.s) navigate(['ej', exercise.id], { s: seed }, { replace: true });
+  if (!route.query.s) navigate(['ej', exercise.id], { ...route.query, s: seed }, { replace: true });
+  // Cuaderno de fallos (R-56): la comprobación de un fallo (sin pistas ni solución hasta corregir) o su dosis con un
+  // ejercicio generado (cuando el fallo no tiene micro-tarjetas). `?comprobar=<id>` o `?dosis=<id>`.
+  const idFallo = route.query.comprobar || route.query.dosis || null;
+  const modoFallo = idFallo && falloDe(idFallo) ? (route.query.comprobar ? 'comprobar' : 'dosis') : null;
+  const sinPistas = modoFallo === 'comprobar';
 
   const params = exercise.generate(createRng(seed), ctx);
   const statement = exercise.statement(params, ctx);
@@ -85,17 +92,19 @@ export function exerciseView({ ctx, progress, params: route }) {
     tomarDeCarta,
     h('div.actions',
       h('button', { type: 'submit' }, 'Comprobar'),
-      h('button.secondary', { type: 'button', onclick: () => reveal(state.revealed + 1) }, conIcono('bombilla', 'Pista')),
-      h('button.secondary', { type: 'button', onclick: () => { reveal(solution.steps.length); showSolution(); } }, 'Ver solución'),
-      h('a.btn.secondary', { href: link(['ej', exercise.id], { s: randomSeed() }) }, conIcono('repaso', 'Otro ejercicio')),
+      sinPistas ? null : [
+        h('button.secondary', { type: 'button', onclick: () => reveal(state.revealed + 1) }, conIcono('bombilla', 'Pista')),
+        h('button.secondary', { type: 'button', onclick: () => { reveal(solution.steps.length); showSolution(); } }, 'Ver solución'),
+        h('a.btn.secondary', { href: link(['ej', exercise.id], { s: randomSeed() }) }, conIcono('repaso', 'Otro ejercicio'))],
     ),
   );
+  const cajaFallo = h('div.ejercicio-fallo', { 'aria-live': 'polite' });
   const diag = h('div.diagnosis', { 'aria-live': 'polite' });
   // «Repasa: …»: las clases del apéndice de matemáticas con las cuentas que pide este tipo de ejercicio (de sus datos).
   const repasa = h('p.repasa.small', { hidden: true });
   loadApendice().then((ap) => {
     const rs = repasosPara(ap, tit, { ejercicio: exercise.id });
-    if (!rs.length || !APENDICE_PUBLICADO) return;
+    if (!rs.length || !APENDICE_PUBLICADO || sinPistas) return;
     repasa.replaceChildren('Repasa: ', ...rs.flatMap((r, j) => [j ? ' · ' : '', h('a', { href: tlink(tit, ['cuentas', r.id]) }, r.titulo)]));
     repasa.hidden = false;
   }).catch(() => {});
@@ -119,12 +128,15 @@ export function exerciseView({ ctx, progress, params: route }) {
   const openTable = (tab) => {
     if (ws) { ws.show(tab); return; }
     ws = openWorkspace({
-      chart: ctx.chart, title: exercise.title, statement, steps: solution.steps,
-      items: solution.drawing.items, focus: solution.drawing.focus, kind: exercise.title, result: resultText,
-      answerNodes: [form, diag, solutionBox], tab, progress, summary: () => summary(), ayudas: enTema, glosas, bloc,
+      // En una comprobación del cuaderno de fallos, la mesa sin la resolución ni la chuleta (sin pistas).
+      chart: ctx.chart, title: exercise.title, statement, steps: sinPistas ? [] : solution.steps,
+      items: sinPistas ? [] : solution.drawing.items, focus: solution.drawing.focus, kind: exercise.title, result: sinPistas ? '' : resultText,
+      answerNodes: [form, diag, cajaFallo, solutionBox], tab, progress, summary: () => summary(), ayudas: sinPistas ? null : enTema, glosas, bloc,
     });
   };
-  const tableButtons = solution.drawing
+  const tableButtons = solution.drawing && sinPistas
+    ? h('div.actions.table-actions', h('button', { type: 'button', onclick: () => openTable('ejercicio') }, conIcono('mapa', 'Resolver en la carta')))
+    : solution.drawing
     ? h('div.actions.table-actions',
       pantallaPequena()
         ? [h('button', { type: 'button', onclick: () => openTable('tutorial') }, conIcono('clase', 'Ver la resolución en la carta')),
@@ -167,13 +179,31 @@ export function exerciseView({ ctx, progress, params: route }) {
     ].filter(Boolean));
     if (!state.recorded && r.answeredCount === answers.length) {
       progress.recordAttempt(exercise.id, { ok: r.allOk, seed, mistakes: r.diagnoses.map((d) => d.id) });
-      // Los errores típicos de la taxonomía común, también en «Tus errores más repetidos» (src/store/errores.js).
-      for (const d of r.diagnoses) erroresAlumno().error(`ej:${exercise.id}:${seed}`, d.id);
+      // Los errores típicos de la taxonomía común, también en «Tus errores más repetidos» (src/store/errores.js) y en el
+      // cuaderno de fallos (src/ui/cuaderno.js), con el tipo de problema de este ejercicio.
+      for (const d of r.diagnoses) {
+        erroresAlumno().error(`ej:${exercise.id}:${seed}`, d.id);
+        anotarFallo({ error: d.id, tipo: exercise.id, origen: modoFallo === 'comprobar' ? 'comprobacion' : 'ejercicio', q: `ej:${exercise.id}:${seed}` });
+      }
+      if (modoFallo) cerrarFallo(r.allOk);
       if (r.allOk) progress.logActividad(crono.minutos());
       tiemposAlumno().anota({ y: exercise.id, s: reloj.parar(), o: r.allOk, q: `ej:${exercise.id}:${seed}` });
       state.recorded = true;
     }
     refreshAi();
+  }
+
+  /** Comprobación o dosis de un fallo del cuaderno: se apunta el resultado y se dice qué pasa ahora. */
+  function cerrarFallo(ok) {
+    const tit2 = currentTit(progress);
+    const f = modoFallo === 'comprobar' ? registrarComprobacion(idFallo, { ok, q: `ej:${exercise.id}:${seed}` }) : registrarDosis(idFallo, { aciertos: ok ? 1 : 0, total: 1 });
+    if (!f) return;
+    const n = nombreFallo(f);
+    const linea = modoFallo === 'comprobar'
+      ? (f.est === 'resuelto' ? `«${n.titulo}»: resuelto. Dos comprobaciones seguidas bien.` : ok ? `«${n.titulo}»: bien. Lo vigilo y te lo vuelvo a comprobar en unos días.` : `«${n.titulo}» sigue abierto: primero, otra dosis.`)
+      : ok ? `Dosis hecha. Te compruebo «${n.titulo}» dentro de unos días, sin pistas.` : `«${n.titulo}»: repite la dosis cuando quieras.`;
+    cajaFallo.replaceChildren(h('p', { class: ok ? 'ok' : 'warn' }, conIcono(ok ? 'ok' : 'aviso', linea)), h('p', h('a.btn', { href: tlink(tit2, ['fallos']) }, 'Volver a tu cuaderno')));
+    if (sinPistas) { pistas.hidden = false; }
   }
 
   // --- Resumen para IA
@@ -183,6 +213,13 @@ export function exerciseView({ ctx, progress, params: route }) {
     + (widget?.summary() ? `\nDIBUJO ALUMNO: ${widget.summary()}` : '');
   const fullSummary = () => (ws && currentWorkspace() === ws ? ws.summary() : summary());
 
+  // La resolución, las pistas y el método: en una comprobación, ocultos hasta corregir (sin pistas).
+  const pistas = h('div.ejercicio-pistas', { hidden: sinPistas },
+    h('section', h('h2', 'Resolución paso a paso'), stepsList,
+      listenAllButton(() => [intro.speech, ...narration.slice(0, state.revealed).map((n) => n.speech), state.revealed >= solution.steps.length ? outro.speech : ''].filter(Boolean)), h('p.muted.small', `Pulsa «Pista» para ver el siguiente paso (${solution.steps.length} en total).`)),
+    h('details.method', h('summary', 'Método y conceptos'),
+      h('ol', exercise.method.map((m) => h('li', m))),
+      h('dl', exercise.concepts.filter((c) => GLOSSARY[c]).map((c) => [h('dt', GLOSSARY[c].term), h('dd', GLOSSARY[c].text)]))));
   const statementEl = h('p', statement);
   glosar(statementEl, glosas);
   el = h('div.exercise',
@@ -190,19 +227,15 @@ export function exerciseView({ ctx, progress, params: route }) {
     h('header.con-ayudas',
       h('h1', exercise.title),
       h('div.badges', exercise.levels.map((l) => h('span.badge', l))),
-      ayudas.barra,
+      sinPistas ? null : ayudas.barra,
     ),
-    ayudas.panel,
+    sinPistas ? null : ayudas.panel,
     h('div.layout',
       h('div.col',
         h('section.statement', h('h2', 'Enunciado'), statementEl, repasa, h('div.actions.bloc-acciones', botonBloc(bloc, { texto: 'Bloc de notas' })), solution.drawing ? avisoCartaMovil(progress) : null, tableButtons),
-        h('section', h('h2', 'Tu respuesta'), form, diag, solutionBox),
-        h('section', h('h2', 'Resolución paso a paso'), stepsList,
-          listenAllButton(() => [intro.speech, ...narration.slice(0, state.revealed).map((n) => n.speech), state.revealed >= solution.steps.length ? outro.speech : ''].filter(Boolean)), h('p.muted.small', `Pulsa «Pista» para ver el siguiente paso (${solution.steps.length} en total).`)),
-        h('details.method', h('summary', 'Método y conceptos'),
-          h('ol', exercise.method.map((m) => h('li', m))),
-          h('dl', exercise.concepts.filter((c) => GLOSSARY[c]).map((c) => [h('dt', GLOSSARY[c].term), h('dd', GLOSSARY[c].text)])),
-        ),
+        modoFallo ? h('p.aviso-fallo', conIcono('diana', modoFallo === 'comprobar' ? 'Comprobación de tu cuaderno de fallos: resuélvelo entero, sin pistas.' : 'Dosis de tu cuaderno de fallos: resuélvelo y fíjate en el paso que fallas.')) : null,
+        h('section', h('h2', 'Tu respuesta'), form, diag, cajaFallo, solutionBox),
+        pistas,
       ),
       widget ? h('div.col.chart-col', h('section', h('h2', 'Carta'), widget.el)) : null,
     ),

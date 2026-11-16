@@ -2695,3 +2695,56 @@ svg.guiado-croquis { display: block; width: 100%; max-width: 340px; height: auto
 /* Reloj del paso a paso: las explicaciones, plegadas */
 details.rp-nota summary { cursor: pointer; min-height: 44px; display: flex; align-items: center; }
 details.rp-nota p { margin: .2rem 0; }
+
+/* ---- Cuaderno de fallos (R-55, R-56; src/ui/cuaderno.js, src/ui/views/fallos.js) ---- */
+/* Tarjeta breve de Hoy */
+.tarjeta-cuaderno { display: grid; gap: .4rem; padding: .8rem 1rem; margin: .8rem 0; background: var(--surface); border: 1px solid var(--accent); border-radius: var(--radius); min-width: 0; }
+.tarjeta-cuaderno h2 { margin: 0; font-size: 1.15rem; }
+.tarjeta-cuaderno p { margin: 0; }
+.tarjeta-cuaderno p a { display: inline-flex; align-items: center; min-height: 44px; }
+.tc-lista { list-style: none; margin: 0; padding: 0; display: grid; gap: .4rem; }
+.tc-fila { display: flex; align-items: center; justify-content: space-between; gap: .6rem; min-width: 0; }
+.tc-tx { min-width: 0; overflow-wrap: anywhere; }
+.tc-fila .btn.small { min-height: 44px; padding: .4rem .8rem; font-size: .95rem; white-space: nowrap; flex: none; }
+/* La lista */
+.fallos-grupo h2 { font-size: 1.15rem; margin: 1.2rem 0 .4rem; }
+.fallos-lista { list-style: none; margin: 0; padding: 0; display: grid; gap: .6rem; }
+.fallo { padding: .7rem .9rem; background: var(--surface); border: 1px solid var(--border); border-left: 4px solid var(--border); border-radius: var(--radius); min-width: 0; }
+.fallo.est-abierto { border-left-color: var(--warn); }
+.fallo.est-vigilando { border-left-color: var(--close); }
+.fallo.est-resuelto { border-left-color: var(--ok); }
+.fallo.pide { border-color: var(--accent); border-left-width: 4px; }
+.fallo p { margin: .2rem 0; overflow-wrap: anywhere; }
+.fallo-cab { display: flex; align-items: baseline; justify-content: space-between; gap: .5rem; }
+.fallo-nombre { margin: 0; font-size: 1.05rem; }
+.fallo-veces { flex: none; font-weight: 600; color: var(--muted); font-size: .9rem; }
+.fallo-historia summary { cursor: pointer; min-height: 44px; display: flex; align-items: center; color: var(--accent); }
+.fallo-historia ul { margin: 0 0 .3rem; padding-left: 1.2rem; }
+.fallo-acciones { margin-top: .4rem; }
+.fallo-acciones .btn { min-height: 44px; }
+/* La dosis */
+.dosis-no summary { cursor: pointer; min-height: 44px; display: flex; align-items: center; color: var(--accent); font-weight: 600; }
+.dosis-tarjeta { padding: .8rem 1rem; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); min-width: 0; }
+.dosis-num { margin: 0 0 .3rem; }
+.dosis-enunciado { font-size: 1.1rem; margin: 0 0 .7rem; overflow-wrap: anywhere; }
+.dosis-enunciado:focus { outline: none; }
+.dosis-ops { display: grid; grid-template-columns: repeat(auto-fit, minmax(8.5rem, 1fr)); gap: .5rem; }
+button.dosis-op { min-height: 52px; font-size: 1.15rem; font-variant-numeric: tabular-nums; background: var(--surface); color: var(--text); border-color: var(--border); }
+button.dosis-op:disabled { opacity: 1; }
+button.dosis-op.correcta { border-color: var(--ok); box-shadow: inset 0 0 0 2px var(--ok); }
+button.dosis-op.elegida-mal { border-color: var(--warn); box-shadow: inset 0 0 0 2px var(--warn); }
+.dosis-input { font-size: 1.2rem; min-height: 48px; max-width: 12rem; font-variant-numeric: tabular-nums; }
+.dosis-fb p { margin: .4rem 0; overflow-wrap: anywhere; }
+.dosis-has { color: var(--warn); }
+.dosis-regla { padding: .4rem .6rem; background: var(--accent-2); border-radius: 8px; }
+.dosis .reloj-paso, .dosis-cuerpo > p { margin-bottom: .6rem; }
+@media (prefers-reduced-motion: no-preference) { button.dosis-op { transition: box-shadow var(--dur-corta) var(--ease-suave), border-color var(--dur-corta) var(--ease-suave); } }
+/* En el resultado de un examen y en el paso a paso */
+.cuaderno-examen { margin: 1rem 0; padding: .8rem 1rem; border: 1px solid var(--accent); border-radius: var(--radius); background: var(--surface); }
+.cuaderno-examen h2 { margin: 0 0 .3rem; font-size: 1.15rem; }
+.cuaderno-examen-lista { margin: .3rem 0; padding-left: 1.2rem; }
+.cuaderno-examen-lista li { overflow-wrap: anywhere; }
+.cx-nombre { font-weight: 600; }
+.guiado-cuaderno a, .ejercicio-fallo a:not(.btn) { display: inline-flex; align-items: center; min-height: 44px; }
+.aviso-fallo { padding: .5rem .7rem; border: 1px solid var(--accent); border-radius: 8px; background: var(--accent-2); }
+.comprobar-revisar summary { cursor: pointer; min-height: 44px; display: flex; align-items: center; color: var(--accent); }

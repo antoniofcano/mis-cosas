@@ -46,6 +46,7 @@ import { botonesSesion } from '../sesion.js';
 import { etiquetaConcepto, conceptosDelBanco, estadoFicha, hrefFicha } from '../concepto.js';
 import { guiadoPanel, guiadoDisponible } from '../guiado.js';
 import { diagnosticoEl } from '../diagnostico.js';
+import { anotarFallosDeExamen, seccionCuadernoExamen, textoCuadernoExamen } from '../cuaderno.js';
 import { chartWidget } from '../chart-widget.js';
 import { entradaSimulacroErrores, armarParaTest, estructuraErrores, introErrores, registrarErrores, resultadoErrores, avisoFallada, textoErrores } from '../simulacro-errores.js';
 import { tipoDePregunta, tiemposDelTest, tiempoDelExamen, duracion } from '../../course/velocidad.js';
@@ -1077,6 +1078,8 @@ export function testView({ ctx, progress, params: route, tit }) {
     // --- resultado
     function resultados(test, g, porTiempo, E1 = E0, extra = {}) {
       const ce = extra.ce ?? null;
+      // Cuaderno de fallos (R-55): cada opción falsa con un error reconocido entra con su nombre y se dice cuál se abre.
+      const anotados = anotarFallosDeExamen({ preguntas: test.preguntas, detalle: g.detalle, chart: chartRef, origen: test.tipo === 'real' || test.tipo === 'final' ? 'examen' : 'simulacro' });
       // Dentro de una sesión de estudio se sigue en modo concentración (la barra de la sesión manda).
       if (!document.body.classList.contains('en-sesion')) document.body.classList.remove('focus');
       // Los temas, en el mismo orden que en Temario y Progreso.
@@ -1084,7 +1087,7 @@ export function testView({ ctx, progress, params: route, tit }) {
       summaryText = `RESULTADO ${test.titulo}: ${g.aciertos}/${g.total} ${g.apto == null ? '' : g.apto ? 'APTO' : 'NO APTO'}\n` +
         g.bloques.map((b) => `${b.titulo}: ${b.aciertos}/${b.total}${b.maxErrores != null ? ` (máx. errores ${b.maxErrores})` : ''}`).join('\n') +
         `\nFALLADAS: ${g.detalle.filter((d) => !d.ok).map((d) => `${d.id} (marcó ${d.respuesta ?? '—'}, correcta ${d.correcta})`).join(', ')}` +
-        (ce ? `\n${textoErrores(ce)}` : '');
+        (ce ? `\n${textoErrores(ce)}` : '') + textoCuadernoExamen(anotados);
       const filtro = { value: 'falladas' };
       const review = h('div.review');
       const renderReview = () => setChildren(review, test.preguntas.map((q, j) => {
@@ -1164,6 +1167,7 @@ export function testView({ ctx, progress, params: route, tit }) {
             })))
           : h('p.ok', 'Sin fallos. Enhorabuena.'),
         revisarPaso,
+        seccionCuadernoExamen(T0.id, anotados),
         tiempoTipos,
         ses ? null : botonesFin,
         tituloRevision,

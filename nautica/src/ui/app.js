@@ -61,6 +61,8 @@ import { diaExamenView } from './views/dia-examen.js';
 import { visperaView } from './views/vispera.js';
 import { ensayoView } from './views/ensayo.js';
 import { oficialView } from './views/oficial.js';
+import { fallosView } from './views/fallos.js';
+import { fijarProgresoCuaderno } from './cuaderno.js';
 import { iniciarSincronizacion, syncAvisoCabecera, alCambiarSync } from './sync.js';
 import { iniciarRecordatorio } from './recordatorio.js';
 import { fijarModoExamen, modoExamen } from './modo-examen.js';
@@ -93,6 +95,7 @@ const TIT_ROUTES = {
   vispera: visperaView, // #/<tit>/vispera: repaso exprés de la víspera (15 min, las trampas de los temas con límite); paso de la semana antes
   ensayo: ensayoView, // #/<tit>/ensayo[/cuadernillo]: ensayo general en papel (preparación y cuadernillo imprimible); en marcha, #/<tit>/test/ensayo
   oficial: oficialView, // #/<tit>/oficial[/<convocatoria>]: tu examen oficial, apuntado con tu hoja y corregido con la plantilla (R-60)
+  fallos: fallosView, // #/<tit>/fallos[/dosis|comprobar/<fallo>]: tu cuaderno de fallos, la dosis de 2 minutos y la comprobación (R-55, R-56)
   carta: cartaView,
   'carta-pasos': cartaPasosView, // #/<tit>/carta-pasos[/<tipo>]: ejercicios de carta resueltos paso a paso (nunca desde un examen)
   // #/<tit>/examenes[/<lista>]; con un fichero (.json), dirección antigua de un banco
@@ -139,7 +142,7 @@ export function pestanaDe(parts) {
   const [a, b] = parts;
   if (!a || a === 'bienvenida' || a === 'progreso') return 'hoy';
   if (TITULACIONES[a]) {
-    if (!b || b === 'hoy' || b === 'sesion' || b === 'nivel' || b === 'travesia' || b === 'semana') return 'hoy';
+    if (!b || b === 'hoy' || b === 'sesion' || b === 'nivel' || b === 'travesia' || b === 'semana' || b === 'fallos') return 'hoy';
     if (['temario', 'curso', 'teoria', 'idea'].includes(b)) return 'temario';
     if (b === 'examenes' && parts[2]) return 'temario';
     if (b === 'dia-examen' || b === 'vispera') return 'examen'; // la lista del día del examen y el repaso exprés de la víspera
@@ -164,7 +167,7 @@ export function rutaEnTit(parts, id) {
   const b = parts[1];
   if (b === 'curso' || b === 'temario') return [id, 'temario'];
   if (b === 'cuentas') return [id, 'cuentas'];
-  if (['examenes', 'laminas', 'biblioteca', 'carta', 'mas', 'travesia', 'estrategia', 'ensayo', 'chuletas', 'formulas'].includes(b)) return [id, b];
+  if (['examenes', 'laminas', 'biblioteca', 'carta', 'mas', 'travesia', 'estrategia', 'ensayo', 'chuletas', 'fallos', 'formulas'].includes(b)) return [id, b];
   if (b === 'carta-pasos') return [id, ...parts.slice(1, 3)];
   return [id];
 }
@@ -208,6 +211,7 @@ async function main() {
   const chart = createChart(await loadChartData());
   const ctx = { chart };
   const progress = createProgressStore();
+  fijarProgresoCuaderno(progress); // el cuaderno de fallos (src/ui/cuaderno.js) se guarda en el progreso
   // Sincronización del progreso entre los aparatos del alumno (docs/SYNC.md): sola y sin estorbar; sin red, todo
   // sigue en local. El punto discreto de la cabecera solo aparece si lleva más de un día sin lograrlo.
   iniciarSincronizacion(progress);

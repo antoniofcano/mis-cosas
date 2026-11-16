@@ -111,7 +111,9 @@ export default defineExercise({
   },
 
   mistakes: [
-    { id: 'sin-adelanto', explain: 'Has olvidado pasar las horas del Anuario (UT) a hora legal, o lo has hecho al revés.', mutate: (p) => ({ ...p, adelanto: 0 }) },
+    { id: 'sin-adelanto', explain: 'Has olvidado pasar las horas del Anuario (UT) a hora legal.', mutate: (p) => ({ ...p, adelanto: 0 }) },
+    // El adelanto al revés (cuaderno de fallos, R-55): restarlo al pasar de UT a hora oficial y sumarlo al ir a UT.
+    { id: 'adelanto-signo', explain: 'Has aplicado el adelanto al revés: UT = hora oficial − adelanto; hora oficial = UT + adelanto.', mutate: (p) => ({ ...p, adelanto: -p.adelanto }) },
     { id: 'lineal', explain: 'Has interpolado linealmente. La marea no sube a ritmo constante: usa la fórmula del coseno o la regla de los doceavos.', results: (p, ctx, ok) => {
       if (p.variant !== 'altura') return null;
       const a = p.subiendo ? p.hb : p.hp;

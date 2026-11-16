@@ -2840,3 +2840,41 @@ button.dosis-op.elegida-mal { border-color: var(--warn); box-shadow: inset 0 0 0
 .pm-tabla caption { caption-side: bottom; text-align: left; padding-top: .3rem; }
 .pm-estimar-lista li { padding: .45rem .6rem; background: var(--panel); border-radius: 6px; overflow-wrap: anywhere; }
 .pm-estimar-lista p { margin: .15rem 0; }
+
+/* ---- «Lo hice en papel»: la hoja corregida por pasos (R-58, src/ui/papel.js) ---- */
+.papel-box { margin: 1rem 0; }
+.papel { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: .8rem .9rem; min-width: 0; }
+.papel .guiado-cab h2 { margin: 0; font-size: 1.15rem; }
+.papel-margenes { margin: .4rem 0 .8rem; }
+.papel-lista { list-style: none; margin: 0; padding: 0; display: grid; gap: .7rem; }
+.papel-paso { border-left: 4px solid var(--border); padding: .4rem 0 .5rem .7rem; min-width: 0; overflow-wrap: anywhere; }
+.papel-paso.e-ok, .papel-paso.e-arrastrado { border-left-color: var(--ok); }
+.papel-paso.e-casi { border-left-color: var(--close); }
+.papel-paso.e-mal { border-left-color: var(--warn); }
+.papel-paso.e-mal.primero { border-left-width: 6px; background: var(--accent-2); border-radius: 0 var(--radius) var(--radius) 0; padding-right: .6rem; }
+.papel-tit { margin: 0 0 .15rem; font-size: 1rem; display: flex; align-items: baseline; gap: .35rem; }
+.papel-n { display: inline-grid; place-items: center; min-width: 1.6rem; height: 1.6rem; border-radius: 999px; border: 1.5px solid var(--border); font-size: .85rem; font-variant-numeric: tabular-nums; flex: none; }
+.papel-pregunta { margin: 0 0 .4rem; color: var(--muted); }
+.papel-campos { display: grid; gap: .5rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 9.5rem), 1fr)); }
+.papel-campo { display: grid; gap: .15rem; min-width: 0; }
+.papel-lbl { font-weight: 600; font-size: .92rem; }
+.papel-input { min-height: 48px; font-size: 1.15rem; padding: .45rem .6rem; }
+.papel-margen { line-height: 1.25; }
+.papel-res:empty { display: none; }
+.papel-res { margin-top: .4rem; }
+.papel-res p { margin: .2rem 0; }
+.papel-estado { font-weight: 700; }
+.papel-paso.e-ok .papel-estado .ico, .papel-paso.e-arrastrado .papel-estado .ico { color: var(--ok); }
+.papel-paso.e-mal .papel-estado .ico { color: var(--warn); }
+.papel-paso.e-casi .papel-estado .ico { color: var(--close); }
+.papel-cmp { font-variant-numeric: tabular-nums; }
+.papel-error { margin-top: .3rem; padding: .45rem .6rem; border: 1px solid var(--warn); border-radius: 8px; }
+.papel-veredicto:empty { display: none; }
+.papel-veredicto { margin: .2rem 0 .9rem; padding: .6rem .7rem; border: 1px solid var(--accent); border-radius: var(--radius); background: var(--accent-2); }
+.papel-veredicto:focus { outline: none; }
+.papel-veredicto:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.papel-veredicto p { margin: .25rem 0; }
+.papel-cuaderno a { display: inline-flex; align-items: center; min-height: 44px; }
+.papel .guiado-cab button, .papel-acciones button, .boton-papel { min-height: 44px; }
+.papel-acciones { margin-top: .9rem; }
+.oficial-hoja { display: inline-flex; align-items: center; min-height: 44px; }

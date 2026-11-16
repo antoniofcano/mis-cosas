@@ -45,6 +45,7 @@ import { glosar } from '../glosas.js';
 import { botonesSesion } from '../sesion.js';
 import { etiquetaConcepto, conceptosDelBanco, estadoFicha, hrefFicha } from '../concepto.js';
 import { guiadoPanel, guiadoDisponible } from '../guiado.js';
+import { papelDisponible } from '../papel.js';
 import { diagnosticoEl } from '../diagnostico.js';
 import { anotarFallosDeExamen, seccionCuadernoExamen, textoCuadernoExamen } from '../cuaderno.js';
 import { chartWidget } from '../chart-widget.js';
@@ -1206,6 +1207,18 @@ export function testView({ ctx, progress, params: route, tit }) {
               h('span.muted.small', `${d.respuesta ? `Marcaste la ${d.respuesta}); era la ${d.correcta})` : `En blanco; era la ${d.correcta})`} · ${conPasos ? 'Resolver paso a paso' : rutaResolucion(q) ? 'Ver la resolución' : 'Ver la explicación'}`)),
             h('span.mas-fila-flecha', { 'aria-hidden': 'true' }, '›')));
         }))) : null;
+      // Ensayo en papel (R-58): cada problema de carta con resolución por pasos, a corregir tu hoja paso a paso (primero
+      // los fallados; también los acertados, que pueden salir bien por casualidad).
+      const hojaPasos = ens ? test.preguntas.map((q, j) => ({ q, j, d: g.detalle[j] })).filter(({ q }) => papelDisponible(q, cartaSolutions[q.id], chartRef))
+        .sort((a, b) => Number(a.d.ok) - Number(b.d.ok) || a.j - b.j) : [];
+      const corregirHoja = hojaPasos.length ? h('section.ensayo-revisar.ensayo-hoja', { 'aria-labelledby': 'ensayo-hoja-t' },
+        h('h2#ensayo-hoja-t', conIcono('documento', 'Corrige tu hoja por pasos')),
+        h('p.muted', 'Con tu hoja delante, escribe el resultado de cada paso que hiciste: te digo en cuál te desviaste y qué pasos están bien hechos aunque arrastres un dato malo.'),
+        h('ul.ensayo-revisar-lista', hojaPasos.map(({ q, j, d }) => h('li', h('a.ensayo-revisar-enlace', { href: link(['q', q.id], { papel: '1' }) },
+          h('span.revision-num', String(j + 1)),
+          h('span.ensayo-revisar-tx', h('span', (q.enunciado ?? '').slice(0, 80) + ((q.enunciado ?? '').length > 80 ? '…' : '')),
+            h('span.muted.small', `${d.ok ? 'Acertada' : 'Fallada'} · Corregir mi hoja`)),
+          h('span.mas-fila-flecha', { 'aria-hidden': 'true' }, '›')))))) : null;
       // Tu tiempo en este examen por tipo de problema (R-42), si se midió pregunta a pregunta.
       const filasT = extra.tq?.length ? tiempoDelExamen(extra.tq) : [];
       const tiempoTipos = filasT.some((f) => f.carta) ? h('section.tiempo-examen', { 'aria-labelledby': 'tiempo-examen-t' },
@@ -1213,6 +1226,7 @@ export function testView({ ctx, progress, params: route, tit }) {
         h('table.stats.tiempo-tipos', h('thead', h('tr', h('th', { scope: 'col' }, 'Tipo'), h('th', { scope: 'col' }, 'Preg.'), h('th', { scope: 'col' }, 'Media'), h('th', { scope: 'col' }, 'Bien'))),
           h('tbody', filasT.map((f) => h('tr', h('th', { scope: 'row' }, f.nombre), h('td', String(f.n)), h('td', duracion(f.mediaS)), h('td', `${f.aciertos}/${f.n}`))))),
         h('p.small', h('a', { href: tlink(T0.id, ['estrategia']) }, 'Tu velocidad en carta, con todos tus exámenes →'))) : null;
+      if (hojaPasos.length) summaryText += `\nCORREGIR LA HOJA POR PASOS: ${hojaPasos.map(({ q }) => `#/q/${q.id}?papel=1`).join(' · ')}`;
       if (ens) summaryText += `\nENSAYO EN PAPEL${ens.minutos ? ` · ${ens.minutos} de ${ens.duracionMin} min` : ''} · REVISAR FALLOS: ${fallosPaso.map(({ q, pasos }) => `#/q/${q.id}${pasos ? '?guiado=1 (paso a paso)' : ''}`).join(' · ') || 'nada'}`;
       if (filasT.length) summaryText += `\nTIEMPO POR TIPO: ${filasT.map((f) => `${f.nombre} ${duracion(f.mediaS)} (${f.n})`).join(' · ')}`;
       // El reparto del tiempo frente a lo hecho, dónde convenía estimar y, con tiempos, el cansancio (R-57, R-66).
@@ -1244,6 +1258,7 @@ export function testView({ ctx, progress, params: route, tit }) {
                 h('td', String(b.errores)));
             })))
           : h('p.ok', 'Sin fallos. Enhorabuena.'),
+        corregirHoja,
         revisarPaso,
         seccionCuadernoExamen(T0.id, anotados),
         informeEl,

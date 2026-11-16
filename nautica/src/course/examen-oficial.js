@@ -115,3 +115,14 @@ export function fallosAgrupados(preguntas, detalle, { tipoDe, nombreTipo = (x) =
 
 /** El examen oficial ya apuntado de una convocatoria (tests del alumno de esa titulación y ese eje), o null. */
 export const oficialApuntado = (tests = [], conv) => [...tests].reverse().find((t) => t?.oficial && t.conv === conv) ?? null;
+
+/**
+ * Hoja que llega en el enlace (`?r=`): una letra por pregunta, en el orden del examen (o de la parte), y «-» o «.» en
+ * blanco. → { 1: 'a', 2: null, … } (posición desde 1). Sirve para pasar una hoja ya escrita en otro sitio; el alumno la
+ * revisa antes de corregir. null si el texto no es una hoja válida para `n` preguntas.
+ */
+export function hojaDeEnlace(r, n) {
+  const t = String(r ?? '').toLowerCase().replace(/\s+/g, '');
+  if (!n || t.length !== n || !/^[abcd.\-]+$/.test(t)) return null;
+  return Object.fromEntries([...t].map((l, i) => [i + 1, /[abcd]/.test(l) ? l : null]));
+}

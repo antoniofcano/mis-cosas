@@ -20,7 +20,8 @@ test('el bloque de la mesa existe y no lleva colores fijos (salvo la sombra negr
 
 test('la mesa usa las letras y los botones del estilo nuevo', () => {
   const css = sinComentarios(BLOQUE);
-  assert.match(css, /\.ichart \.readout[^{]*\{[^}]*var\(--fuente-mono\)/, 'lecturas en mono');
+  assert.match(css, /\.ichart \.protractor-bar[^{]*\{[^}]*var\(--fuente-mono\)/, 'el transportador, en mono');
+  assert.match(css, /\.ichart \.readout \{[^}]*tabular-nums/, 'la lectura (que también lleva la ayuda en frases) en la letra de texto, con cifras tabulares');
   assert.match(css, /\.ws-title \{[^}]*var\(--fuente-titulos\)/, 'título de la mesa en condensada');
   assert.match(css, /\.ws-tabbtn \{[^}]*var\(--fuente-titulos\)/, 'pestañas en condensada');
   assert.match(css, /button\.tool\[aria-pressed="true"\] \{[^}]*var\(--boton\)[^}]*inset 0 -4px/, 'herramienta activa: relleno de botón y barra (no solo color)');

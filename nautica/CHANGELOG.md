@@ -15,6 +15,10 @@ Qué cambia en la app para quien la usa, por fecha de publicación. Es la base d
 
 ## Sin publicar
 
+Nada pendiente.
+
+## 16 de noviembre de 2026, octava publicación · versión `4da31d70509f`
+
 **Novedades**
 
 - **«¿Qué tipo de problema es?» al empezar el paso a paso.** Antes de la primera cuenta eliges el tipo entre cuatro (marea y sonda, situación por dos demoras, corriente: rumbo a dar…). Si te equivocas, te dice por qué es de ese tipo y qué dato del enunciado lo delata. No cuenta como fallo.

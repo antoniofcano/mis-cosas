@@ -15,13 +15,9 @@ Qué cambia en la app para quien la usa, por fecha de publicación. Es la base d
 
 ## Sin publicar
 
-**Correcciones**
+Nada pendiente.
 
-- Clases al día con lo que preguntó el examen del 14 de noviembre: la corriente frente a Ceuta tiende al SE y se divide
-  en el cabo Tres Forcas; el siroco sopla por delante de las depresiones; el tramo de marea que pasa de medianoche;
-  quién no puede apartarse según la Regla 3; de qué depende el círculo de borneo; y cómo situarse con una enfilación y la
-  distancia a un faro. En un dispositivo de separación de tráfico, ir por la vía no da preferencia, ahora como idea propia.
-- La numeración de las clases de un tema ya no salta números cuando hay ideas flojas entre ellas.
+## 16 de noviembre de 2026 · versión `4b1450d82307`
 
 **Novedades**
 
@@ -39,6 +35,14 @@ Qué cambia en la app para quien la usa, por fecha de publicación. Es la base d
   lista de clases del tema.
 - **Andalucía, 3.ª convocatoria de 2026** (14 de noviembre), en el PER y en el PY. Entra reservada para el examen
   final; la 1.ª de 2025 pasa a poder estudiarse.
+
+**Correcciones**
+
+- Clases al día con lo que preguntó el examen del 14 de noviembre: la corriente frente a Ceuta tiende al SE y se divide
+  en el cabo Tres Forcas; el siroco sopla por delante de las depresiones; el tramo de marea que pasa de medianoche;
+  quién no puede apartarse según la Regla 3; de qué depende el círculo de borneo; y cómo situarse con una enfilación y la
+  distancia a un faro. En un dispositivo de separación de tráfico, ir por la vía no da preferencia, ahora como idea propia.
+- La numeración de las clases de un tema ya no salta números cuando hay ideas flojas entre ellas.
 
 ## 11 de noviembre de 2026 · versión `6a8d8eabafe6`
 

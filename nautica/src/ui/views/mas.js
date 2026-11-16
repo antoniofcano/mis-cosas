@@ -22,6 +22,7 @@ import { seccionConfigAlumno } from '../config-profe.js';
 import { conIcono } from '../iconos.js';
 import { soportaSonido, soportaVibracion, desbloquearSonido, efecto } from '../efectos.js';
 import { seccionDispositivos } from '../dispositivos.js';
+import { ASPECTOS, normalizaAspecto, elegirAspecto } from '../tema.js';
 import { seccionAvisos } from '../recordatorio.js';
 import { syncSana } from '../sync.js';
 import { seccionCorrecciones } from '../tema-pregunta.js';
@@ -55,6 +56,16 @@ export function masView({ progress, tit, params }) {
     }, txt))));
   };
   pintaLetra();
+  // Aspecto: claro (la carta de día), oscuro (el puente de noche) o automático (el del sistema). Es del aparato: no se sincroniza.
+  const aspectoEl = h('div');
+  const pintaAspecto = () => {
+    const actual = normalizaAspecto(progress.settings().aspecto);
+    setChildren(aspectoEl, h('div.opciones-grandes', { role: 'group', 'aria-label': 'Aspecto' }, ASPECTOS.map(([k, txt]) => h('button.grande', {
+      type: 'button', class: actual === k ? '' : 'secondary', 'aria-pressed': actual === k ? 'true' : 'false',
+      onclick: () => { elegirAspecto(progress, k); pintaAspecto(); },
+    }, actual === k ? `✓ ${txt}` : txt))));
+  };
+  pintaAspecto();
   const diasEl = h('div');
   const pintaDias = () => {
     const actual = progress.settings().diasEstudio ?? 'todos';
@@ -125,6 +136,9 @@ export function masView({ progress, tit, params }) {
       h('p', h('a', { href: tlink(tit, ['guia']) }, conIcono('brujula', 'Cómo funciona el curso y cómo aprobar →')))),
     // Tu convocatoria: hora, sede y enlace (opcionales), la lista de admitidos y la lista del día del examen; todo se edita y se borra aquí.
     convocatoriaEl,
+    h('section', h('h2', 'Aspecto'),
+      h('p.muted', 'Claro, oscuro (para estudiar de noche) o automático, el del sistema. Solo cambia en este aparato.'),
+      aspectoEl),
     h('section', h('h2', 'Tamaño de letra'),
       letraEl),
     h('section', h('h2', 'Titulación'),

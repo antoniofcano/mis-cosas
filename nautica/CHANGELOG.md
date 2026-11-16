@@ -15,7 +15,14 @@ Qué cambia en la app para quien la usa, por fecha de publicación. Es la base d
 
 ## Sin publicar
 
-Nada pendiente.
+**Novedades**
+
+- **Modo noche.** En Ajustes tienes ahora «Aspecto»: claro, oscuro o automático (el de tu móvil). El oscuro está pensado para estudiar de noche, con colores suaves que no deslumbran. Solo cambia en el aparato donde lo eliges.
+
+**Mejoras**
+
+- **Una cara nueva.** Colores de carta náutica, fondo con retícula discreta (que desaparece cuando lees una clase o haces un examen) y letras nuevas: títulos y botones en una letra más estrecha y las cifras del reloj y las horas en una de ancho fijo, más fáciles de leer de un vistazo. Funciona igual sin conexión.
+- **Hoy, más claro.** La tarjeta «Siguiente parada» es lo primero que ves tras tu derrota, con un único botón grande; justo debajo, cómo vas y tu cuaderno de fallos. Todo lo demás sigue en su sitio, un poco más abajo.
 
 ## 16 de noviembre de 2026, cuarta publicación · versión `67b743b4bad0`
 

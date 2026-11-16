@@ -8,8 +8,11 @@
   <!-- Agentes de IA: lee /llms.txt (guía breve) y usa window.nautica.state() o la sección #ai-context. -->
   <link rel="alternate" type="text/plain" href="llms.txt" title="Guía para agentes de IA">
   <link rel="manifest" href="manifest.webmanifest">
-  <meta name="theme-color" content="#0b5cad" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#0f1b2b" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#EEF3F5" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0A1418" media="(prefers-color-scheme: dark)">
+  <!-- Aspecto elegido en Ajustes (claro u oscuro; sin elegir, manda el sistema): se aplica antes de pintar para que no haya
+       parpadeo. Misma lógica que src/ui/tema.js (lo comprueba tests/tema.test.js). -->
+  <script>(function () { try { var a = localStorage.getItem('nautica.aspecto'); var t = a === 'claro' ? 'light' : a === 'oscuro' ? 'dark' : ''; if (!t) return; document.documentElement.setAttribute('data-theme', t); var c = t === 'dark' ? '#0A1418' : '#EEF3F5'; var m = document.querySelectorAll('meta[name="theme-color"]'); for (var i = 0; i < m.length; i++) m[i].setAttribute('content', c); } catch (e) {} })();</script>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="apple-mobile-web-app-title" content="Patrón">

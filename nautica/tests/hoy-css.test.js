@@ -24,12 +24,13 @@ test('los nombres de las fases se encogen con la pantalla', () => {
   assert.match(regla('.fases'), /minmax\(0, 1fr\)/);
 });
 
-test('los colores de la sesión están en el tema claro y en el oscuro', () => {
+test('los colores de la sesión están definidos y el color sobre el acento, en claro y en oscuro', () => {
+  const raiz = css.slice(css.indexOf(':root {'), css.indexOf('\n}\n', css.indexOf(':root {')));
+  for (const t of ['--sesion-bg', '--sesion-fg', '--sesion-boton', '--sesion-boton-fg', '--on-accent']) assert.match(raiz, new RegExp(`${t}:`), `${t} en claro`);
   const oscuro = css.slice(css.indexOf('@media (prefers-color-scheme: dark)'));
-  for (const t of ['--sesion-bg', '--sesion-fg', '--sesion-boton', '--sesion-boton-fg', '--on-accent']) {
-    assert.match(css.slice(0, css.indexOf('@media (prefers-color-scheme: dark)')), new RegExp(`${t}:`), `${t} en claro`);
-    assert.match(oscuro.slice(0, oscuro.indexOf('\n}\n')), new RegExp(`${t}:`), `${t} en oscuro`);
-  }
+  assert.match(oscuro.slice(0, oscuro.indexOf('\n}\n')), /--on-accent:/, '--on-accent en oscuro');
+  // Los colores de los botones (--boton / --on-boton) cambian con el tema: la sesión los usa.
+  assert.match(raiz, /--sesion-boton: var\(--boton\)/);
 });
 
 test('un aviso breve no tapa los botones', () => {

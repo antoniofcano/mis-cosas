@@ -15,7 +15,10 @@ Qué cambia en la app para quien la usa, por fecha de publicación. Es la base d
 
 ## Sin publicar
 
-Nada pendiente.
+**Novedades**
+
+- **Lo hice en papel.** En una pregunta de carta, junto a «Resolver paso a paso», tienes «Lo hice en papel»: la resuelves en tu hoja, como en el examen, y luego escribes el resultado de los pasos que tengas (no hace falta escribirlos todos). Te digo en qué paso te desviaste y, si es un error típico, cuál («Has aplicado el adelanto al revés»). Si un paso no coincide con la solución pero está bien hecho con el dato malo que traías de antes, no se te marca: solo cuenta el primer fallo, y ese va a tu cuaderno de fallos. El margen es el del paso a paso, y el doble en lo que se mide en la carta con transportador o compás.
+- Al acabar el **ensayo general en papel**, «Corrige tu hoja por pasos» te lleva a cada problema de carta para corregir lo que escribiste en tu hoja. En **Tu examen oficial**, cada problema de carta fallado también se puede corregir así, si guardaste tu hoja.
 
 ## 16 de noviembre de 2026, quinta publicación · versión `32f9031c575a`
 

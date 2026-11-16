@@ -227,6 +227,19 @@ exige que coincida con la plantilla oficial. Si cambias la carta o un motor, est
   Ajustes), interfaz en `ui/guiado.js` (`guiadoPanel`). Se abre en `#/q/<id>` («Resolver paso a paso» o `?guiado=1`),
   en el panel del profe de la práctica (clases y tandas) y en la pestaña «Paso a paso» de la mesa (`openWorkspace({ guiado })`,
   que dibuja cada paso con el tutorial). Nunca en un examen (`modoExamen()`), ni en la revisión de uno.
+- **Hoja en papel corregida por pasos (R-58):** lógica en `exams/papel.js` (`pasosPapel`, `corregirPapel`, `veredicto`,
+  `textoPapel`), interfaz en `ui/papel.js` (`papelPanel`, `papelDisponible`). Se abre en `#/q/<id>?papel=1` («Lo hice en
+  papel»), desde el resultado del ensayo en papel (`testView`, «Corrige tu hoja por pasos») y desde tu examen oficial
+  (fallos de carta); nunca con un examen en marcha. **Errores arrastrados:** `createKit(chart, { fijos })` sustituye en
+  cada operación el valor calculado de un paso por el que escribió el alumno (`fijos[i][campo]`; helpers `F`, `FH` para
+  duraciones y `FP` para situaciones, con desplazamiento cuando una operación apunta varios pasos) y sigue con él; con
+  `fijos`, una hora fuera de la tabla de mareas usa el tramo más cercano. Cada paso escrito se compara con la resolución
+  y con la resolución «con sus datos»: si cuadra con la segunda, está bien hecho (`arrastrado`) y solo cuenta el primer
+  desvío. El error con nombre sale de las variantes de la taxonomía con sus datos anteriores fijados, buscando también
+  en los pasos que no escribió (un solo error = nombre; dos = «puede ser»). Tolerancias de `toleranciaCampo` (las del
+  paso a paso, ×2 lo medido); «casi» hasta el doble, salvo que coincida con un error típico. El primer fallo con nombre
+  va a `store/errores.js` y al cuaderno (`anotarFallo`, origen `papel`). Lo escrito se guarda como borrador en el aparato
+  (`nautica.papel.<id>`). Test `tests/papel.test.js` (barrido sobre las preguntas del estudio de todos los bancos).
 - **Avisos por paso (R-65):** `exams/avisos-pasos.js` (sin DOM) guarda el catálogo `AVISOS` (por error típico: `ojo`, `no`,
   `asi`, `has`; test: uno por cada `E(...)` del kit). El kit anota en cada paso preguntable `errores` (los `E(...)` que se
   consultan en su operación, afinados por paso con `erroresDelPaso`; no cambia ningún resultado) y `pasosGuiados` los pasa.
@@ -247,7 +260,7 @@ exige que coincida con la plantilla oficial. Si cambias la carta o un motor, est
 - **Fallo** (`course/cuaderno.js`, puro): un error típico de la taxonomía (`exams/taxonomia.js`) en un tipo de problema
   (el `ejercicio` de la solución o el id del ejercicio generado; `carta` si no tiene). Id `<error>.<tipo>`. Guarda las
   veces (`n`), las últimas con fecha y origen (`paso`, `pregunta`, `simulacro`, `examen`, `oficial`, `ejercicio`,
-  `comprobacion`), la última dosis y las comprobaciones. Una misma pregunta (o semilla) con el mismo fallo el mismo día
+  `comprobacion`, `papel`), la última dosis y las comprobaciones. Una misma pregunta (o semilla) con el mismo fallo el mismo día
   cuenta una vez: el paso guiado y la opción final de esa pregunta no se duplican.
 - **Estados y calendario:** abierto → (dosis superada, ≥ 4 de 5) comprobación a `DIAS_COMPROBACION` (3) días →
   bien: vigilando, la siguiente a `DIAS_VIGILANDO` (7) → bien otra vez: resuelto. Mal: abierto, dosis primero y la

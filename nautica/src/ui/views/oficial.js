@@ -22,6 +22,7 @@ import { modoExamen } from '../modo-examen.js';
 import { conIcono } from '../iconos.js';
 import { cuenta, diaISO, fechaLarga } from '../../texto.js';
 import { anotarFallosDeExamen, seccionCuadernoExamen, textoCuadernoExamen } from '../cuaderno.js';
+import { papelDisponible } from '../papel.js';
 
 const deTitEje = (x, tit, eje) => (x?.tit ?? 'per') === tit && x?.eje === eje;
 
@@ -181,8 +182,14 @@ export function oficialView({ ctx, progress, params: route, tit }) {
         h('h2', 'Tus fallos, por tipo de problema'),
         h('ul.oficial-fallos', grupos.map((x) => h('li',
           h('strong', `${x.titulo}: ${cuenta(x.fallos.length, 'fallo')}`),
-          h('ul', x.fallos.map((f) => h('li', h('a', { href: `#/q/${f.id}${x.carta ? '?guiado=1' : ''}` }, f.numero),
-            ` · marcaste ${f.marcada ?? 'en blanco'}, era la ${f.correcta ?? '—'}${x.carta ? ' · resolverla paso a paso' : ''}`)))))),
+          h('ul', x.fallos.map((f) => {
+            // Si guardas tu hoja del examen, cada problema de carta fallado se corrige por pasos (R-58).
+            const qf = test.preguntas.find((y) => y.id === f.id);
+            const hoja = x.carta && qf && papelDisponible(qf, SOLUCIONES[f.id], ctx?.chart ?? null);
+            return h('li', h('a', { href: `#/q/${f.id}${x.carta ? '?guiado=1' : ''}` }, f.numero),
+              ` · marcaste ${f.marcada ?? 'en blanco'}, era la ${f.correcta ?? '—'}${x.carta ? ' · resolverla paso a paso' : ''}`,
+              hoja ? [' · ', h('a.oficial-hoja', { href: `#/q/${f.id}?papel=1` }, 'corregir tu hoja por pasos')] : null);
+          }))))),
         h('h2', 'Qué hace ahora Patrón con esto'),
         h('ul',
           h('li', `Tus ${cuenta(nf, 'fallo')} entran en tu repaso de fallos, espaciado en los próximos días.`),

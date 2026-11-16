@@ -14,7 +14,7 @@ test('data/podcast-<tit>.json y las líneas de tiempo están al día (si falla: 
 // Episodios con audio cuyo guion se corrigió después de grabarlo (podcast/REVISION-PER.md, R-09): hasta regenerar su audio,
 // la línea de tiempo es la de la grabación antigua y sus pausas no tienen por qué llevar las preguntas nuevas del minijuego.
 // La lista solo puede menguar: al regenerar un episodio (podcast/audio.py), se quita de aquí.
-const PENDIENTES_DE_REGENERAR = new Set(['per-0', 'per-1-0', 'per-1-2', 'per-1-3', 'per-5-0', 'per-5-1', 'per-5-2']);
+const PENDIENTES_DE_REGENERAR = new Set([]);
 
 test('cada episodio con audio tiene su guion, su línea de tiempo y las preguntas del minijuego en sus pausas', () => {
   const E = JSON.parse(leer('podcast/episodios.json'));

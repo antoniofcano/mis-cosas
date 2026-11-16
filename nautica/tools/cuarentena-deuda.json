@@ -2,42 +2,6 @@
  "nota": "Cuarentena de lo reservado (docs/BANCOS.md, docs/CUARENTENA.md). deuda: citas a preguntas reservadas que solo se quitan regrabando el audio del podcast (fase 2); tests/cuarentena.test.js exige que no crezca y que cada entrada siga existiendo: al regrabar un episodio, se quitan las suyas (node tools/cuarentena.mjs --deuda). permitidas: falsos positivos revisados a mano (clave y motivo).",
  "deuda": [
   {
-   "clave": "data/podcast/per-1-3.json#tramos.68.x#and-2026-c2-t04#texto",
-   "id": "and-2026-c2-t04",
-   "episodio": "per-1-3",
-   "fichero": "data/podcast/per-1-3.json",
-   "ruta": "tramos.68.x",
-   "motivo": "el audio (línea de tiempo) lee su enunciado; cambiarla exige regrabar el episodio",
-   "estado": "pendiente regenerar audio"
-  },
-  {
-   "clave": "data/podcast/per-5-0.json#tramos.54.x#and-2025-c3-t13#texto",
-   "id": "and-2025-c3-t13",
-   "episodio": "per-5-0",
-   "fichero": "data/podcast/per-5-0.json",
-   "ruta": "tramos.54.x",
-   "motivo": "el audio (línea de tiempo) lee su enunciado; cambiarla exige regrabar el episodio",
-   "estado": "pendiente regenerar audio"
-  },
-  {
-   "clave": "data/podcast/per-5-1.json#tramos.68.x#and-2025-c3-t15#texto",
-   "id": "and-2025-c3-t15",
-   "episodio": "per-5-1",
-   "fichero": "data/podcast/per-5-1.json",
-   "ruta": "tramos.68.x",
-   "motivo": "el audio (línea de tiempo) lee su enunciado; cambiarla exige regrabar el episodio",
-   "estado": "pendiente regenerar audio"
-  },
-  {
-   "clave": "data/podcast/per-5-2.json#tramos.60.x#and-2025-c3-t14#texto",
-   "id": "and-2025-c3-t14",
-   "episodio": "per-5-2",
-   "fichero": "data/podcast/per-5-2.json",
-   "ruta": "tramos.60.x",
-   "motivo": "el audio (línea de tiempo) lee su enunciado; cambiarla exige regrabar el episodio",
-   "estado": "pendiente regenerar audio"
-  },
-  {
    "clave": "data/podcast/py-1-2.json#tramos.72.p#and-py-2025-c3-g05#id",
    "id": "and-py-2025-c3-g05",
    "episodio": "py-1-2",

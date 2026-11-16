@@ -91,7 +91,7 @@ _Última revisión: 10 de noviembre de 2026._
 | R-52 | Llevar el paso a paso «de hoja de examen» (traigo, planteo, cuenta y croquis) al resto de tipos: corrección total, corrientes, abatimiento, demoras | Siguiente | Hecho en la estima analítica y las mareas (H-46); los demás siguen con la voz del profe y dan hechos los pasos intermedios |
 | R-53 | Ejercicio generado de estima analítica con corriente, cruce del 180° y hemisferio sur, como pone hoy el tribunal | Siguiente | Hoy genera 2 o 3 tramos sin corriente cerca del Estrecho |
 | ~~R-62~~ | ~~La travesía y el mapa de Hoy con un módulo elegido~~ | Hecho | H-51: la travesía, el mapa de Hoy y los faros del Temario siguen el módulo; los temas del otro módulo quedan aparte en el Temario, con enlace |
-| R-63 | Retoques de clases y fichas por los huecos de la 3.ª de 2026: corrientes de la costa norte de África (Ceuta–Tres Forcas, py-2-9; comprobar en el Derrotero), siroco por delante de las depresiones (py-2-4), tramo de marea que cruza la medianoche (py-4-9); PER: DST sin preferencia (concepto nuevo), Regla 3 «no pueden apartarse» (per-6-1), borneo y profundidad (per-2-5), salida «enfilación + distancia» (per-11-7) | Siguiente | Informe en los lotes `tools/conceptos/etiquetas/andalucia/{per,py}/lote-001.json` |
+| ~~R-63~~ | ~~Retoques de clases y fichas por los huecos de la 3.ª de 2026~~ | Hecho | H-53. Queda pendiente comprobar en el Derrotero del IHM la dirección de cada rama de la corriente tras el cabo Tres Forcas (anotado en la verificación de py-2-9) |
 
 ## Bloqueado por fuente
 
@@ -174,6 +174,7 @@ _Última revisión: 10 de noviembre de 2026._
 | H-49 | Andalucía, 3.ª convocatoria de 2026 (14 de noviembre): PER y PY en el banco y reservadas para el examen final (sale de la reserva la 1.ª de 2025); los dos cuadernillos del PY venían enlazados con el nombre del otro módulo: corrección en `config.json` (`documentos`) y aviso del adaptador por la portada | Noviembre 2026 |
 | H-51 | ¿De qué te examinas? (R-61): elección de módulo en el PY (`modulos_<tit>`, `src/course/foco.js`); el motor recorta estructura, curso, ruta y preguntas al módulo (siguiente parada, plan con fecha —rehecho al cambiar—, avance, «¿Estás listo?», simulacro). Sin elección, el módulo que queda tras un resultado apuntado | Noviembre 2026 |
 | H-52 | Clase: la tanda de 10 preguntas se retoma donde se dejó (ajuste del aparato `tandaClase`, `src/course/tanda-clase.js`) y se puede ir directo a ella (primera tarjeta, aviso de apoyos y lista de clases del tema) | Noviembre 2026 |
+| H-53 | Huecos de la 3.ª de 2026 cubiertos (R-63): py-2-9 corriente de la costa norte de África (Ceuta al SE, Tres Forcas; concepto `meteo.corrientes.norte-africa`), py-2-4 siroco en la vanguardia de las depresiones, py-4-9 tramo de marea que cruza la medianoche; per-6-1 Regla 3 «no pueden apartarse», per-2-5 borneo y profundidad, per-11-7 enfilación y distancia; concepto `ripa.dst.sin-preferencia` (6 preguntas reetiquetadas) | Noviembre 2026 |
 | H-50 | Tu examen oficial (R-60): pasar la hoja del examen de verdad, corregirla con la plantilla y que sus fallos entren en el repaso, en «Tus fallos por materia» y en el resultado del examen; la convocatoria hecha sale del examen final del alumno | Noviembre 2026 |
 
 ## Mantenimiento recurrente

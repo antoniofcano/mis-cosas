@@ -24,7 +24,7 @@
   "and-2026-c3-t21": { "conceptos": ["ripa.luces.vela", "ripa.situacion.por-luces"], "motivo": "Velero de vuelta encontrada: se ven sus dos costados, sin tope." },
   "and-2026-c3-t22": { "conceptos": ["ripa.def.sin-gobierno", "ripa.def.maniobra-restringida"], "motivo": "Regla 3: los que no pueden apartarse son sin gobierno y maniobra restringida." },
   "and-2026-c3-t23": { "conceptos": ["ripa.sigue-rumbo"], "motivo": "Cuándo puede maniobrar el que sigue a rumbo (Regla 17 a) ii)." },
-  "and-2026-c3-t24": { "conceptos": ["ripa.dst.cruzar", "ripa.dst.uso"], "motivo": "Regla 10: cruzar una vía no obliga a apartarse; resto de usos del DST." },
+  "and-2026-c3-t24": { "conceptos": ["ripa.dst.sin-preferencia", "ripa.dst.cruzar"], "motivo": "Regla 10: cruzar una vía no obliga a apartarse; ir por la vía no da preferencia (re-etiquetada en lote-002, R-63)." },
   "and-2026-c3-t25": { "conceptos": ["ripa.visibilidad.radar"], "motivo": "Regla 19 d): buque por el través detectado solo por radar." },
   "and-2026-c3-t26": { "conceptos": ["ripa.canal.adelantar"], "motivo": "Dos largas y dos cortas: adelantar por babor en canal angosto." },
   "and-2026-c3-t27": { "conceptos": ["ripa.luces.def.tope"], "motivo": "Sector de 225° de la luz de tope." },

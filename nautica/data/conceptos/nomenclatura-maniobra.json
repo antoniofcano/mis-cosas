@@ -1,6 +1,6 @@
 {
  "grupo": "nomenclatura-maniobra",
- "version": 4,
+ "version": 5,
  "conceptos": [
   {
    "id": "nomen",
@@ -1896,9 +1896,11 @@
     "círculo de borneo",
     "radio de borneo",
     "cadena filada más la eslora",
-    "gira alrededor del ancla"
+    "gira alrededor del ancla",
+    "profundidad",
+    "depende el círculo de borneo"
    ],
-   "nota": "Giro del barco alrededor del ancla y radio del círculo de borneo (cadena filada + eslora); cómo se reduce y espacio libre necesario.",
+   "nota": "Giro del barco alrededor del ancla y radio del círculo de borneo (cadena filada + eslora); cómo se reduce y espacio libre necesario. La cadena depende de la profundidad: más fondo, más cadena y círculo mayor; el tipo de ancla y la naturaleza del fondo influyen en el agarre, no en el tamaño del círculo.",
    "padre": "amarre.fondeo",
    "relacionados": [
     "amarre.fondeo.garreo"

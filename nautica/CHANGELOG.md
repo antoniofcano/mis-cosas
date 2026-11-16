@@ -17,6 +17,10 @@ Qué cambia en la app para quien la usa, por fecha de publicación. Es la base d
 
 **Correcciones**
 
+- Clases al día con lo que preguntó el examen del 14 de noviembre: la corriente frente a Ceuta tiende al SE y se divide
+  en el cabo Tres Forcas; el siroco sopla por delante de las depresiones; el tramo de marea que pasa de medianoche;
+  quién no puede apartarse según la Regla 3; de qué depende el círculo de borneo; y cómo situarse con una enfilación y la
+  distancia a un faro. En un dispositivo de separación de tráfico, ir por la vía no da preferencia, ahora como idea propia.
 - La numeración de las clases de un tema ya no salta números cuando hay ideas flojas entre ellas.
 
 **Novedades**

@@ -1340,7 +1340,7 @@
 "and-py-2026-c3-g17": ["meteo.regionales.calidos-sur"],
 "and-py-2026-c3-g18": ["meteo.olas.longitud"],
 "and-py-2026-c3-g19": ["meteo.corrientes.densidad","meteo.corrientes.clasificacion"],
-"and-py-2026-c3-g20": ["meteo.corrientes.mediterraneo-occidental","meteo.corrientes.estrecho"],
+"and-py-2026-c3-g20": ["meteo.corrientes.norte-africa","meteo.corrientes.mediterraneo-occidental"],
 "and-py-2026-c3-n01": ["nav.esfera.tropicos-polares"],
 "and-py-2026-c3-n02": ["nav.esfera.longitud"],
 "and-py-2026-c3-n03": ["nav.ct.definicion","nav.ct.enfilacion"],

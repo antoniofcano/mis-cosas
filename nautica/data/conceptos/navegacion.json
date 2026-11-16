@@ -1,6 +1,6 @@
 {
  "grupo": "navegacion",
- "version": 6,
+ "version": 7,
  "conceptos": [
   {
    "id": "nav.esfera",
@@ -2393,9 +2393,10 @@
     "en la enfilación de",
     "en la oposición de",
     "y demora",
-    "distancia al faro desde la situación"
+    "distancia al faro desde la situación",
+    "y a una distancia del faro"
    ],
-   "nota": "Una enfilación u oposición cruzada con una demora, otra enfilación o un «al N/S verdadero de», y después la distancia o demora pedida. Tipo «distancia-faro». Incluye la enfilación u oposición cruzada con un veril (línea isobática).",
+   "nota": "Una enfilación u oposición cruzada con una demora, otra enfilación o un «al N/S verdadero de», y después la distancia o demora pedida. Tipo «distancia-faro». Incluye la enfilación u oposición cruzada con un veril (línea isobática) o con una distancia a un faro: arco con centro en el faro; en la enfilación, el corte de la prolongación (no el que cae entre los dos faros) y en el mar.",
    "padre": "carta.situacion",
    "relacionados": [
     "nav.lp.enfilacion-oposicion"

@@ -1850,6 +1850,11 @@
        "texto": "Al bornear, la proa puede acabar en cualquier punto alrededor del ancla. Para quedarte del lado seguro, estima el radio del círculo como:\n\n**radio ≈ cadena filada + eslora**\n\nEs una estimación por exceso (la cadena no está nunca totalmente estirada en horizontal), y por eso es buena para planificar. Dentro de ese círculo no puede haber bajos, costa, boyas ni otros barcos, y no debes fondear dentro del círculo de otro."
       },
       {
+       "tipo": "texto",
+       "titulo": "De qué depende el círculo",
+       "texto": "La cadena que filas depende de la **profundidad**: **más fondo, más cadena** y, por tanto, **círculo de borneo mayor**.\n\nEl **tipo de ancla** y la **naturaleza del fondo** influyen en lo bien que **agarra** el ancla, no en el tamaño del círculo."
+      },
+      {
        "tipo": "ilustracion",
        "spec": {
         "tipo": "fondeo",
@@ -1933,6 +1938,7 @@
      "chuleta": [
       "Bornear: el barco gira alrededor del ancla. Garrear: el ancla se arrastra.",
       "Radio de borneo ≈ cadena filada + eslora. Se reduce con menos cadena o una segunda ancla.",
+      "Más fondo → más cadena → círculo mayor. El ancla y el fondo cambian el agarre, no el círculo.",
       "Garreo: mal tenedero, poca cadena, mala maniobra o más viento del previsto.",
       "Vigilancia: enfilaciones o demoras en tierra, alarma de sonda y alarma de fondeo del GPS.",
       "Rolar = el viento cambia; escorar = inclinarse; enrocarse = ancla atrapada."
@@ -5483,7 +5489,7 @@
       {
        "tipo": "texto",
        "titulo": "Pesca y sin gobierno",
-       "texto": "- **Dedicado a la pesca**: el que pesca con **redes, líneas, aparejos de arrastre u otros artes que restrinjan su maniobrabilidad**. No lo es quien pesca con curricán u otro arte que no le limite, ni el pesquero que vuelve a puerto sin arte largado: ese es un buque de propulsión mecánica.\n- **Sin gobierno**: el que, **por cualquier circunstancia excepcional** (una avería), no puede maniobrar como exige el reglamento."
+       "texto": "- **Dedicado a la pesca**: el que pesca con **redes, líneas, aparejos de arrastre u otros artes que restrinjan su maniobrabilidad**. No lo es quien pesca con curricán u otro arte que no le limite, ni el pesquero que vuelve a puerto sin arte largado: ese es un buque de propulsión mecánica.\n- **Sin gobierno**: el que, **por cualquier circunstancia excepcional** (una avería), no puede maniobrar como exige el reglamento ni, por tanto, **apartarse de la derrota de otro buque**."
       },
       {
        "tipo": "texto",
@@ -5498,6 +5504,10 @@
        "tipo": "texto",
        "titulo": "Calado y en navegación",
        "texto": "- **Restringido por su calado**: buque de propulsión mecánica muy limitado para apartarse por su calado en relación con la profundidad y la anchura del agua navegable.\n- **En navegación**: el que **no está fondeado, ni amarrado a tierra, ni varado**. Una lancha a la deriva con la máquina desembragada está en navegación."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "Solo **dos** «no pueden apartarse de la derrota de otro buque» (Regla 3 f y g): el **sin gobierno** y el de **maniobra restringida**.\n- El **pesquero no**: sus artes restringen su maniobrabilidad, pero la definición no dice que no pueda apartarse.\n- El **restringido por su calado** tiene muy limitado apartarse de **su propia derrota**, que no es lo mismo."
       },
       {
        "tipo": "texto",
@@ -5540,6 +5550,7 @@
       "Regla 2: hay que apartarse del reglamento si hace falta para evitar un peligro inmediato.",
       "Vela + motor = propulsión mecánica (de día, cono con el vértice abajo).",
       "Pesca = arte que restringe la maniobra. Sin gobierno = avería. Maniobra restringida = su trabajo.",
+      "«No pueden apartarse de la derrota de otro»: solo el sin gobierno y el de maniobra restringida (Regla 3 f y g); el pesquero no.",
       "En navegación = ni fondeado, ni amarrado, ni varado. A la vista = con los ojos, no con el radar.",
       "Visibilidad reducida = niebla, bruma, nieve, aguaceros, arena… (no la noche)."
      ],
@@ -5577,6 +5588,10 @@
       {
        "dato": "Vela + motor: cono vértice abajo a proa, sin límite de eslora",
        "fuente": "Regla 25 e)"
+      },
+      {
+       "dato": "Sin gobierno y maniobra restringida: «por tanto, no puede apartarse de la derrota de otro buque»; pesca: artes «que restrinjan su maniobrabilidad»; calado: capacidad muy restringida de apartarse de «la derrota que está siguiendo»",
+       "fuente": "Regla 3 d), f), g) y h), RIPA, texto consolidado BOE-A-1977-15605"
       }
      ],
      "terminos": [
@@ -13327,8 +13342,17 @@
        "texto": "1. Traza la **recta que une los dos faros** de la enfilación u oposición.\n2. Pasa la otra observación a **verdadera**. Si te la dan ya verdadera («demora verdadera 205°»), úsala tal cual.\n3. Desde el tercer faro, traza la **opuesta** (Dv ± 180°).\n4. El **corte** con la recta es tu situación.\n5. Mide con el compás la **distancia al faro que te piden**, en la escala de latitudes."
       },
       {
+       "tipo": "texto",
+       "titulo": "Enfilación y distancia a un faro",
+       "texto": "Otra salida típica: «en la enfilación de A y B y a 4 millas del faro A».\n1. Traza la recta de la enfilación y **prolóngala** más allá de los faros.\n2. Abre el compás **4 millas** en la escala de latitudes.\n3. Con **centro en el faro**, traza el **arco**: es otra línea de posición.\n4. El arco corta la recta en **dos puntos**. El que cae **entre** A y B no vale (eso sería una oposición): te quedas con el de la **prolongación**, en el mar."
+      },
+      {
        "tipo": "ojo",
        "texto": "El faro al que te piden la distancia suele ser **otro distinto** de los que has usado para situarte, a menudo uno lejano (por ejemplo, Punta Europa). Lee la pregunta hasta el final antes de medir."
+      },
+      {
+       "tipo": "ojo",
+       "texto": "Si la distancia es a un **tercer faro**, los dos cortes pueden quedar en la prolongación. Elige el que cuadre con el enunciado (en el mar, hacia donde navegas) y desecha el que cae en tierra."
       },
       {
        "tipo": "ojo",
@@ -13385,6 +13409,7 @@
       "Enfilación u oposición = recta entre los dos faros, sin Ct.",
       "Oposición: entre los dos puntos. Enfilación: en la prolongación.",
       "Se cruza con otra demora (trazada desde su faro con Dv ± 180°) o con un meridiano o paralelo.",
+      "Enfilación + distancia: arco de N millas con centro en el faro; corte en la prolongación (no entre los faros) y en el mar.",
       "Distancia al faro pedido: con el compás, en la escala de latitudes."
      ],
      "profundizar": [

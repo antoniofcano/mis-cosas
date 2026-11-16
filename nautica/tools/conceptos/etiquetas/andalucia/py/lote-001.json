@@ -20,7 +20,7 @@
   "and-py-2026-c3-g17": {"conceptos":["meteo.regionales.calidos-sur"],"motivo":"Siroco: viento cálido sahariano del Mediterráneo; se pregunta por sus características, no por el rumbo."},
   "and-py-2026-c3-g18": {"conceptos":["meteo.olas.longitud"],"motivo":"Definición de longitud de onda (horizontal entre crestas o senos)."},
   "and-py-2026-c3-g19": {"conceptos":["meteo.corrientes.densidad","meteo.corrientes.clasificacion"],"motivo":"Termohalinas = densidad por temperatura y salinidad; las distractoras cruzan las causas de los otros tipos."},
-  "and-py-2026-c3-g20": {"conceptos":["meteo.corrientes.mediterraneo-occidental","meteo.corrientes.estrecho"],"motivo":"Corriente general en la costa norte de África (Ceuta, cabo Tres Forcas): no hay concepto específico, el más cercano.","falta":"meteo.corrientes.norte-africa · Corrientes de la costa norte de África (Ceuta–cabo Tres Forcas)"},
+  "and-py-2026-c3-g20": {"conceptos":["meteo.corrientes.norte-africa","meteo.corrientes.mediterraneo-occidental"],"motivo":"Corriente general en la costa norte de África (Ceuta, cabo Tres Forcas). Se pidió el concepto meteo.corrientes.norte-africa; creado y re-etiquetada en lote-002 (R-63)."},
   "and-py-2026-c3-n01": {"conceptos":["nav.esfera.tropicos-polares"],"motivo":"Latitud de los círculos polares (66° 33′ N y S)."},
   "and-py-2026-c3-n02": {"conceptos":["nav.esfera.longitud"],"motivo":"Definición de longitud: arco de ecuador desde Greenwich al meridiano del lugar."},
   "and-py-2026-c3-n03": {"conceptos":["nav.ct.definicion","nav.ct.enfilacion"],"motivo":"Formas de obtener la Ct: dm + desvío, Polar, enfilación u oposición."},

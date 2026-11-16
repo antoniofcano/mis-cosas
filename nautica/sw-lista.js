@@ -1,5 +1,5 @@
 // Generado por tools/precache.mjs: no lo edites a mano.
-self.VERSION = 'ffd09e8aa632';
+self.VERSION = 'b0e497443db3';
 self.APP = [
  "fonts/patron-mono.woff2",
  "fonts/patron-texto.woff2",

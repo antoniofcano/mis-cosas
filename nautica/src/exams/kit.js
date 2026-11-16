@@ -898,13 +898,23 @@ export function createKit(chart, { error = null, fijos = null } = {}) {
     },
   };
   // Cada operación empieza sin errores consultados (las anidadas siguen con los de la operación que las llama).
+  // Carta por intención (R-54, src/exams/intencion.js): cada operación de primer nivel queda apuntada en `ops` con sus
+  // argumentos, lo que devuelve y qué pasos y qué trazos (`items`) añadió. Solo se apunta: no cambia ningún resultado.
+  const ops = [];
+  k.ops = ops;
   let hondo = 0;
   for (const [nombre, f] of Object.entries(k)) {
     if (typeof f !== 'function' || nombre === 'P') continue;
     k[nombre] = (...a) => {
-      if (!hondo) consultados = [];
+      const arriba = !hondo;
+      if (arriba) consultados = [];
+      const s0 = steps.length; const i0 = items.length;
       hondo += 1;
-      try { return f(...a); } finally { hondo -= 1; }
+      try {
+        const r = f(...a);
+        if (arriba) ops.push({ op: nombre, args: a, ret: r, pasos: [s0, steps.length], items: [i0, items.length] });
+        return r;
+      } finally { hondo -= 1; }
     };
   }
   return k;

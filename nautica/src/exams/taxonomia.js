@@ -30,6 +30,8 @@ export const PASOS = {
   marea: { nombre: 'Altura de la marea', al: 'al calcular la altura de la marea' },
   sonda: { nombre: 'Sonda', al: 'con la sonda de la carta' },
   'hora-legal': { nombre: 'Hora oficial y UT', al: 'al pasar entre hora oficial y UT' },
+  // ---- Carta por intención (R-54, src/exams/intencion.js): qué se traza, desde dónde y en qué orden.
+  trazado: { nombre: 'Qué trazar en la carta', al: 'al elegir qué trazar en la carta' },
 };
 
 /**
@@ -74,6 +76,11 @@ export const ERRORES = {
   lineal: { paso: 'marea', nombre: 'Marea en línea recta', otraVez: 'interpolar la marea en línea recta', si: 'interpolas la marea en línea recta (sube según sen², no a ritmo constante)' },
   'sin-adelanto': { paso: 'hora-legal', nombre: 'Sin pasar a hora oficial', otraVez: 'olvidarte de pasar entre hora UT y hora oficial', si: 'no pasas entre la hora UT del Anuario y la hora oficial' },
   'adelanto-signo': { paso: 'hora-legal', nombre: 'Adelanto al revés', otraVez: 'aplicar el adelanto al revés', si: 'aplicas el adelanto al revés (de oficial a UT se resta; de UT a oficial, se suma)' },
+  // ---- Carta por intención (R-54, src/exams/intencion.js): errores de elegir el trazo, no de la cuenta. No tienen
+  // variante del kit (ERRORES_DE_TRAZADO): se reconocen por lo que elige el alumno, no por un número.
+  'faro-equivocado': { paso: 'trazado', nombre: 'Faro o punto equivocado', otraVez: 'trazar desde el faro o el punto equivocado', si: 'trazas desde un faro o un punto que no es el del enunciado' },
+  'trazo-equivocado': { paso: 'trazado', nombre: 'Trazo equivocado', otraVez: 'elegir una construcción que no es la de ese paso', si: 'eliges una construcción que no es la de ese paso (una demora donde va un rumbo, un arco donde va una recta…)' },
+  'orden-trazado': { paso: 'trazado', nombre: 'Trazado fuera de orden', otraVez: 'trazar antes lo que va después', si: 'trazas antes lo que va después (sin la situación no hay desde dónde trazar el rumbo)' },
 };
 
 /**
@@ -97,6 +104,9 @@ export const VARIANTES = [
   'lm-hemisferios:media', // lm = (|l1| + |l2|) / 2 con una latitud N y otra S (tramos y rumboDirecto)
   'sonda-carta-olvidada', 'sonda-carta-signo', 'pleamar-bajamar', 'lineal', 'sin-adelanto', 'adelanto-signo',
 ];
+
+/** Errores que no se cometen en una cuenta, sino al elegir el trazo (carta por intención, R-54): sin variante del kit. */
+export const ERRORES_DE_TRAZADO = ['faro-equivocado', 'trazo-equivocado', 'orden-trazado'];
 
 /** Tipo de error de una variante ('signo-ct:valor' → 'signo-ct'). */
 export const tipoDe = (variante) => String(variante).split(':')[0];

@@ -63,6 +63,7 @@ export const PY = {
   modulos: [
     // maxErrores: límites «solo en caso de corrección por módulos» (RD 875/2014, anexo II, cuadro del patrón de yate).
     { id: 'generico', titulo: 'Módulo genérico', duracionMin: 45, uts: [1, 2], maxErrores: { 1: 5, 2: 5 } },
+    // 75 min: comprobado por un alumno presentado solo a este módulo; detalle y fuente pendiente, en data/comun/estrategia.json.
     { id: 'navegacion', titulo: 'Módulo de navegación', duracionMin: 75, uts: [3, 4] },
   ],
   bloques: [

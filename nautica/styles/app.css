@@ -2662,6 +2662,17 @@ svg.guiado-croquis { display: block; width: 100%; max-width: 340px; height: auto
 .guiado-croquis .cq-punto { fill: var(--text); }
 .guiado-croquis .cq-marca { fill: var(--close); }
 .guiado-croquis text.cq-marca-tx { fill: var(--close); font-weight: 700; }
+/* Croquis de la carta (R-52): nortes, abatimiento y triángulo de velocidades. Lo que se busca, en el color de «casi» y
+   más grueso; cada trazo, además, nombrado en la leyenda (nada solo por color). */
+.guiado-croquis .cq-efec { stroke: var(--close); stroke-width: 2.4; fill: none; stroke-linecap: round; }
+.guiado-croquis .cq-guia { stroke: var(--muted); stroke-width: 1; fill: none; stroke-dasharray: 2 3; }
+.guiado-croquis .cq-nv { stroke: var(--text); stroke-width: 1.4; }
+.guiado-croquis .cq-pta { stroke: none; }
+.guiado-croquis .cq-pta.tinta { fill: var(--accent); }
+.guiado-croquis .cq-pta.raya { fill: var(--muted); }
+.guiado-croquis .cq-pta.efec { fill: var(--close); }
+.guiado-croquis text.cq-ley { fill: var(--text); }
+.guiado-croquis text.cq-nota { font-size: 9.5px; font-style: italic; }
 /* El croquis se dibuja solo; con «reducir movimiento» aparece ya hecho */
 .guiado-croquis { cursor: pointer; }
 .guiado-croquis .cq-traza { stroke-dasharray: 1; stroke-dashoffset: 1; animation: cq-traza .7s ease forwards; }

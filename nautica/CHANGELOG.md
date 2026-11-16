@@ -20,6 +20,15 @@ Qué cambia en la app para quien la usa, por fecha de publicación. Es la base d
 - **Reloj en el paso a paso y en las preguntas de carta de la práctica.** Ves el tiempo que llevas, el objetivo por problema (una estimación con el reparto orientativo del tiempo de tu examen, no una norma), una barra hacia ese objetivo («vas bien», «vas justo», «te pasas»), lo que tardas en cada paso y un botón de pausa. Se para con la pestaña oculta; no se para al mirar las ayudas. El tiempo del paso a paso cuenta en «Tu velocidad en carta». En exámenes y simulacros no hay reloj de práctica: ya tienen el suyo.
 - **Avisos en cada paso del paso a paso.** Antes de contestar, un «Ojo» te avisa de la trampa típica del paso (la que ya has fallado o, si aún no hay datos tuyos, la que más repiten en el examen) y un «No olvides» plegado te da la regla exacta. Si fallas y tu respuesta es la que sale con un error típico, te lo dice con nombre («Has aplicado el adelanto al revés»). Al acertar, «Así se hace» te deja la regla para la próxima.
 
+**Mejoras**
+
+- **Resolver paso a paso, como en la hoja del examen, en toda la carta.** Lo que ya tenían la estima analítica y las
+  mareas llega a la corrección total, las demoras (dos demoras, oposición, enfilación, no simultáneas), el abatimiento y
+  las corrientes (efectiva, rumbo a dar y desconocida): cada paso te dice qué datos traes, qué regla aplicas (Ct = dm + Δ,
+  Rv = Ra + Ct, Rs = Rv + Ab según la banda, el triángulo de velocidades…) y, al contestar, la cuenta escrita con sus
+  signos, como la pondrías en el papel. Con tres dibujos nuevos: los nortes (verdadero, magnético y de aguja), la proa
+  con el viento y el triángulo de velocidades; lo que buscas aparece cuando contestas.
+
 ## 16 de noviembre de 2026, segunda publicación · versión `d7108aa0c424`
 
 **Mejoras**

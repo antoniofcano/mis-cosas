@@ -6,11 +6,13 @@ import { acumulador } from '../course/velocidad.js';
 
 /**
  * @param {{ vivo?: () => boolean }} [o]  vivo: la vista sigue en pantalla (si no, el reloj se para solo)
- * @returns {{ segundos: () => number, parar: () => number }}  parar devuelve los segundos contados
+ * @returns {{ segundos: () => number, parar: () => number, pausar: () => void, reanudar: () => void, enPausa: () => boolean }}
+ *   parar devuelve los segundos contados
  */
 export function relojVisible({ vivo = () => true } = {}) {
   const hayDoc = typeof document !== 'undefined';
-  const acc = acumulador({ visible: () => !hayDoc || document.visibilityState === 'visible' });
+  let enPausa = false;
+  const acc = acumulador({ visible: () => !enPausa && (!hayDoc || document.visibilityState === 'visible') });
   let parado = false;
   let final = 0;
   const onVis = () => { if (!vivo()) parar(); else acc.marca(); };
@@ -28,5 +30,7 @@ export function relojVisible({ vivo = () => true } = {}) {
     }
     return final;
   }
-  return { segundos: () => (parado ? final : acc.ms() / 1000), parar };
+  // Pausa manual (R-64): no cuenta mientras dura, igual que con la pestaña oculta.
+  const pausa = (v) => { if (parado || enPausa === v) return; acc.marca(); enPausa = v; acc.marca(); };
+  return { segundos: () => (parado ? final : acc.ms() / 1000), parar, pausar: () => pausa(true), reanudar: () => pausa(false), enPausa: () => enPausa };
 }

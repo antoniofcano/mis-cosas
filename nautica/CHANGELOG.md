@@ -15,7 +15,9 @@ Qué cambia en la app para quien la usa, por fecha de publicación. Es la base d
 
 ## Sin publicar
 
-Nada pendiente.
+**Novedades**
+
+- **Reloj en el paso a paso y en las preguntas de carta de la práctica.** Ves el tiempo que llevas, el objetivo por problema (una estimación con el reparto orientativo del tiempo de tu examen, no una norma), una barra hacia ese objetivo («vas bien», «vas justo», «te pasas»), lo que tardas en cada paso y un botón de pausa. Se para con la pestaña oculta; no se para al mirar las ayudas. El tiempo del paso a paso cuenta en «Tu velocidad en carta». En exámenes y simulacros no hay reloj de práctica: ya tienen el suyo.
 
 ## 16 de noviembre de 2026, segunda publicación · versión `d7108aa0c424`
 

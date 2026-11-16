@@ -49,7 +49,7 @@ import { diagnosticoEl } from '../diagnostico.js';
 import { chartWidget } from '../chart-widget.js';
 import { entradaSimulacroErrores, armarParaTest, estructuraErrores, introErrores, registrarErrores, resultadoErrores, avisoFallada, textoErrores } from '../simulacro-errores.js';
 import { tipoDePregunta, tiemposDelTest, tiempoDelExamen, duracion } from '../../course/velocidad.js';
-import { relojVisible } from '../reloj-visible.js';
+import { relojPaso } from '../reloj-paso.js';
 import { tiemposAlumno } from '../../store/tiempos.js';
 import { estructuraEnsayo, parteValida, tituloEnsayo, corregirHoja, cuentaEnsayos } from '../../theory/ensayo.js';
 import { correrEnsayo } from '../ensayo.js';
@@ -481,7 +481,7 @@ export function tandaPreguntas({ preguntas, explicaciones, progress, barra, rotu
   function show() {
     const q = preguntas[i];
     // Tu velocidad en carta (R-42): el tiempo de cada pregunta de carta, solo con la pestaña visible (en el aparato).
-    const reloj = esDeCartaParaTiempo(q) ? relojVisible({ vivo: () => box.isConnected }) : null;
+    const reloj = esDeCartaParaTiempo(q) ? relojPaso({ tit: T.id, compacto: true, vivo: () => box.isConnected }) : null;
     const c0 = cuenta_(i);
     barra.set(c0.texto, c0.fraccion);
     ayudas?.contexto({ ut: q.ut });
@@ -526,7 +526,7 @@ export function tandaPreguntas({ preguntas, explicaciones, progress, barra, rotu
     // Las preguntas de carta se resuelven sobre la carta: se abre a pantalla completa con el enunciado y los faros
     // citados resaltados, y al cerrarla sigues en la pregunta.
     const carta = botonCarta(q, progress, ayudas?.ctx() ?? null);
-    setChildren(box, rotulo ? h('p.rotulo-tema', rotulo) : null, avisoDe?.(i, q) ?? null, chipsPregunta(q, progress, ayudas), card, carta, feedback, h('div.fila-inferior', noLaSe, siguiente));
+    setChildren(box, rotulo ? h('p.rotulo-tema', rotulo) : null, avisoDe?.(i, q) ?? null, reloj?.el ?? null, chipsPregunta(q, progress, ayudas), card, carta, feedback, h('div.fila-inferior', noLaSe, siguiente));
     onSummary(practiceSummary(q, explicaciones[q.id], null));
   }
   if (total()) show();

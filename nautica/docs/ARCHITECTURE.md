@@ -117,6 +117,11 @@ un banco concreto; las vistas piden `cargarBanco(currentEje(progress), tit)`.
   frente a `tiempoDisponible` de `course/estrategia.js`) y `consejoVelocidad` (por dónde empezar la carta). Se pinta en
   «Tu estrategia» (`#est-velocidad`) y en el resultado de un simulacro. La práctica se guarda en el aparato
   (`store/tiempos.js`); dónde va cada cosa y por qué, en [`SYNC.md`](SYNC.md) («Tiempo por pregunta»).
+  **Reloj del paso a paso y de la práctica de carta** (R-64; `course/reloj-paso.js` puro, `ui/reloj-paso.js`; tests
+  `tests/reloj-paso.test.js`): el objetivo por problema es el `tiempoDisponible` de arriba (estimación, no norma; con la
+  media del examen si no hubiera carta), los estados siguen la tabla de velocidad (`estadoTiempo`), la pausa es la de
+  `relojVisible`. Va en el paso a paso (que al terminar guarda su tiempo en `store/tiempos.js`, clave `guiado:<id>`) y,
+  compacto, en las preguntas de carta de las tandas; nunca en exámenes ni simulacros.
 - **Ensayos en papel en la semana y la estrategia:** `recordatorioEnsayos` (`course/semana.js`) y `cuentaEnsayos`
   (`theory/ensayo.js`) cuentan los `tests` con `tipo: 'ensayo'` frente a los 2 recomendados; la página de la semana, la
   estrategia y la pantalla Examen enlazan `#/<tit>/ensayo`.

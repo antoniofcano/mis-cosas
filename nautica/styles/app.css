@@ -2283,6 +2283,27 @@ a.semana-ver .mas-fila-flecha { color: var(--lc-magenta); }
   .est-fuentes a::after { content: " (" attr(href) ")"; font-size: 7pt; }
 }
 
+/* ---- Reloj del paso a paso y de las preguntas de carta de la práctica (R-64; src/ui/reloj-paso.js) ---- */
+.reloj-paso { border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); padding: .4rem .7rem .5rem; margin: 0 0 .7rem; min-width: 0; }
+.rp-fila { display: flex; align-items: center; gap: .5rem; flex-wrap: wrap; }
+.rp-ico { display: inline-flex; color: var(--muted); }
+.rp-tiempo { font-size: 1.5rem; font-weight: 700; font-variant-numeric: tabular-nums; line-height: 1; }
+.rp-meta { font-variant-numeric: tabular-nums; }
+.rp-estado { font-weight: 600; margin-left: auto; }
+.rp-pausa { min-width: 44px; min-height: 44px; padding: 0; display: inline-flex; align-items: center; justify-content: center; }
+.rp-barra { height: 8px; border-radius: 4px; background: var(--accent-2); overflow: hidden; margin: .3rem 0; }
+.rp-barra-in { display: block; height: 100%; width: 0; background: var(--ok); }
+.reloj-paso[data-estado="justo"] .rp-barra-in { background: var(--close); }
+.reloj-paso[data-estado="justo"] .rp-estado { color: var(--close); }
+.reloj-paso[data-estado="bien"] .rp-estado { color: var(--ok); }
+.reloj-paso[data-estado="pasas"] .rp-barra-in { background: var(--warn); }
+.reloj-paso[data-estado="pasas"] .rp-estado { color: var(--warn); }
+.reloj-paso.en-pausa .rp-tiempo, .reloj-paso.parado .rp-tiempo { opacity: .7; }
+.rp-pasos { list-style: none; margin: .3rem 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: .25rem .8rem; font-variant-numeric: tabular-nums; }
+.rp-nota { margin: .25rem 0 0; }
+.reloj-paso.compacto { padding: .2rem .6rem .3rem; }
+.reloj-paso.compacto .rp-tiempo { font-size: 1.15rem; }
+
 /* ---- Modo guiado «Paso a paso» y diagnóstico por tipo de error (src/ui/guiado.js, src/ui/diagnostico.js) ---- */
 .guiado-box { margin: 1rem 0; display: grid; gap: 1rem; }
 .guiado-box.en-profe { margin: .6rem 0; }

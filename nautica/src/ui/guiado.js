@@ -21,6 +21,9 @@ import { fmtLat, fmtLon } from '../math/format.js';
 import { erroresAlumno } from '../store/errores.js';
 import { diagnosticoEl } from './diagnostico.js';
 import { cuenta } from '../texto.js';
+import { relojPaso } from './reloj-paso.js';
+import { tiemposAlumno } from '../store/tiempos.js';
+import { tipoDePregunta } from '../course/velocidad.js';
 
 let contador = 0;
 
@@ -56,6 +59,8 @@ export function guiadoPanel(o) {
   let terminado = false;
   let eleccion = null;
 
+  // Reloj (R-64): el tiempo de la resolución y de cada paso; al terminar los pasos se guarda con los de carta (R-42).
+  const rp = relojPaso({ tit: o.glosas?.tit ?? null, pasos: true, vivo: () => el.isConnected });
   const lista = h('ol.guiado-lista');
   const progreso = h('p.guiado-progreso.small.muted', { 'aria-live': 'polite' });
   const final = h('div.guiado-final');
@@ -204,6 +209,7 @@ export function guiadoPanel(o) {
     const p = pasos[actual];
     const r = { i: p.i, paso: p.pide.paso, resultado, tuyo };
     resultados.push(r);
+    rp.marcaPaso(resultado === ESTADO.OK);
     if (resultado !== 'dimelo') almacen.paso(q.id, p.pide.paso, resultado === ESTADO.OK);
     lista.lastElementChild.replaceWith(pasoHecho(p, r));
     o.dibujar?.(p.i + 1);
@@ -230,6 +236,10 @@ export function guiadoPanel(o) {
   function terminar(enfocar) {
     if (terminado) return;
     terminado = true;
+    // Tu velocidad en carta: el tiempo de la resolución completa (clave aparte de la de la tanda: no se pisan).
+    const seg = rp.parar();
+    const limpio = resultados.length > 0 && resultados.every((r) => r.resultado === ESTADO.OK);
+    tiemposAlumno().anota({ y: tipoDePregunta(q, sol, { deCarta: true }), s: seg, o: limpio, q: `guiado:${q.id}` });
     progreso.textContent = 'Pasos terminados: ahora, la opción.';
     const fb = h('div.guiado-opcion-fb', { 'aria-live': 'polite' });
     const titulo = h('h3.guiado-tit', { tabindex: '-1' }, conIcono('diana', '¿Qué opción marcarías?'));
@@ -268,6 +278,7 @@ export function guiadoPanel(o) {
 
   function reiniciar() {
     resultados.length = 0; actual = -1; terminado = false; eleccion = null;
+    rp.reinicia();
     lista.replaceChildren(); final.replaceChildren();
     o.dibujar?.(0);
     avanzar(true);
@@ -278,7 +289,7 @@ export function guiadoPanel(o) {
       h('h2', { id: `${uid}-t` }, conIcono('lapiz', 'Resolver paso a paso')),
       o.onCerrar ? h('button.small.secondary', { type: 'button', onclick: o.onCerrar }, conIcono('salir', 'Cerrar')) : null),
     h('p.small.muted', 'Te pido cada paso y te lo corrijo al momento. «Dímelo» te da el valor sin contar como fallo. Escribe los rumbos como 045, la Ct como 3 W o −3, las coordenadas como 36 05,2 N, las horas como 14:35 y las diferencias en minutos con su signo o su letra (−68,9 o 68,9 W).'),
-    progreso, lista, final);
+    rp.el, progreso, lista, final);
   o.dibujar?.(0);
   avanzar(false);
 

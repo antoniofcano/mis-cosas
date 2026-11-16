@@ -15,7 +15,9 @@ Qué cambia en la app para quien la usa, por fecha de publicación. Es la base d
 
 ## Sin publicar
 
-Nada pendiente.
+**Correcciones**
+
+- **Fichas del podcast del PER al día con el curso.** Los «para llevarse» y las trampas de varios episodios dicen ya lo que dicen las clases: el torniquete (hoy no se afloja salvo indicación médica), el golpe de calor (se enfría hasta unos 39 °C y se para a 38,5 °C), la predicción de aguas costeras sin la cifra de 20 millas y el redondeo de la declinación solo si lo pide el enunciado. Y ningún minijuego del PER lee ya una pregunta reservada para tu examen final (R-09).
 
 ## 16 de noviembre de 2026, octava publicación · versión `4da31d70509f`
 

@@ -78,6 +78,15 @@ en la reserva de Andalucía (16 de noviembre de 2026), porque la 1.ª de 2025 sa
 
 ## Fase 2: regrabar el audio (pendiente; no se ha llamado a ElevenLabs)
 
+**PER: guiones hechos.** En la revisión de los guiones del PER (`podcast/REVISION-PER.md`), las 7 reservadas de los
+minijuegos de per-1-0, 1-2, 1-3, 5-0, 5-1 y 5-2 ya están cambiadas, en el guion y en `podcast/episodios.json`, por
+preguntas de práctica del mismo concepto. Falta regrabar esos episodios. Mientras tanto:
+
+- Su audio sigue leyendo la reservada antigua, y la ficha ya no la cita, así que la app no avisa: conviene regrabarlos
+  antes de publicar.
+- La deuda solo conserva las citas por texto de la línea de tiempo (per-1-3, 5-0, 5-1 y 5-2).
+- `tests/podcast.test.js` (`PENDIENTES_DE_REGENERAR`) los marca como audio desfasado.
+
 Procedimiento, episodio a episodio (el plan de abajo dice qué fragmentos y qué sustituta proponer):
 
 1. En el guion (`podcast/<tit>/<archivo>.md`), cambia la pregunta reservada del minijuego por la sustituta (o por otra
@@ -98,25 +107,16 @@ Procedimiento, episodio a episodio (el plan de abajo dice qué fragmentos y qué
    `npm test`, `npm run precache`.
 
 <!-- plan -->
-Generado con `node tools/cuarentena.mjs --escribir`: 31 episodios con audio, 48 preguntas reservadas leídas en sus minijuegos.
-Coste estimado: **33.551 caracteres** si solo se regraban los fragmentos (la caché de `podcast/audio.py` reutiliza el resto) y **348.756 caracteres** si se regraban los episodios enteros (sin caché).
+Generado con `node tools/cuarentena.mjs --escribir`: 22 episodios con audio, 29 preguntas reservadas leídas en sus minijuegos.
+Coste estimado: **19.608 caracteres** si solo se regraban los fragmentos (la caché de `podcast/audio.py` reutiliza el resto) y **246.700 caracteres** si se regraban los episodios enteros (sin caché).
 
 | Episodio | Guion | Reservada | Tramos de la línea de tiempo | Caracteres | Sustituta propuesta |
 |---|---|---|---|---|---|
-| per-1-0 | `podcast/per/1-0-las-partes-del-barco.md` | `and-2026-c1-t03` | 51, 53, 54 | 578 | buscar a mano (sin equivalente automática) |
-| per-1-2 | `podcast/per/1-2-timon-y-helice.md` | `and-2026-c2-t02` | 72, 74, 75 | 759 | `and-2022-c3-t02` |
-| per-1-2 | `podcast/per/1-2-timon-y-helice.md` | `and-2025-c2-t03` | 78, 80, 81 | 395 | buscar a mano (sin equivalente automática) |
-| per-1-3 | `podcast/per/1-3-fondeo-y-dimensiones.md` | `and-2026-c2-t04` | 68, 70, 71 | 517 | `and-2018-c1-t04` |
-| per-5-0 | `podcast/per/5-0-balizamiento.md` | `and-2025-c3-t13` | 54, 56, 57 | 768 | buscar a mano (sin equivalente automática) |
-| per-5-0 | `podcast/per/5-0-balizamiento.md` | `and-2025-c1-t14` | 60, 62, 63 | 507 | `and-2018-c3-t13` |
-| per-5-1 | `podcast/per/5-1-iala-laterales-bifurcaciones.md` | `and-2025-c3-t15` | 68, 70, 71 | 504 | buscar a mano (sin equivalente automática) |
-| per-5-2 | `podcast/per/5-2-las-cardinales.md` | `and-2025-c3-t14` | 60, 62, 63 | 519 | buscar a mano (sin equivalente automática) |
-| per-6-0 | `podcast/per/6-0-el-ripa-de-un-vistazo.md` | `and-2025-c1-t22` | 46, 48, 49 | 1151 | `and-2019-c3-t22` |
-| per-6-0 | `podcast/per/6-0-el-ripa-de-un-vistazo.md` | `and-2025-c1-t18` | 49, 51, 52 | 786 | buscar a mano (sin equivalente automática) |
-| per-6-0 | `podcast/per/6-0-el-ripa-de-un-vistazo.md` | `and-2025-c1-t27` | 52, 54, 55 | 437 | buscar a mano (sin equivalente automática) |
-| py-1-2 | `podcast/py/1-2-mover-pesos-sin-volcar.md` | `and-py-2025-c1-g02` | 68, 70, 71 | 955 | buscar a mano (sin equivalente automática) |
+| per-1-3 | `podcast/per/1-3-fondeo-y-dimensiones.md` | `and-2026-c2-t04` | 68 | 280 | buscar a mano (sin equivalente automática) |
+| per-5-0 | `podcast/per/5-0-balizamiento.md` | `and-2025-c3-t13` | 54 | 421 | buscar a mano (sin equivalente automática) |
+| per-5-1 | `podcast/per/5-1-iala-laterales-bifurcaciones.md` | `and-2025-c3-t15` | 68 | 321 | buscar a mano (sin equivalente automática) |
+| per-5-2 | `podcast/per/5-2-las-cardinales.md` | `and-2025-c3-t14` | 60 | 331 | buscar a mano (sin equivalente automática) |
 | py-1-2 | `podcast/py/1-2-mover-pesos-sin-volcar.md` | `and-py-2025-c3-g05` | 71, 73, 74 | 740 | buscar a mano (sin equivalente automática) |
-| py-1-2 | `podcast/py/1-2-mover-pesos-sin-volcar.md` | `and-py-2025-c1-g08` | 74, 76, 77 | 450 | buscar a mano (sin equivalente automática) |
 | py-1-3 | `podcast/py/1-3-chalecos-aros-y-balsa.md` | `and-py-2025-c2-g03` | 62, 64, 65 | 757 | buscar a mano (sin equivalente automática) |
 | py-1-3 | `podcast/py/1-3-chalecos-aros-y-balsa.md` | `and-py-2025-c3-g07` | 68, 70, 71 | 525 | buscar a mano (sin equivalente automática) |
 | py-1-3 | `podcast/py/1-3-chalecos-aros-y-balsa.md` | `and-py-2026-c1-g04` | 62 | 0 (mismo fragmento que and-py-2025-c2-g03) | buscar a mano (sin equivalente automática) |
@@ -127,27 +127,17 @@ Coste estimado: **33.551 caracteres** si solo se regraban los fragmentos (la cac
 | py-1-6 | `podcast/py/1-6-pedir-ayuda.md` | `and-py-2025-c2-g01` | 55, 57, 58 | 477 | buscar a mano (sin equivalente automática) |
 | py-1-6 | `podcast/py/1-6-pedir-ayuda.md` | `and-py-2026-c1-g03` | 58, 60, 61 | 405 | buscar a mano (sin equivalente automática) |
 | py-2-0 | `podcast/py/2-0-el-tiempo-en-la-mar.md` | `and-py-2025-c3-g15` | 52, 54, 55 | 835 | `and-py-2016-c1-g15` |
-| py-2-0 | `podcast/py/2-0-el-tiempo-en-la-mar.md` | `and-py-2025-c1-g13` | 55, 57, 58 | 523 | buscar a mano (sin equivalente automática) |
 | py-2-1 | `podcast/py/2-1-isobaras-borrascas-anticiclones.md` | `and-py-2025-c2-g18` | 56, 58, 59 | 1020 | `and-py-2015-c1-g11` |
-| py-2-1 | `podcast/py/2-1-isobaras-borrascas-anticiclones.md` | `and-py-2025-c1-g14` | 59, 61, 62 | 715 | `and-py-2024-c3-g15` |
-| py-2-2 | `podcast/py/2-2-masas-de-aire-y-frentes.md` | `and-py-2025-c1-g11` | 60, 62, 63 | 630 | `and-py-2022-c2-g15` |
 | py-2-3 | `podcast/py/2-3-modelos-de-viento.md` | `and-py-2026-c2-g17` | 64, 66, 67 | 736 | `and-py-2015-c1-g18` |
 | py-2-3 | `podcast/py/2-3-modelos-de-viento.md` | `and-py-2025-c3-g13` | 70, 72, 73 | 627 | `and-py-2015-c3-g14` |
 | py-2-4 | `podcast/py/2-4-vientos-regionales.md` | `and-py-2026-c1-g13` | 65, 67, 68 | 591 | buscar a mano (sin equivalente automática) |
 | py-2-5 | `podcast/py/2-5-humedad-y-nubes.md` | `and-py-2026-c1-g14` | 62, 64, 65 | 333 | buscar a mano (sin equivalente automática) |
-| py-2-6 | `podcast/py/2-6-nieblas.md` | `and-py-2025-c1-g17` | 70, 72, 73 | 705 | `and-py-2024-c2-g17` |
 | py-2-8 | `podcast/py/2-8-corrientes-marinas.md` | `and-py-2026-c1-g15` | 60, 62, 63 | 747 | `and-py-2015-c2-g20` |
-| py-3-1 | `podcast/py/3-1-la-esfera-terrestre.md` | `and-py-2025-c1-n01` | 78, 80, 81 | 495 | `and-py-2017-c2-n10` |
-| py-3-2 | `podcast/py/3-2-la-correccion-total.md` | `and-py-2025-c1-n02` | 74, 76, 77 | 695 | buscar a mano (sin equivalente automática) |
 | py-3-5 | `podcast/py/3-5-publicaciones-y-avisos.md` | `and-py-2026-c1-n04` | 52, 54, 55 | 711 | buscar a mano (sin equivalente automática) |
-| py-3-5 | `podcast/py/3-5-publicaciones-y-avisos.md` | `and-py-2025-c1-n04` | 58, 60, 61 | 668 | buscar a mano (sin equivalente automática) |
 | py-3-6 | `podcast/py/3-6-el-radar.md` | `and-py-2026-c1-n06` | 63, 65, 66 | 1110 | buscar a mano (sin equivalente automática) |
-| py-3-6 | `podcast/py/3-6-el-radar.md` | `and-py-2025-c1-n05` | 69, 71, 72 | 613 | buscar a mano (sin equivalente automática) |
 | py-3-7 | `podcast/py/3-7-el-gps.md` | `and-py-2025-c3-n07` | 54, 56, 57 | 730 | `and-py-2020-c3-n03` |
 | py-3-7 | `podcast/py/3-7-el-gps.md` | `and-py-2026-c1-n08` | 60, 62, 63 | 675 | buscar a mano (sin equivalente automática) |
 | py-3-8 | `podcast/py/3-8-cartas-electronicas-y-ais.md` | `and-py-2025-c3-n10` | 53, 55, 56 | 1010 | buscar a mano (sin equivalente automática) |
-| py-4-1 | `podcast/py/4-1-correccion-total-en-la-carta.md` | `and-py-2025-c1-n11` | 54, 56, 57 | 817 | `and-py-2018-c2-n11` |
-| py-4-2 | `podcast/py/4-2-el-viento-en-la-carta.md` | `and-py-2025-c1-n16` | 49, 51, 52 | 1109 | buscar a mano (sin equivalente automática) |
 | py-4-3 | `podcast/py/4-3-situarse.md` | `and-py-2025-c2-n15` | 48, 50, 51 | 1951 | buscar a mano (sin equivalente automática) |
 | py-4-4 | `podcast/py/4-4-estima-con-viento-y-corriente.md` | `and-py-2026-c1-n15` | 52, 54, 55 | 997 | `and-py-2018-c4-n11` |
 | py-4-5 | `podcast/py/4-5-corriente-conocida-y-desconocida.md` | `and-py-2025-c3-n16` | 52, 54, 55 | 1055 | buscar a mano (sin equivalente automática) |
@@ -156,32 +146,20 @@ Coste estimado: **33.551 caracteres** si solo se regraban los fragmentos (la cac
 ## Inventario actual
 
 <!-- inventario -->
-Generado con `node tools/cuarentena.mjs --escribir`: **359 citas a 146 preguntas reservadas**.
+Generado con `node tools/cuarentena.mjs --escribir`: **242 citas a 113 preguntas reservadas**.
 
-- Por alcance: metadato 158, visible 78, latente 47, fuente 76.
-- Por tipo de contenido: regla 151, resueltos 7, explicacion 2, podcast-linea 76, podcast-ficha 47, podcast-fuente 47, podcast-guion 29.
-- Por cómo se detectan: id 299, texto 60. Por banco: andalucia/per 98, andalucia/py 259, dgmm/py 2.
-- En la deuda del audio: 197; falsos positivos revisados: 4; por arreglar: 0.
-- Metadato (no se enseña; no se lista abajo): 158 (reglas nemotécnicas que ayudan a la propia reservada y `excepto` de los resueltos).
+- Por alcance: metadato 127, visible 49, latente 24, fuente 42.
+- Por tipo de contenido: regla 121, dato 1, resueltos 6, explicacion 2, podcast-linea 46, podcast-ficha 24, podcast-fuente 24, podcast-guion 18.
+- Por cómo se detectan: id 199, texto 43. Por banco: andalucia/per 47, andalucia/py 192, baleares/per 1, dgmm/py 2.
+- En la deuda del audio: 110; falsos positivos revisados: 5; por arreglar: 0.
+- Metadato (no se enseña; no se lista abajo): 127 (reglas nemotécnicas que ayudan a la propia reservada y `excepto` de los resueltos).
 
 | Pregunta | Banco | Fichero | Dónde | Tipo | Alcance | Por | Estado |
 |---|---|---|---|---|---|---|---|
+| `bal-per-2026-06-c-28` | baleares/per | `data/conceptos/nomenclatura-maniobra.json` | conceptos.99.temario | dato | visible | texto (0.6) | falso positivo revisado |
 | `dgmm-py-2025-11-14` | dgmm/py | `data/ejes/baleares/py/explicaciones.json` | bal-py-2019-12-a-18.explicacion | explicacion | visible | texto (0.6) | falso positivo revisado |
 | `dgmm-py-2025-11-14` | dgmm/py | `data/ejes/dgmm/py/explicaciones.json` | dgmm-py-2021-07-14.explicacion | explicacion | visible | texto (0.6) | falso positivo revisado |
-| `and-2026-c1-t03` | andalucia/per | `data/podcast-per.json` | temas.1.episodios.0.preguntas.1 | podcast-ficha | latente | id | deuda: regenerar audio |
-| `and-2026-c2-t02` | andalucia/per | `data/podcast-per.json` | temas.1.episodios.2.preguntas.0 | podcast-ficha | latente | id | deuda: regenerar audio |
-| `and-2025-c2-t03` | andalucia/per | `data/podcast-per.json` | temas.1.episodios.2.preguntas.2 | podcast-ficha | latente | id | deuda: regenerar audio |
-| `and-2026-c2-t04` | andalucia/per | `data/podcast-per.json` | temas.1.episodios.3.preguntas.2 | podcast-ficha | latente | id | deuda: regenerar audio |
-| `and-2025-c3-t13` | andalucia/per | `data/podcast-per.json` | temas.5.episodios.0.preguntas.0 | podcast-ficha | latente | id | deuda: regenerar audio |
-| `and-2025-c1-t14` | andalucia/per | `data/podcast-per.json` | temas.5.episodios.0.preguntas.2 | podcast-ficha | latente | id | deuda: regenerar audio |
-| `and-2025-c3-t15` | andalucia/per | `data/podcast-per.json` | temas.5.episodios.1.preguntas.2 | podcast-ficha | latente | id | deuda: regenerar audio |
-| `and-2025-c3-t14` | andalucia/per | `data/podcast-per.json` | temas.5.episodios.2.preguntas.2 | podcast-ficha | latente | id | deuda: regenerar audio |
-| `and-2025-c1-t22` | andalucia/per | `data/podcast-per.json` | temas.6.episodios.0.preguntas.0 | podcast-ficha | latente | id | deuda: regenerar audio |
-| `and-2025-c1-t18` | andalucia/per | `data/podcast-per.json` | temas.6.episodios.0.preguntas.1 | podcast-ficha | latente | id | deuda: regenerar audio |
-| `and-2025-c1-t27` | andalucia/per | `data/podcast-per.json` | temas.6.episodios.0.preguntas.2 | podcast-ficha | latente | id | deuda: regenerar audio |
-| `and-py-2025-c1-g02` | andalucia/py | `data/podcast-py.json` | temas.1.episodios.2.preguntas.0 | podcast-ficha | latente | id | deuda: regenerar audio |
 | `and-py-2025-c3-g05` | andalucia/py | `data/podcast-py.json` | temas.1.episodios.2.preguntas.1 | podcast-ficha | latente | id | deuda: regenerar audio |
-| `and-py-2025-c1-g08` | andalucia/py | `data/podcast-py.json` | temas.1.episodios.2.preguntas.2 | podcast-ficha | latente | id | deuda: regenerar audio |
 | `and-py-2025-c2-g03` | andalucia/py | `data/podcast-py.json` | temas.1.episodios.3.preguntas.0 | podcast-ficha | latente | id | deuda: regenerar audio |
 | `and-py-2025-c3-g07` | andalucia/py | `data/podcast-py.json` | temas.1.episodios.3.preguntas.2 | podcast-ficha | latente | id | deuda: regenerar audio |
 | `and-py-2025-c2-g08` | andalucia/py | `data/podcast-py.json` | temas.1.episodios.4.preguntas.1 | podcast-ficha | latente | id | deuda: regenerar audio |
@@ -191,53 +169,25 @@ Generado con `node tools/cuarentena.mjs --escribir`: **359 citas a 146 preguntas
 | `and-py-2025-c2-g01` | andalucia/py | `data/podcast-py.json` | temas.1.episodios.6.preguntas.1 | podcast-ficha | latente | id | deuda: regenerar audio |
 | `and-py-2026-c1-g03` | andalucia/py | `data/podcast-py.json` | temas.1.episodios.6.preguntas.2 | podcast-ficha | latente | id | deuda: regenerar audio |
 | `and-py-2025-c3-g15` | andalucia/py | `data/podcast-py.json` | temas.2.episodios.0.preguntas.0 | podcast-ficha | latente | id | deuda: regenerar audio |
-| `and-py-2025-c1-g13` | andalucia/py | `data/podcast-py.json` | temas.2.episodios.0.preguntas.1 | podcast-ficha | latente | id | deuda: regenerar audio |
 | `and-py-2025-c2-g18` | andalucia/py | `data/podcast-py.json` | temas.2.episodios.1.preguntas.0 | podcast-ficha | latente | id | deuda: regenerar audio |
-| `and-py-2025-c1-g14` | andalucia/py | `data/podcast-py.json` | temas.2.episodios.1.preguntas.1 | podcast-ficha | latente | id | deuda: regenerar audio |
-| `and-py-2025-c1-g11` | andalucia/py | `data/podcast-py.json` | temas.2.episodios.2.preguntas.2 | podcast-ficha | latente | id | deuda: regenerar audio |
 | `and-py-2026-c2-g17` | andalucia/py | `data/podcast-py.json` | temas.2.episodios.3.preguntas.0 | podcast-ficha | latente | id | deuda: regenerar audio |
 | `and-py-2025-c3-g13` | andalucia/py | `data/podcast-py.json` | temas.2.episodios.3.preguntas.2 | podcast-ficha | latente | id | deuda: regenerar audio |
 | `and-py-2026-c1-g13` | andalucia/py | `data/podcast-py.json` | temas.2.episodios.4.preguntas.1 | podcast-ficha | latente | id | deuda: regenerar audio |
 | `and-py-2026-c1-g14` | andalucia/py | `data/podcast-py.json` | temas.2.episodios.5.preguntas.2 | podcast-ficha | latente | id | deuda: regenerar audio |
-| `and-py-2025-c1-g17` | andalucia/py | `data/podcast-py.json` | temas.2.episodios.6.preguntas.2 | podcast-ficha | latente | id | deuda: regenerar audio |
 | `and-py-2026-c1-g15` | andalucia/py | `data/podcast-py.json` | temas.2.episodios.8.preguntas.0 | podcast-ficha | latente | id | deuda: regenerar audio |
-| `and-py-2025-c1-n01` | andalucia/py | `data/podcast-py.json` | temas.3.episodios.1.preguntas.2 | podcast-ficha | latente | id | deuda: regenerar audio |
-| `and-py-2025-c1-n02` | andalucia/py | `data/podcast-py.json` | temas.3.episodios.2.preguntas.2 | podcast-ficha | latente | id | deuda: regenerar audio |
 | `and-py-2026-c1-n04` | andalucia/py | `data/podcast-py.json` | temas.3.episodios.5.preguntas.0 | podcast-ficha | latente | id | deuda: regenerar audio |
-| `and-py-2025-c1-n04` | andalucia/py | `data/podcast-py.json` | temas.3.episodios.5.preguntas.2 | podcast-ficha | latente | id | deuda: regenerar audio |
 | `and-py-2026-c1-n06` | andalucia/py | `data/podcast-py.json` | temas.3.episodios.6.preguntas.0 | podcast-ficha | latente | id | deuda: regenerar audio |
-| `and-py-2025-c1-n05` | andalucia/py | `data/podcast-py.json` | temas.3.episodios.6.preguntas.2 | podcast-ficha | latente | id | deuda: regenerar audio |
 | `and-py-2025-c3-n07` | andalucia/py | `data/podcast-py.json` | temas.3.episodios.7.preguntas.0 | podcast-ficha | latente | id | deuda: regenerar audio |
 | `and-py-2026-c1-n08` | andalucia/py | `data/podcast-py.json` | temas.3.episodios.7.preguntas.2 | podcast-ficha | latente | id | deuda: regenerar audio |
 | `and-py-2025-c3-n10` | andalucia/py | `data/podcast-py.json` | temas.3.episodios.8.preguntas.1 | podcast-ficha | latente | id | deuda: regenerar audio |
-| `and-py-2025-c1-n11` | andalucia/py | `data/podcast-py.json` | temas.4.episodios.1.preguntas.2 | podcast-ficha | latente | id | deuda: regenerar audio |
-| `and-py-2025-c1-n16` | andalucia/py | `data/podcast-py.json` | temas.4.episodios.2.preguntas.1 | podcast-ficha | latente | id | deuda: regenerar audio |
 | `and-py-2025-c2-n15` | andalucia/py | `data/podcast-py.json` | temas.4.episodios.3.preguntas.0 | podcast-ficha | latente | id | deuda: regenerar audio |
 | `and-py-2026-c1-n15` | andalucia/py | `data/podcast-py.json` | temas.4.episodios.4.preguntas.2 | podcast-ficha | latente | id | deuda: regenerar audio |
 | `and-py-2025-c3-n16` | andalucia/py | `data/podcast-py.json` | temas.4.episodios.5.preguntas.2 | podcast-ficha | latente | id | deuda: regenerar audio |
-| `and-2026-c1-t03` | andalucia/per | `data/podcast/per-1-0.json` | tramos.52.p | podcast-linea | visible | id | deuda: regenerar audio |
-| `and-2026-c2-t02` | andalucia/per | `data/podcast/per-1-2.json` | tramos.73.p | podcast-linea | visible | id | deuda: regenerar audio |
-| `and-2025-c2-t03` | andalucia/per | `data/podcast/per-1-2.json` | tramos.79.p | podcast-linea | visible | id | deuda: regenerar audio |
 | `and-2026-c2-t04` | andalucia/per | `data/podcast/per-1-3.json` | tramos.68.x | podcast-linea | visible | texto (1) | deuda: regenerar audio |
-| `and-2026-c2-t04` | andalucia/per | `data/podcast/per-1-3.json` | tramos.69.p | podcast-linea | visible | id | deuda: regenerar audio |
 | `and-2025-c3-t13` | andalucia/per | `data/podcast/per-5-0.json` | tramos.54.x | podcast-linea | visible | texto (1) | deuda: regenerar audio |
-| `and-2025-c3-t13` | andalucia/per | `data/podcast/per-5-0.json` | tramos.55.p | podcast-linea | visible | id | deuda: regenerar audio |
-| `and-2025-c1-t14` | andalucia/per | `data/podcast/per-5-0.json` | tramos.60.x | podcast-linea | visible | texto (0.76) | deuda: regenerar audio |
-| `and-2025-c1-t14` | andalucia/per | `data/podcast/per-5-0.json` | tramos.61.p | podcast-linea | visible | id | deuda: regenerar audio |
 | `and-2025-c3-t15` | andalucia/per | `data/podcast/per-5-1.json` | tramos.68.x | podcast-linea | visible | texto (0.78) | deuda: regenerar audio |
-| `and-2025-c3-t15` | andalucia/per | `data/podcast/per-5-1.json` | tramos.69.p | podcast-linea | visible | id | deuda: regenerar audio |
 | `and-2025-c3-t14` | andalucia/per | `data/podcast/per-5-2.json` | tramos.60.x | podcast-linea | visible | texto (1) | deuda: regenerar audio |
-| `and-2025-c3-t14` | andalucia/per | `data/podcast/per-5-2.json` | tramos.61.p | podcast-linea | visible | id | deuda: regenerar audio |
-| `and-2025-c1-t22` | andalucia/per | `data/podcast/per-6-0.json` | tramos.46.x | podcast-linea | visible | texto (1) | deuda: regenerar audio |
-| `and-2025-c1-t22` | andalucia/per | `data/podcast/per-6-0.json` | tramos.47.p | podcast-linea | visible | id | deuda: regenerar audio |
-| `and-2025-c1-t18` | andalucia/per | `data/podcast/per-6-0.json` | tramos.49.x | podcast-linea | visible | texto (1) | deuda: regenerar audio |
-| `and-2025-c1-t18` | andalucia/per | `data/podcast/per-6-0.json` | tramos.50.p | podcast-linea | visible | id | deuda: regenerar audio |
-| `and-2025-c1-t27` | andalucia/per | `data/podcast/per-6-0.json` | tramos.52.x | podcast-linea | visible | texto (1) | deuda: regenerar audio |
-| `and-2025-c1-t27` | andalucia/per | `data/podcast/per-6-0.json` | tramos.53.p | podcast-linea | visible | id | deuda: regenerar audio |
-| `and-py-2025-c1-g02` | andalucia/py | `data/podcast/py-1-2.json` | tramos.68.x | podcast-linea | visible | texto (1) | deuda: regenerar audio |
-| `and-py-2025-c1-g02` | andalucia/py | `data/podcast/py-1-2.json` | tramos.69.p | podcast-linea | visible | id | deuda: regenerar audio |
 | `and-py-2025-c3-g05` | andalucia/py | `data/podcast/py-1-2.json` | tramos.72.p | podcast-linea | visible | id | deuda: regenerar audio |
-| `and-py-2025-c1-g08` | andalucia/py | `data/podcast/py-1-2.json` | tramos.75.p | podcast-linea | visible | id | deuda: regenerar audio |
 | `and-py-2025-c2-g03` | andalucia/py | `data/podcast/py-1-3.json` | tramos.62.x | podcast-linea | visible | texto (1) | deuda: regenerar audio |
 | `and-py-2026-c1-g04` | andalucia/py | `data/podcast/py-1-3.json` | tramos.62.x | podcast-linea | visible | texto (1) | deuda: regenerar audio |
 | `and-py-2025-c2-g03` | andalucia/py | `data/podcast/py-1-3.json` | tramos.63.p | podcast-linea | visible | id | deuda: regenerar audio |
@@ -256,12 +206,8 @@ Generado con `node tools/cuarentena.mjs --escribir`: **359 citas a 146 preguntas
 | `and-py-2026-c1-g03` | andalucia/py | `data/podcast/py-1-6.json` | tramos.59.p | podcast-linea | visible | id | deuda: regenerar audio |
 | `and-py-2025-c3-g15` | andalucia/py | `data/podcast/py-2-0.json` | tramos.52.x | podcast-linea | visible | texto (1) | deuda: regenerar audio |
 | `and-py-2025-c3-g15` | andalucia/py | `data/podcast/py-2-0.json` | tramos.53.p | podcast-linea | visible | id | deuda: regenerar audio |
-| `and-py-2025-c1-g13` | andalucia/py | `data/podcast/py-2-0.json` | tramos.55.x | podcast-linea | visible | texto (0.88) | deuda: regenerar audio |
-| `and-py-2025-c1-g13` | andalucia/py | `data/podcast/py-2-0.json` | tramos.56.p | podcast-linea | visible | id | deuda: regenerar audio |
 | `and-py-2025-c2-g18` | andalucia/py | `data/podcast/py-2-1.json` | tramos.56.x | podcast-linea | visible | texto (1) | deuda: regenerar audio |
 | `and-py-2025-c2-g18` | andalucia/py | `data/podcast/py-2-1.json` | tramos.57.p | podcast-linea | visible | id | deuda: regenerar audio |
-| `and-py-2025-c1-g14` | andalucia/py | `data/podcast/py-2-1.json` | tramos.60.p | podcast-linea | visible | id | deuda: regenerar audio |
-| `and-py-2025-c1-g11` | andalucia/py | `data/podcast/py-2-2.json` | tramos.61.p | podcast-linea | visible | id | deuda: regenerar audio |
 | `and-py-2026-c2-g17` | andalucia/py | `data/podcast/py-2-3.json` | tramos.65.p | podcast-linea | visible | id | deuda: regenerar audio |
 | `and-py-2025-c3-g13` | andalucia/py | `data/podcast/py-2-3.json` | tramos.70.x | podcast-linea | visible | texto (1) | deuda: regenerar audio |
 | `and-py-2025-c3-g13` | andalucia/py | `data/podcast/py-2-3.json` | tramos.71.p | podcast-linea | visible | id | deuda: regenerar audio |
@@ -269,42 +215,21 @@ Generado con `node tools/cuarentena.mjs --escribir`: **359 citas a 146 preguntas
 | `and-py-2026-c1-g13` | andalucia/py | `data/podcast/py-2-4.json` | tramos.66.p | podcast-linea | visible | id | deuda: regenerar audio |
 | `and-py-2026-c1-g14` | andalucia/py | `data/podcast/py-2-5.json` | tramos.63.p | podcast-linea | visible | id | deuda: regenerar audio |
 | `and-py-2026-c1-g20` | andalucia/py | `data/podcast/py-2-6.json` | tramos.70.x | podcast-linea | visible | texto (0.83) | falso positivo revisado |
-| `and-py-2025-c1-g17` | andalucia/py | `data/podcast/py-2-6.json` | tramos.71.p | podcast-linea | visible | id | deuda: regenerar audio |
 | `and-py-2026-c1-g15` | andalucia/py | `data/podcast/py-2-8.json` | tramos.60.x | podcast-linea | visible | texto (1) | deuda: regenerar audio |
 | `and-py-2026-c1-g15` | andalucia/py | `data/podcast/py-2-8.json` | tramos.61.p | podcast-linea | visible | id | deuda: regenerar audio |
-| `and-py-2025-c1-n01` | andalucia/py | `data/podcast/py-3-1.json` | tramos.79.p | podcast-linea | visible | id | deuda: regenerar audio |
-| `and-py-2025-c1-n02` | andalucia/py | `data/podcast/py-3-2.json` | tramos.74.x | podcast-linea | visible | texto (1) | deuda: regenerar audio |
-| `and-py-2025-c1-n02` | andalucia/py | `data/podcast/py-3-2.json` | tramos.75.p | podcast-linea | visible | id | deuda: regenerar audio |
 | `and-py-2026-c1-n04` | andalucia/py | `data/podcast/py-3-5.json` | tramos.52.x | podcast-linea | visible | texto (1) | deuda: regenerar audio |
 | `and-py-2026-c1-n04` | andalucia/py | `data/podcast/py-3-5.json` | tramos.53.p | podcast-linea | visible | id | deuda: regenerar audio |
-| `and-py-2025-c1-n04` | andalucia/py | `data/podcast/py-3-5.json` | tramos.59.p | podcast-linea | visible | id | deuda: regenerar audio |
 | `and-py-2026-c1-n06` | andalucia/py | `data/podcast/py-3-6.json` | tramos.63.x | podcast-linea | visible | texto (1) | deuda: regenerar audio |
 | `and-py-2026-c1-n06` | andalucia/py | `data/podcast/py-3-6.json` | tramos.64.p | podcast-linea | visible | id | deuda: regenerar audio |
-| `and-py-2025-c1-n05` | andalucia/py | `data/podcast/py-3-6.json` | tramos.70.p | podcast-linea | visible | id | deuda: regenerar audio |
 | `and-py-2025-c3-n07` | andalucia/py | `data/podcast/py-3-7.json` | tramos.55.p | podcast-linea | visible | id | deuda: regenerar audio |
 | `and-py-2026-c1-n08` | andalucia/py | `data/podcast/py-3-7.json` | tramos.60.x | podcast-linea | visible | texto (0.77) | deuda: regenerar audio |
 | `and-py-2026-c1-n08` | andalucia/py | `data/podcast/py-3-7.json` | tramos.61.p | podcast-linea | visible | id | deuda: regenerar audio |
 | `and-py-2025-c3-n10` | andalucia/py | `data/podcast/py-3-8.json` | tramos.53.x | podcast-linea | visible | texto (0.67) | deuda: regenerar audio |
 | `and-py-2025-c3-n10` | andalucia/py | `data/podcast/py-3-8.json` | tramos.54.p | podcast-linea | visible | id | deuda: regenerar audio |
-| `and-py-2025-c1-n11` | andalucia/py | `data/podcast/py-4-1.json` | tramos.55.p | podcast-linea | visible | id | deuda: regenerar audio |
-| `and-py-2025-c1-n16` | andalucia/py | `data/podcast/py-4-2.json` | tramos.50.p | podcast-linea | visible | id | deuda: regenerar audio |
 | `and-py-2025-c2-n15` | andalucia/py | `data/podcast/py-4-3.json` | tramos.49.p | podcast-linea | visible | id | deuda: regenerar audio |
 | `and-py-2026-c1-n15` | andalucia/py | `data/podcast/py-4-4.json` | tramos.53.p | podcast-linea | visible | id | deuda: regenerar audio |
 | `and-py-2025-c3-n16` | andalucia/py | `data/podcast/py-4-5.json` | tramos.53.p | podcast-linea | visible | id | deuda: regenerar audio |
-| `and-2026-c1-t03` | andalucia/per | `podcast/episodios.json` | per.2.preguntas.1 | podcast-fuente | fuente | id | deuda: regenerar audio |
-| `and-2026-c2-t02` | andalucia/per | `podcast/episodios.json` | per.4.preguntas.0 | podcast-fuente | fuente | id | deuda: regenerar audio |
-| `and-2025-c2-t03` | andalucia/per | `podcast/episodios.json` | per.4.preguntas.2 | podcast-fuente | fuente | id | deuda: regenerar audio |
-| `and-2026-c2-t04` | andalucia/per | `podcast/episodios.json` | per.5.preguntas.2 | podcast-fuente | fuente | id | deuda: regenerar audio |
-| `and-2025-c3-t13` | andalucia/per | `podcast/episodios.json` | per.22.preguntas.0 | podcast-fuente | fuente | id | deuda: regenerar audio |
-| `and-2025-c1-t14` | andalucia/per | `podcast/episodios.json` | per.22.preguntas.2 | podcast-fuente | fuente | id | deuda: regenerar audio |
-| `and-2025-c3-t15` | andalucia/per | `podcast/episodios.json` | per.23.preguntas.2 | podcast-fuente | fuente | id | deuda: regenerar audio |
-| `and-2025-c3-t14` | andalucia/per | `podcast/episodios.json` | per.24.preguntas.2 | podcast-fuente | fuente | id | deuda: regenerar audio |
-| `and-2025-c1-t22` | andalucia/per | `podcast/episodios.json` | per.28.preguntas.0 | podcast-fuente | fuente | id | deuda: regenerar audio |
-| `and-2025-c1-t18` | andalucia/per | `podcast/episodios.json` | per.28.preguntas.1 | podcast-fuente | fuente | id | deuda: regenerar audio |
-| `and-2025-c1-t27` | andalucia/per | `podcast/episodios.json` | per.28.preguntas.2 | podcast-fuente | fuente | id | deuda: regenerar audio |
-| `and-py-2025-c1-g02` | andalucia/py | `podcast/episodios.json` | py.4.preguntas.0 | podcast-fuente | fuente | id | deuda: regenerar audio |
 | `and-py-2025-c3-g05` | andalucia/py | `podcast/episodios.json` | py.4.preguntas.1 | podcast-fuente | fuente | id | deuda: regenerar audio |
-| `and-py-2025-c1-g08` | andalucia/py | `podcast/episodios.json` | py.4.preguntas.2 | podcast-fuente | fuente | id | deuda: regenerar audio |
 | `and-py-2025-c2-g03` | andalucia/py | `podcast/episodios.json` | py.5.preguntas.0 | podcast-fuente | fuente | id | deuda: regenerar audio |
 | `and-py-2025-c3-g07` | andalucia/py | `podcast/episodios.json` | py.5.preguntas.2 | podcast-fuente | fuente | id | deuda: regenerar audio |
 | `and-py-2025-c2-g08` | andalucia/py | `podcast/episodios.json` | py.6.preguntas.1 | podcast-fuente | fuente | id | deuda: regenerar audio |
@@ -314,39 +239,20 @@ Generado con `node tools/cuarentena.mjs --escribir`: **359 citas a 146 preguntas
 | `and-py-2025-c2-g01` | andalucia/py | `podcast/episodios.json` | py.8.preguntas.1 | podcast-fuente | fuente | id | deuda: regenerar audio |
 | `and-py-2026-c1-g03` | andalucia/py | `podcast/episodios.json` | py.8.preguntas.2 | podcast-fuente | fuente | id | deuda: regenerar audio |
 | `and-py-2025-c3-g15` | andalucia/py | `podcast/episodios.json` | py.10.preguntas.0 | podcast-fuente | fuente | id | deuda: regenerar audio |
-| `and-py-2025-c1-g13` | andalucia/py | `podcast/episodios.json` | py.10.preguntas.1 | podcast-fuente | fuente | id | deuda: regenerar audio |
 | `and-py-2025-c2-g18` | andalucia/py | `podcast/episodios.json` | py.11.preguntas.0 | podcast-fuente | fuente | id | deuda: regenerar audio |
-| `and-py-2025-c1-g14` | andalucia/py | `podcast/episodios.json` | py.11.preguntas.1 | podcast-fuente | fuente | id | deuda: regenerar audio |
-| `and-py-2025-c1-g11` | andalucia/py | `podcast/episodios.json` | py.12.preguntas.2 | podcast-fuente | fuente | id | deuda: regenerar audio |
 | `and-py-2026-c2-g17` | andalucia/py | `podcast/episodios.json` | py.13.preguntas.0 | podcast-fuente | fuente | id | deuda: regenerar audio |
 | `and-py-2025-c3-g13` | andalucia/py | `podcast/episodios.json` | py.13.preguntas.2 | podcast-fuente | fuente | id | deuda: regenerar audio |
 | `and-py-2026-c1-g13` | andalucia/py | `podcast/episodios.json` | py.14.preguntas.1 | podcast-fuente | fuente | id | deuda: regenerar audio |
 | `and-py-2026-c1-g14` | andalucia/py | `podcast/episodios.json` | py.15.preguntas.2 | podcast-fuente | fuente | id | deuda: regenerar audio |
-| `and-py-2025-c1-g17` | andalucia/py | `podcast/episodios.json` | py.16.preguntas.2 | podcast-fuente | fuente | id | deuda: regenerar audio |
 | `and-py-2026-c1-g15` | andalucia/py | `podcast/episodios.json` | py.18.preguntas.0 | podcast-fuente | fuente | id | deuda: regenerar audio |
-| `and-py-2025-c1-n01` | andalucia/py | `podcast/episodios.json` | py.21.preguntas.2 | podcast-fuente | fuente | id | deuda: regenerar audio |
-| `and-py-2025-c1-n02` | andalucia/py | `podcast/episodios.json` | py.22.preguntas.2 | podcast-fuente | fuente | id | deuda: regenerar audio |
 | `and-py-2026-c1-n04` | andalucia/py | `podcast/episodios.json` | py.25.preguntas.0 | podcast-fuente | fuente | id | deuda: regenerar audio |
-| `and-py-2025-c1-n04` | andalucia/py | `podcast/episodios.json` | py.25.preguntas.2 | podcast-fuente | fuente | id | deuda: regenerar audio |
 | `and-py-2026-c1-n06` | andalucia/py | `podcast/episodios.json` | py.26.preguntas.0 | podcast-fuente | fuente | id | deuda: regenerar audio |
-| `and-py-2025-c1-n05` | andalucia/py | `podcast/episodios.json` | py.26.preguntas.2 | podcast-fuente | fuente | id | deuda: regenerar audio |
 | `and-py-2025-c3-n07` | andalucia/py | `podcast/episodios.json` | py.27.preguntas.0 | podcast-fuente | fuente | id | deuda: regenerar audio |
 | `and-py-2026-c1-n08` | andalucia/py | `podcast/episodios.json` | py.27.preguntas.2 | podcast-fuente | fuente | id | deuda: regenerar audio |
 | `and-py-2025-c3-n10` | andalucia/py | `podcast/episodios.json` | py.28.preguntas.1 | podcast-fuente | fuente | id | deuda: regenerar audio |
-| `and-py-2025-c1-n11` | andalucia/py | `podcast/episodios.json` | py.31.preguntas.2 | podcast-fuente | fuente | id | deuda: regenerar audio |
-| `and-py-2025-c1-n16` | andalucia/py | `podcast/episodios.json` | py.32.preguntas.1 | podcast-fuente | fuente | id | deuda: regenerar audio |
 | `and-py-2025-c2-n15` | andalucia/py | `podcast/episodios.json` | py.33.preguntas.0 | podcast-fuente | fuente | id | deuda: regenerar audio |
 | `and-py-2026-c1-n15` | andalucia/py | `podcast/episodios.json` | py.34.preguntas.2 | podcast-fuente | fuente | id | deuda: regenerar audio |
 | `and-py-2025-c3-n16` | andalucia/py | `podcast/episodios.json` | py.35.preguntas.2 | podcast-fuente | fuente | id | deuda: regenerar audio |
-| `and-2026-c2-t04` | andalucia/per | `podcast/per/1-3-fondeo-y-dimensiones.md` | párrafo 73 | podcast-guion | fuente | texto (1) | deuda: regenerar audio |
-| `and-2025-c3-t13` | andalucia/per | `podcast/per/5-0-balizamiento.md` | párrafo 59 | podcast-guion | fuente | texto (1) | deuda: regenerar audio |
-| `and-2025-c1-t14` | andalucia/per | `podcast/per/5-0-balizamiento.md` | párrafo 65 | podcast-guion | fuente | texto (0.76) | deuda: regenerar audio |
-| `and-2025-c3-t15` | andalucia/per | `podcast/per/5-1-iala-laterales-bifurcaciones.md` | párrafo 73 | podcast-guion | fuente | texto (0.78) | deuda: regenerar audio |
-| `and-2025-c3-t14` | andalucia/per | `podcast/per/5-2-las-cardinales.md` | párrafo 65 | podcast-guion | fuente | texto (1) | deuda: regenerar audio |
-| `and-2025-c1-t22` | andalucia/per | `podcast/per/6-0-el-ripa-de-un-vistazo.md` | párrafo 51 | podcast-guion | fuente | texto (1) | deuda: regenerar audio |
-| `and-2025-c1-t18` | andalucia/per | `podcast/per/6-0-el-ripa-de-un-vistazo.md` | párrafo 54 | podcast-guion | fuente | texto (1) | deuda: regenerar audio |
-| `and-2025-c1-t27` | andalucia/per | `podcast/per/6-0-el-ripa-de-un-vistazo.md` | párrafo 57 | podcast-guion | fuente | texto (1) | deuda: regenerar audio |
-| `and-py-2025-c1-g02` | andalucia/py | `podcast/py/1-2-mover-pesos-sin-volcar.md` | párrafo 73 | podcast-guion | fuente | texto (1) | deuda: regenerar audio |
 | `and-py-2025-c2-g03` | andalucia/py | `podcast/py/1-3-chalecos-aros-y-balsa.md` | párrafo 67 | podcast-guion | fuente | texto (1) | deuda: regenerar audio |
 | `and-py-2026-c1-g04` | andalucia/py | `podcast/py/1-3-chalecos-aros-y-balsa.md` | párrafo 67 | podcast-guion | fuente | texto (1) | deuda: regenerar audio |
 | `and-py-2025-c3-g07` | andalucia/py | `podcast/py/1-3-chalecos-aros-y-balsa.md` | párrafo 73 | podcast-guion | fuente | texto (1) | deuda: regenerar audio |
@@ -356,13 +262,11 @@ Generado con `node tools/cuarentena.mjs --escribir`: **359 citas a 146 preguntas
 | `and-py-2025-c2-g01` | andalucia/py | `podcast/py/1-6-pedir-ayuda.md` | párrafo 60 | podcast-guion | fuente | texto (0.84) | deuda: regenerar audio |
 | `and-py-2026-c1-g03` | andalucia/py | `podcast/py/1-6-pedir-ayuda.md` | párrafo 63 | podcast-guion | fuente | texto (1) | deuda: regenerar audio |
 | `and-py-2025-c3-g15` | andalucia/py | `podcast/py/2-0-el-tiempo-en-la-mar.md` | párrafo 57 | podcast-guion | fuente | texto (1) | deuda: regenerar audio |
-| `and-py-2025-c1-g13` | andalucia/py | `podcast/py/2-0-el-tiempo-en-la-mar.md` | párrafo 60 | podcast-guion | fuente | texto (0.88) | deuda: regenerar audio |
 | `and-py-2025-c2-g18` | andalucia/py | `podcast/py/2-1-isobaras-borrascas-anticiclones.md` | párrafo 61 | podcast-guion | fuente | texto (1) | deuda: regenerar audio |
 | `and-py-2025-c3-g13` | andalucia/py | `podcast/py/2-3-modelos-de-viento.md` | párrafo 75 | podcast-guion | fuente | texto (1) | deuda: regenerar audio |
 | `and-py-2026-c1-g13` | andalucia/py | `podcast/py/2-4-vientos-regionales.md` | párrafo 70 | podcast-guion | fuente | texto (1) | deuda: regenerar audio |
 | `and-py-2026-c1-g20` | andalucia/py | `podcast/py/2-6-nieblas.md` | párrafo 75 | podcast-guion | fuente | texto (0.83) | falso positivo revisado |
 | `and-py-2026-c1-g15` | andalucia/py | `podcast/py/2-8-corrientes-marinas.md` | párrafo 65 | podcast-guion | fuente | texto (1) | deuda: regenerar audio |
-| `and-py-2025-c1-n02` | andalucia/py | `podcast/py/3-2-la-correccion-total.md` | párrafo 79 | podcast-guion | fuente | texto (1) | deuda: regenerar audio |
 | `and-py-2026-c1-n04` | andalucia/py | `podcast/py/3-5-publicaciones-y-avisos.md` | párrafo 57 | podcast-guion | fuente | texto (1) | deuda: regenerar audio |
 | `and-py-2026-c1-n06` | andalucia/py | `podcast/py/3-6-el-radar.md` | párrafo 68 | podcast-guion | fuente | texto (1) | deuda: regenerar audio |
 | `and-py-2026-c1-n08` | andalucia/py | `podcast/py/3-7-el-gps.md` | párrafo 65 | podcast-guion | fuente | texto (0.77) | deuda: regenerar audio |

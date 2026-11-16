@@ -123,13 +123,13 @@ voces:
 
 **ANDRÉS:** Por donde entra el viento es barlovento, así que el contrario es sotavento. La be. Y estribor y babor no pueden ser, porque no dependen del viento.
 
-**ELENA:** Correcto, y muy bien descartado. Segunda: «El eje alrededor del cual gira la pala del timón se denomina…». A: eje de pala. Be: limera. Ce: mecha. De: rueda.
+**ELENA:** Correcto, y muy bien descartado. Segunda: «¿Qué es la limera?». A: es la pala del timón. Be: es el eje que va de arriba abajo y transmite la fuerza de la pala del timón. Ce: es el orificio por el cual entra la mecha del timón. De: es la caña del timón.
 
 [pausa larga]
 
-**ANDRÉS:** La limera es el agujero, no el eje. La rueda es con lo que gobiernas. Y «eje de pala» suena bien, pero no es el nombre. La ce, la mecha.
+**ANDRÉS:** La be es la mecha, el eje, que es justo la que me querían cruzar. La pala es el azafrán y la caña es con lo que gobierno. La limera es el agujero por donde la mecha entra en el casco: la ce.
 
-**ELENA:** La mecha. Tercera: «¿Qué entendemos por asiento de una embarcación?». A: la distancia entre la vertical de proa y la de popa. Be: la diferencia entre el calado de popa y el calado de proa. Ce: la distancia vertical entre la línea de flotación y la quilla. De: ninguna de las anteriores.
+**ELENA:** La ce, el agujero. Tercera: «¿Qué entendemos por asiento de una embarcación?». A: la distancia entre la vertical de proa y la de popa. Be: la diferencia entre el calado de popa y el calado de proa. Ce: la distancia vertical entre la línea de flotación y la quilla. De: ninguna de las anteriores.
 
 [pausa larga]
 

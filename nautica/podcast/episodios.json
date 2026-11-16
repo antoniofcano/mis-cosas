@@ -1312,7 +1312,7 @@
         "Hay tres bloques con límite propio de fallos (eliminatorios): Reglamento de abordajes (RIPA), 10 preguntas y máximo 5 errores; Balizamiento, 5 preguntas y máximo 2 errores; Carta de navegación, 4 preguntas y máximo 2 errores.",
         "Son 11 temas: Nomenclatura náutica (4 preguntas), Amarre y fondeo (2), Seguridad (4), Legislación (2), Balizamiento (5), RIPA (10), Maniobra y navegación (2), Emergencias en la mar (3), Meteorología (4), Teoría de navegación (5) y Carta de navegación (4).",
         "Orden de estudio recomendado: primero el vocabulario (tema 1) y después lo que más pesa y más práctica pide: balizamiento, RIPA, teoría de navegación y carta; luego amarre y fondeo, seguridad, legislación, maniobra, emergencias y meteorología.",
-        "Las preguntas de la serie son de exámenes reales de Andalucía de 2020 a 2026."
+        "Las preguntas de la serie son de exámenes reales de Andalucía ya publicados; las convocatorias más recientes no salen, porque se guardan para el examen final."
       ],
       "usos": [
         "Cada tema empieza con un episodio Panorama, que recorre el tema entero, dice qué pesa en el examen y si es eliminatorio.",
@@ -1353,7 +1353,7 @@
       ],
       "preguntas": [
         "and-2023-c1-t02",
-        "and-2026-c1-t03",
+        "and-2015-c3-t03",
         "and-2021-c1-t01"
       ],
       "peso": "Nomenclatura náutica aporta 4 de las 45 preguntas del examen y no tiene límite propio de fallos, pero es el vocabulario que se usa en todos los demás temas, por eso se estudia el primero.",
@@ -1427,9 +1427,9 @@
         "Falso: «bocina, núcleo y capacete» es una trampa porque la bocina no es de la hélice. Cierto: el programa la incluye entre las partes de la hélice y esa respuesta es la correcta."
       ],
       "preguntas": [
-        "and-2026-c2-t02",
+        "and-2020-c3-t03",
         "and-2020-c1-t02",
-        "and-2025-c2-t03"
+        "and-2022-c1-t03"
       ],
       "relacionados": [
         "1.0",
@@ -1468,7 +1468,7 @@
       "preguntas": [
         "and-2022-c1-t01",
         "and-2023-c1-t01",
-        "and-2026-c2-t04"
+        "and-2018-c1-t04"
       ],
       "relacionados": [
         "1.0",
@@ -1967,7 +1967,7 @@
         "Leer la luz: destellos, luz menor que oscuridad; ocultaciones, mayor; isofase, igual; las luces «tranquilas» blancas son de aguas navegables y las «nerviosas» de cardinales."
       ],
       "preguntas": [
-        "and-2025-c3-t13",
+        "and-2024-c2-t16",
         "and-2024-c1-t16",
         "and-2025-c1-t14"
       ],
@@ -2004,7 +2004,7 @@
       "preguntas": [
         "and-2021-c2-t13",
         "and-2024-c3-t13",
-        "and-2025-c3-t15"
+        "and-2020-c1-t16"
       ],
       "relacionados": [
         "5.0",
@@ -2040,7 +2040,7 @@
       "preguntas": [
         "and-2022-c3-t17",
         "and-2023-c2-t16",
-        "and-2025-c3-t14"
+        "and-2023-c3-t17"
       ],
       "relacionados": [
         "5.0",
@@ -2644,7 +2644,7 @@
       "gancho": "Andrés repasa con su nieta lo que haría si un día, en la misma salida, alguien se corta en la cocina, aparece agua en la sentina y huele a quemado; ella le pregunta qué haría primero y él se queda en blanco.",
       "claves": [
         "Heridas y hemorragias: contusión con frío, elevación y pomada de heparina, sin pinchar el hematoma; ante una hemorragia externa, primero presión directa y elevar el miembro, y el torniquete solo como último recurso.",
-        "Quemaduras, calor y mareo: la quemadura térmica se enfría con agua fresca, no helada, y la química se lava con agua abundante un mínimo de 15 minutos; la insolación cursa con temperatura alta y se enfría al paciente hasta bajar de unos 39 grados.",
+        "Quemaduras, calor y mareo: la quemadura térmica se enfría con agua fresca, no helada, y la química se lava con agua abundante un mínimo de 15 minutos; la insolación cursa con temperatura alta y se enfría al paciente hasta unos 39 grados, dejando de enfriar a 38,5.",
         "Ayuda médica a distancia: el Centro Radio-Médico Español atiende gratis las 24 horas, por radio a través de una costera o por teléfono al 91 310 34 75, y la Guía Sanitaria a Bordo se descarga gratis de la web del Instituto Social de la Marina.",
         "Varada y abordaje: tras embarrancar, primero evaluar daños, sondar y mirar la marea, nunca dar atrás toda de entrada; tras un abordaje, lo prioritario es evaluar las vías de agua bajo la flotación antes de separar los barcos.",
         "Vías de agua: el agua entra por donde algo atraviesa el casco (bocina, limera, grifos de fondo, escape); se achica con todo, con el motor encendido, se tapona y se vigila el nivel.",
@@ -2675,10 +2675,10 @@
       "claves": [
         "Contusión leve: inmovilizar y elevar la zona, frío envuelto en un paño y, si hay hematoma, pomada de heparina; nunca pinchar el hematoma ni dar calor.",
         "Hemorragia arterial: rojo vivo y a borbotones; venosa: rojo oscuro, continua y con poca presión.",
-        "Hemorragia externa: presión directa con gasas o un paño limpio y elevar el miembro; torniquete solo si la presión no controla una hemorragia que amenaza la vida, cinco a siete centímetros por encima, anotando la hora y sin aflojarlo.",
+        "Hemorragia externa: presión directa con gasas o un paño limpio y elevar el miembro; torniquete solo si la presión no controla una hemorragia que amenaza la vida, entre la herida y el tronco y anotando la hora; hoy no se afloja salvo indicación médica (la Guía Sanitaria a Bordo decía cada 15 minutos).",
         "Sospecha de hemorragia interna: consejo Radio-Médico cuanto antes, abrigo, posición lateral de seguridad si pierde el conocimiento, y nada de comer ni beber aunque lo pida.",
         "Quemadura térmica: agua fresca, no helada, al menos 10 minutos y mejor 20, sin reventar ampollas; si es extensa, se enfría solo la zona quemada. Química: agua abundante un mínimo de 15 minutos, también en el ojo.",
-        "Insolación: dolor de cabeza intenso, vértigo, vómitos y temperatura alta; a la sombra, quitar ropa, enfriar con agua a unos 20 grados y parar al bajar de unos 39 grados, sin llegar a 37.",
+        "Insolación: dolor de cabeza intenso, vértigo, vómitos y temperatura alta; a la sombra, quitar ropa, enfriar con agua a unos 20 grados hasta unos 39, medir cada 10 minutos y dejar de enfriar a 38,5, nunca hasta 37.",
         "Radio-Médico: del Instituto Social de la Marina, gratis las 24 horas, por radio a través de una costera indicando «consulta médica» o por teléfono al 91 310 34 75; la Guía Sanitaria a Bordo se descarga gratis de la web del Instituto."
       ],
       "trampas": [
@@ -2686,7 +2686,7 @@
         "Falso: para detener una hemorragia en el brazo se baja por debajo del corazón. Cierto: se eleva mientras se hace presión directa.",
         "Falso: ante una hemorragia en una extremidad siempre se aplica un torniquete. Cierto: primero presión directa; el torniquete es el último recurso.",
         "Falso: una quemadura química en el ojo se lava 5 minutos con agua oxigenada, o se cubre primero con una gasa. Cierto: se lava con agua abundante un mínimo de 15 minutos, y nunca agua oxigenada.",
-        "Falso: el descenso de la temperatura corporal es un síntoma de insolación, y se enfría al paciente hasta 37 grados. Cierto: la insolación sube la temperatura y se para de enfriar al bajar de unos 39 grados.",
+        "Falso: el descenso de la temperatura corporal es un síntoma de insolación, y se enfría al paciente hasta 37 grados. Cierto: la insolación sube la temperatura; se enfría hasta unos 39 grados y se deja de enfriar a 38,5.",
         "Falso: la consulta radio-médica solo se puede hacer por teléfono móvil. Cierto: también por radio a través de las estaciones costeras."
       ],
       "preguntas": [
@@ -2945,7 +2945,7 @@
         "La mar crece con tres factores: intensidad (la fuerza del viento), persistencia (el tiempo que lleva soplando igual) y fetch (la extensión de mar sobre la que sopla con la misma dirección e intensidad).",
         "Mar de viento es la que levanta el viento del momento y del lugar, corta e irregular; mar de fondo es la que llega de lejos, larga y regular, aunque haya calma.",
         "La escala Douglas clasifica el estado de la mar por la altura de las olas en 10 grados, de 0 a 9: marejadilla hasta medio metro, marejada hasta 1,25 metros y fuerte marejada hasta 2,5.",
-        "La fuente oficial es AEMET, con predicción para aguas costeras hasta 20 millas y avisos; la difunden también Salvamento Marítimo por VHF, anunciada en el canal 16, y el NAVTEX en 518 y 490 kilohercios.",
+        "La fuente oficial es AEMET, con predicción para aguas costeras y alta mar y avisos; la difunden también Salvamento Marítimo por VHF, anunciada en el canal 16, y el NAVTEX en 518 y 490 kilohercios.",
         "Antes de salir: viento y mar dentro de lo que barco y tripulación llevan con comodidad, avisos en vigor y plan B con puerto de refugio y hora límite; si el barómetro cae deprisa, se vuelve antes."
       ],
       "trampas": [
@@ -3223,7 +3223,7 @@
       "gancho": "Andrés quiere cruzar hasta Ceuta y tiene sobre la mesa la carta del Estrecho, el compás de puntas y el transportador, pero no sabe por dónde empezar. Elena le enseña que siempre empieza igual: preguntándose qué dato es de aguja y qué dato es verdadero.",
       "claves": [
         "La carta del Estrecho es Mercator: la latitud se lee en los márgenes laterales (siempre N), la longitud arriba o abajo (siempre W), y las distancias se miden en la escala de latitudes, porque allí un minuto de longitud vale solo unas 0,8 millas.",
-        "Primer paso de casi todo: corrección total = declinación + desvío, actualizando la declinación de la carta al año y redondeando al grado; con una enfilación u oposición, Ct = Dv − Da, sin usar el rumbo que dé el enunciado.",
+        "Primer paso de casi todo: corrección total = declinación + desvío, actualizando la declinación de la carta al año y redondeando al grado si el enunciado lo pide; con una enfilación u oposición, Ct = Dv − Da, sin usar el rumbo que dé el enunciado.",
         "Rumbo directo: situar salida y llegada (la luz exacta que pide el enunciado), medir el Rv y la distancia, y dar al timón Ra = Rv − Ct; tiempo = distancia ÷ velocidad, sumado a la HRB de salida.",
         "Estima: Rv = Ra + Ct, distancia = velocidad × tiempo, y desde la salida se traza el Rv y se mide la distancia; si el rumbo ya es verdadero, la corrección total sobra.",
         "Demora y distancia: se pasa la observación a verdadera y desde el faro se traza la opuesta (Dv ± 180°), cortándola con el arco de la distancia.",
@@ -3254,7 +3254,7 @@
       "claves": [
         "Todo lo que se traza en la carta es verdadero; el timón solo entiende de aguja: «el rumbo de aguja nunca se dibuja».",
         "Las distancias, en la escala de latitudes: a unos 36° N un minuto de longitud vale unas 0,8 millas, así que 10′ de longitud son unas 8 millas, no 10.",
-        "Corrección total = declinación + desvío, con E o NE positivo y W o NW negativo; si la declinación sale de la rosa, se actualiza al año (variación anual por años) y se redondea al grado: «2° 50′ W 2005 (7′ E)» da 1° W en 2024 y 0° en 2026.",
+        "Corrección total = declinación + desvío, con E o NE positivo y W o NW negativo; si la declinación sale de la rosa, se actualiza al año (variación anual por años) y, si el enunciado lo pide, se redondea al grado: «2° 50′ W 2005 (7′ E)» da 1° W en 2024 y 0° en 2026.",
         "Con una enfilación u oposición, Ct = Dv − Da: la Dv se mide en la carta con la recta entre los dos faros, en el sentido del faro marcado; y el desvío, si lo piden, es Ct − dm.",
         "El orden del rumbo directo: situar salida, situar la llegada en la luz exacta, medir el Rv desde la salida, medir la distancia, calcular la corrección total y dar Ra = Rv − Ct.",
         "Hora de llegada: tiempo = distancia ÷ velocidad, y los decimales por 60: 12,7 millas a 8 nudos son 1,59 h, una hora y 35 minutos; de 20:00 a 21:35 (un minuto arriba o abajo es normal).",

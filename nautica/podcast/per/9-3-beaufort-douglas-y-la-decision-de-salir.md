@@ -90,7 +90,7 @@ voces:
 
 **ANDRÉS:** ¿Y dónde la consulto, aparte de la web?
 
-**ELENA:** En la web y la aplicación de Aemet tienes la predicción para aguas costeras, que es la franja hasta las veinte millas de la costa, la de alta mar y los avisos de fenómenos adversos. Salvamento Marítimo emite los boletines por la radio de uve-hache-efe: los anuncia por el canal dieciséis y los lee en el canal de trabajo de cada centro, por ejemplo el diez o el setenta y cuatro.
+**ELENA:** En la web y la aplicación de Aemet tienes la predicción para aguas costeras, la franja próxima a la costa, la de alta mar y los avisos de fenómenos adversos. Salvamento Marítimo emite los boletines por la radio de uve-hache-efe: los anuncia por el canal dieciséis y los lee en el canal de trabajo de cada centro.
 
 **ANDRÉS:** Por el dieciséis te avisan, y en otro canal te lo leen.
 

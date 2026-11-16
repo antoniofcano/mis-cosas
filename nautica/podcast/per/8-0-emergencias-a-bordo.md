@@ -53,7 +53,7 @@ voces:
 
 **ANDRÉS:** ¿Y el sol? Que en agosto, en el barco, uno acaba frito.
 
-**ELENA:** La insolación. Da dolor de cabeza intenso, mareo o vértigo, vómitos y temperatura alta. Alta, ojo. Se lleva al paciente a la sombra, se le quita ropa y se le enfría, y se para cuando la temperatura baja de unos treinta y nueve grados, sin llegar a treinta y siete.
+**ELENA:** La insolación. Da dolor de cabeza intenso, mareo o vértigo, vómitos y temperatura alta. Alta, ojo. Se lleva al paciente a la sombra, se le quita ropa y se le enfría hasta unos treinta y nueve grados, y se deja de enfriar al llegar a treinta y ocho y medio, nunca hasta treinta y siete.
 
 **ANDRÉS:** ¿Y si uno no sabe qué hacer? Que yo no soy médico.
 

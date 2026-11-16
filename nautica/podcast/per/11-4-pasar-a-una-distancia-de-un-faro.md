@@ -58,11 +58,11 @@ voces:
 
 **ANDRÉS:** Ponme un ejemplo, que con el seno me pierdo.
 
-**ELENA:** Estás a diez millas de un faro que ves en demora verdadera cero cero cuatro. Quieres pasar a dos millas y media, dejándolo por babor. Dos y media entre diez es un cuarto, y el ángulo cuyo seno es un cuarto mide unos catorce grados y medio.
+**ELENA:** Estás a diez millas de un faro que ves en demora verdadera cero cero cuatro. Quieres pasar a dos millas y seis décimas, dejándolo por babor. Dos coma seis entre diez, cero coma veintiséis, y el ángulo cuyo seno es cero coma veintiséis mide unos quince grados.
 
-**ANDRÉS:** Por babor, el faro a mi izquierda, así que me abro hacia la derecha: se suma. Cuatro más catorce y medio, dieciocho y medio. Unos diecinueve.
+**ANDRÉS:** Por babor, el faro a mi izquierda, así que me abro hacia la derecha: se suma. Cuatro más quince, diecinueve.
 
-**ELENA:** Rumbo verdadero cero diecinueve, más o menos. En el examen lo mides con el transportador en la carta, y la cuenta te sirve para comprobar que has cogido la tangente buena.
+**ELENA:** Rumbo verdadero cero diecinueve. En el examen lo mides con el transportador en la carta, y la cuenta te sirve para comprobar que has cogido la tangente buena.
 
 **ANDRÉS:** ¿Y si el enunciado no dice por qué banda?
 

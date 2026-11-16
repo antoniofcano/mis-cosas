@@ -156,11 +156,11 @@ voces:
 
 **ANDRÉS:** La a, una eslora. Las cinco esloras de la de son de la línea completa, no de la cadena.
 
-**ELENA:** Exacto, no has picado. Tercera: «La distancia vertical comprendida entre la superficie de flotación y la cubierta completa más alta con medios permanentes de cierre, medida en el centro del costado del buque, se denomina…». A: calado. Be: puntal. Ce: francobordo. De: obra muerta.
+**ELENA:** Exacto, no has picado. Tercera: «A la distancia medida en el costado del buque y en el centro, comprendida entre la superficie de flotación hasta la cubierta completa más alta con medios permanentes de cierre, se denomina…». A: francobordo. Be: obra muerta. Ce: calado. De: puntal.
 
 [pausa larga]
 
-**ANDRÉS:** De la flotación hacia arriba, hasta la cubierta estanca: francobordo, la ce. El calado va hacia abajo, el puntal es desde la quilla, y la obra muerta es una parte, no una distancia.
+**ANDRÉS:** De la flotación hacia arriba, hasta la cubierta estanca: francobordo, la a. La obra muerta es una parte, no una distancia; el calado va hacia abajo y el puntal es desde la quilla.
 
 **ELENA:** Tres de tres, y razonando cada descarte. Así se aprueba.
 
@@ -170,6 +170,6 @@ voces:
 
 **ANDRÉS:** Y el tema uno, terminado.
 
-**ELENA:** Terminado. En el próximo episodio saltamos al tema cinco, el balizamiento, que es eliminatorio: de sus cinco preguntas no puedes fallar más de dos. Hasta entonces, buena mar.
+**ELENA:** Terminado. En el próximo episodio empezamos el tema dos, el amarre y el fondeo, con su Panorama. Hasta entonces, buena mar.
 
 **ANDRÉS:** ¡Buena mar!

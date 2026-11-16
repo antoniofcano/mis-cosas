@@ -157,11 +157,11 @@ voces:
 
 **ANDRÉS:** [ríe] La de es la mía, la de pegarse. Pues no. Saliendo se invierte: las rojas por estribor. La ce.
 
-**ELENA:** La ce. Y el amarillo ni siquiera es de lateral. Tercera: «En una bifurcación de canal, si vemos una marca lateral modificada con luz verde en grupos de dos más un destello, ¿dónde se encuentra el canal principal?». A: a nuestro estribor. Be: a nuestro babor. Ce: directamente al frente. De: detrás de nuestra embarcación.
+**ELENA:** La ce. Y el amarillo ni siquiera es de lateral. Tercera: «Entrando en puerto por un canal balizado vemos una marca que emite una luz consistente en un grupo de dos más uno destellos verdes. Si queremos seguir por el canal principal, dejaremos esta marca por nuestra banda de…». A: babor. Be: estribor. Ce: cuando vemos esa marca significa que estamos navegando por un canal secundario, y debemos invertir el rumbo para volver al canal principal. De: ninguna de las respuestas anteriores es correcta.
 
 [pausa larga]
 
-**ANDRÉS:** Es verde, así que la trato como verde: entrando, la dejo por estribor. Y el canal principal queda al lado contrario: a babor. La be.
+**ANDRÉS:** Verde de dos más uno: bifurcación, y la trato como verde. Entrando, la verde la dejo por estribor, y el canal principal me queda al otro lado, a babor. La be. Y lo de dar la vuelta es un invento.
 
 **ELENA:** La be. Tres de tres. El pescador estaría orgulloso.
 

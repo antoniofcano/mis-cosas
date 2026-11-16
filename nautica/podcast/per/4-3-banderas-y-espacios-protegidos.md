@@ -109,7 +109,7 @@ voces:
 
 **ANDRÉS:** ¿Décadas? ¿Por un ancla?
 
-**ELENA:** Por un ancla, y por la cadena. Por eso en el Mediterráneo español, desde este año, un real decreto lo deja claro. Con carácter general, está prohibido fondear sobre las praderas de posidonia. Y también en la arena de al lado, si la cadena o cualquier otra parte del fondeo queda sobre la pradera o la barre al bornear.
+**ELENA:** Por un ancla, y por la cadena. Por eso en el Mediterráneo español un real decreto de dos mil veintiséis lo deja claro. Con carácter general, está prohibido fondear sobre las praderas de posidonia. Y también en la arena de al lado, si la cadena o cualquier otra parte del fondeo queda sobre la pradera o la barre al bornear.
 
 **ANDRÉS:** Al bornear. Cuando el barco gira alrededor del ancla con el viento.
 

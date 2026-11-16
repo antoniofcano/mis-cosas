@@ -129,7 +129,7 @@ voces:
 
 **ANDRÉS:** O sea, que me vais a examinar en cada episodio.
 
-**ELENA:** En cada uno. Porque todos acaban con un minijuego: dos o tres preguntas de exámenes reales de Andalucía, de las convocatorias de dos mil veinte a dos mil veintiséis. Yo las leo con sus opciones y luego hay una pausa de unos segundos.
+**ELENA:** En cada uno. Porque todos acaban con un minijuego: dos o tres preguntas de exámenes reales de Andalucía, de convocatorias ya publicadas. Las más recientes no salen aquí, porque la aplicación las guarda para tu examen final. Yo las leo con sus opciones y luego hay una pausa de unos segundos.
 
 **ANDRÉS:** Para que conteste yo.
 

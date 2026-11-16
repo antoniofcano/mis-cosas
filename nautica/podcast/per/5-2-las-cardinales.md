@@ -141,11 +141,11 @@ voces:
 
 **ANDRÉS:** Pasar al oeste: cardinal Oeste. Conos unidos por los vértices, que apuntan al centro, así que el negro va en medio. Amarilla con banda negra. La de.
 
-**ELENA:** La de. Y fíjate en las demás: la a es la Norte, la be es la Sur y la ce es la Este. Tercera: «¿Qué características de luz tiene una marca cardinal Este?». A: luz blanca con grupos de nueve centelleos. Be: luz blanca con centelleo continuo. Ce: luz blanca con grupos de tres centelleos. De: luz blanca con grupos de seis centelleos.
+**ELENA:** La de. Y fíjate en las demás: la a es la Norte, la be es la Sur y la ce es la Este. Tercera: «¿Cuál de los siguientes ritmos de luces corresponde a una marca cardinal Este?». A: centelleante de grupos de tres centelleos cada diez segundos. Be: grupo de tres destellos con cualquier periodo. Ce: grupo de tres ocultaciones con cualquier periodo. De: destellos aislados, emitiendo un destello cada tres segundos.
 
 [pausa larga]
 
-**ANDRÉS:** La Este son las tres del reloj. La ce. Nueve es la Oeste, el continuo es la Norte, y seis sería la Sur, aunque le falta el destello largo.
+**ANDRÉS:** La Este son las tres del reloj, pero en centelleos, que las cardinales son nerviosas. La a. Tres destellos o tres ocultaciones no son centelleos, y un destello cada tres segundos no tiene nada que ver con el reloj.
 
 **ELENA:** Tres de tres, y razonadas con el reloj en la mano.
 

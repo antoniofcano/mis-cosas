@@ -7,7 +7,7 @@ import { inventario, claveRef, leerDeudaCompleta, deudaDe, conAudio, idsEn, limp
 import { crearBancos } from '../src/bancos/index.js';
 
 /** Tope de la deuda: el número de entradas cuando se creó (fase 1). Solo puede bajar; si bajas la deuda, bájalo. */
-const MAX_DEUDA = 135;
+const MAX_DEUDA = 110;
 
 const refs = await inventario();
 const { deuda, permitidas } = leerDeudaCompleta();

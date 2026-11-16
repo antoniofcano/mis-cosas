@@ -50,7 +50,7 @@ voces:
 
 **ANDRÉS:** Menos mal. ¿Y cuál es el primer paso de casi todo?
 
-**ELENA:** La corrección total. Declinación más desvío, con el este positivo y el oeste negativo. Si la declinación te la da el enunciado, la usas tal cual. Si tienes que sacarla de la rosa de la carta, la pones al día: la variación anual por los años que han pasado, con su signo, y redondeas al grado. Con la rosa de esta carta, en dos mil veintiséis sale cero.
+**ELENA:** La corrección total. Declinación más desvío, con el este positivo y el oeste negativo. Si la declinación te la da el enunciado, la usas tal cual. Si tienes que sacarla de la rosa de la carta, la pones al día: la variación anual por los años que han pasado, con su signo, y redondeas al grado si el enunciado lo pide, como los recientes. Con la rosa de esta carta, en dos mil veintiséis sale cero.
 
 **ANDRÉS:** ¿Y si no me dan ni declinación ni desvío?
 

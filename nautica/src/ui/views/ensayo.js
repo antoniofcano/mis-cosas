@@ -21,6 +21,7 @@ import { icono, conIcono } from '../iconos.js';
 import { cuenta } from '../../texto.js';
 import { fechaImpresion } from './chuleta.js';
 import { cuadernillo, hojaEnBlanco } from '../ensayo.js';
+import { prepararPlan, pantallaPrimerMinuto } from '../plan-examen.js';
 
 const deTitEje = (x, tit, eje) => (x?.tit ?? 'per') === tit && x?.eje === eje;
 
@@ -76,9 +77,19 @@ function preparacionView({ progress, params: route, tit }) {
         // En pantalla, primero las preguntas que no has visto; el impreso, las mismas del cuadernillo (que no las mira).
         const test = buildEnsayo(E1, banco.oficial?.estudio ?? banco.estudio, createRng(seed), { respuestas: impreso ? null : progress.get().exams });
         if (!test.preguntas.length) { alert('No hay preguntas para este ensayo.'); return; }
-        progress.saveTestEnCurso({ tit, eje: ficha.id, tipo: 'ensayo', parte, conv: null, seed, ids: test.preguntas.map((q) => q.id), nuevas: nuevasDe(test.preguntas, progress.get().exams),
-          respuestas: {}, i: 0, consumidoMs: impreso ? (minutos ? minutos * 60000 : null) : 0, duracionMin: E1.duracionMin, fase: impreso ? 'hoja' : 'papel', ...(impreso ? { impreso: true } : {}) });
-        location.hash = rutaEnsayo(tit, parte, seed);
+        const guardado = { tit, eje: ficha.id, tipo: 'ensayo', parte, conv: null, seed, ids: test.preguntas.map((q) => q.id), nuevas: nuevasDe(test.preguntas, progress.get().exams),
+          respuestas: {}, i: 0, consumidoMs: impreso ? (minutos ? minutos * 60000 : null) : 0, duracionMin: E1.duracionMin, fase: impreso ? 'hoja' : 'papel', ...(impreso ? { impreso: true } : {}) };
+        const correr = (plan = null) => { progress.saveTestEnCurso({ ...guardado, ...(plan ? { plan } : {}) }); location.hash = rutaEnsayo(tit, parte, seed); };
+        if (impreso) { correr(); return; }
+        // El primer minuto (R-57): hojear el cuadernillo y repartir el tiempo antes de que corra el reloj.
+        setChildren(el, h('p.muted', 'Preparando tu reparto del tiempo…'));
+        prepararPlan({ T, estructura: E1, preguntas: test.preguntas, progress, eje: ficha.id }).then(({ plan, compacto, primer }) => {
+          summaryText = `VISTA primer minuto del ensayo en papel ${T.sigla} · parte ${parte} (el reloj aún no corre)`;
+          setChildren(el, pantallaPrimerMinuto({ titulo: test.titulo, primer, plan, volver: { texto: 'Ahora no', href: tlink(tit, ['examenes']) },
+            sub: 'Antes de que corra el reloj, hojea el cuadernillo con tu carta de papel delante: localiza lo que vas a necesitar y decide el orden. Durante el ensayo, la app te recordará cada hito.',
+            onEmpezar: () => correr(compacto) }));
+          window.scrollTo(0, 0);
+        }).catch(() => correr());
       };
       const confirmarOtro = (fn) => () => { if (!otro || confirm('Tienes otro examen a medias y se descartará. ¿Empezar el ensayo?')) fn(); };
       const minutosImpreso = h('input#ensayo-min', { type: 'number', min: '1', max: String(E1.duracionMin * 2), inputmode: 'numeric', placeholder: String(E1.duracionMin) });

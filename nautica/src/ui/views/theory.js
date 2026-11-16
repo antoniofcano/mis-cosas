@@ -54,6 +54,7 @@ import { relojPaso } from '../reloj-paso.js';
 import { tiemposAlumno } from '../../store/tiempos.js';
 import { estructuraEnsayo, parteValida, tituloEnsayo, corregirHoja, cuentaEnsayos } from '../../theory/ensayo.js';
 import { correrEnsayo } from '../ensayo.js';
+import { prepararPlan, pantallaPrimerMinuto, lineaAvisoPlan, avisoDelPlan, informeDelPlan, cansancioDe, seccionInformePlan, partesDelGeneral, textoInformePlan, resumenPlan } from '../plan-examen.js';
 
 let chartRef = null;
 /** Explicación de una pregunta: la redactada para teoría o, en las de carta, la resolución calculada. */
@@ -296,11 +297,16 @@ const pct = (s) => (s.hechas ? Math.round((100 * s.ok) / s.hechas) : null);
 export function rutaTest(tc) {
   if (tc.tipo === 'final') return tlink(tc.tit, ['test', 'final']);
   if (tc.tipo === 'ensayo') return tlink(tc.tit, ['test', 'ensayo'], { p: tc.parte, s: String(tc.seed) });
+  if (tc.tipo === 'general') return tlink(tc.tit, ['test', 'general'], { s: String(tc.seed) });
   return tlink(tc.tit, tc.tipo === 'real' ? ['test', 'real', String(tc.conv)] : ['test', tc.tipo === 'errores' ? 'errores' : 'simulacro'], tc.tipo === 'real' || tc.seed == null ? undefined : { s: String(tc.seed), ...(tc.modulo ? { m: tc.modulo } : {}) });
 }
 
 /** La estructura con la que se hace y se corrige un examen: la del módulo si es un simulacro de un solo módulo. */
 const estructuraDe = (estructura, modulo) => (modulo && estructuraModulo(estructura, modulo)) || estructura;
+/** Ensayo general (R-66): el módulo de la parte en curso (null si la parte es el examen entero). */
+const moduloDeParte = (tc, k = tc.k ?? 0) => { const id = tc.partes?.[k]; return id && id !== 'completo' ? id : null; };
+/** Milisegundos por pregunta → segundos. */
+const segundosDe = (ms = {}) => Object.fromEntries(Object.entries(ms).map(([k, v]) => [k, v / 1000]));
 
 /**
  * Construye las preguntas de un examen: convocatoria real (con sus preguntas retiradas, que se corrigen como anuladas)
@@ -380,7 +386,7 @@ export function examenesView({ ctx, progress, tit }) {
       const resp = Object.keys(aMedias.respuestas ?? {}).length;
       const quedan = Math.max(1, Math.round((aMedias.errores?.min ?? aMedias.duracionMin ?? E0.duracionMin) - (aMedias.consumidoMs ?? 0) / 60000));
       aviso = h('section.tarjeta-hoy.examen-medias',
-        h('h2', aMedias.tipo === 'ensayo' ? 'Tienes un ensayo en papel a medias' : 'Tienes un examen a medias'),
+        h('h2', aMedias.tipo === 'ensayo' ? 'Tienes un ensayo en papel a medias' : aMedias.tipo === 'general' ? 'Tienes un ensayo general a medias' : 'Tienes un examen a medias'),
         h('p.linea', `${resp} de ${cuenta(total, 'respondida')} · quedan ${quedan} min`),
         h('a.btn.grande', { href: rutaTest(aMedias) }, 'Continuar →'),
         h('p.centrado', h('button.linklike.descartar', { type: 'button', onclick: () => {
@@ -406,6 +412,12 @@ export function examenesView({ ctx, progress, tit }) {
             return h('a.btn.secondary', { href: tlink(T0.id, ['test', 'simulacro'], { s: randomSeed(), m: m.id }) }, h('span.modulo-titulo', m.titulo), h('span.modulo-datos', `${cuenta(totalPreguntas(Em), 'pregunta')} · ${m.duracionMin} min`)); })) : null,
         // R-43: preguntas cuyas opciones falsas son los errores que repites (src/ui/simulacro-errores.js).
         entradaSimulacroErrores(T0.id)),
+      // Ensayo general (R-66): teoría y carta seguidas, con los tiempos del tribunal, el primer minuto y el informe por parte.
+      h('section.ensayo-tarjeta', { 'aria-labelledby': 'general-tarjeta-t' },
+        h('a.mas-fila', { href: tlink(T0.id, ['test', 'general'], { s: randomSeed() }) }, h('span.mas-fila-ico', icono('reloj')),
+          h('span.mas-fila-tx', h('strong#general-tarjeta-t', 'Ensayo general: el examen de un tirón'),
+            h('span.muted.small', st.foco ? `El ${st.foco.titulo.replace(/^Módulo/, 'módulo')} entero, con su tiempo, tu reparto del tiempo y el informe al final.` : E0.modulos?.length ? 'Los dos módulos seguidos, cada uno con su tiempo; al final, informe por parte y si te cansas.' : 'Todo el examen con su tiempo, tu reparto del tiempo y, al final, si te cansas.')),
+          h('span.mas-fila-flecha', { 'aria-hidden': 'true' }, '›'))),
       // Ensayo general en papel (R-41): el examen con la carta de papel y el material real; la app, solo enunciados y reloj.
       (() => {
         const ce = cuentaEnsayos(progress.tests().filter((t) => deTitEje(t, T0.id, eje.id)));
@@ -820,7 +832,7 @@ export function testView({ ctx, progress, params: route, tit }) {
   useTit(tit);
   const T0 = T;
   const E0 = E;
-  const tipo = route.parts[1] === 'real' ? 'real' : route.parts[1] === 'final' ? 'final' : route.parts[1] === 'errores' ? 'errores' : route.parts[1] === 'ensayo' ? 'ensayo' : 'simulacro';
+  const tipo = route.parts[1] === 'real' ? 'real' : route.parts[1] === 'final' ? 'final' : route.parts[1] === 'errores' ? 'errores' : route.parts[1] === 'ensayo' ? 'ensayo' : route.parts[1] === 'general' ? 'general' : 'simulacro';
   const conv = tipo === 'real' ? route.parts[2] : null;
   const seedQ = Number(route.query.s) || null;
   // Ensayo en papel (R-41, src/theory/ensayo.js): ?p=navegacion | carta | completo.
@@ -853,6 +865,8 @@ export function testView({ ctx, progress, params: route, tit }) {
       // El ensayo en papel se prepara en su pantalla (material, carta de papel): sin empezar, se va allí.
       if (tipo === 'ensayo') { navigate([T0.id, 'ensayo'], { p: parteQ, s: String(seed) }, { replace: true }); dispatchEvent(new HashChangeEvent('hashchange')); return; }
       const respuestasAntes = progress.get().exams;
+      // Ensayo general (R-66): teoría y carta seguidas, cada parte con su tiempo del tribunal.
+      if (tipo === 'general') { inicioGeneral(otro, seed, respuestasAntes); return; }
       if (tipo === 'final' && !fin?.desbloqueado) {
         summaryText = `VISTA examen final ${T0.sigla}: CERRADO · ${fin?.lineas.join(' ') ?? 'este eje no reserva exámenes'}`;
         setChildren(el, h('div.inicio-examen', h('h1', conIcono('candado', 'Examen final')), (fin?.hay ? fin.lineas : ['Este tribunal no tiene exámenes reservados en la app.']).map((l) => h('p', l)),
@@ -869,9 +883,10 @@ export function testView({ ctx, progress, params: route, tit }) {
       const empezar = () => {
         // nuevas: las que no había respondido nunca (un examen inédito pesa más en «¿Estás listo?»).
         const nuevo = { tit: T0.id, eje, tipo, conv: tipo === 'final' ? test.key : conv, seed: tipo === 'simulacro' || armado ? seed : null, ...(moduloQ ? { modulo: moduloQ } : {}), ...(armado ? { errores: armado.guardar } : {}), ids: test.preguntas.map((q) => q.id), nuevas: nuevasDe(test.preguntas, respuestasAntes), respuestas: {}, i: 0, consumidoMs: 0 };
-        progress.saveTestEnCurso(nuevo);
         if ((tipo === 'simulacro' || armado) && seedQ !== seed) navigate([T0.id, 'test', tipo], { s: String(seed), ...(moduloQ ? { m: moduloQ } : {}) }, { replace: true });
-        correr(progress.testEnCurso());
+        // El examen final y el de tus errores, tal cual; el simulacro y las convocatorias, con el primer minuto (R-57).
+        if (tipo === 'final' || armado) { progress.saveTestEnCurso(nuevo); correr(progress.testEnCurso()); return; }
+        primerMinutoYReloj({ nuevo, test, E1, titulo: test.titulo });
       };
       const limites = E1.bloques.filter((b) => b.maxErrores != null);
       summaryText = `VISTA inicio del examen «${test.titulo}» ${T0.sigla} · ${cuenta(test.preguntas.length, 'pregunta')} · ${E1.duracionMin} min (aún no ha empezado)${otro ? ` · hay otro examen a medias → ${rutaTest(otro)}` : ''}`;
@@ -903,11 +918,60 @@ export function testView({ ctx, progress, params: route, tit }) {
       window.scrollTo(0, 0);
     }
 
+    // --- ensayo general (R-66): el examen entero de un tirón; en el PY, los dos módulos seguidos con su reloj cada uno
+    function inicioGeneral(otro, seed, respuestasAntes) {
+      const { partes, texto, minutos } = partesDelGeneral(T0, progress.settings());
+      const tests = partes.map((p, k) => construirTest(p.estructura, banco, 'simulacro', null, seed + k, respuestasAntes));
+      if (tests.some((t) => !t.preguntas.length)) { setChildren(el, h('p.warn', 'No hay preguntas para este ensayo.'), h('a.btn.grande', { href: tlink(T0.id, ['examenes']) }, 'Volver')); return; }
+      const soloUno = partes.length === 1 && E0.modulos?.length;
+      const empezar = () => {
+        if (seedQ !== seed) navigate([T0.id, 'test', 'general'], { s: String(seed) }, { replace: true });
+        const nuevo = { tit: T0.id, eje, tipo: 'general', conv: null, seed, partes: partes.map((p) => p.id), idsPartes: tests.map((t) => t.preguntas.map((q) => q.id)), k: 0, hechas: [],
+          ids: tests[0].preguntas.map((q) => q.id), nuevas: nuevasDe(tests.flatMap((t) => t.preguntas), respuestasAntes), respuestas: {}, i: 0, consumidoMs: 0, duracionMin: minutos };
+        primerMinutoYReloj({ nuevo, test: tests[0], E1: partes[0].estructura, titulo: partes.length > 1 ? `Parte 1: ${partes[0].titulo.toLowerCase()}` : partes[0].titulo });
+      };
+      summaryText = `VISTA inicio del ensayo general ${T0.sigla}: ${texto} (aún no ha empezado)${otro ? ` · hay otro examen a medias → ${rutaTest(otro)}` : ''}`;
+      setChildren(el,
+        h('div.inicio-examen',
+          h('p.lc-eti', icono('reloj', 'ico-t'), `Ensayo general · ${T0.sigla}`),
+          h('h1', 'Ensayo general'),
+          h('p', partes.length > 1 ? 'Teoría y carta seguidas, como el día del examen: el cansancio y el reloj también cuentan.' : 'El examen entero de un tirón, como el día del examen: el cansancio y el reloj también cuentan.'),
+          h('ul.datos-examen', partes.map((p) => h('li', `${p.titulo}: ${cuenta(p.preguntas, 'pregunta')}, ${cuenta(p.duracionMin, 'minuto')}`)),
+            h('li', permitida ? conIcono('calculadora', 'Con calculadora científica') : 'Sin calculadora')),
+          soloUno ? h('p.muted.small', `Solo el ${partes[0].titulo.replace(/^Módulo/, 'módulo')}: es el que preparas (lo cambias en Hoy, «¿De qué te examinas?»).`) : null,
+          partes.length > 1 ? h('p.muted.small', 'Cada módulo con su reloj, uno detrás de otro y sin pausa. Si tu tribunal da un solo tiempo para los dos, lo que ahorres en el genérico te sirve para la carta.') : null,
+          h('p', 'Antes de cada parte, el primer minuto para hojear y repartir el tiempo. Al final, un informe por parte, dónde te convenía estimar y si te cansas en la segunda mitad del tiempo.'),
+          h('p', 'Las de carta, mejor en papel con tu carta, tu transportador y tu compás: usa el móvil de reloj y para marcar.'),
+          h('p.enlace-estrategia', h('a', { href: tlink(T0.id, ['estrategia']) }, conIcono('diana', 'Antes de empezar: cómo hacer el examen'))),
+          otro
+            ? [h('p.aviso-medias', 'Tienes otro examen a medias.'),
+              h('div.botones-columna',
+                h('a.btn.grande', { href: rutaTest(otro) }, 'Continuar el que tienes a medias'),
+                h('button.secondary.grande', { type: 'button', onclick: () => { if (confirm('Se descartará el examen que tienes a medias. ¿Empezar el ensayo general?')) empezar(); } }, 'Empezar el ensayo general'))]
+            : h('div.botones-columna', h('button.grande', { type: 'button', onclick: empezar }, 'Empezar el ensayo general')),
+          h('p.centrado', h('a', { href: tlink(T0.id, ['examenes']) }, 'Ahora no'))));
+      window.scrollTo(0, 0);
+    }
+
+    // --- el primer minuto (R-57): antes de que corra el reloj, hojear el cuadernillo y repartir el tiempo; luego, el reloj
+    function primerMinutoYReloj({ nuevo, test, E1, titulo, antes = null }) {
+      setChildren(el, h('p.muted', 'Preparando tu reparto del tiempo…'));
+      prepararPlan({ T: T0, estructura: E1, preguntas: test.preguntas, progress, eje, tipoDe, esCarta: necesitaCarta }).then(({ plan, compacto, primer }) => {
+        summaryText = `VISTA primer minuto «${titulo}» · ${cuenta(test.preguntas.length, 'pregunta')} · ${E1.duracionMin} min (el reloj aún no corre)\n${resumenPlan(plan)}`;
+        setChildren(el, pantallaPrimerMinuto({ titulo, primer, plan, antes, volver: { texto: nuevo.k ? 'Seguir más tarde' : 'Ahora no', href: nuevo.k ? tlink(T0.id) : tlink(T0.id, ['examenes']) },
+          onEmpezar: () => { progress.saveTestEnCurso({ ...nuevo, plan: compacto }); correr(progress.testEnCurso()); } }));
+        window.scrollTo(0, 0);
+      }).catch(() => { progress.saveTestEnCurso({ ...nuevo, plan: null }); correr(progress.testEnCurso()); });
+    }
+
     // --- examen en marcha: una pregunta por pantalla
     function correr(guardado) {
       if (tipo === 'ensayo') { correrPapel(guardado); return; }
-      const E1 = guardado.tipo === 'errores' ? estructuraErrores(E0, guardado.errores?.min ?? E0.duracionMin) : estructuraDe(E0, guardado.modulo);
-      const test = rehacerTest(E1, banco, guardado);
+      const general = guardado.tipo === 'general';
+      const E1 = guardado.tipo === 'errores' ? estructuraErrores(E0, guardado.errores?.min ?? E0.duracionMin) : estructuraDe(E0, general ? moduloDeParte(guardado) : guardado.modulo);
+      const test = general ? { ...rehacerTest(E1, banco, { ...guardado, tipo: 'simulacro' }), titulo: `Ensayo general · ${E1.modulo ? E1.titulo : 'examen completo'}` } : rehacerTest(E1, banco, guardado);
+      // La parte siguiente de un ensayo general, aún sin su primer minuto (se dejó a medias en él): primero, el minuto.
+      if (general && guardado.plan === undefined && !guardado.consumidoMs) { primerMinutoYReloj({ nuevo: guardado, test, E1, titulo: `Parte ${(guardado.k ?? 0) + 1}: ${E1.modulo ? E1.titulo.toLowerCase() : 'examen completo'}` }); return; }
       // Un examen guardado sin sus preguntas (de antes de guardarlas) las guarda desde ya.
       const estado = { ...guardado, eje: guardado.eje ?? eje, ids: test.preguntas.map((q) => q.id) };
       const n = test.preguntas.length;
@@ -920,6 +984,11 @@ export function testView({ ctx, progress, params: route, tit }) {
       let consumido = estado.consumidoMs ?? 0;
       // Tiempo de cada pregunta (R-42): lo que corre el reloj mientras está en pantalla (ms por id), con el mismo criterio.
       const msPregunta = { ...(estado.tiempos ?? {}) };
+      // Cuándo contestaste cada una (ms del reloj del examen): para comparar la primera y la segunda mitad del tiempo.
+      const marcas = { ...(estado.marcas ?? {}) };
+      // El reparto del tiempo (R-57): un aviso discreto si te desvías, en una línea bajo la barra.
+      const plan = estado.plan ?? null;
+      const aviso = plan ? lineaAvisoPlan() : null;
       let enPantalla = null;
       const limite = E1.duracionMin * 60000;
       let ultimo = Date.now();
@@ -931,7 +1000,7 @@ export function testView({ ctx, progress, params: route, tit }) {
       const cuerpo = h('div');
       const panel = h('div.panel-preguntas', { hidden: true, role: 'dialog', 'aria-label': 'Todas las preguntas' });
 
-      const guardar = () => { if (!terminado) progress.saveTestEnCurso({ ...estado, respuestas, i, consumidoMs: Math.round(consumido), tiempos: Object.fromEntries(Object.entries(msPregunta).map(([k, v]) => [k, Math.round(v)])) }); ultimoGuardado = Date.now(); };
+      const guardar = () => { if (!terminado) progress.saveTestEnCurso({ ...estado, respuestas, i, consumidoMs: Math.round(consumido), tiempos: Object.fromEntries(Object.entries(msPregunta).map(([k, v]) => [k, Math.round(v)])), marcas }); ultimoGuardado = Date.now(); };
       function contar() {
         const ahora = Date.now();
         if (activo && document.visibilityState === 'visible') {
@@ -949,6 +1018,8 @@ export function testView({ ctx, progress, params: route, tit }) {
         const s = Math.floor((resto % 60000) / 1000);
         reloj.replaceChildren(icono('reloj', 'ico-t'), `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`);
         reloj.classList.toggle('warn', resto < 5 * 60000);
+        if (aviso) aviso.pon(avisoDelPlan(plan, { consumidoS: consumido / 1000, respondidas: n - sinResponder(),
+          actual: enPantalla ? { id: enPantalla, n: i + 1, s: (msPregunta[enPantalla] ?? 0) / 1000, tipo: tipoDe(test.preguntas[i]) } : null }));
         if (Date.now() - ultimoGuardado >= GUARDAR_CADA_MS) guardar();
       }
       const onVis = () => { contar(); guardar(); };
@@ -986,10 +1057,10 @@ export function testView({ ctx, progress, params: route, tit }) {
         const q = test.preguntas[i];
         contar(); // lo que llevaba la anterior es suyo; desde aquí, de esta
         enPantalla = q.id;
-        barra.set(`Pregunta ${i + 1} de ${n}`, (i + 1) / n);
+        barra.set(`${general && guardado.partes.length > 1 ? `Parte ${(guardado.k ?? 0) + 1} de ${guardado.partes.length} · ` : ''}Pregunta ${i + 1} de ${n}`, (i + 1) / n);
         const ultima = i === n - 1;
         setChildren(cuerpo,
-          questionCard(q, { number: i + 1, chosen: respuestas[q.id], onChoose: (k) => { respuestas[q.id] = k; guardar(); resumen(); } }),
+          questionCard(q, { number: i + 1, chosen: respuestas[q.id], onChoose: (k) => { respuestas[q.id] = k; if (marcas[q.id] == null) marcas[q.id] = Math.round(consumido); guardar(); resumen(); } }),
           // Papel de borrador, como en el examen de verdad: el enunciado y las notas de esta pregunta en este examen
           // (sin pistas ni soluciones; con calculadora solo si el examen la permite).
           esDeCuentas(q) ? botonBloc(blocExamen(q), { texto: 'Bloc de notas', clase: 'secondary.grande.bloc-examen' }) : null,
@@ -1023,6 +1094,8 @@ export function testView({ ctx, progress, params: route, tit }) {
         limpiar();
         terminado = true;
         fijarModoExamen(null);
+        // Ensayo general: la parte se guarda y sigue la siguiente (o, si era la última, el resultado de todo).
+        if (general) { cerrarParte({ estado, test, E1, respuestas, ms: msPregunta, marcas, consumido, porTiempo }); return; }
         const g = grade(E1, test, respuestas);
         // Las retiradas no se guardan: no se estudian y su respuesta oficial ya no vale.
         for (const d of g.detalle) if (d.respuesta && !d.retirada) progress.recordExam(d.id, { choice: d.respuesta, ok: d.ok });
@@ -1039,10 +1112,10 @@ export function testView({ ctx, progress, params: route, tit }) {
         const ce = test.tipo === 'errores' ? registrarErrores({ test, respuestas, indice, guardado: estado.errores }) : null;
         progress.saveTestEnCurso(null);
         progress.logActividad(minutos);
-        resultados(test, g, porTiempo, E1, { tq, ce });
+        resultados(test, g, porTiempo, E1, { tq, ce, plan, segundos: segundosDe(msPregunta), marcas, totalMs: consumido });
       }
 
-      setChildren(el, barra, cuerpo, panel);
+      setChildren(el, barra, aviso?.el ?? null, cuerpo, panel);
       mostrar();
       tick();
     }
@@ -1057,7 +1130,7 @@ export function testView({ ctx, progress, params: route, tit }) {
       fijarModoExamen('examen', { calculadora: false });
       bloquearCalculadora(el);
       summaryText = `ENSAYO EN PAPEL EN CURSO · ${test.titulo} · ${cuenta(test.preguntas.length, 'pregunta')} · el alumno lo resuelve en papel (sin corregir: no des respuestas)`;
-      correrEnsayo({ el, test, estado, duracionMin: E1.duracionMin, progress, alSalir: () => { fijarModoExamen(null); location.hash = tlink(T0.id); },
+      correrEnsayo({ el, test, estado, duracionMin: E1.duracionMin, progress, plan: guardado.plan ?? null, alSalir: () => { fijarModoExamen(null); location.hash = tlink(T0.id); },
         onCorregir: ({ hoja, consumidoMs, porTiempo }) => {
           fijarModoExamen(null);
           const g = corregirHoja(E1, test, hoja);
@@ -1071,7 +1144,7 @@ export function testView({ ctx, progress, params: route, tit }) {
             porTema: g.bloques.map((b) => ({ ut: b.ut, aciertos: b.aciertos, total: b.total })) });
           progress.saveTestEnCurso(null);
           if (minutos) progress.logActividad(minutos);
-          resultados(test, g, porTiempo, E1, { ensayo: { minutos, duracionMin: E1.duracionMin, oficial: E1.oficial, enBlanco: g.enBlanco } });
+          resultados(test, g, porTiempo, E1, { ensayo: { minutos, duracionMin: E1.duracionMin, oficial: E1.oficial, enBlanco: g.enBlanco }, plan: guardado.plan ?? null });
         } });
     }
 
@@ -1142,6 +1215,11 @@ export function testView({ ctx, progress, params: route, tit }) {
         h('p.small', h('a', { href: tlink(T0.id, ['estrategia']) }, 'Tu velocidad en carta, con todos tus exámenes →'))) : null;
       if (ens) summaryText += `\nENSAYO EN PAPEL${ens.minutos ? ` · ${ens.minutos} de ${ens.duracionMin} min` : ''} · REVISAR FALLOS: ${fallosPaso.map(({ q, pasos }) => `#/q/${q.id}${pasos ? '?guiado=1 (paso a paso)' : ''}`).join(' · ') || 'nada'}`;
       if (filasT.length) summaryText += `\nTIEMPO POR TIPO: ${filasT.map((f) => `${f.nombre} ${duracion(f.mediaS)} (${f.n})`).join(' · ')}`;
+      // El reparto del tiempo frente a lo hecho, dónde convenía estimar y, con tiempos, el cansancio (R-57, R-66).
+      const informe = extra.informe ?? (extra.plan ? informeDelPlan({ plan: extra.plan, preguntas: test.preguntas, detalle: g.detalle, segundos: extra.segundos ?? null }) : null);
+      const fatiga = extra.cansancio !== undefined ? extra.cansancio : extra.marcas && extra.plan ? cansancioDe({ marcas: extra.marcas, totalMs: extra.totalMs, detalle: g.detalle, segundos: extra.segundos, presupuesto: extra.plan.presupuesto }) : null;
+      const informeEl = seccionInformePlan({ informe, cansancio: fatiga, partes: extra.partes ?? null });
+      summaryText += textoInformePlan(informe, fatiga);
       const ses = botonesSesion();
       const repasar = g.errores ? h('button.grande', { type: 'button', class: ses ? 'secondary' : '', onclick: () => tituloRevision.scrollIntoView({ behavior: 'smooth' }) }, 'Repasar mis fallos con el profe') : null;
       // En una sesión de estudio (src/ui/sesion.js), lo primero es seguir con ella (arriba); el repaso de fallos, a mano.
@@ -1168,6 +1246,7 @@ export function testView({ ctx, progress, params: route, tit }) {
           : h('p.ok', 'Sin fallos. Enhorabuena.'),
         revisarPaso,
         seccionCuadernoExamen(T0.id, anotados),
+        informeEl,
         tiempoTipos,
         ses ? null : botonesFin,
         tituloRevision,
@@ -1175,6 +1254,60 @@ export function testView({ ctx, progress, params: route, tit }) {
         review,
       );
       window.scrollTo(0, 0);
+    }
+
+    // --- ensayo general (R-66): al acabar una parte, la siguiente con su primer minuto; tras la última, el resultado de
+    // todo con las reglas de siempre (grade) y el informe parte a parte
+    function cerrarParte({ estado, test, E1, respuestas, ms, marcas, consumido, porTiempo }) {
+      const k = estado.k ?? 0;
+      const previo = (estado.hechas ?? []).reduce((s, x) => s + (x.consumidoMs ?? 0), 0);
+      const hecha = { id: estado.partes[k], ids: test.preguntas.map((q) => q.id), respuestas: { ...respuestas }, consumidoMs: Math.round(consumido), porTiempo, plan: estado.plan ?? null, duracionMin: E1.duracionMin,
+        tiempos: Object.fromEntries(Object.entries(ms).map(([id, v]) => [id, Math.round(v)])), marcas: Object.fromEntries(Object.entries(marcas).map(([id, v]) => [id, v + previo])) };
+      const hechas = [...(estado.hechas ?? []), hecha];
+      if (k + 1 < estado.partes.length) {
+        const quedan = estado.partes.slice(k + 1).reduce((s, id) => s + estructuraDe(E0, id === 'completo' ? null : id).duracionMin, 0);
+        const sig = { ...estado, k: k + 1, ids: estado.idsPartes[k + 1], hechas, respuestas: {}, i: 0, consumidoMs: 0, tiempos: {}, marcas: {}, plan: undefined, duracionMin: quedan };
+        delete sig.plan;
+        progress.saveTestEnCurso(sig);
+        const E2 = estructuraDe(E0, moduloDeParte(sig));
+        const test2 = rehacerTest(E2, banco, { ...sig, tipo: 'simulacro' });
+        const gp = grade(E1, test, respuestas);
+        primerMinutoYReloj({ nuevo: sig, test: test2, E1: E2, titulo: `Parte ${k + 2}: ${E2.modulo ? E2.titulo.toLowerCase() : 'examen completo'}`,
+          antes: h('p.pm-hecha', icono('ok', 'ico-t'), `${E1.modulo ? E1.titulo : 'Parte'} terminada${porTiempo ? ' (se acabó su tiempo)' : ''}: ${gp.aciertos} de ${gp.total}. Sin pausa, sigue la parte ${k + 2}.`) });
+        return;
+      }
+      const partesT = hechas.map((x) => { const Ep = estructuraDe(E0, x.id === 'completo' ? null : x.id); return { x, E: Ep, test: rehacerTest(Ep, banco, { tipo: 'simulacro', ids: x.ids }) }; });
+      const preguntas = partesT.flatMap((p) => p.test.preguntas);
+      const todas = Object.assign({}, ...hechas.map((x) => x.respuestas));
+      const Eg = hechas.length > 1 ? E0 : partesT[0].E;
+      const testG = { tipo: 'general', titulo: Eg.modulo ? `Ensayo general · ${Eg.titulo}` : 'Ensayo general', preguntas, faltan: [] };
+      const g = grade(Eg, testG, todas);
+      for (const d of g.detalle) if (d.respuesta && !d.retirada) progress.recordExam(d.id, { choice: d.respuesta, ok: d.ok });
+      const msTodas = Object.assign({}, ...hechas.map((x) => x.tiempos));
+      const totalMs = hechas.reduce((s, x) => s + x.consumidoMs, 0);
+      const minutos = Math.max(1, Math.round(totalMs / 60000));
+      const tq = tiemposDelTest({ preguntas, ms: msTodas, detalle: g.detalle, tipoDe });
+      // Se guarda como un simulacro más (o uno de módulo): misma corrección, mismas reglas; `general` lo distingue.
+      progress.recordTest({ tit: T0.id, eje, tipo: Eg.modulo ? 'modulo' : 'simulacro', general: true, titulo: testG.titulo, aciertos: g.aciertos, total: g.total, minutos,
+        ...(Eg.modulo ? { modulo: Eg.modulo, apto: null, aptoModulo: g.apto } : { apto: Eg.sinApto ? null : g.apto }),
+        nuevas: estado.nuevas ?? undefined, porTema: g.bloques.map((b) => ({ ut: b.ut, aciertos: b.aciertos, total: b.total })), tq });
+      progress.saveTestEnCurso(null);
+      progress.logActividad(minutos);
+      // Parte a parte y el informe del plan de cada una, con la numeración del examen entero.
+      let desde = 0;
+      const informes = [];
+      const partes = partesT.map(({ x, E: Ep, test: tp }) => {
+        const gp = grade(Ep, tp, x.respuestas);
+        const inf = x.plan ? informeDelPlan({ plan: x.plan, preguntas: tp.preguntas, detalle: gp.detalle, segundos: segundosDe(x.tiempos) }) : null;
+        const corto = partesT.length > 1 ? (Ep.modulo ? Ep.titulo.replace(/^Módulo (de )?/, '').replace(/^./, (c) => c.toUpperCase()) : 'Examen') : null;
+        if (inf) informes.push({ ...inf, fases: inf.fases.map((f) => ({ ...f, titulo: corto ? `${corto} · ${f.titulo.toLowerCase()}` : f.titulo })), estimar: inf.estimar.map((e) => ({ ...e, n: e.n + desde })) });
+        desde += tp.preguntas.length;
+        return { titulo: Ep.modulo ? Ep.titulo : 'Examen completo', aciertos: gp.aciertos, total: gp.total, apto: gp.apto, motivos: gp.motivos, minutos: Math.max(1, Math.round(x.consumidoMs / 60000)), duracionMin: x.duracionMin };
+      });
+      const informe = informes.length ? { fases: informes.flatMap((x) => x.fases), estimar: informes.flatMap((x) => x.estimar), texto: [...new Set(informes.map((x) => x.texto).filter(Boolean))].join(' ') || null } : null;
+      const presupuesto = Object.assign({}, ...hechas.map((x) => x.plan?.presupuesto ?? {}));
+      const fatiga = cansancioDe({ marcas: Object.assign({}, ...hechas.map((x) => x.marcas)), totalMs, detalle: g.detalle, segundos: segundosDe(msTodas), presupuesto });
+      resultados(testG, g, hechas.some((x) => x.porTiempo), Eg, { tq, informe, cansancio: fatiga, partes });
     }
   }).catch((e) => setChildren(el, h('p.warn', `No se pudo preparar el examen: ${e.message}`)));
   return { el, summary: () => summaryText };

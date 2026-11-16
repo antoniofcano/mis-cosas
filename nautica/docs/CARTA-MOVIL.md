@@ -58,7 +58,12 @@ Orden: estima y loxodrómica, mareas y corrección total primero; la carta gráf
 
 Se apoya en el diagnóstico por tipo de error de las preguntas reales (H-31) y necesita antes el catálogo de fallos (R-55).
 
-### 3. Simulacro con estrategia (R-57)
+### 3. Simulacro con estrategia (R-57) · hecha
+_Hecha en noviembre de 2026 (H-61 y H-62, `docs/ROADMAP.md`): el primer minuto y el reparto del tiempo antes del reloj
+(simulacro, convocatoria y ensayo en papel), el aviso discreto durante el examen, siete reglas de descarte probadas con
+todas las preguntas reales del estudio y el ensayo general de teoría y carta seguidas. Lógica en
+`src/course/plan-examen.js` y `src/course/descarte.js`._
+
 Cose lo que ya existe (ensayo en papel H-35, velocidad en carta H-36, simulacro de tus errores H-37, tras el examen
 H-42 y H-43) y añade:
 - **el primer minuto:** hojear el cuadernillo y localizar tablas y anexos;

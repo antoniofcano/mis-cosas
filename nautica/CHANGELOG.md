@@ -15,7 +15,12 @@ Qué cambia en la app para quien la usa, por fecha de publicación. Es la base d
 
 ## Sin publicar
 
-Nada pendiente.
+**Novedades**
+
+- **El primer minuto.** Antes de que empiece el reloj de un simulacro, una convocatoria o un ensayo en papel, una pantalla para hojear el cuadernillo como en el examen: dónde está la tabla de mareas, qué preguntas traen desvíos o la declinación de la carta, qué faros hay que buscar y qué tipos de problema trae, marcados como fáciles o caros para ti según tus tiempos y tus fallos (si aún no hay datos tuyos, lo que suele costar cada tipo).
+- **Tu reparto del tiempo.** Un plan para ese examen: qué preguntas primero, cuáles al final y cuáles no merecen la pena si vas justo, con los minutos de cada parte y los momentos en que mirar el reloj. Durante el simulacro, si una pregunta se alarga o te quedas atrás, una línea discreta te lo dice; en el ensayo en papel, te recuerda cada hito.
+- **Estimar y descartar.** Cuando no da tiempo, reglas para quitar opciones imposibles con los datos del enunciado: la hora fuera del tramo de marea, una sonda menor que la de bajamar o mayor que la de pleamar, un rumbo que no va hacia donde está el destino, una distancia o una situación imposibles con esa velocidad. Al terminar, el resultado te dice en qué preguntas te habría convenido estimar y qué podías descartar.
+- **Ensayo general.** En Examen, el examen de un tirón con los tiempos del tribunal: en el PY, el módulo genérico y el de navegación seguidos (o solo el que preparas, si lo has elegido); en el PER, el examen entero. Al final, el resultado parte a parte y si acertaste menos o fuiste más lento en la segunda mitad del tiempo.
 
 ## 16 de noviembre de 2026, quinta publicación · versión `32f9031c575a`
 

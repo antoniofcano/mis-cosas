@@ -130,8 +130,8 @@ export function planHoy({ estructura, foco = null, curso = null, preguntas = [],
     const restante = Math.max(1, Math.round((testEnCurso.errores?.min ?? testEnCurso.duracionMin ?? estructura.duracionMin) - (testEnCurso.consumidoMs ?? 0) / 60000));
     const real = testEnCurso.tipo === 'real';
     const ensayo = testEnCurso.tipo === 'ensayo'; // ensayo en papel (src/theory/ensayo.js): su parte va en la dirección
-    lista.push({ tipo: 'examen-en-curso', titulo: ensayo ? 'Ensayo en papel a medias' : 'Examen a medias', verbo: 'Continuar', minutos: restante,
-      ruta: real ? ['test', 'real', String(testEnCurso.conv)] : testEnCurso.tipo === 'final' ? ['test', 'final'] : ensayo ? ['test', 'ensayo'] : ['test', testEnCurso.tipo === 'errores' ? 'errores' : 'simulacro'],
+    lista.push({ tipo: 'examen-en-curso', titulo: ensayo ? 'Ensayo en papel a medias' : testEnCurso.tipo === 'general' ? 'Ensayo general a medias' : 'Examen a medias', verbo: 'Continuar', minutos: restante,
+      ruta: real ? ['test', 'real', String(testEnCurso.conv)] : testEnCurso.tipo === 'final' ? ['test', 'final'] : ensayo ? ['test', 'ensayo'] : ['test', testEnCurso.tipo === 'errores' ? 'errores' : testEnCurso.tipo === 'general' ? 'general' : 'simulacro'],
       query: real || testEnCurso.tipo === 'final' || testEnCurso.seed == null ? undefined : { s: String(testEnCurso.seed), ...(ensayo ? { p: testEnCurso.parte } : testEnCurso.modulo ? { m: testEnCurso.modulo } : {}) }, ut: null });
   }
 

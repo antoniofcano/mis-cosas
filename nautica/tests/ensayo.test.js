@@ -101,7 +101,9 @@ test('durante el ensayo, nada de la práctica: ni mesa de cartas, ni bloc, ni ca
   assert.ok(Object.values(SIN_AYUDAS).every((v) => v === false));
   const ui = leer('src/ui/ensayo.js');
   const imports = [...ui.matchAll(/^import .* from '([^']+)';$/gm)].map((m) => m[1]);
-  assert.deepEqual(imports.sort(), ['../bancos/index.js', '../texto.js', '../theory/ensayo.js', './actividad.js', './dom.js', './iconos.js'].sort());
+  assert.deepEqual(imports.sort(), ['../bancos/index.js', '../texto.js', '../theory/ensayo.js', './actividad.js', './dom.js', './iconos.js', './plan-examen.js'].sort());
+  // El reparto del tiempo (R-57) solo recuerda los hitos: ni la carta, ni el bloc, ni descartes con el reloj en marcha.
+  assert.doesNotMatch(leer('src/ui/plan-examen.js'), /openWorkspace|botonCarta|botonBloc|botonCalculadora|crearAyudas|guiadoPanel|glosar/);
   assert.doesNotMatch(ui, /openWorkspace|botonCarta|botonBloc|botonCalculadora|crearAyudas|guiadoPanel|glosar|formulas/);
   // La vista del examen arranca el ensayo en modo examen y sin calculadora de la app, sin carta ni bloc.
   const src = leer('src/ui/views/theory.js');

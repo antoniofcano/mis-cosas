@@ -158,7 +158,7 @@ test('resumen para asistentes: sin iconos y con las cifras', () => {
   const c = cifrasExamen(TITULACIONES.per, ficha('andalucia'));
   const s = resumenEstrategia(c, presupuestoTiempo(TITULACIONES.per, D.tiempo), tuEstrategia({ estructura: PER }));
   assert.match(s, /45 preguntas, 90 min/);
-  assert.match(s, /TU ESTRATEGIA: Aún no hay datos/);
+  assert.match(s, /TU ESTRATEGIA: Haz un simulacro/);
   assert.equal(totalPreguntas(PY), 40);
 });
 

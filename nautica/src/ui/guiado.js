@@ -22,6 +22,7 @@ import { erroresAlumno } from '../store/errores.js';
 import { diagnosticoEl } from './diagnostico.js';
 import { cuenta } from '../texto.js';
 import { relojPaso } from './reloj-paso.js';
+import { introPlegable } from './intro-vista.js';
 import { tiemposAlumno } from '../store/tiempos.js';
 import { tipoDePregunta } from '../course/velocidad.js';
 import { AVISOS, avisoPrevio, erroresDelTribunal, diagnosticarPaso } from '../exams/avisos-pasos.js';
@@ -589,15 +590,14 @@ export function guiadoPanel(o) {
     requestAnimationFrame(() => el.scrollIntoView({ block: 'start' }));
   }
 
-  const intro = normal
-    ? 'Te pido cada paso y te lo corrijo al momento. Si te atascas, la ayuda va por escalones: la pista (qué buscar), la fórmula con tus datos y, al final, «Dímelo». Usar una ayuda no es fallar, pero queda apuntado. Escribe los rumbos como 045, la Ct como 3 W o −3, las coordenadas como 36 05,2 N, las horas como 14:35 y las diferencias en minutos con su signo o su letra (−68,9 o 68,9 W).'
-    : null;
+  // La primera vez, la introducción a la vista; después, un «?» plegado (src/ui/intro-vista.js).
+  const intro = normal ? introPlegable('guiado') : null;
   const el = h('section.guiado', { 'aria-labelledby': `${uid}-t`, class: normal ? '' : `guiado-${modo}` },
     h('div.guiado-cab',
       normal ? h('h2', { id: `${uid}-t` }, conIcono('lapiz', 'Resolver paso a paso')) : h('h4', { id: `${uid}-t` }, `${q.convocatoria ?? ''}${q.numero ? ` · pregunta ${q.numero}` : ''}`),
       o.onCerrar ? h('button.small.secondary', { type: 'button', onclick: o.onCerrar }, conIcono('salir', 'Cerrar')) : null),
     normal ? null : h('p.guiado-ejemplo-enunciado', q.enunciado),
-    intro ? h('p.small.muted', intro) : null,
+    intro,
     normal && o.ejemplos?.resuelto ? h('div.actions.guiado-ejemplo-acc', h('button.secondary', { type: 'button', onclick: verEjemplo }, conIcono('libro', 'Ver un ejemplo resuelto'))) : null,
     ejemploBox,
     rp?.el, progreso, lista, final);

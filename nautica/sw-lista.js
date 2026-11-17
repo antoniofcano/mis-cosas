@@ -1,5 +1,5 @@
 // Generado por tools/precache.mjs: no lo edites a mano.
-self.VERSION = '77b5fd5d1dc7';
+self.VERSION = '37f89459c0cc';
 self.APP = [
  "fonts/patron-mono.woff2",
  "fonts/patron-texto.woff2",
@@ -79,6 +79,7 @@ self.APP = [
  "src/exams/guiado.js",
  "src/exams/intencion.js",
  "src/exams/kit.js",
+ "src/exams/lista-preguntas.js",
  "src/exams/motivo.js",
  "src/exams/options.js",
  "src/exams/papel.js",
@@ -333,11 +334,13 @@ self.APP = [
  "src/ui/illustration.js",
  "src/ui/instalar.js",
  "src/ui/intencion.js",
+ "src/ui/intro-vista.js",
  "src/ui/lamina-estado.js",
  "src/ui/lamina-marco.js",
  "src/ui/lamina.js",
  "src/ui/listo-motivos.js",
  "src/ui/mapa-trampa.js",
+ "src/ui/menu-acciones.js",
  "src/ui/modo-examen.js",
  "src/ui/motivo-carta.js",
  "src/ui/movimiento.js",
@@ -346,6 +349,7 @@ self.APP = [
  "src/ui/pasos.js",
  "src/ui/plan-estudio.js",
  "src/ui/plan-examen.js",
+ "src/ui/plegable.js",
  "src/ui/profe-steps.js",
  "src/ui/pwa.js",
  "src/ui/qr.js",
@@ -362,6 +366,7 @@ self.APP = [
  "src/ui/sync.js",
  "src/ui/tema-pregunta.js",
  "src/ui/tema.js",
+ "src/ui/textos-hubs.js",
  "src/ui/titulacion.js",
  "src/ui/tras-examen.js",
  "src/ui/travesia.js",

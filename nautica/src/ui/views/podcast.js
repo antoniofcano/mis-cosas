@@ -1,5 +1,5 @@
 // #/<tit>/podcast — «Radio de a bordo»: los podcasts de Elena y Andrés como una travesía. Cada tema es un puerto
-// y cada episodio una tarjeta (número, título, duración, estado y el arranque del guion plegado en «Ver el guion»).
+// y cada episodio una línea con su título, duración y estado; arriba, «Escucha ahora». El guion está solo dentro del episodio (H-74).
 // #/<tit>/podcast/<id> — el episodio: reproductor grande, el guion al hilo (se ilumina lo que suena y se toca para
 // saltar), las preguntas del minijuego para contestar en la pausa, y su ficha con las clases.
 
@@ -14,6 +14,8 @@ import {
 } from '../radio.js';
 import { cuenta } from '../../texto.js';
 import { icono, conIcono } from '../iconos.js';
+import { plegable } from '../plegable.js';
+import { PODCAST } from '../textos-hubs.js';
 
 const MARCA = { bienvenida: 'ancla', panorama: 'faro', profundiza: 'salvavidas' };
 const TIPO = { bienvenida: 'Bienvenida', panorama: 'Panorama del tema', profundiza: 'Profundiza' };
@@ -83,68 +85,66 @@ function travesia(el, tit, pod) {
   const ult = ultimoEpisodio();
   const seguir = ult?.tit === tit ? eps.find((e) => e.id === ult.id && e.audio && !estadoEpisodio(e.id).oido && estadoEpisodio(e.id).t > 5) : null;
   const sig = siguienteRecomendado(pod, T.estructura);
+  // «Escucha ahora» (H-74): el episodio que sigues o el siguiente sin oír, con su tema; el episodio 0 solo hasta que se escucha.
+  const ahora = seguir ?? (sig ? eps.find((e) => e.id === sig.id) ?? sig : null);
 
-  // El recomendado: la misma tarjeta, destacada pero compacta, con su tema.
-  const destacado = (ep0, rotulo) => {
-    const ep = eps.find((e) => e.id === ep0.id) ?? ep0; // con su tema (siguienteRecomendado da el episodio sin él)
-    const b = ep.tema ? bloque(T.estructura, ep.tema) : null;
-    return h('section.radio-destacado', { 'aria-label': rotulo },
-      h('p.radio-rotulo', rotulo),
-      tarjetaEpisodio(tit, ep, { tema: b ? [icono(b.ico ?? 'ancla', 'ico-t'), `Tema ${ep.tema} · ${b.titulo}`] : [icono('velero', 'ico-t'), 'Zarpamos'], etiqueta: 'div' }));
+  const tarjetaAhora = () => {
+    const b = ahora.tema ? bloque(T.estructura, ahora.tema) : null;
+    return h('section.radio-destacado', { 'aria-label': PODCAST.ahora },
+      h('p.radio-rotulo', PODCAST.ahora),
+      tarjetaEpisodio(tit, ahora, { tema: b ? [icono(b.ico ?? 'ancla', 'ico-t'), `Tema ${ahora.tema} · ${b.titulo}`] : [icono('velero', 'ico-t'), 'Zarpamos'], etiqueta: 'div' }));
   };
 
-  const puertos = pod.temas.map((t) => {
-    const b = t.tema ? bloque(T.estructura, t.tema) : null;
-    const hechos = t.episodios.filter((e) => e.audio && estadoEpisodio(e.id).oido).length;
+  // El tema que estudias va abierto; si el episodio es el de bienvenida, el primer tema con audio en el orden de estudio.
+  const orden = T.estructura.ordenEstudio ?? T.estructura.bloques.map((b) => b.ut);
+  const temaAbierto = ahora ? (ahora.tema || orden.find((ut) => pod.temas.find((t) => t.tema === ut)?.episodios.some((e) => e.audio))) : null;
+
+  const puertos = [];
+  const enPreparacion = [];
+  for (const t of pod.temas) {
     const listos = t.episodios.filter((e) => e.audio).length;
+    if (!listos) { enPreparacion.push(t.tema); continue; }
+    const lista = t.tema === 0 ? t.episodios.filter((e) => e.id !== ahora?.id) : t.episodios; // el episodio 0 no sale dos veces
+    if (!lista.length) continue;
+    const hechos = t.episodios.filter((e) => e.audio && estadoEpisodio(e.id).oido).length;
     const dur = t.episodios.reduce((s, e) => s + (e.duracion ?? 0), 0);
-    return h('section.puerto', { id: `tema-${t.tema}` },
-      h('header.puerto-cab',
-        h('span.puerto-icono', icono(t.tema ? b?.ico ?? 'ancla' : 'velero')),
-        h('div',
-          h('h2', t.tema ? `Tema ${t.tema} · ${t.titulo}` : 'Zarpamos'),
-          h('p.muted.small', listos
-            ? `${hechos} de ${listos} escuchados · ${minutos(dur)}${listos < t.episodios.length ? ` · ${t.episodios.length - listos} en preparación` : ''}`
-            : `${cuenta(t.episodios.length, 'episodio')} en preparación`))),
-      // Un tema sin ningún episodio grabado se queda en una línea plegada: la lista no se llena de lo que aún no se oye.
-      listos ? h('ol.ep-lista', t.episodios.map((ep) => tarjetaEpisodio(tit, ep)))
-        : h('details.puerto-astillero', h('summary', `Próximamente: ver sus ${cuenta(t.episodios.length, 'episodio')}`), h('ol.ep-lista', t.episodios.map((ep) => tarjetaEpisodio(tit, ep)))));
-  });
+    puertos.push(plegable({
+      id: `tema-${t.tema}`, clase: 'puerto', abierto: t.tema === temaAbierto,
+      titulo: t.tema ? `Tema ${t.tema} · ${t.titulo}` : 'Bienvenida',
+      resumen: `${hechos} de ${listos} escuchados · ${minutos(dur)}${listos < t.episodios.length ? ` · ${t.episodios.length - listos} en preparación` : ''}`,
+    }, h('ol.ep-lista', lista.map((ep) => tarjetaEpisodio(tit, ep, { compacta: true })))));
+  }
 
   setChildren(el,
     volver('Biblioteca', tlink(tit, ['biblioteca'])),
     h('header.radio-cab',
       h('h1', conIcono('podcast', 'Radio de a bordo')),
-      h('p', `${T.sigla === 'PY' ? 'Patrón de Yate' : 'PER'} en voz alta: Elena, patrona y profesora, y Andrés, que tiene un velero y una duda para cada cosa. Episodios de diez a quince minutos para escuchar donde quieras.`),
+      h('p', PODCAST.entrada),
       conAudio.length ? h('p.muted.small', `${oidos.length} de ${cuenta(conAudio.length, 'episodio escuchado', 'episodios escuchados')}`) : null),
-    seguir ? destacado(seguir, 'Sigue escuchando') : sig ? destacado(sig, oidos.length ? 'Siguiente parada' : 'Para empezar') : null,
+    ahora ? tarjetaAhora() : null,
     h('div.travesia', puertos),
-    h('p.muted.small.radio-pie', icono('faro', 'ico-t'), 'Panorama: el tema entero, para situarte antes de estudiarlo y para repasarlo. ', icono('salvavidas', 'ico-t'), 'Profundiza: un epígrafe, con sus trampas. Próximamente: episodios que aún se están grabando.'));
+    enPreparacion.length ? h('p.muted.small.radio-prep', PODCAST.enPreparacion(enPreparacion.filter((x) => x))) : null,
+    h('p.muted.small.radio-pie', PODCAST.pie));
 
-  return `VISTA podcast ${T.sigla}: ${cuenta(conAudio.length, 'episodio')} con audio de ${eps.length}, ${oidos.length} escuchados\n` +
+  return `VISTA podcast ${T.sigla}: ${cuenta(conAudio.length, 'episodio')} con audio de ${eps.length}, ${oidos.length} escuchados${ahora ? ` · ESCUCHA AHORA: ${ahora.n} ${ahora.titulo} → ${tlink(tit, ['podcast', ahora.id])}` : ''}\n` +
     eps.map((e) => `${e.n} ${e.titulo} [${estado(e).clase}]${e.audio ? ` → ${tlink(tit, ['podcast', e.id])}` : ''}`).join('\n');
 }
 
 const ESTADO_TXT = { oido: 'Escuchado', nuevo: 'Sin escuchar', astillero: 'Próximamente' };
 
 /**
- * Tarjeta de un episodio: botón de reproducir (44 px), número y título (enlace al episodio), tipo o tema con su icono,
- * duración y estado (sin escuchar, escuchado, en curso con barra). El arranque del guion y la sinopsis, plegados en
- * «Ver el guion». `tema` sustituye al tipo en la meta (en el destacado).
+ * Tarjeta de un episodio. Destacada («Escucha ahora»): botón de reproducir (44 px), número y título (enlace al episodio),
+ * tema, duración y estado. `compacta` (las listas de los temas): solo el título como enlace y su meta; el guion y la sinopsis
+ * están dentro del episodio, no en la lista. `tema` sustituye al tipo en la meta.
  */
-function tarjetaEpisodio(tit, ep, { tema = null, etiqueta = 'li' } = {}) {
+function tarjetaEpisodio(tit, ep, { tema = null, etiqueta = 'li', compacta = false } = {}) {
   const est = estado(ep);
   const href = tlink(tit, ['podcast', ep.id]);
   const estadoTxt = est.clase === 'medias' ? `En curso · ${est.pct} %` : ESTADO_TXT[est.clase];
-  const play = ep.audio
+  const play = compacta ? null : ep.audio
     ? h('button.ep-play', { type: 'button', 'aria-label': `${est.clase === 'medias' ? 'Seguir escuchando' : 'Escuchar'} «${ep.titulo}»`, onclick: () => { poner(tit, ep); location.hash = href; } }, icono('play'))
     : h('span.ep-play.ep-sin-audio', { 'aria-hidden': 'true' }, icono('reloj'));
-  const guion = ep.sinopsis || ep.gancho ? h('details.ep-guion',
-    h('summary', 'Ver el guion'),
-    ep.sinopsis ? h('p', ep.sinopsis) : null,
-    ep.gancho ? h('p.radio-gancho', ep.gancho) : null,
-    h('a.ep-abrir', { href }, ep.audio ? 'Abrir el episodio con el guion entero →' : 'Ver la ficha →')) : null;
-  return h(`${etiqueta}.ep-card`, { class: `${est.clase} ${ep.tipo}` },
+  return h(`${etiqueta}.ep-card`, { class: `${est.clase} ${ep.tipo}${compacta ? ' compacta' : ''}` },
     h('div.ep-fila', play,
       h('div.ep-tx',
         h('a.ep-titulo', { href }, h('span.ep-n', ep.n), ' ', ep.titulo),
@@ -153,8 +153,7 @@ function tarjetaEpisodio(tit, ep, { tema = null, etiqueta = 'li' } = {}) {
           ep.audio ? ` · ${minutos(ep.duracion)}` : '',
           ' · ', h('span.ep-estado', est.clase === 'oido' ? icono('ok', 'ico-t') : null, estadoTxt)))),
     est.clase === 'medias' ? h('div.barra-trav.ep-barra', { role: 'progressbar', 'aria-label': `Escuchado de «${ep.titulo}»`, 'aria-valuemin': '0', 'aria-valuemax': '100', 'aria-valuenow': String(est.pct) },
-      h('span', { style: `width:${est.pct}%` })) : null,
-    guion);
+      h('span', { style: `width:${est.pct}%` })) : null);
 }
 
 // ---------------------------------------------------------------------------------------------------------------
@@ -195,7 +194,7 @@ function episodioView(el, tit, pod, id, de, eje, finalHecho = () => false) {
     h('p.radio-rotulo', conIcono(MARCA[ep.tipo], `${TIPO[ep.tipo]}${b ? ` · Tema ${ep.tema} · ${b.titulo}` : ''}`)),
     h('h1', `${ep.n} · ${ep.titulo}`),
   ];
-  const sinopsis = ep.sinopsis ? h('p.radio-sinopsis', ep.sinopsis) : null;
+  const sinopsis = ep.sinopsis || ep.gancho ? h('div.radio-sinopsis-caja', ep.sinopsis ? h('p.radio-sinopsis', ep.sinopsis) : null, ep.gancho ? h('p.radio-gancho', ep.gancho) : null) : null;
 
   if (!ep.audio) {
     enVistaEpisodio(false);

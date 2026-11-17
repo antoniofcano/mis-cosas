@@ -10,7 +10,7 @@
 import { h, setChildren } from './dom.js';
 import { conIcono } from './iconos.js';
 import { modoExamen } from './modo-examen.js';
-import { pasosPapel, corregirPapel, veredicto, textoPapel, tecladoDe, margenTexto, EJEMPLO, PAPEL, papelPosible } from '../exams/papel.js';
+import { pasosPapel, corregirPapel, veredicto, textoPapel, tecladoDe, EJEMPLO, PAPEL, papelPosible } from '../exams/papel.js';
 import { AVISOS } from '../exams/avisos-pasos.js';
 import { ERRORES } from '../exams/taxonomia.js';
 import { createKit } from '../exams/kit.js';
@@ -18,6 +18,7 @@ import { tipoDePregunta } from '../course/velocidad.js';
 import { erroresAlumno } from '../store/errores.js';
 import { anotarFallo } from './cuaderno.js';
 import { cuenta } from '../texto.js';
+import { introPlegable } from './intro-vista.js';
 
 let contador = 0;
 const BORRADOR = (id) => `nautica.papel.${id}`;
@@ -52,10 +53,10 @@ export function papelPanel(o) {
     const inputs = p.campos.map((c, j) => {
       const id = `${uid}-${p.i}-${j}`;
       const input = h('input.papel-input', { id, name: id, autocomplete: 'off', autocapitalize: 'characters', spellcheck: 'false', inputmode: tecladoDe(c.kind),
-        enterkeyhint: 'next', placeholder: EJEMPLO[c.kind] ? `p. ej. ${EJEMPLO[c.kind]}` : '', value: borrador[p.i]?.[j] ?? '', 'aria-describedby': `${id}-m` });
+        enterkeyhint: 'next', placeholder: EJEMPLO[c.kind] ? `p. ej. ${EJEMPLO[c.kind]}` : '', value: borrador[p.i]?.[j] ?? '' });
       input.addEventListener('input', () => { const b = leerBorrador(q.id); b[p.i] = inputs.map((x) => x.input.value); guardarBorrador(q.id, b); });
       return { c, input, campo: h('label.papel-campo', { for: id }, h('span.papel-lbl', c.label),
-        input, h('span.papel-margen.small.muted', { id: `${id}-m` }, `margen ${margenTexto(c, factor)}${c.medido ? ' · medido en la carta' : ''}`)) };
+        input) };
     });
     const res = h('div.papel-res', { 'aria-live': 'polite' });
     const li = h('li.papel-paso', { 'data-paso': String(p.n) },
@@ -144,7 +145,7 @@ export function papelPanel(o) {
   const el = h('section.papel', { 'aria-labelledby': `${uid}-t` },
     h('div.guiado-cab', h('h2', { id: `${uid}-t` }, conIcono('documento', 'Lo hice en papel')),
       o.onCerrar ? h('button.secondary.small', { type: 'button', onclick: o.onCerrar }, 'Cerrar') : null),
-    h('p', 'Resuélvelo en tu hoja, como en el examen. Luego escribe aquí el resultado de los pasos que tengas (no hace falta escribirlos todos) y te digo en qué paso te desviaste.'),
+    introPlegable('papel'),
     h('details.papel-margenes', h('summary', 'Qué margen doy'),
       h('p.small', 'El mismo que el paso a paso: rumbos ±1°, Ct ±0,5°, horas y duraciones ±3 min, alturas y sondas ±0,10 m, millas y nudos ±0,3, minutos de Δl y apartamiento ±0,5′, situación ±1′.'),
       h('p.small', h('strong', 'Lo que se mide en la carta con transportador o compás admite el doble: '), 'rumbos y demoras ±2°, distancias ±0,6 millas, situación ±2′. En papel la regla, el lápiz y el transportador no dan más precisión.'),

@@ -10,9 +10,7 @@ import { conceptosDelBanco } from '../concepto.js';
 import { cargarBanco } from '../../bancos/index.js';
 import { bloquesEnOrden } from '../../theory/blocks.js';
 import { APENDICE_PUBLICADO } from '../../course/apendice.js';
-import { guardarCopia, botonRecuperar, lineaProteccion } from '../copia.js';
 import { filaInstalar } from '../instalar.js';
-import { fechaLarga } from '../../texto.js';
 import { icono, conIcono } from '../iconos.js';
 import { syncSana } from '../sync.js';
 
@@ -62,7 +60,6 @@ export function masMenuView({ progress, tit }) {
     h('span.mas-fila-flecha', { 'aria-hidden': 'true' }, '›')));
     filaNivel.hidden = false;
   }).catch(() => {});
-  const copiaHecha = h('p.muted.small', progress.settings().ultimaCopia ? `Última copia: ${fechaLarga(progress.settings().ultimaCopia)}.` : 'Aún no has guardado ninguna copia.');
   const el = h('div.mas-menu',
     h('h1', 'Más'),
     grupos.map(([nombre, rs]) => h('section.mas-grupo', h('h2.eti', nombre), h('ul.mas-lista', rs.map(([href, ico, t, x]) => fila(href, ico, t, x)), nombre === 'Tu estudio' ? [filaTravesia, filaNivel] : null))),
@@ -71,17 +68,10 @@ export function masMenuView({ progress, tit }) {
         h('ul.mas-lista.compacta', bloquesEnOrden(T.estructura).map((b) => h('li', h('a.mas-fila', { href: tlink(tit, ['temario', String(b.ut), 'chuleta']) },
           discoFila(b.ico), h('span.mas-fila-tx', h('strong', b.titulo)), h('span.mas-fila-flecha', { 'aria-hidden': 'true' }, '›'))))))),
     filaInstalar() ? h('section.mas-grupo', h('h2.eti', 'La app'), filaInstalar()) : null,
-    // Con la sincronización sana, tu progreso ya está en tus aparatos: solo el enlace a «Mis dispositivos». Si no lo
-    // está (sin código o días sin lograrla), la copia de seguridad como siempre.
-    syncSana()
-      ? h('section.mas-grupo', h('h2.eti', 'Tus aparatos'), h('ul.mas-lista', fila('#/ajustes?campo=dispositivos', 'enlace', 'Mis dispositivos', 'Tu progreso se copia solo entre tus aparatos. Aquí está tu código para usarlo en otro.')))
-      : h('section.mas-grupo.mas-copia', h('h2.eti', 'Copia de seguridad'),
-        h('p.small', 'Ahora mismo lo que estudias solo está en este aparato. Guarda una copia de vez en cuando, o mira «Mis dispositivos» en Ajustes.'),
-        copiaHecha,
-        lineaProteccion(progress),
-        h('div.actions',
-          h('button', { type: 'button', onclick: () => { guardarCopia(progress); copiaHecha.textContent = `Última copia: ${fechaLarga(Date.now())}.`; } }, 'Guardar una copia'),
-          botonRecuperar(progress))));
+    // Un solo sitio para el aviso de los datos (H-74): en Ajustes → «Tus datos y copias». Aquí, solo el enlace.
+    h('section.mas-grupo', h('h2.eti', 'Tus datos'), h('ul.mas-lista', syncSana()
+      ? fila('#/ajustes?campo=dispositivos', 'enlace', 'Mis dispositivos', 'Tu progreso se copia solo entre tus aparatos.')
+      : fila('#/ajustes?campo=copia', 'descargar', 'Copia de seguridad', 'Guarda una copia de lo que has estudiado.'))));
   const enlaces = grupos.flatMap(([, rs]) => rs);
   return { el, summary: () => `VISTA más ${T.sigla}\n${enlaces.map(([href, , t]) => `${t} → ${href}`).join('\n')}${filaTravesia.hidden ? '' : `\nTu travesía → ${tlink(tit, ['travesia'])}`}\nCHULETAS: #/${tit}/temario/<ut>/chuleta` };
 }

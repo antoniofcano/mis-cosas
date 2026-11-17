@@ -228,10 +228,25 @@ export function tuEstrategia({ estructura: E, tests = [], listo = null, max = SI
   }
 
   let aviso = null;
-  if (!suficiente) aviso = 'Aún no hay datos tuyos para afinar la estrategia: haz un simulacro completo y aquí verás tu tiempo, tu límite más justo y tus consejos.';
+  if (!suficiente) aviso = 'Haz un simulacro y aquí verás tu tiempo y tu límite más justo.';
   else if (!n) aviso = 'Con tus respuestas ya se ve qué límite tienes más justo, pero falta tu tiempo: haz un simulacro completo.';
   else if (n === 1) aviso = 'Con un solo simulacro esto es una pista, no una tendencia: haz otro para confirmarlo.';
   return { suficiente, simulacros: n, tiempo, limites, masCerca, colchon, consejos: consejos.slice(0, 3), aviso };
+}
+
+/** Días antes del examen desde los que «El día antes y el del examen» sale abierto en la estrategia (H-74). */
+export const DIAS_DIA_ABIERTO = 14;
+
+/** Bloques plegables de la estrategia, en su orden. El resto de la pantalla (cifras, «Tu estrategia» y el botón) va a la vista. */
+export const BLOQUES_ESTRATEGIA = ['limites', 'tiempo', 'contestar', 'modulos', 'dia', 'fuentes'];
+
+/**
+ * Qué bloques salen abiertos (H-74): ninguno, salvo «El día antes y el del examen» con la fecha del examen (no orientativa)
+ * a 14 días o menos. Al imprimir se abren todos (ui/plegable.js).
+ * @returns {string[]} ids de BLOQUES_ESTRATEGIA
+ */
+export function bloquesAbiertos({ diasAlExamen = null, orientativa = false } = {}) {
+  return diasAlExamen != null && !orientativa && diasAlExamen >= 0 && diasAlExamen <= DIAS_DIA_ABIERTO ? ['dia'] : [];
 }
 
 /** Resumen en texto (para `nautica.state()`): una línea por idea, sin iconos. */

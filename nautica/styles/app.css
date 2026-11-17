@@ -1837,8 +1837,8 @@ details.prog-carta > summary { min-height: 48px; display: flex; align-items: cen
 .entrada-cta-eti, .entrada-dato-eti { font-size: .74rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
 a.entrada-carta { display: block; color: inherit; text-decoration: none; }
 a.entrada-carta:hover .carta-trav { box-shadow: 0 0 0 2px var(--lc-magenta); }
-a.entrada-ver-derrota { display: inline-flex; align-items: center; gap: .35rem; min-height: 44px; justify-self: start; font-weight: 600; font-size: .92rem; text-decoration: none; }
-a.entrada-ver-derrota .mas-fila-flecha { color: inherit; }
+.entrada-ver-derrota { display: inline-flex; align-items: center; gap: .35rem; min-height: 44px; justify-self: start; font-weight: 600; font-size: .92rem; text-decoration: none; }
+.entrada-ver-derrota .mas-fila-flecha { color: inherit; }
 /* La carta compacta: más baja (las capas se estiran, los trazos no), sin rosa, faros sin botón y algo más pequeños. */
 .carta-trav.compacta { aspect-ratio: 358 / 232; max-width: none; }
 .carta-trav.compacta .faro-pos { width: 92px; transform: translate(-50%, -18px); }
@@ -2879,7 +2879,6 @@ button.dosis-op.elegida-mal { border-color: var(--warn); box-shadow: inset 0 0 0
 .papel-campo { display: grid; gap: .15rem; min-width: 0; }
 .papel-lbl { font-weight: 600; font-size: .92rem; }
 .papel-input { min-height: 48px; font-size: 1.15rem; padding: .45rem .6rem; }
-.papel-margen { line-height: 1.25; }
 .papel-res:empty { display: none; }
 .papel-res { margin-top: .4rem; }
 .papel-res p { margin: .2rem 0; }
@@ -2953,6 +2952,94 @@ svg.chart .c-intento { stroke: var(--warn); stroke-width: 2.5; stroke-dasharray:
 }
 /* ==== fin de Trázalo en la carta ==== */
 
+/* ==== Menos densidad, parte A (H-73): la lista de preguntas plegada por convocatoria y la pregunta de carta con un solo modo a la vista ==== */
+/* Solo para lectores de pantalla: lo que el color o el símbolo dicen, dicho también con palabras. */
+.solo-lector { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+
+/* Lista de preguntas (src/ui/views/exams.js, listaView): una convocatoria por fila, plegada */
+.lista-seguir { margin: .8rem 0 .2rem; min-height: 56px; font-size: .95rem; letter-spacing: .02em; }
+.lista-seguir-nota { margin: 0 0 .8rem; text-align: center; }
+.conv-grupos { margin-top: .6rem; border-top: 1px solid var(--border); }
+details.conv-grupo { margin: 0; padding: 0 .2rem; background: none; border: 0; border-bottom: 1px solid var(--border); border-radius: 0; }
+details.conv-grupo > summary { min-height: 44px; display: flex; flex-wrap: wrap; align-items: center; gap: 0 .6rem; padding: .2rem 0; font-weight: 600; cursor: pointer; list-style: none; }
+details.conv-grupo > summary::-webkit-details-marker { display: none; }
+details.conv-grupo > summary::after { content: "›"; flex: none; transform: rotate(90deg); font-size: 1.3rem; color: var(--accent); }
+details.conv-grupo[open] > summary::after { transform: rotate(-90deg); }
+details.conv-grupo[open] > summary { border-bottom: 1px solid var(--border); }
+.conv-tit { flex: 1 1 auto; }
+.conv-cont { font-size: .8rem; font-weight: 400; color: var(--muted); }
+details.conv-grupo > summary::after { margin-left: auto; }
+.conv-grupo ol.qlist { list-style: none; margin: 0 0 .4rem; padding: 0; }
+.conv-grupo ol.qlist li { margin: 0; }
+a.qfila { display: flex; align-items: baseline; gap: .4rem; min-height: 44px; padding: .45rem 0; color: var(--text); text-decoration: none; border-bottom: 1px solid var(--retic); }
+a.qfila:hover .qtexto { text-decoration: underline; }
+.qestado { flex: none; width: 1.2em; text-align: center; font-weight: 700; }
+.qestado.ok { color: var(--ok); }
+.qestado.mal { color: var(--warn); }
+.qestado.sin { color: var(--muted); }
+.qtexto { color: var(--muted); }
+
+/* Pregunta de carta: cabecera corta, barra de herramientas, selector de modo y el panel del modo elegido */
+header.pregunta-cab h1 { margin-bottom: .1rem; }
+.pregunta-sub { margin: 0 0 .3rem; }
+.herr-carta { position: relative; display: flex; align-items: flex-start; flex-wrap: wrap; gap: .3rem; margin: .4rem 0 .6rem; }
+.herr-carta .ayudas { display: flex; flex-wrap: nowrap; gap: .3rem; }
+.herr-carta-hueco { display: inline-flex; }
+.herr-carta > button, .herr-carta .ayudas button, .herr-carta-hueco > button, .menu-acciones > .menu-boton {
+  display: inline-flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; min-width: 48px; min-height: 56px; padding: .25rem .5rem;
+  border-radius: var(--radius); font-size: .8rem; line-height: 1.1; white-space: nowrap; letter-spacing: normal; text-transform: none; }
+.herr-carta .ico { width: 22px; height: 22px; }
+.herr-carta .boton-bloc .bloc-punto { margin-left: 0; position: absolute; top: 6px; right: 6px; }
+.herr-carta .boton-bloc { position: relative; }
+
+.modo-selector { min-width: 0; margin: .9rem 0 .5rem; padding: 0; border: 0; }
+.modo-selector legend { padding: 0; margin-bottom: .35rem; font-weight: 700; }
+.modo-opciones { display: grid; grid-template-columns: 1fr 1fr; gap: .4rem; }
+label.modo-op { position: relative; display: flex; align-items: center; justify-content: center; min-height: 48px; padding: .3rem .5rem; text-align: center; font-weight: 600;
+  color: var(--text); background: var(--surface); border: 1.5px solid var(--borde-fuerte); border-radius: var(--radius); cursor: pointer; }
+label.modo-op input { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: pointer; }
+label.modo-op:has(input:checked) { color: var(--accent); background: var(--accent-2); border-color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent); }
+label.modo-op:has(input:checked) .modo-nombre::before { content: "✓ "; }
+label.modo-op:has(input:focus-visible) { outline: 3px solid var(--accent); outline-offset: 2px; }
+.modo-aviso { margin: .6rem 0 0; padding: .5rem .7rem; color: var(--aviso-texto); background: var(--aviso-bg); border: 1px solid var(--aviso-borde); border-radius: var(--radius); }
+@media (min-width: 700px) { .modo-opciones { grid-template-columns: repeat(4, 1fr); } }
+
+/* Las introducciones de los modos: enteras la primera vez; después, un «?» plegado */
+.intro-modo { margin: .2rem 0 .5rem; }
+details.intro-plegable { margin: 0 0 .3rem; padding: 0; background: none; border: 0; }
+details.intro-plegable > summary { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; padding: 0; list-style: none; cursor: pointer;
+  color: var(--accent); font-weight: 700; border: 1.5px solid var(--borde-fuerte); border-radius: 50%; }
+details.intro-plegable > summary::-webkit-details-marker { display: none; }
+details.intro-plegable[open] > summary { background: var(--accent-2); border-color: var(--accent); }
+
+/* Dentro del panel del modo: lo justo para que la primera acción quede a un scroll */
+.guiado-box .guiado-cab h2, .papel-box .guiado-cab h2, .intencion-box .guiado-cab h2 { margin: 0; font-size: 1.15rem; }
+.guiado-box .guiado { padding-top: .5rem; padding-bottom: .5rem; }
+.reloj-paso details.rp-nota { margin: 0; padding: 0; background: none; border: 0; border-radius: 0; }
+.reloj-paso details.rp-nota > summary { min-height: 44px; padding: 0; display: flex; align-items: center; }
+.guiado-ejemplo-acc { margin: .2rem 0; }
+
+/* La burbuja de «Carta»: una sola vez por alumno */
+.burbuja-carta { position: absolute; right: 0; top: calc(100% + 8px); z-index: 12; display: flex; align-items: center; gap: .2rem; max-width: min(17rem, calc(100vw - 2rem)); padding: .3rem .3rem .3rem .7rem;
+  color: var(--aviso-texto); background: var(--aviso-bg); border: 1.5px solid var(--aviso-borde); border-radius: var(--radius); box-shadow: 0 4px 14px rgba(0, 0, 0, .18); font-size: .9rem; line-height: 1.3; }
+.burbuja-carta::before { content: ""; position: absolute; right: 60px; top: -7px; width: 12px; height: 12px; background: var(--aviso-bg); border-left: 1.5px solid var(--aviso-borde); border-top: 1.5px solid var(--aviso-borde); transform: rotate(45deg); }
+button.burbuja-cerrar { flex: none; min-width: 44px; min-height: 44px; padding: 0; font-size: 1.4rem; line-height: 1; color: var(--aviso-texto); background: transparent; border: 0; }
+
+/* El menú «⋯» (src/ui/menu-acciones.js) */
+.menu-acciones { position: relative; display: inline-flex; }
+div.menu-lista { position: absolute; right: 0; top: calc(100% + 4px); z-index: 20; display: grid; min-width: 15rem; max-width: min(20rem, calc(100vw - 2rem)); padding: .25rem;
+  background: var(--surface); border: 1.5px solid var(--borde-fuerte); border-radius: var(--radius); box-shadow: 0 6px 20px rgba(0, 0, 0, .2); }
+div.menu-lista > .menu-item.menu-item { display: flex; align-items: center; gap: .5rem; width: 100%; min-height: 44px; padding: .4rem .7rem; color: var(--text); background: transparent; border: 0; border-radius: 8px;
+  font: inherit; font-weight: 600; text-align: left; text-decoration: none; letter-spacing: normal; text-transform: none; cursor: pointer; }
+div.menu-lista > .menu-item.menu-item:hover, div.menu-lista > .menu-item.menu-item:focus-visible { background: var(--accent-2); }
+div.menu-lista > .menu-item.menu-item .ico { flex: none; width: 20px; height: 20px; color: var(--accent); }
+div.menu-lista > button.tema-accion.corregida { color: var(--accent); }
+
+/* Lo que el menú saca a la página: las notas de la fuente y el texto para asistentes de IA */
+.extra-fuente { margin-top: 1rem; padding: .6rem .9rem; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); }
+.extra-fuente h2 { margin-top: .2rem; }
+/* ==== fin de menos densidad, parte A ==== */
+
 /* ==== Paso a paso que enseña (R-71): «¿qué tipo es?», ayuda por escalones y ejemplo resuelto con huecos ==== */
 .guiado-tipo-ops { display: grid; gap: .45rem; margin: .4rem 0; }
 button.guiado-tipo-op { display: flex; align-items: center; gap: .4rem; width: 100%; min-height: 48px; padding: .5rem .8rem; text-align: left; background: var(--surface); color: var(--text); border: 2px solid var(--borde-fuerte); border-radius: var(--radius); font-size: 1rem; line-height: 1.25; }
@@ -2989,3 +3076,72 @@ button.guiado-tipo-op.mal .ico { color: var(--warn); }
 .guiado-ejemplo-enunciado { margin: .3rem 0 .5rem; padding: .4rem .6rem; border-left: 3px solid var(--borde-fuerte); }
 .guiado-ejemplo-opcion { font-weight: 600; }
 /* ==== fin del paso a paso que enseña ==== */
+
+/* ==== Menos densidad en los hubs (H-74): bloques plegables, Estrategia, Pódcast, Hoy del alumno nuevo, Ajustes y Tema ====
+   Solo tokens. Se pliega y se ordena, no se quita nada; al imprimir se abre todo (src/ui/plegable.js). Controles de 44 px. */
+details.plegable { margin: .5rem 0; padding: 0; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); }
+details.plegable > summary { display: flex; flex-direction: column; justify-content: center; gap: .1rem; min-height: 44px; padding: .5rem 2.2rem .5rem .8rem; margin: 0; cursor: pointer; list-style: none; position: relative; font-weight: 600; }
+details.plegable > summary::-webkit-details-marker { display: none; }
+details.plegable > summary::after { content: "›"; position: absolute; right: .9rem; top: 50%; transform: translateY(-50%) rotate(90deg); font-size: 1.3rem; line-height: 1; }
+details.plegable[open] > summary::after { transform: translateY(-50%) rotate(-90deg); }
+details.plegable > summary:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; border-radius: var(--radius); }
+details.plegable[open] > summary { border-bottom: 1px solid var(--border); }
+.plegable-res { font-weight: 400; font-size: .85rem; color: var(--muted); overflow-wrap: anywhere; }
+.plegable-cuerpo { padding: .4rem .8rem .8rem; min-width: 0; }
+.plegable-cuerpo > :first-child { margin-top: 0; }
+/* Estrategia: los bloques en el papel de la carta; el número de fuente [n] y la lista del final */
+.estrategia details.plegable { background: var(--lc-papel); border: 1.5px solid var(--lc-tinta); border-radius: 0; }
+.estrategia details.plegable[open] > summary { border-bottom-color: var(--lc-linea-agua); }
+.estrategia .plegable-tit { font-family: var(--lc-serif); }
+.est-ref { margin-left: .15em; font-size: .72em; font-weight: 700; color: var(--lc-azul-texto); white-space: nowrap; }
+.est-sub-bloque { padding: .5rem 0 .2rem; }
+.est-sub-tit { display: flex; align-items: center; gap: .4rem; margin: .3rem 0 .2rem; font-size: 1.02rem; }
+.est-sub-tit .ico { color: var(--lc-magenta); }
+.est-accion { margin: .6rem 0 .4rem; }
+.est-accion .btn { width: 100%; justify-content: center; }
+.est-lista-fuentes { margin: 0 0 .6rem; padding-left: 1.6rem; display: grid; gap: .3rem; overflow-wrap: anywhere; }
+.est-lista-fuentes li::marker { content: "[" counter(list-item) "] "; font-weight: 700; color: var(--lc-azul-texto); }
+@media print {
+  details.plegable { border: .8pt solid black; background: none; }
+  details.plegable > summary::after { display: none; }
+  .plegable-res, .est-ref { color: black; }
+}
+/* Estrategia: cifras más compactas para que el botón quede a la vista sin desplazar */
+.estrategia .est-cuerpo > .est-seccion { padding: .6rem 0 .3rem; }
+.estrategia .est-cuerpo .lc-datos { gap: .35rem; }
+.estrategia .est-cuerpo .lc-datos li { padding: .25rem .25rem; gap: 0; }
+.estrategia .est-cuerpo .lc-dato-txt { font-size: .74rem; line-height: 1.2; }
+.estrategia .est-tuya { margin-bottom: .4rem; }
+.est-pie-acciones { margin-top: .8rem; }
+/* Pódcast: «Escucha ahora» arriba y los temas plegados; los episodios de la lista, solo con su título */
+details.plegable.puerto { margin: .5rem 0; }
+details.plegable.puerto > summary { padding-left: .8rem; }
+.puerto .ep-lista { list-style: none; margin: 0; padding: 0; display: grid; gap: .2rem; }
+.ep-card.compacta { border: 0; border-bottom: 1px solid var(--border); border-radius: 0; background: none; padding: .35rem 0; }
+.ep-card.compacta:last-child { border-bottom: 0; }
+.ep-card.compacta .ep-titulo { display: block; min-height: 44px; padding: .45rem 0 0; }
+.radio-prep, .radio-pie { margin: .6rem 0; }
+.radio-gancho { margin: .3rem 0 0; font-style: italic; color: var(--muted); }
+/* Hoy: en el móvil, la acción primero (la carta de la derrota, debajo) y el test de nivel como enlace discreto bajo «Empezar» */
+.nivel-enlace { margin: .1rem 0 0; font-size: .9rem; }
+.nivel-enlace a { display: inline-flex; align-items: center; min-height: 44px; color: var(--muted); text-decoration: underline; text-underline-offset: 3px; }
+.nivel-enlace a:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+@media (max-width: 759px) {
+  .entrada-arriba .entrada-heroe-hueco { order: 2; }
+  .entrada-arriba .entrada-principal { order: 1; }
+}
+.entrada.sin-datos .indicador-eje-linea { display: none; }
+.entrada-ver-derrota { display: inline-flex; margin-top: .3rem; }
+/* Tema: cada clase, una tarjeta de 2 líneas (nombre; minutos y estado); «Hoy toca» destacada con su marca y su borde */
+.tema ol.clases { gap: .4rem; }
+.tema a.clase { flex-direction: column; align-items: flex-start; justify-content: center; flex-wrap: nowrap; gap: .1rem; min-height: 56px; padding: .5rem .9rem; }
+.tema a.clase .clase-meta { font-size: .88rem; }
+.tema a.clase.siguiente-ruta { border-width: 2px; background: var(--accent-2); }
+.tema a.clase .badge-ruta { margin-left: .5rem; vertical-align: middle; }
+.tema a.clase:focus-visible, .tema .radio-tema-linea:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.tema .radio-tema { margin: .6rem 0; }
+.tema a.radio-tema-linea { display: inline-flex; align-items: center; gap: .4rem; min-height: 44px; font-weight: 600; }
+.tema-intro p { margin: .3rem 0; }
+details.tema-leer-mas { margin: 0 0 .4rem; padding: 0; border: 0; background: none; }
+details.tema-leer-mas > summary { display: inline-flex; align-items: center; min-height: 44px; padding: 0; color: var(--accent); }
+details.tema-leer-mas > summary:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }

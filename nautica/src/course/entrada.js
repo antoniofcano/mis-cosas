@@ -13,6 +13,12 @@ const CON_NOMBRE = new Set(['clase', 'preguntas', 'repaso', 'chuleta']);
  */
 export const esNuevo = ({ respondidas = 0, terminadas = 0 } = {}) => respondidas === 0 && terminadas === 0;
 
+/** Respuestas o clases terminadas a partir de las cuales hay datos para enseñar Rango, Semana y «¿Estás listo?» (H-74). */
+export const MIN_RESPUESTAS_DATOS = 20;
+export const MIN_CLASES_DATOS = 1;
+/** ¿Hay ya datos para el estado (rango, semana, «¿Estás listo?»)? Una clase terminada o 20 respuestas. El alumno nuevo no los ve vacíos. */
+export const hayDatos = ({ respondidas = 0, terminadas = 0 } = {}) => respondidas >= MIN_RESPUESTAS_DATOS || terminadas >= MIN_CLASES_DATOS;
+
 /**
  * El estado de la entrada.
  *   'hecho-hoy'  la sesión de hoy está hecha

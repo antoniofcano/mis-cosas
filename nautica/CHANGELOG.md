@@ -15,10 +15,18 @@ Qué cambia en la app para quien la usa, por fecha de publicación. Es la base d
 
 ## Sin publicar
 
+**Mejoras**
+
 - **La lista de preguntas, plegada por convocatoria.** Antes eran más de mil enlaces seguidos; ahora ves una fila por convocatoria con lo que llevas hecho y acertado, y arriba un botón «Seguir con la siguiente sin hacer». Cada fila lleva el número de la pregunta, ✓ o ✗ y las primeras palabras del enunciado. Desde una pregunta, la flecha de volver te lleva a su convocatoria, ya abierta.
 - **La pregunta de carta, con una sola forma de hacerla a la vista.** Debajo del enunciado eliges «Solo la respuesta», «Paso a paso», «En papel» o «En la carta» y justo debajo está lo que has elegido; la app recuerda tu última elección. Chuleta, calculadora, bloc y carta van en una barra compacta, y la fuente, las notas, «¿No es de este tema?», «Avisar de un error» y «Ver la solución sin intentarlo» están en el menú «Más».
 - **Menos avisos repetidos.** El aviso de «Ampliar» es ahora una burbuja corta junto a «Carta» que sale una sola vez. La explicación del paso a paso, de «En papel» y de «En la carta» sale entera la primera vez; después queda un «?» que la despliega. En «En papel» el margen ya no se repite en cada campo: está en «Qué margen doy».
 - **Arreglo:** una pregunta sin trazado en la carta (como las de mareas) ya no ofrece «En la carta»; si abres su dirección con `?traza=1`, te lo dice y te abre el paso a paso.
+- **Menos densidad en las pantallas más cargadas.** Se pliega y se ordena; no se quita ninguna función.
+  - **Estrategia:** a la vista, tus cifras, «Tu estrategia» y el botón «Hacer un simulacro»; los límites, el tiempo, cómo contestar, los módulos del PY, el día del examen y las fuentes van en bloques plegables con su resumen (el del día del examen sale abierto a 14 días o menos). Las fuentes se numeran [1], [2]… y se listan al final. Al imprimir sale todo desplegado.
+  - **Pódcast:** arriba, «Escucha ahora» con el siguiente episodio; los temas, plegados con su contador (y solo el tuyo abierto); el episodio de bienvenida ya no sale dos veces y «Ver el guion» queda solo dentro del episodio.
+  - **Hoy, para quien empieza:** el rango, la semana y «¿Estás listo?» aparecen cuando hay una clase terminada o 20 respuestas; antes no hay nada vacío. La acción va primero en el móvil y el test de nivel es un enlace bajo «Empezar». «¿De qué te examinas?» (PY) y «¿Primera vez?» pasan a la bienvenida; el módulo se cambia en el Temario y en Ajustes.
+  - **Ajustes:** cuatro grupos plegados (Estudio, Aspecto y avisos, Tus datos y copias, Acerca de), con «Estudio» abierto y el valor de cada grupo en su título. El aviso de guardar una copia sale solo en Ajustes; Más enlaza a él.
+  - **Tema:** cada clase es una tarjeta de dos líneas (nombre; minutos y estado), con «Hoy toca» destacada; las ideas y las preguntas de examen salen cuando la clase está vista; «Escúchalo» en una línea y la introducción con «Leer más».
 
 ## 17 de noviembre de 2026 · versión `77b5fd5d1dc7`
 

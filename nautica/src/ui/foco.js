@@ -4,7 +4,7 @@
 
 import { h } from './dom.js';
 import { TITULACIONES, tlink } from './titulacion.js';
-import { claveFoco, opcionesFoco, focoDecidido, AMBOS } from '../course/foco.js';
+import { claveFoco, opcionesFoco, focoDecidido, focoModulo, AMBOS } from '../course/foco.js';
 import { moduloPendiente, lineaModuloPendiente } from '../course/tras-examen.js';
 import { leerAjuste, claveSemana, descartarModulo, apuntarResultado } from '../course/semana.js';
 import { randomSeed } from '../math/rng.js';
@@ -13,7 +13,7 @@ const repintar = () => dispatchEvent(new HashChangeEvent('hashchange'));
 const min = (t) => t.replace(/^Módulo/, 'módulo');
 
 /** Guarda la elección. Elegir los dos con un módulo aprobado apuntado deja de centrarse en el que queda (como antes). */
-function elegir(progress, tit, id) {
+function elegir(progress, tit, id, alTerminar = repintar) {
   const E = TITULACIONES[tit].estructura;
   progress.setSetting(claveFoco(tit), id);
   if (id === AMBOS) {
@@ -25,7 +25,7 @@ function elegir(progress, tit, id) {
     const a = leerAjuste(progress.settings()[claveSemana(tit)]);
     if (a.moduloFuera && a.resultados[a.moduloFuera]) progress.setSetting(claveSemana(tit), apuntarResultado(a, a.moduloFuera, a.resultados[a.moduloFuera]));
   }
-  repintar();
+  alTerminar();
 }
 
 const botones = (progress, tit, actual) => h('div.foco-opciones', opcionesFoco(TITULACIONES[tit].estructura).map((o) =>
@@ -51,4 +51,24 @@ export function tarjetaFoco(progress, tit, st) {
     f && p && p.id === f.id ? h('p.small', lineaModuloPendiente(p, T.sigla)) : null,
     f ? h('p.small', h('a', { href: tlink(tit, ['test', 'simulacro'], { s: randomSeed(), m: f.id }) }, `Simulacro del ${min(f.titulo)}`)) : null,
     h('details.foco-cambiar', h('summary', 'Cambiar'), botones(progress, tit, actual)));
+}
+
+/**
+ * Los botones de «¿De qué te examinas?» sueltos (bienvenida, Ajustes y Temario; H-74): el módulo actual marcado (sin elegir,
+ * «Los dos módulos») y, al elegir, se guarda y se repinta el propio selector. null si la titulación no tiene módulos.
+ * @param {(id: string) => void} [alElegir]
+ */
+export function selectorFoco(progress, tit, alElegir = () => {}) {
+  const T = TITULACIONES[tit];
+  if (!opcionesFoco(T.estructura).length) return null;
+  const caja = h('div.foco-selector');
+  const pinta = () => {
+    const f = focoModulo(progress.settings(), tit, T.estructura);
+    const actual = f?.id ?? AMBOS;
+    caja.replaceChildren(h('div.foco-opciones', { role: 'group', 'aria-label': '¿De qué te examinas?' }, opcionesFoco(T.estructura).map((o) =>
+      h('button', { type: 'button', class: o.id === actual ? '' : 'secondary', 'aria-pressed': String(o.id === actual),
+        onclick: () => { elegir(progress, tit, o.id, () => {}); pinta(); alElegir(o.id); } }, o.id === actual ? `✓ ${o.titulo}` : o.titulo))));
+  };
+  pinta();
+  return caja;
 }

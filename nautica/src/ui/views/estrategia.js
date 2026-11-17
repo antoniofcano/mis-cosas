@@ -11,7 +11,7 @@ import { TITULACIONES, tlink, volver } from '../titulacion.js';
 import { link } from '../router.js';
 import { calcularPlan } from '../cierre.js';
 import { loadEstrategia } from '../../store/datasets.js';
-import { cifrasExamen, presupuestoTiempo, textosEstrategia, tuEstrategia, estrategiaPermitida, resumenEstrategia, num, tiempoDisponible } from '../../course/estrategia.js';
+import { cifrasExamen, presupuestoTiempo, textosEstrategia, tuEstrategia, estrategiaPermitida, resumenEstrategia, num, tiempoDisponible, bloquesAbiertos } from '../../course/estrategia.js';
 import { velocidadPorTipo, consejoVelocidad, duracion, mmssCorto, resumenVelocidad } from '../../course/velocidad.js';
 import { tiemposAlumno } from '../../store/tiempos.js';
 import { cuentaEnsayos } from '../../theory/ensayo.js';
@@ -20,18 +20,24 @@ import { randomSeed } from '../../math/rng.js';
 import { icono, conIcono } from '../iconos.js';
 import { cuenta } from '../../texto.js';
 import { fechaImpresion } from './chuleta.js';
+import { plegable, abrirAlImprimir } from '../plegable.js';
+import { ESTRATEGIA as TX } from '../textos-hubs.js';
 
-/** Fuentes citadas en la página (para la lista del final): se llena al pintar. */
+/** Fuentes citadas en la página, numeradas por orden de aparición (la lista de «Fuentes y normas» del final): se llena al pintar. */
 let citadas = new Map();
+function numeroDeFuente(f) {
+  const k = `${f.id ?? f.titulo}|${f.ref ?? ''}`;
+  if (!citadas.has(k)) citadas.set(k, { n: citadas.size + 1, f });
+  return citadas.get(k).n;
+}
 
-/** Una línea de la lista: «Norma» con su fuente (corta; la completa, al final) o «Consejo». `eti`: con su rótulo. */
+/** Una línea de la lista: «Norma» o «Consejo»; la fuente, con su número [n] (la lista completa va al final). `eti`: con su rótulo. */
 function item(x, eti = true) {
   const f = x.fuente;
-  if (f && !citadas.has(f.id ?? f.titulo)) citadas.set(f.id ?? f.titulo, f);
+  const n = f ? numeroDeFuente(f) : null;
   return h('li.est-item', { 'data-tipo': x.tipo },
     eti ? h('span.est-eti', x.tipo === 'norma' ? 'Norma' : 'Consejo') : null,
-    h('span.est-texto', x.texto),
-    f ? h('span.est-fuente', 'Fuente: ', f.url ? h('a', { href: f.url, target: '_blank', rel: 'noopener' }, f.corto ?? f.titulo) : (f.corto ?? f.titulo), f.ref ? `, ${f.ref}` : '', '.') : null);
+    h('span.est-texto', x.texto, n ? h('sup.est-ref', { title: `Fuente ${n}` }, `[${n}]`) : null));
 }
 /** Lista de normas y consejos. Si todas son del mismo tipo, el rótulo va una vez encima («Consejos de método»). */
 function lista(xs) {
@@ -46,6 +52,11 @@ function lista(xs) {
 function seccion(id, ico, titulo, ...hijos) {
   return h('section.mc-clase.est-seccion', { 'aria-labelledby': `est-${id}` },
     h('h2.mc-clase-tit', { id: `est-${id}` }, icono(ico, 'ico-t'), h('span', titulo)), ...hijos);
+}
+/** Un apartado dentro de un bloque plegable. */
+function sub(id, ico, titulo, ...hijos) {
+  return h('section.est-sub-bloque', { 'aria-labelledby': `est-${id}` },
+    h('h3.est-sub-tit', { id: `est-${id}` }, icono(ico, 'ico-t'), h('span', titulo)), ...hijos);
 }
 
 function tablaTiempo(t, varios) {
@@ -65,50 +76,49 @@ function hitos(t, varios) {
   return h('ul.est-hitos', ls);
 }
 
-/** «Tu estrategia» (capa 2): tus datos, tus consejos o la invitación a hacer un simulacro. */
+/** «Tu estrategia» (capa 2): tus datos y tus consejos, o una línea que invita a hacer un simulacro. El botón va fuera, siempre. */
 function tuya(T, c, tu) {
   const datos = [];
-  if (tu.tiempo) datos.push(h('li', h('span.lc-cifra', `${Math.round(tu.tiempo.media)} min`), h('span.lc-dato-txt', `tardas de media (el examen: ${c.duracionMin})`)));
+  if (tu.tiempo) datos.push(h('li', h('span.lc-cifra', `${Math.round(tu.tiempo.media)} min`), h('span.lc-dato-txt', `de media (examen: ${c.duracionMin})`)));
   if (tu.masCerca) datos.push(h('li', h('span.lc-cifra', tu.masCerca.media != null ? `${num(tu.masCerca.media)} / ${tu.masCerca.maxErrores}` : `${Math.round(100 * tu.masCerca.pFalla)} %`),
-    h('span.lc-dato-txt', tu.masCerca.media != null ? `fallos de media en ${tu.masCerca.titulo} / máximo` : `de riesgo de pasarte en ${tu.masCerca.titulo}`)));
-  if (tu.colchon) datos.push(h('li', h('span.lc-cifra', `${num(tu.colchon.media)} / ${tu.colchon.permitidos}`), h('span.lc-dato-txt', 'fallos de media / permitidos')));
+    h('span.lc-dato-txt', tu.masCerca.media != null ? `fallos en ${tu.masCerca.titulo}` : `riesgo en ${tu.masCerca.titulo}`)));
+  if (tu.colchon) datos.push(h('li', h('span.lc-cifra', `${num(tu.colchon.media)} / ${tu.colchon.permitidos}`), h('span.lc-dato-txt', 'fallos / permitidos')));
   return seccion('tuya', 'diana', 'Tu estrategia',
-    tu.suficiente ? h('p.est-sub', tu.simulacros ? `Con tus ${cuenta(tu.simulacros, 'examen completo', 'exámenes completos')} más recientes${tu.masCerca?.pFalla != null ? ' y tus respuestas' : ''}.` : 'Con tus respuestas en las tandas y los repasos.') : null,
+    !tu.suficiente ? h('p.est-sub', TX.sinDatos) : null,
     datos.length ? h('ul.lc-datos.est-datos', datos) : null,
     tu.consejos.length ? h('ol.est-consejos', tu.consejos.map((k) => h('li', k.texto,
       k.ut != null ? [' ', h('a.no-imprimir', { href: tlink(T.id, ['teoria', 'ut', String(k.ut)], { s: randomSeed() }) }, 'Hacer una tanda →')] : null))) : null,
-    tu.aviso ? h('p.est-aviso', tu.aviso) : null,
-    !tu.simulacros || tu.simulacros < 2 ? h('p.no-imprimir', h('a.btn.grande', { href: tlink(T.id, ['test', 'simulacro'], { s: randomSeed() }) }, conIcono('reloj', 'Hacer un simulacro'))) : null);
+    tu.suficiente && tu.aviso ? h('p.est-aviso', tu.aviso) : null);
 }
 
 const TENDENCIA = { baja: ['↓', 'más rápido'], sube: ['↑', 'más lento'], estable: ['=', 'igual'] };
 const ESTADO = { cabe: 'Cabe', justo: 'Justo', 'se-pasa': 'Te pasas' };
 
 /**
- * «Tu tiempo por tipo de problema de carta» (R-42): tu media en cada tipo (exámenes y práctica), su tendencia y si cabe
- * en el tiempo que te deja el examen por pregunta de carta; debajo, por dónde empezar.
+ * «Tu tiempo por tipo de problema de carta» (R-42), solo con tiempos guardados: tu media en cada tipo (exámenes y
+ * práctica), su tendencia y si cabe en el tiempo que te deja el examen por pregunta de carta; debajo, por dónde empezar.
  */
 function velocidad(T, disp, filas, consejo) {
   const carta = filas.filter((f) => f.carta);
+  if (!carta.length) return null;
   const teoria = filas.find((f) => !f.carta);
-  return seccion('velocidad', 'reloj', 'Tu tiempo por tipo de problema de carta',
+  return sub('velocidad', 'reloj', 'Tu tiempo por tipo de problema de carta',
     h('p.est-sub', `Con tus exámenes y tu práctica de carta (solo cuenta el tiempo con la app a la vista). Tienes unos ${duracion(disp.cartaS)} por pregunta de carta${disp.tramo ? ` en el ${disp.tramo.toLowerCase()}` : ''} según el reparto de arriba; la media del examen es ${duracion(disp.mediaS)} por pregunta.`),
-    carta.length ? h('table.est-tabla.est-velocidad',
+    h('table.est-tabla.est-velocidad',
       h('caption', 'Tu media por tipo, de las más lentas a las más rápidas'),
       h('thead', h('tr', h('th', { scope: 'col' }, 'Tipo'), h('th', { scope: 'col' }, h('abbr', { title: 'Media en minutos y segundos' }, 'Media')), h('th', { scope: 'col' }, 'Tiempo'))),
       h('tbody', [...carta, ...(teoria ? [teoria] : [])].map((f) => h('tr', { class: f.estado ? `est-vel-${f.estado}` : '' },
         h('th', { scope: 'row' }, h('span.est-vel-nombre', f.nombre),
           h('span.est-vel-dato', cuenta(f.n, 'vez', 'veces'), f.tendencia ? [' · ', h('span', { 'aria-hidden': 'true' }, TENDENCIA[f.tendencia][0]), ` ${TENDENCIA[f.tendencia][1]}`] : '')),
         h('td', { 'aria-label': duracion(f.mediaS) }, mmssCorto(f.mediaS)),
-        h('td.est-vel-estado', f.estado ? ESTADO[f.estado] : '—'))))) : null,
+        h('td.est-vel-estado', f.estado ? ESTADO[f.estado] : '—')))) ),
     consejo ? h('p.est-colchon', h('strong', 'Por dónde empezar: '), consejo.texto) : null,
-    !carta.length ? h('p.est-aviso', icono('aviso', 'ico-t'), 'Aún no hay tiempos tuyos de carta: haz un simulacro o practica las preguntas y los ejercicios de carta, y aquí verás cuánto tardas en cada tipo.') : null,
     h('p.no-imprimir', h('a', { href: tlink(T.id, ['carta']) }, 'Ejercicios de carta →')));
 }
 
 /** Ensayo general en papel (R-41): cuántos llevas de los recomendados y el enlace. */
 function ensayos(T, ce) {
-  return seccion('ensayo', 'lapiz', 'Ensayo general en papel',
+  return sub('ensayo', 'lapiz', 'Ensayo general en papel',
     h('p', ce.texto),
     h('p.est-sub', 'La app solo te da los enunciados y el reloj; tú lo resuelves con la carta de papel, el transportador, el compás y el lápiz, y al final pasas las respuestas a la hoja.'),
     h('p.no-imprimir', h('a.btn.secondary', { href: tlink(T.id, ['ensayo']) }, conIcono('lapiz', ce.hechos ? 'Hacer otro ensayo en papel' : 'Preparar un ensayo en papel'))));
@@ -124,15 +134,21 @@ export function estrategiaView({ progress, tit }) {
   const cuerpo = h('div.mc-clases.est-cuerpo', h('p.muted', 'Cargando…'));
   const eti = h('p.lc-eti.mc-eti-pantalla', icono('diana', 'ico-t'), `Estrategia · ${T.sigla}`);
   const impresion = h('p.mc-impresion', h('span', `${T.nombre} (${T.sigla})`), h('span', 'Estrategia de examen'), h('span', fechaImpresion()));
+  const intro = h('p.mc-intro', TX.entrada(T.sigla, '…'));
+  let imprimible = null;
+  // Imprimir y «Incluir mis datos» van al pie: arriba solo cabe lo que se lee y la acción principal.
+  const acciones = h('div.no-imprimir.mc-acciones.est-pie-acciones',
+    h('div.mc-botones',
+      h('label.check', h('input', { type: 'checkbox', checked: true, onchange: (ev) => el.classList.toggle('sin-tuya', !ev.target.checked) }), 'Incluir mis datos'),
+      // Al imprimir salen todos los bloques abiertos (ui/plegable.js): lo plegado no se pierde en el papel.
+      h('button.mc-imprimir', { type: 'button', onclick: () => { imprimible?.abrir(); window.print(); } }, conIcono('imprimir', 'Imprimir / guardar PDF'))));
   const el = h('article.mc-hoja.estrategia',
-    h('div.no-imprimir.mc-acciones', volver('Examen', tlink(tit, ['examenes'])),
-      h('div.mc-botones',
-        h('label.check', h('input', { type: 'checkbox', checked: true, onchange: (ev) => el.classList.toggle('sin-tuya', !ev.target.checked) }), 'Incluir mis datos'),
-        h('button.mc-imprimir', { type: 'button', onclick: () => window.print() }, conIcono('imprimir', 'Imprimir / guardar PDF')))),
+    h('div.no-imprimir.mc-acciones', volver('Examen', tlink(tit, ['examenes']))),
     h('header.mc-hoja-cab', impresion, eti,
       h('h1.lc-titulo', 'Cómo hacer el examen'),
-      h('p.mc-intro', 'Lo que dicen las normas de tu examen, con su fuente, y consejos de método para el día. Los consejos son eso: consejos, no normas.')),
-    cuerpo);
+      intro),
+    cuerpo, acciones);
+  imprimible = abrirAlImprimir(el);
 
   Promise.all([loadEstrategia(), calcularPlan(progress, tit, Date.now(), { guardar: false })]).then(([datos, { banco, st }]) => {
     const ficha = banco.eje;
@@ -145,23 +161,29 @@ export function estrategiaView({ progress, tit }) {
     const filasVel = velocidadPorTipo({ tests: st.datos.tests, practica: tiemposAlumno().lista(), disponibleCartaS: disp.cartaS, disponibleTeoriaS: disp.teoriaS });
     const consejoVel = consejoVelocidad(filasVel, { disponibleCartaS: disp.cartaS });
     const ce = cuentaEnsayos(st.datos.tests);
+    const abiertos = bloquesAbiertos({ diasAlExamen: st.diasAlExamen, orientativa: st.orientativa });
     eti.replaceChildren(icono('diana', 'ico-t'), `Estrategia · ${T.sigla} · ${ficha.nombre}`);
     impresion.children[1].textContent = `Estrategia de examen · ${ficha.nombre}`;
+    intro.textContent = TX.entrada(T.sigla, ficha.nombre);
 
+    // A la vista: tus cifras, «Tu estrategia» y el botón. Todo lo demás, en bloques plegables.
     const cifras = seccion('cifras', 'examen', 'Tu examen en cifras',
       h('ul.lc-datos.est-datos',
         h('li', h('span.lc-cifra', String(c.preguntas)), h('span.lc-dato-txt', 'preguntas')),
         h('li', h('span.lc-cifra', String(c.duracionMin)), h('span.lc-dato-txt', 'minutos')),
         h('li', h('span.lc-cifra', num(c.minPorPregunta)), h('span.lc-dato-txt', 'minutos por pregunta')),
         h('li', h('span.lc-cifra', String(c.minAciertos)), h('span.lc-dato-txt', 'aciertos para aprobar')),
-        h('li', h('span.lc-cifra', String(c.colchon)), h('span.lc-dato-txt', 'fallos como máximo'))),
+        h('li', h('span.lc-cifra', String(c.colchon)), h('span.lc-dato-txt', 'fallos como máximo'))));
+    const tuyaEl = h('div.est-tuya', tuya(T, c, tu));
+    const boton = h('p.no-imprimir.est-accion', h('a.btn.grande', { href: tlink(T.id, ['test', 'simulacro'], { s: randomSeed() }) }, conIcono('reloj', TX.boton)));
+
+    // Los bloques se construyen en el orden en que salen: así las fuentes quedan numeradas [1], [2]… de arriba abajo.
+    const limites = plegable({ id: 'est-b-limites', titulo: TX.limites, resumen: TX.resumenLimites(c), abierto: abiertos.includes('limites') },
       lista([
         { tipo: 'norma', texto: `${cuenta(c.preguntas, 'pregunta')} tipo test de cuatro opciones en ${cuenta(c.duracionMin, 'minuto')}; apto con al menos ${cuenta(c.minAciertos, 'acierto')}.`, fuente: { id: 'rd875', ...datos.fuentes.rd875 } },
         { tipo: 'norma', texto: c.calculadora.permitida ? 'Calculadora científica: permitida.' : 'Calculadora: no permitida.', fuente: c.calculadora.fuente },
         c.reglasTribunal.map((r) => ({ tipo: 'norma', texto: r, fuente: { id: 'ficha', ...datos.fuentes.ficha, titulo: datos.fuentes.ficha.titulo.replace('<eje>', ficha.id) } })),
-      ]));
-
-    const limites = seccion('limites', 'aviso', 'Los límites que suspenden',
+      ]),
       h('p', `Aunque llegues a ${cuenta(c.minAciertos, 'acierto')}, suspendes si pasas el máximo de fallos de uno de estos temas:`),
       h('table.est-tabla.est-limites',
         h('caption', 'Temas con límite de fallos'),
@@ -172,42 +194,42 @@ export function estrategiaView({ progress, tit }) {
         tx.correccion.app ? { tipo: 'norma', texto: tx.correccion.app, fuente: { id: 'app', ...datos.fuentes.app } } : null]),
       !tx.correccion.verificado && tx.correccion.pendiente ? h('p.est-pendiente', icono('aviso', 'ico-t'), tx.correccion.pendiente) : null);
 
-    const tiempo = seccion('tiempo', 'reloj', 'Presupuesto de tiempo',
+    const tiempo = plegable({ id: 'est-b-tiempo', titulo: TX.tiempo, resumen: TX.resumenTiempo(c, disp.cartaS), abierto: abiertos.includes('tiempo') },
       h('p', `De media tienes ${cuenta(Math.round(c.minPorPregunta * 10) / 10, 'minuto')} por pregunta, pero no todas cuestan igual: las de carta llevan dibujo y cuenta. Un reparto razonable:`),
       pres.map((t) => h('div.est-tramo', tablaTiempo(t, pres.length > 1), hitos(t, pres.length > 1))),
       lista([{ tipo: 'consejo', texto: tx.tiempo.nota }, tx.py ? { tipo: 'consejo', texto: tx.py.reloj.texto } : null,
-        tx.py?.reloj.comprobado ? { tipo: 'norma', texto: tx.py.reloj.dato, fuente: tx.py.reloj.fuente } : null]));
+        tx.py?.reloj.comprobado ? { tipo: 'norma', texto: tx.py.reloj.dato, fuente: tx.py.reloj.fuente } : null]),
+      velocidad(T, disp, filasVel, consejoVel));
 
-    const modulos = tx.py ? seccion('modulos', 'brujula', 'El PY por módulos',
+    const contestar = plegable({ id: 'est-b-contestar', titulo: TX.contestar, resumen: TX.resumenContestar, abierto: abiertos.includes('contestar') },
+      sub('orden', 'lista', 'Orden para contestar', lista(tx.orden)),
+      sub('leer', 'lupa', 'Leer el enunciado y descartar', lista(tx.leer)),
+      sub('nosabes', 'pregunta', 'Si no la sabes', lista(tx.noSabes)),
+      sub('repaso', 'repaso', 'Repaso final y hoja de respuestas', lista(tx.repaso)));
+
+    const modulos = tx.py ? plegable({ id: 'est-b-modulos', titulo: TX.modulos(T.sigla), resumen: TX.resumenModulos(c), abierto: abiertos.includes('modulos') },
       lista(tx.py.modulos), lista(tx.py.consejos),
       h('p.no-imprimir', h('a', { href: tlink(tit, ['examenes']) }, 'Simulacro de un solo módulo, en Examen →'))) : null;
 
-    const dia = seccion('dia', 'calendario', 'El día del examen',
-      lista(tx.tribunal.dia), lista([tx.calculadora ? { tipo: 'consejo', texto: tx.calculadora } : null, tx.diaExamen]),
-      h('p.no-imprimir.est-enlace-lista', h('a.btn.secondary', { href: tlink(tit, ['dia-examen']) }, conIcono('lista', 'Mi lista del día del examen, con casillas'))),
-      !c.calculadora.permitida ? h('p.no-imprimir', h('a', { href: tlink(tit, ['cuentas']) }, 'Las cuentas del patrón →')) : null,
-      tx.tribunal.nota ? h('p.est-nota', tx.tribunal.nota) : null);
+    const dia = plegable({ id: 'est-b-dia', titulo: TX.dia, resumen: TX.resumenDia, abierto: abiertos.includes('dia') },
+      sub('antes', 'luna', 'El día antes', lista(tx.diaAntes),
+        h('p.no-imprimir.est-enlace-lista', h('a.btn.secondary', { href: tlink(tit, ['vispera']) }, conIcono('luna', 'Repaso exprés de la víspera (15 min)')))),
+      sub('dia', 'calendario', 'El día del examen',
+        lista(tx.tribunal.dia), lista([tx.calculadora ? { tipo: 'consejo', texto: tx.calculadora } : null, tx.diaExamen]),
+        h('p.no-imprimir.est-enlace-lista', h('a.btn.secondary', { href: tlink(tit, ['dia-examen']) }, conIcono('lista', 'Mi lista del día del examen, con casillas'))),
+        !c.calculadora.permitida ? h('p.no-imprimir', h('a', { href: tlink(tit, ['cuentas']) }, 'Las cuentas del patrón →')) : null,
+        tx.tribunal.nota ? h('p.est-nota', tx.tribunal.nota) : null),
+      ensayos(T, ce));
 
     const pend = [...tx.pendientes, ...(!tx.correccion.verificado && tx.correccion.pendiente ? [tx.correccion.pendiente] : [])];
+    const fuentes = plegable({ id: 'est-b-fuentes', titulo: TX.fuentes, resumen: TX.resumenFuentes, abierto: abiertos.includes('fuentes'), clase: 'est-fuentes' },
+      h('ol.est-lista-fuentes', [...citadas.values()].map(({ n, f }) => h('li', { value: String(n) },
+        f.url ? h('a', { href: f.url, target: '_blank', rel: 'noopener' }, f.titulo) : f.titulo, f.ref ? `, ${f.ref}` : '', '.'))),
+      pend.length ? sub('pendiente', 'aviso', 'Pendiente de verificar', h('p.est-sub', 'Esto no está comprobado para tu tribunal y por eso no se afirma arriba. Míralo en su convocatoria.'), h('ul', pend.map((p) => h('li', p)))) : null,
+      h('p.est-sub.no-imprimir', 'Reglas del examen y exámenes de convocatorias anteriores, en ', h('a', { href: tlink(tit, ['examenes']) }, 'Examen'), '. Trucos para recordar, en ', h('a', { href: link(['reglas']) }, 'Reglas para recordar'), '.'));
 
-    setChildren(cuerpo,
-      cifras,
-      h('div.est-tuya', tuya(T, c, tu), velocidad(T, disp, filasVel, consejoVel)),
-      limites,
-      tiempo,
-      ensayos(T, ce),
-      seccion('orden', 'lista', 'Orden para contestar', lista(tx.orden)),
-      seccion('leer', 'lupa', 'Leer el enunciado y descartar', lista(tx.leer)),
-      seccion('nosabes', 'pregunta', 'Si no la sabes', lista(tx.noSabes)),
-      seccion('repaso', 'repaso', 'Repaso final y hoja de respuestas', lista(tx.repaso)),
-      modulos,
-      seccion('antes', 'luna', 'El día antes', lista(tx.diaAntes),
-        h('p.no-imprimir.est-enlace-lista', h('a.btn.secondary', { href: tlink(tit, ['vispera']) }, conIcono('luna', 'Repaso exprés de la víspera (15 min)')), ' ', h('a.btn.secondary', { href: tlink(tit, ['dia-examen']) }, conIcono('lista', 'Mi lista del día del examen')))),
-      dia,
-      pend.length ? seccion('pendiente', 'aviso', 'Pendiente de verificar', h('p.est-sub', 'Esto no está comprobado para tu tribunal y por eso no se afirma arriba. Míralo en su convocatoria.'), h('ul', pend.map((p) => h('li', p)))) : null,
-      h('section.est-fuentes', h('h2.mc-clase-tit', 'Fuentes'), h('ul', [...citadas.values()].map((f) => h('li', f.url ? h('a', { href: f.url, target: '_blank', rel: 'noopener' }, f.titulo) : f.titulo))),
-        h('p.est-sub.no-imprimir', 'Reglas del examen y exámenes de convocatorias anteriores, en ', h('a', { href: tlink(tit, ['examenes']) }, 'Examen'), '. Trucos para recordar, en ', h('a', { href: link(['reglas']) }, 'Reglas para recordar'), '.')));
-    summaryText = `VISTA estrategia de examen ${T.sigla} · ${ficha.nombre}\n${resumenEstrategia(c, pres, tu)}\n${resumenVelocidad(filasVel, consejoVel)}\nENSAYOS EN PAPEL: ${ce.hechos} de ${ce.recomendados} → #/${tit}/ensayo\nRUTAS: #/${tit}/test/simulacro?s=<semilla> · #/${tit}/examenes`;
+    setChildren(cuerpo, cifras, boton, tuyaEl, limites, tiempo, contestar, modulos, dia, fuentes);
+    summaryText = `VISTA estrategia de examen ${T.sigla} · ${ficha.nombre}\n${resumenEstrategia(c, pres, tu)}\n${resumenVelocidad(filasVel, consejoVel)}\nENSAYOS EN PAPEL: ${ce.hechos} de ${ce.recomendados} → #/${tit}/ensayo\nRUTAS: #/${tit}/test/simulacro?s=<semilla> · #/${tit}/examenes\nBLOQUES PLEGADOS: ${[limites, tiempo, contestar, modulos, dia, fuentes].filter(Boolean).map((b) => `${b.querySelector('.plegable-tit').textContent}${b.open ? ' (abierto)' : ''}`).join(' · ')}`;
   }).catch((e) => setChildren(cuerpo, h('p.warn', `No se pudo preparar la estrategia: ${e.message}`)));
   return { el, summary: () => summaryText };
 }

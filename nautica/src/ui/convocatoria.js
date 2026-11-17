@@ -4,6 +4,7 @@
 // comprobar la lista de admitidos. Se guarda en los ajustes compartidos `convocatoria_<tit>` y `listadia_<tit>`
 // (docs/SYNC.md). Nada de esto se enseña con un examen en marcha (Hoy y Ajustes no son pantallas de examen).
 
+import { AJUSTES } from './textos-hubs.js';
 import { h, setChildren } from './dom.js';
 import { TITULACIONES, tlink, currentEje } from './titulacion.js';
 import { conIcono, icono } from './iconos.js';
@@ -104,7 +105,7 @@ export function seccionConvocatoria(progress, tit, { ficha = Promise.resolve(nul
   ficha.then((f) => { oficial = enlaceConvocatoria({ enlace: null }, f)?.url ?? null; pinta(); }).catch(() => {});
   const el = h('section#convocatoria.ajuste-convocatoria', { 'aria-labelledby': 'convocatoria-tit' },
     h('h2#convocatoria-tit', conIcono('calendario', `Tu convocatoria de ${T.sigla}`)),
-    h('p.muted', 'Opcional. Con la fecha de arriba, la hora, la sede y la página de tu tribunal salen en Hoy la semana del examen y en tu lista del día del examen. Se guardan en tus aparatos y se reinician solas cuando pongas la fecha de la convocatoria siguiente.'),
+    h('p.muted', AJUSTES.convocatoria),
     h('div.convocatoria-campos',
       h('label.field', { for: 'conv-hora' }, h('span.lbl', 'Hora del examen'), hora),
       h('label.field', { for: 'conv-sede' }, h('span.lbl', 'Sede o lugar'), sede),

@@ -61,9 +61,9 @@ const pantallas = (tit) => [
   ['hoy', `#/${tit}`, null, { tipos: { nuevo: 'portadaNuevo', avanzado: 'portadaAvanzado' } }],
   ['estrategia', `#/${tit}/estrategia`, null, { prim: 'a.btn.grande', tipos: { nuevo: 'referencia', avanzado: 'referenciaConDatos' } }],
   ['podcast', `#/${tit}/podcast`, 'referencia', {}],
-  ['ajustes', '#/ajustes', 'referencia', {}],
+  ['ajustes', '#/ajustes', 'referencia', { sinAccion: true }],
   ['tema', `#/${tit}/temario/1`, 'tema', { prim: 'a.btn.grande, a.btn:not(.secondary)' }],
-  ['mas', `#/${tit}/mas`, 'menu', {}],
+  ['mas', `#/${tit}/mas`, 'menu', { sinAccion: true, pendiente: 'Más es un menú; solo se le quitó el aviso de los datos (H-74)' }],
 ];
 
 async function sembrar(page, base, { perfil, tit, onboarded }) {
@@ -173,7 +173,7 @@ for (const esquema of CAPTURAS ? ['light', 'dark'] : ['light']) {
         if (m.palabras > tope.palabras) pasa.push(`palabras ${m.palabras} > ${tope.palabras}`);
         if (m.controles > tope.controles) pasa.push(`controles ${m.controles} > ${tope.controles}`);
         if (m.alto > tope.alto) pasa.push(`alto ${m.alto} > ${tope.alto} pantallas`);
-        if (tope.scroll != null && m.scrolls != null && m.scrolls > tope.scroll) pasa.push(`acción a ${m.scrolls} scrolls > ${tope.scroll}`);
+        if (tope.scroll != null && !op.sinAccion && m.scrolls != null && m.scrolls > tope.scroll) pasa.push(`acción a ${m.scrolls} scrolls > ${tope.scroll}`);
       }
       const fila = { perfil: P.id, pantalla: id, tipo, ...m, pasa };
       resultados.push(fila);

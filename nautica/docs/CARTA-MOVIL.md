@@ -113,7 +113,9 @@ un examen en marcha. Lógica en `src/exams/intencion.js`, interfaz en `src/ui/in
   revés». No «fallaste mareas».
 - Una dosis de uno o dos minutos solo sobre ese paso, con el pulgar y con reloj: la soltura también se entrena.
 - Días después, un problema parecido con otros números y sin pistas. El fallo solo se da por resuelto si se acierta ahí.
-- La lista de fallos (abiertos, vigilando, resueltos) y el tiempo por tipo de problema alimentan «¿Estás listo?».
+- La lista de fallos (abiertos, vigilando, resueltos) y el tiempo por tipo de problema alimentan «¿Estás listo?» (hecho,
+  H-70): un fallo abierto en un tema con límite o tardar más de lo que da el tribunal en los tipos que más caen es un riesgo
+  con su frase y su acción, y no deja decir «Estás listo» hasta resolverlo; en vigilancia pesa la mitad; sin datos, se dice.
 
 Se apoya en el diagnóstico por tipo de error de las preguntas reales (H-31) y necesita antes el catálogo de fallos (R-55).
 

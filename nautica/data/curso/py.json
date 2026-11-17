@@ -4483,160 +4483,6 @@
      ]
     },
     {
-     "id": "py-3-6",
-     "curso": "py",
-     "ut": 3,
-     "titulo": "Mareas: el Anuario y la curva de la marea",
-     "minutos": 10,
-     "objetivos": [
-      "Manejar los datos del Anuario de Mareas: horas en TU, alturas sobre el cero hidrográfico",
-      "Conocer la fórmula de la altura de la marea en un instante y la regla de los duodécimos",
-      "Saber cómo afectan la presión y el viento (los problemas se practican en el bloque de carta)"
-     ],
-     "refresco": [
-      "per-10-8"
-     ],
-     "requiere": [
-      "py-3-5"
-     ],
-     "pasos": [
-      {
-       "tipo": "texto",
-       "titulo": "Lo que añade el PY",
-       "texto": "En el PER viste qué son la pleamar, la bajamar, la amplitud, las mareas vivas y muertas y el cero hidrográfico. En el PY toca **calcular** cuánta agua habrá sobre un bajo a una hora (problema directo) o a qué hora habrá la que necesitas (inverso)."
-      },
-      {
-       "tipo": "texto",
-       "titulo": "Dónde caen en el examen",
-       "texto": "En el examen son las preguntas de mareas del bloque de **carta**. Aquí tienes el concepto y las fórmulas; los problemas completos, con el paso de hora oficial a TU, la marea vaciante (la que está bajando) y la corrección por presión, los practicas en la lección **«Mareas: sonda en un momento y hora para tener una sonda»** del bloque de carta."
-      },
-      {
-       "tipo": "texto",
-       "titulo": "El Anuario de Mareas",
-       "texto": "Lo publica cada año el **Instituto Hidrográfico de la Marina**. Trae:\n- **Puertos patrón**: para cada día, las horas y alturas de las pleamares y bajamares.\n- **Puertos secundarios**: diferencias de hora y altura respecto a un puerto patrón.\n- **Tablas auxiliares**: la altura de la marea en un instante cualquiera y la corrección por presión, entre otras."
-      },
-      {
-       "tipo": "texto",
-       "titulo": "Horas en TU, alturas desde el cero",
-       "texto": "Dos claves del Anuario: las **horas vienen en TU** (súmale el adelanto para la hora oficial) y las **alturas se miden desde el cero hidrográfico**, el mismo nivel desde el que se miden las sondas de la carta."
-      },
-      {
-       "tipo": "texto",
-       "titulo": "Las piezas de la fórmula",
-       "texto": "Toma la bajamar (BM) y la pleamar (PM) consecutivas que encierran tu hora:\n- **Duración D**: tiempo entre la BM y la PM.\n- **Amplitud A** = altura PM − altura BM.\n- **Intervalo I**: tiempo entre tu hora y la **bajamar** del tramo.\n\nLa marea sube despacio cerca de la bajamar, deprisa a media marea y despacio cerca de la pleamar."
-      },
-      {
-       "tipo": "texto",
-       "titulo": "La fórmula",
-       "texto": "**C = A · sen² (90° · I / D)**\n\n- Altura de la marea: **h = altura BM + C**.\n- **Sonda = sonda de la carta + h**.\n- Inverso: **I = D · arcsen (√(C / A)) / 90°**.\n\nLa tabla del Anuario para un instante cualquiera hace esta misma cuenta."
-      },
-      {
-       "tipo": "texto",
-       "titulo": "Cómo se lee la tabla",
-       "texto": "En el examen te dan la **tabla para calcular la altura de la marea en un instante cualquiera**:\n1. A la izquierda, busca la columna de **duración D** más próxima (de 4 h a 8 h, cada 15 min).\n2. Baja por ella hasta tu **intervalo I** desde la bajamar.\n3. En esa fila, bajo tu **amplitud A** (de 0,50 a 12 m), lees la **corrección C**, que sumas a la altura de la bajamar."
-      },
-      {
-       "tipo": "texto",
-       "titulo": "Tabla y fórmula",
-       "texto": "La tabla es la **misma fórmula** ya calculada: cada fila avanza **1/30 de la duración** y C viene redondeada al centímetro.\nSi D, I o A caen entre dos columnas o filas, **interpola**. Así, tabla y fórmula coinciden en **1–2 cm** o **1 minuto**.\nLa app resuelve con la fórmula; tú, en el examen, con la tabla. El ejemplo completo está en la lección de mareas del bloque de carta."
-      },
-      {
-       "tipo": "ilustracion",
-       "spec": {
-        "tipo": "marea",
-        "modo": "sonda"
-       }
-      },
-      {
-       "tipo": "texto",
-       "titulo": "Un ejemplo breve",
-       "texto": "BM **0,50 m** y PM **2,90 m** seis horas después; bajo con **1,20 m** en la carta. ¿Qué sonda hay **2 h** después de la bajamar?\n\n1. A = **2,40 m**; D = 6 h; I = 2 h.\n2. 90° · 2 / 6 = 30°; sen² 30° = 0,25 → C = **0,60 m**.\n3. h = 0,50 + 0,60 = **1,10 m** → sonda = 1,20 + 1,10 = **2,30 m**."
-      },
-      {
-       "tipo": "texto",
-       "titulo": "Comprobación: duodécimos",
-       "texto": "**Duodécimos**: en cada sexto de la duración la marea sube **1, 2, 3, 3, 2 y 1** doceavos de la amplitud. Tras dos sextos, 3/12 de 2,40 = **0,60 m**: lo mismo. Sirve para comprobar de cabeza; en el examen manda el Anuario."
-      },
-      {
-       "tipo": "ilustracion",
-       "spec": {
-        "tipo": "marea",
-        "modo": "duodecimos"
-       }
-      },
-      {
-       "tipo": "texto",
-       "titulo": "Presión",
-       "texto": "El Anuario predice la marea **astronómica** (la que producen la Luna y el Sol), con presión normal (unos 1013 hPa). El tiempo la modifica:\n- **Presión baja**: el nivel sube, aproximadamente **1 cm por cada hPa** por debajo de la normal.\n- **Presión alta**: el nivel baja en la misma proporción: tendrás **menos** agua de la calculada.\n\nEn el examen usa la tabla de corrección por presión del Anuario cuando te den la presión."
-      },
-      {
-       "tipo": "texto",
-       "titulo": "Viento",
-       "texto": "- **Viento** de la mar hacia tierra: más agua; de tierra hacia la mar: menos."
-      },
-      {
-       "tipo": "check",
-       "enunciado": "Una marea tiene 2,40 m de amplitud y 6 horas de duración. Según la regla de los duodécimos, ¿cuánto sube durante la tercera hora?",
-       "opciones": {
-        "a": "0,20 m",
-        "b": "0,40 m",
-        "c": "0,60 m"
-       },
-       "correcta": "c",
-       "explicacion": "En la tercera sexta parte sube 3/12 de la amplitud: 3/12 × 2,40 = 0,60 m. Las horas centrales son las de más corriente de marea; la primera y la última, las de menos (1/12 = 0,20 m)."
-      }
-     ],
-     "carta": [
-      "marea-sonda"
-     ],
-     "chuleta": [
-      "Anuario (IHM): horas en TU (+ adelanto = oficial), alturas sobre el cero hidrográfico.",
-      "Tramo BM–PM: D (tiempo), A (alturas), I (desde tu hora a la BM del tramo).",
-      "C = A · sen² (90° · I / D); h = altura BM + C; sonda = sonda de la carta + h.",
-      "Inverso: I = D · arcsen √(C / A) / 90°.",
-      "Duodécimos: 1-2-3-3-2-1 por sexto de duración (comprobación).",
-      "≈ 1 cm por hPa: presión alta, menos agua; baja, más."
-     ],
-     "profundizar": [
-      {
-       "titulo": "IHM – Anuario de Mareas: contenido",
-       "url": "https://armada.defensa.gob.es/ArmadaPortal/page/Portal/ArmadaEspannola/cienciaihm1/prefLang-es/02ProductosServicios--08InfoInteres--04infoAnuario"
-      },
-      {
-       "titulo": "IHM – El cero hidrográfico (PDF)",
-       "url": "https://armada.defensa.gob.es/ihm/doc/Cero_Hidrografico.pdf"
-      },
-      {
-       "titulo": "Puertos del Estado – Portus (predicción de mareas y nivel del mar)",
-       "url": "https://portus.puertos.es/"
-      }
-     ],
-     "verificacion": [
-      {
-       "dato": "Horas del Anuario en UTC (sumar el adelanto para la oficial); alturas sobre el cero hidrográfico; tablas de marea en un instante y de corrección por presión",
-       "fuente": "IHM, «Contenido del Anuario» (armada.defensa.gob.es, página del Anuario de Mareas)"
-      },
-      {
-       "dato": "C = A · sen²(90° · I / D); h = BM + C; sonda = sonda carta + h; inverso I = D · arcsen √(C/A) / 90°",
-       "fuente": "Misma formulación que py-4-9; reproduce la tabla del Anuario (curva sinusoidal)"
-      },
-      {
-       "dato": "Ejemplo A 2,40 m, D 6 h, I 2 h → 30°, sen² 0,25, C 0,60 m, h 1,10 m, sonda 2,30 m; duodécimos 3/12 × 2,40 = 0,60 m; check 3/12 × 2,40 = 0,60 m",
-       "fuente": "Recalculado de forma independiente por el revisor (Python, grados)"
-      },
-      {
-       "dato": "≈ 1 cm por hPa respecto a 1013 hPa (barómetro invertido)",
-       "fuente": "Tabla de corrección por presión del Anuario de Mareas (IHM); coherente con py-4-9 y con la regla py-nav-05"
-      }
-     ],
-     "terminos": [
-      "anuario-de-mareas",
-      "cero-hidrografico",
-      "amplitud",
-      "sonda-del-momento"
-     ]
-    },
-    {
      "id": "py-3-7",
      "curso": "py",
      "ut": 3,
@@ -6672,6 +6518,160 @@
       "corriente-desconocida",
       "rumbo-de-corriente",
       "intensidad-horaria"
+     ]
+    },
+    {
+     "id": "py-3-6",
+     "curso": "py",
+     "ut": 4,
+     "titulo": "Mareas: el Anuario y la curva de la marea",
+     "minutos": 10,
+     "objetivos": [
+      "Manejar los datos del Anuario de Mareas: horas en TU, alturas sobre el cero hidrográfico",
+      "Conocer la fórmula de la altura de la marea en un instante y la regla de los duodécimos",
+      "Saber cómo afectan la presión y el viento (los problemas completos, en la clase siguiente)"
+     ],
+     "refresco": [
+      "per-10-8"
+     ],
+     "requiere": [
+      "py-3-5"
+     ],
+     "pasos": [
+      {
+       "tipo": "texto",
+       "titulo": "Lo que añade el PY",
+       "texto": "En el PER viste qué son la pleamar, la bajamar, la amplitud, las mareas vivas y muertas y el cero hidrográfico. En el PY toca **calcular** cuánta agua habrá sobre un bajo a una hora (problema directo) o a qué hora habrá la que necesitas (inverso)."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Dónde caen en el examen",
+       "texto": "En el examen son las preguntas de mareas del bloque de **carta**. Aquí tienes el concepto y las fórmulas; los problemas completos, con el paso de hora oficial a TU, la marea vaciante (la que está bajando) y la corrección por presión, los practicas en la clase siguiente, **«Mareas: sonda en un momento y hora para tener una sonda»**."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "El Anuario de Mareas",
+       "texto": "Lo publica cada año el **Instituto Hidrográfico de la Marina**. Trae:\n- **Puertos patrón**: para cada día, las horas y alturas de las pleamares y bajamares.\n- **Puertos secundarios**: diferencias de hora y altura respecto a un puerto patrón.\n- **Tablas auxiliares**: la altura de la marea en un instante cualquiera y la corrección por presión, entre otras."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Horas en TU, alturas desde el cero",
+       "texto": "Dos claves del Anuario: las **horas vienen en TU** (súmale el adelanto para la hora oficial) y las **alturas se miden desde el cero hidrográfico**, el mismo nivel desde el que se miden las sondas de la carta."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Las piezas de la fórmula",
+       "texto": "Toma la bajamar (BM) y la pleamar (PM) consecutivas que encierran tu hora:\n- **Duración D**: tiempo entre la BM y la PM.\n- **Amplitud A** = altura PM − altura BM.\n- **Intervalo I**: tiempo entre tu hora y la **bajamar** del tramo.\n\nLa marea sube despacio cerca de la bajamar, deprisa a media marea y despacio cerca de la pleamar."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "La fórmula",
+       "texto": "**C = A · sen² (90° · I / D)**\n\n- Altura de la marea: **h = altura BM + C**.\n- **Sonda = sonda de la carta + h**.\n- Inverso: **I = D · arcsen (√(C / A)) / 90°**.\n\nLa tabla del Anuario para un instante cualquiera hace esta misma cuenta."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Cómo se lee la tabla",
+       "texto": "En el examen te dan la **tabla para calcular la altura de la marea en un instante cualquiera**:\n1. A la izquierda, busca la columna de **duración D** más próxima (de 4 h a 8 h, cada 15 min).\n2. Baja por ella hasta tu **intervalo I** desde la bajamar.\n3. En esa fila, bajo tu **amplitud A** (de 0,50 a 12 m), lees la **corrección C**, que sumas a la altura de la bajamar."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Tabla y fórmula",
+       "texto": "La tabla es la **misma fórmula** ya calculada: cada fila avanza **1/30 de la duración** y C viene redondeada al centímetro.\nSi D, I o A caen entre dos columnas o filas, **interpola**. Así, tabla y fórmula coinciden en **1–2 cm** o **1 minuto**.\nLa app resuelve con la fórmula; tú, en el examen, con la tabla. El ejemplo completo está en la clase siguiente."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "marea",
+        "modo": "sonda"
+       }
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Un ejemplo breve",
+       "texto": "BM **0,50 m** y PM **2,90 m** seis horas después; bajo con **1,20 m** en la carta. ¿Qué sonda hay **2 h** después de la bajamar?\n\n1. A = **2,40 m**; D = 6 h; I = 2 h.\n2. 90° · 2 / 6 = 30°; sen² 30° = 0,25 → C = **0,60 m**.\n3. h = 0,50 + 0,60 = **1,10 m** → sonda = 1,20 + 1,10 = **2,30 m**."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Comprobación: duodécimos",
+       "texto": "**Duodécimos**: en cada sexto de la duración la marea sube **1, 2, 3, 3, 2 y 1** doceavos de la amplitud. Tras dos sextos, 3/12 de 2,40 = **0,60 m**: lo mismo. Sirve para comprobar de cabeza; en el examen manda el Anuario."
+      },
+      {
+       "tipo": "ilustracion",
+       "spec": {
+        "tipo": "marea",
+        "modo": "duodecimos"
+       }
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Presión",
+       "texto": "El Anuario predice la marea **astronómica** (la que producen la Luna y el Sol), con presión normal (unos 1013 hPa). El tiempo la modifica:\n- **Presión baja**: el nivel sube, aproximadamente **1 cm por cada hPa** por debajo de la normal.\n- **Presión alta**: el nivel baja en la misma proporción: tendrás **menos** agua de la calculada.\n\nEn el examen usa la tabla de corrección por presión del Anuario cuando te den la presión."
+      },
+      {
+       "tipo": "texto",
+       "titulo": "Viento",
+       "texto": "- **Viento** de la mar hacia tierra: más agua; de tierra hacia la mar: menos."
+      },
+      {
+       "tipo": "check",
+       "enunciado": "Una marea tiene 2,40 m de amplitud y 6 horas de duración. Según la regla de los duodécimos, ¿cuánto sube durante la tercera hora?",
+       "opciones": {
+        "a": "0,20 m",
+        "b": "0,40 m",
+        "c": "0,60 m"
+       },
+       "correcta": "c",
+       "explicacion": "En la tercera sexta parte sube 3/12 de la amplitud: 3/12 × 2,40 = 0,60 m. Las horas centrales son las de más corriente de marea; la primera y la última, las de menos (1/12 = 0,20 m)."
+      }
+     ],
+     "carta": [
+      "marea-sonda"
+     ],
+     "chuleta": [
+      "Anuario (IHM): horas en TU (+ adelanto = oficial), alturas sobre el cero hidrográfico.",
+      "Tramo BM–PM: D (tiempo), A (alturas), I (desde tu hora a la BM del tramo).",
+      "C = A · sen² (90° · I / D); h = altura BM + C; sonda = sonda de la carta + h.",
+      "Inverso: I = D · arcsen √(C / A) / 90°.",
+      "Duodécimos: 1-2-3-3-2-1 por sexto de duración (comprobación).",
+      "≈ 1 cm por hPa: presión alta, menos agua; baja, más."
+     ],
+     "profundizar": [
+      {
+       "titulo": "IHM – Anuario de Mareas: contenido",
+       "url": "https://armada.defensa.gob.es/ArmadaPortal/page/Portal/ArmadaEspannola/cienciaihm1/prefLang-es/02ProductosServicios--08InfoInteres--04infoAnuario"
+      },
+      {
+       "titulo": "IHM – El cero hidrográfico (PDF)",
+       "url": "https://armada.defensa.gob.es/ihm/doc/Cero_Hidrografico.pdf"
+      },
+      {
+       "titulo": "Puertos del Estado – Portus (predicción de mareas y nivel del mar)",
+       "url": "https://portus.puertos.es/"
+      }
+     ],
+     "verificacion": [
+      {
+       "dato": "Horas del Anuario en UTC (sumar el adelanto para la oficial); alturas sobre el cero hidrográfico; tablas de marea en un instante y de corrección por presión",
+       "fuente": "IHM, «Contenido del Anuario» (armada.defensa.gob.es, página del Anuario de Mareas)"
+      },
+      {
+       "dato": "C = A · sen²(90° · I / D); h = BM + C; sonda = sonda carta + h; inverso I = D · arcsen √(C/A) / 90°",
+       "fuente": "Misma formulación que py-4-9; reproduce la tabla del Anuario (curva sinusoidal)"
+      },
+      {
+       "dato": "Ejemplo A 2,40 m, D 6 h, I 2 h → 30°, sen² 0,25, C 0,60 m, h 1,10 m, sonda 2,30 m; duodécimos 3/12 × 2,40 = 0,60 m; check 3/12 × 2,40 = 0,60 m",
+       "fuente": "Recalculado de forma independiente por el revisor (Python, grados)"
+      },
+      {
+       "dato": "≈ 1 cm por hPa respecto a 1013 hPa (barómetro invertido)",
+       "fuente": "Tabla de corrección por presión del Anuario de Mareas (IHM); coherente con py-4-9 y con la regla py-nav-05"
+      }
+     ],
+     "terminos": [
+      "anuario-de-mareas",
+      "cero-hidrografico",
+      "amplitud",
+      "sonda-del-momento"
      ]
     },
     {

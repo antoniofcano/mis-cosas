@@ -70,6 +70,7 @@ export function paginasGuia(T, { minutosDia = 20, fechaExamen = null, final = nu
     texto: [
       `Cuando has respondido al menos ${cuenta(MIN_RESPUESTAS, 'pregunta')} de cada tema, la app calcula tu probabilidad de aprobar con las reglas de verdad del examen, tema a tema y con sus límites de fallos.`,
       `Con un ${Math.round(LISTO * 100)} % o más, estás listo. Los simulacros completos (cronometrados, como el de verdad) también cuentan: haz varios en las últimas semanas.`,
+      'Además mira dos cosas que la probabilidad no ve: los fallos abiertos de tu cuaderno de fallos en los temas con límite (sobre todo la carta) y si llegas a tiempo en los tipos de problema que más caen. Si hay un riesgo concreto, te dice cuál y qué hacer, y no te da por listo hasta resolverlo.',
       lineaFinalGuia(E, final),
       'Lo ves en «Hoy», dentro de «Ver mi progreso», junto con los temas donde más fallas.',
     ].filter(Boolean),

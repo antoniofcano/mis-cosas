@@ -102,6 +102,12 @@ export function estadoFinal({ estructura, reserva = null, pool = [], respuestas 
       bloqueo = { motivo: 'faltan-datos', temas, prob: null, objetivo: LISTO, limitante: null };
       const nombres = temas.map((t) => `${t.titulo} (${t.faltan})`);
       lineas.push(`Se abre cuando la app te vea listo. Primero, responde al menos ${cuenta(MIN_RESPUESTAS, 'pregunta')} de cada tema; te faltan: ${nombres.length > 4 ? `${nombres.slice(0, 4).join(', ')} y ${cuenta(nombres.length - 4, 'tema')} más` : lista(nombres)}.`);
+    } else if (listo?.frenado) {
+      // Aciertas lo bastante, pero hay un riesgo concreto: un fallo abierto del cuaderno o el tiempo (src/course/listo-motivos.js).
+      const riesgos = (listo.motivos ?? []).filter((m) => m.nivel === 'riesgo');
+      bloqueo = { motivo: 'riesgos', temas: [], prob: listo.prob, objetivo: LISTO, limitante: null, riesgos };
+      lineas.push(`Con lo que aciertas ya aprobarías unas ${Math.round(listo.prob * 10)} de cada 10 veces, pero se abre cuando no te quede ${riesgos.length === 1 ? 'este riesgo' : `ninguno de estos ${riesgos.length} riesgos`}:`);
+      for (const m of riesgos) lineas.push(m.frase);
     } else {
       const de10 = Math.round((listo?.prob ?? 0) * 10);
       bloqueo = { motivo: 'prob', temas: [], prob: listo?.prob ?? 0, objetivo: LISTO, limitante: listo?.limitante ?? null };

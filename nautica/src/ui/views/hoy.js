@@ -32,6 +32,8 @@ import { empezarSesion, marcaDerrota, pasosQueTocan } from '../entrada.js';
 import { calcularSemana, apuntarSemana, botonSalir, botonVolver, tarjetaComoFue, enlaceSemana } from '../semana.js';
 import { rotuloSemana } from '../../course/semana.js';
 import { fotografiar, tablaFallos } from '../tras-examen.js';
+import { motivosListoEl } from '../listo-motivos.js';
+import { resumenMotivos } from '../../course/listo-motivos.js';
 import { tarjetaFoco } from '../foco.js';
 import { momentoExamen, recordatorioAdmitidos, claveConvocatoria } from '../../course/convocatoria.js';
 import { convocatoriaDe, tarjetaExamenCerca, tarjetaAdmitidos, lineaConvocatoria } from '../convocatoria.js';
@@ -327,7 +329,7 @@ export function hoyView({ progress, tit }) {
       summaryText = `VISTA hoy ${T.sigla} · ENTRADA ${entrada.modo}${parada ? ` · SIGUIENTE PARADA: ${parada.nombre}${parada.tipo ? ` (${parada.tipo})` : ''}` : ''}\n` +
         `FASE ${real.id}${mirando !== real.id ? ` (mirando ${mirando})` : ''}: ${real.detalle}. ${real.porque}\n` +
         `SESIÓN${guardada ? ` (${guardada.estado})` : ''}: ${(guardada?.pasos ?? comp.pasos).map((p, j) => `${j + 1}. ${p.titulo} — ${p.sub} (${p.minutos} min)${p.estado && p.estado !== 'pendiente' ? ` [${p.estado}]` : ''} → ${p.href ?? hrefActividad(tit, p)}`).join(' · ')}\n` +
-        `SEGUIR: #/${tit}/sesion (ejecutor) · DÍA: ${m.tipo} · ${m.texto}${m.detalle ? ` ${m.detalle}` : ''}\nLISTO: ${lineaListo(listo)}\n` +
+        `SEGUIR: #/${tit}/sesion (ejecutor) · DÍA: ${m.tipo} · ${m.texto}${m.detalle ? ` ${m.detalle}` : ''}\nLISTO: ${lineaListo(listo)}${resumenMotivos(listo, tit)}\n` +
         (cuesta ? `DIAGNÓSTICO: ${cuesta}\n` : '') +
         (nivel ? `NIVEL: ${nivel.aciertos}/${nivel.total} bien · saltables ${saltables.map((x) => x.l.id).join(', ') || '—'}\n` : ic && nuevo ? `NIVEL: sin hacer (oferta${s[claveNoNivel(eje, tit)] ? ' descartada' : ''}) → #/${tit}/nivel\n` : '') +
         (st.cuaderno && (st.cuaderno.dosis.length || st.cuaderno.comprobar.length) ? `CUADERNO DE FALLOS: dosis ${st.cuaderno.dosis.map((f) => f.id).join(', ') || '—'} · comprobar ${st.cuaderno.comprobar.map((f) => f.id).join(', ') || '—'} → #/${tit}/fallos\n` : '') +
@@ -402,6 +404,8 @@ export function hoyView({ progress, tit }) {
         h('p', lineaAvance(a, racha))),
       !ritmo ? h('p.muted', m.texto, m.detalle ? ` ${m.detalle}` : '') : null,
       h('section.listo', { class: `listo-${listo.estado}` }, h('h2', st.foco ? `¿Estás listo para el ${st.foco.titulo.replace(/^Módulo/, 'módulo')}?` : '¿Estás listo para el examen?'), h('p', listo.estado === 'listo' ? icono('ok', 'ico-t') : null, lineaListo(listo)),
+        // Tu cuaderno de fallos y tu tiempo por tipo (H-70): cada motivo con su frase y su acción.
+        motivosListoEl(tit, listo.motivos),
         lineaIdeas(conceptosPorTema(d.estructura, d.indiceConceptos, d.respuestas)),
         tablaFallos(tit, st),
         h('p.ver-progreso', h('a.btn.secondary.boton-icono', { href: '#/progreso' }, icono('progreso'), 'Ver mi progreso por temas'))),

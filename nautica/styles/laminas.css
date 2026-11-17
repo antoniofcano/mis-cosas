@@ -327,7 +327,8 @@ button.mc-imprimir { display: inline-flex; align-items: center; gap: .3rem; min-
    rango, insignias, barras) siguen igual y con «reducir movimiento» no se mueven. Ningún texto por debajo de .68rem
    (12 px con la raíz de 18 px). */
 .entrada, .travesia-pantalla, .semana-pantalla,
-.mc-hoja:is(.estrategia, .dia-examen, .vispera, .ensayo-papel), .aviso-diario, .ensayo-cuerpo, .fallos, .oficial {
+.mc-hoja:is(.estrategia, .dia-examen, .vispera, .ensayo-papel), .aviso-diario, .ensayo-cuerpo, .fallos, .oficial,
+.progress, .resumen-sesion, .cierre {
   --lc-fondo: var(--panel); --lc-papel: var(--surface); --lc-tinta: var(--text); --lc-apagado: var(--muted); --lc-magenta: var(--accent);
   --lc-azul-texto: var(--accent); --lc-linea-agua: var(--border); --lc-agua: var(--panel); --lc-agua-2: var(--accent-2);
   --lc-tierra: var(--tierra); --lc-amarillo: var(--amarillo); --lc-verde-texto: var(--ok); --lc-rojo-texto: var(--warn);
@@ -708,6 +709,91 @@ ol.ws-steps li.current { font-weight: 700; color: var(--accent); }
 ul.mas-lista { border-radius: 0; }
 ul.mas-lista .mas-fila-ico { border-radius: 0; }
 .mas-grupo > .eti { color: var(--accent); letter-spacing: .16em; }
+/* ---- Informe de fin de sesión y «Mi progreso» al lenguaje de Hoy (R-05) ----
+   El resumen de la sesión (src/ui/views/sesion.js, con su parte de travesía), el cierre de una clase, una tanda o un repaso
+   (src/ui/cierre.js) y Mi progreso (src/ui/views/misc.js): cartelas de papel con filete fino y esquinas rectas, rótulos en
+   versalitas de acento, títulos en la condensada, cifras en monoespaciada (solo cifras sueltas, nunca frases), barras como las
+   de Temario y el botón principal de siempre. Los --lc-* de estas pantallas siguen los colores de la app (lista de arriba).
+   Solo tokens, sin estructura ni animaciones nuevas. El color nunca es la única señal: cada estado lleva su texto o su trazo. */
+.progress :is(.prog-camino, .trav-rango, .trav-insignias-enlace, .examen-final.compacta, details.prog-carta, details.ideas-de-tema, .prog-temas .tema-card, .errores-repetidos .errores-lista li, table.stats, ul.ultimos li),
+.progress ul.clases-flojas a,
+.resumen-sesion :is(.parte-trav, .caja-trabajado, .parte-faro, .parte-subida),
+.cierre .stat {
+  background: var(--lc-papel); color: var(--lc-tinta); border: 1px solid var(--border); border-radius: 0; box-shadow: none;
+}
+.progress :is(.trav-insignias-enlace, .prog-temas a.tema-card, ul.clases-flojas a):hover { border-color: var(--lc-magenta); }
+.progress ul.clases-flojas a { border-left: 4px solid var(--lc-rojo-texto); }
+.progress ul.clases-flojas a, .progress a.tema-card { text-decoration: none; }
+.progress .examen-final.compacta { border-style: dashed; border-color: var(--lc-tinta); }
+/* Lo anidado en el parte, en el fondo de carta */
+.resumen-sesion :is(.parte-cifra, .parte-insignia) { background: var(--lc-fondo); color: var(--lc-tinta); border: 1px solid var(--lc-linea-agua); border-radius: 0; }
+.resumen-sesion .parte-faro { border: 1.5px solid var(--faro-on-texto); }
+.resumen-sesion .parte-subida { border: 1.5px solid var(--lc-magenta); }
+.resumen-sesion .parte-rango, .resumen-sesion .caja-manana { background: var(--lc-fondo); color: var(--lc-tinta); border: 1px dashed var(--lc-tinta); border-radius: 0; }
+li.idea-floja { border-radius: 0; background: var(--lc-fondo); border-left-color: var(--lc-rojo-texto); }
+.progress li.idea-floja { border: 1px solid var(--lc-linea-agua); border-left: 4px solid var(--lc-rojo-texto); }
+/* Rótulos: versalitas espaciadas de acento */
+.progress :is(h2.eti, h3.eti, .trav-rango-tx .small, .trav-fila-cab h2),
+.resumen-sesion :is(h2.eti, h3.eti, .caja-manana .eti) {
+  font-family: var(--fuente-texto); font-size: .72rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--lc-magenta); opacity: 1;
+}
+.progress .errores-repetidos h2.eti { margin-bottom: .2rem; }
+/* Títulos en la condensada */
+.progress :is(h1, .trav-rango-tx strong, .tema-card h3, .clase-floja-titulo, .idea-tema-titulo, .trav-insignias-tx strong, .examen-final.compacta .ef-tx h2, details.prog-carta > summary, .error-nombre),
+.resumen-sesion :is(h1, .parte-faro strong, .parte-subida strong, .parte-insignia strong, ul.trabajado li strong),
+.cierre h1 { font-family: var(--fuente-titulos); letter-spacing: .01em; color: var(--lc-tinta); }
+.progress .trav-rango-tx strong { font-size: 1.5rem; line-height: 1.1; }
+.progress :is(.tema-card h3, .clase-floja-titulo, .idea-tema-titulo, .error-nombre, .trav-insignias-tx strong), .resumen-sesion :is(.parte-faro strong, .parte-subida strong, .parte-insignia strong, ul.trabajado li strong) { font-size: 1.12rem; font-weight: 700; }
+/* Cifras sueltas en monoespaciada */
+.progress :is(.trav-rango-cifra b, .prog-pct, .ef-num, .error-n),
+.resumen-sesion .parte-cifra b, .cierre .stat b, .progress table.stats td:not(:first-child) {
+  font-family: var(--fuente-mono); font-variant-numeric: tabular-nums; letter-spacing: 0;
+}
+.resumen-sesion .parte-cifra b, .cierre .stat b { color: var(--lc-tinta); font-weight: 700; }
+.resumen-sesion .parte-cifra.suave b { color: var(--lc-apagado); }
+.resumen-sesion .parte-cifra { border-top: 3px solid var(--lc-magenta); }
+.resumen-sesion .parte-cifra.suave { border-top: 3px dashed var(--lc-apagado); }
+.cierre .stat { border-top: 3px solid var(--lc-magenta); }
+.progress .trav-rango-cifra { color: var(--lc-apagado); }
+.progress .trav-rango-cifra b, .progress .prog-pct { color: var(--lc-tinta); }
+.progress .trav-rango p, .progress .prog-camino p { color: var(--lc-apagado); }
+/* Discos: de papel con filete (el de la rosa, el de la insignia ganada con doble filete) */
+.progress .trav-disco, .resumen-sesion .trav-disco { background: var(--lc-papel); color: var(--lc-magenta); border: 1.5px solid var(--lc-tinta); box-shadow: none; }
+.resumen-sesion .insignia-disco { background: var(--lc-papel); color: var(--lc-magenta); border: 4px double var(--lc-magenta); }
+.resumen-sesion .parte-faro-disco { background: var(--faro-on-bg); color: var(--faro-on-texto); border: 2px solid var(--faro-on-borde); }
+.progress :is(.prog-enlace-ico, .ef-disco) { border-radius: 0; background: var(--lc-papel); color: var(--lc-magenta); border: 1.5px solid var(--lc-tinta); }
+.progress .mas-fila-flecha { color: var(--lc-magenta); }
+/* Barras: regla de papel con filete y el avance en acento (como Temario) */
+.progress :is(.barra-trav, .bar), .progress .prog-temas .tema-card .bar { height: 8px; border-radius: 0; background: var(--lc-papel); border: 1px solid var(--borde-fuerte); }
+.progress :is(.barra-trav, .bar) > span, .progress .prog-temas .tema-card .bar span, .progress .barra-trav.sobre-fondo span { border-radius: 0; background: var(--lc-magenta); }
+/* Marcas de hecho: un cuadrado con filete y el trazo dentro (nunca solo el color) */
+.resumen-sesion .fin-tick, .cierre .fin-tick { background: var(--lc-papel); border: 2px solid var(--ok); border-radius: 0; }
+.resumen-sesion .fin-tick { width: 64px; height: 64px; }
+.resumen-sesion .fin-tick path, .cierre .fin-tick path { stroke: var(--ok); }
+.cierre .fin-icono { background: var(--lc-papel); color: var(--lc-magenta); border: 2px solid var(--lc-magenta); border-radius: 0; }
+/* Lo trabajado: puntos cuadrados; el que hay que repasar, hueco y con su texto «A repasar» */
+.resumen-sesion ul.trabajado li { border-top: 1px solid var(--lc-linea-agua); }
+.resumen-sesion ul.trabajado .punto { border-radius: 0; }
+.resumen-sesion ul.trabajado li.mal .punto { background: var(--lc-papel); border: 3px solid var(--lc-rojo-texto); box-sizing: border-box; }
+.cierre ul.logros li { border-bottom: 1px solid var(--lc-linea-agua); }
+/* Botones: el principal de siempre con esquinas de carta; el secundario, con filete de tinta */
+.resumen-sesion .btn, .cierre .btn, .progress .btn { border-radius: 0; border: 1.5px solid var(--boton); font-family: var(--fuente-titulos); letter-spacing: .04em; }
+.resumen-sesion .btn.secondary, .cierre .btn.secondary, .progress .btn.secondary { background: var(--lc-papel); color: var(--lc-tinta); border-color: var(--lc-tinta); }
+.resumen-sesion a.trav-ficha, .progress a.trav-ficha { min-height: 44px; border-radius: 0; background: var(--lc-papel); color: var(--lc-tinta); border: 1.5px solid var(--lc-tinta); }
+.resumen-sesion a.trav-ficha:hover { border-color: var(--lc-magenta); }
+/* Enlaces de las ideas: 44 px de alto, uno junto a otro */
+.progress .idea-enlaces a, .resumen-sesion ul.trabajado a.enlace-ficha, .progress a.enlace-ficha { display: inline-flex; align-items: center; min-height: 44px; line-height: 1.2; color: var(--lc-azul-texto); }
+/* Tabla de ejercicios de carta, exámenes y errores */
+.progress table.stats { border-color: var(--borde-fuerte); }
+.progress table.stats th { font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; color: var(--lc-magenta); background: var(--lc-fondo); }
+.progress table.stats :is(th, td) { border-bottom: 1px solid var(--lc-linea-agua); }
+.progress ul.ultimos { list-style: none; padding: 0; display: grid; gap: .4rem; }
+.progress ul.ultimos li { padding: .5rem .7rem; }
+.progress :is(.errores-repetidos .errores-lista li, details.prog-carta, details.ideas-de-tema) { border-color: var(--border); }
+.progress .errores-repetidos .ico { color: var(--lc-magenta); }
+.progress :is(.resultados-final li, .examen-final.compacta) { border-radius: 0; }
+.progress :is(a, button, summary):focus-visible, .resumen-sesion :is(a, button):focus-visible, .cierre :is(a, button):focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+/* ---- fin Informe y Mi progreso ---- */
 /* Aviso de una pregunta de carta sin resolución programada o anulada (src/ui/views/exams.js, avisoMotivo; motivo de
    src/exams/motivo.js). Estilo C: papel, tinta y una etiqueta que dice el tipo con palabras (no solo con el color). */
 .motivo-carta { margin: .75rem 0; padding: .7rem .85rem .8rem; background: var(--lc-papel); color: var(--lc-tinta);

@@ -1,0 +1,8 @@
+{
+ "formato": "conceptos-etiquetas/1", "eje": "baleares", "tit": "per", "autor": "agente-r29", "fecha": "2026-11-17",
+ "etiquetas": {
+  "bal-per-2018-04-e-07": {"conceptos":["seguridad.remolque.dar-tomar","amarre.elementos.bita"],"motivo":"R-29: es de remolque (dónde afirma el remolcado el cabo); la bita es el cómo."},
+  "bal-per-2024-07-be-08": {"conceptos":["seguridad.remolque.dar-tomar","amarre.elementos.bita"],"motivo":"R-29: es de remolque (dónde afirma el remolcado el cabo); la bita es el cómo."},
+  "bal-per-2024-04-a-09": {"conceptos":["emergencia.via-agua.puntos-riesgo"],"motivo":"R-29: pregunta qué es una vía de agua, no por los imbornales."}
+ }
+}

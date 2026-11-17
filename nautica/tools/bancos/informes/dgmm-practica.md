@@ -9,31 +9,31 @@ Preguntas de estudio: 1704 (referencia: 810). Por tema: UT1 154 (ref 72) · UT2 
 
 | Clase | Preguntas | Referencia | |
 |---|---:|---:|---|
-| per-1-1 El casco y las referencias del barco | 12 | 6 |  |
+| per-1-1 El casco y las referencias del barco | 13 | 6 |  |
 | per-1-2 En cubierta: aberturas, desagües y barandillas | 11 | 9 |  |
 | per-1-3 La estructura del casco | 20 | 10 |  |
-| per-1-4 El timón | 25 | 7 |  |
+| per-1-4 El timón | 24 | 7 |  |
 | per-1-5 La hélice | 15 | 14 |  |
-| per-1-6 El equipo de fondeo | 27 | 14 |  |
-| per-1-7 Flotación, dimensiones y asiento | 46 | 12 |  |
+| per-1-6 El equipo de fondeo | 28 | 14 |  |
+| per-1-7 Flotación, dimensiones y asiento | 45 | 12 |  |
 | per-2-1 Elementos de amarre y partes de un cabo | 20 | 7 |  |
 | per-2-2 Los cuatro nudos del PER | 16 | 7 |  |
 | per-2-3 Elegir el fondeadero y el tenedero | 23 | 7 |  |
 | per-2-4 Fondeo a la gira: la maniobra | 9 | 3 |  |
 | per-2-5 Borneo, garreo y vigilancia del fondeo | 7 | 7 |  |
 | per-2-6 El orinque y la maniobra de levar | 5 | 5 |  |
-| per-3-1 Estabilidad y movimientos del barco | 19 | 10 |  |
+| per-3-1 Estabilidad y movimientos del barco | 20 | 10 |  |
 | per-3-2 Antes de hacerse a la mar | 7 | 4 |  |
-| per-3-3 Mal tiempo: a son de mar, capear y correr | 29 | 16 |  |
-| per-3-4 Tormentas, niebla y aguas someras | 39 | 18 |  |
-| per-3-5 Equipo de seguridad (I): zonas, chalecos, aros y balsas | 19 | 3 |  |
+| per-3-3 Mal tiempo: a son de mar, capear y correr | 28 | 16 |  |
+| per-3-4 Tormentas, niebla y aguas someras | 38 | 18 |  |
+| per-3-5 Equipo de seguridad (I): zonas, chalecos, aros y balsas | 20 | 3 |  |
 | per-3-6 Equipo de seguridad (II): pirotecnia, extintores y otros | 5 | 5 |  |
 | per-3-7 Hombre al agua: prevención, maniobras y búsqueda | 21 | 12 |  |
-| per-3-8 Rescate, primeros auxilios, remolque y Salvamento Marítimo | 16 | 4 |  |
+| per-3-8 Rescate, primeros auxilios, remolque y Salvamento Marítimo | 17 | 4 |  |
 | per-4-1 En regla y dentro del puerto | 12 | 3 |  |
 | per-4-2 Playas, zonas de baño y reservas marinas | 9 | 6 |  |
 | per-4-3 Buzos y bañistas: banderas y resguardos | 7 | 3 |  |
-| per-4-4 Aguas sucias: qué llevar y dónde descargar | 9 | 6 |  |
+| per-4-4 Aguas sucias: qué llevar y dónde descargar | 8 | 6 |  |
 | per-4-5 Basuras: MARPOL anexo V y entrega en puerto | 11 | 6 |  |
 | per-4-6 Responsabilidad, aviso de contaminación y deber de auxilio | 12 | 4 |  |
 | per-4-7 Pabellón nacional y bandera autonómica | 3 | 3 |  |
@@ -57,36 +57,36 @@ Preguntas de estudio: 1704 (referencia: 810). Por tema: UT1 154 (ref 72) · UT2 
 | per-7-2 Las amarras: largos, esprines, traveses y codera | 4 | 4 |  |
 | per-7-3 Gobierno, arrancada y curva de evolución | 9 | 4 |  |
 | per-7-4 La hélice y el timón | 11 | 8 |  |
-| per-7-5 La ciaboga, con una y con dos hélices | 5 | 3 |  |
+| per-7-5 La ciaboga, con una y con dos hélices | 4 | 3 |  |
 | per-7-6 Viento, corriente y olas: los agentes de la maniobra | 8 | 6 |  |
 | per-7-7 Atracar: de costado, de punta, abarloado y a una boya | 14 | 3 |  |
 | per-7-8 Desatracar: qué cabos largar y cómo salir | 10 | 2 |  |
 | per-8-1 Primeros auxilios I: heridas, contusiones y hemorragias | 8 | 7 |  |
 | per-8-2 Primeros auxilios II: quemaduras, calor y mareo | 13 | 5 |  |
 | per-8-3 Ayuda médica a distancia: Radio-Médico, Guía Sanitaria y botiquín | 8 | 2 |  |
-| per-8-4 Varada y abordaje | 27 | 7 |  |
+| per-8-4 Varada y abordaje | 28 | 7 |  |
 | per-8-5 Vías de agua e inundación | 17 | 7 |  |
 | per-8-6 El fuego: tetraedro, clases y prevención | 12 | 12 |  |
-| per-8-7 Apagar un incendio a bordo | 13 | 5 |  |
+| per-8-7 Apagar un incendio a bordo | 12 | 5 |  |
 | per-8-8 Abandono de la embarcación y señales pirotécnicas | 12 | 6 |  |
 | per-8-9 Supervivencia en el agua: hipotermia | 5 | 5 |  |
 | per-9-1 La presión atmosférica: barómetros e isobaras | 52 | 15 |  |
 | per-9-2 Borrascas y anticiclones | 19 | 15 |  |
 | per-9-3 El viento: vocabulario e instrumentos | 17 | 12 |  |
-| per-9-4 Viento real, de avance y aparente | 6 | 3 |  |
+| per-9-4 Viento real, de avance y aparente | 8 | 3 |  |
 | per-9-5 Brisas costeras: virazón y terral | 17 | 9 |  |
 | per-9-6 Beaufort, la mar y la escala Douglas | 29 | 17 |  |
 | per-9-7 Antes de zarpar: la previsión y la decisión | 14 | 4 |  |
 | per-10-1 La Tierra y las coordenadas | 13 | 10 |  |
-| per-10-2 Distancia, velocidad y tiempo a bordo | 27 | 14 |  |
+| per-10-2 Distancia, velocidad y tiempo a bordo | 26 | 14 |  |
 | per-10-3 La carta náutica y las publicaciones | 22 | 12 |  |
-| per-10-4 Faros y luces en la carta | 7 | 7 |  |
+| per-10-4 Faros y luces en la carta | 9 | 7 |  |
 | per-10-5 Los tres nortes: declinación, desvío y corrección total | 55 | 13 |  |
 | per-10-6 Rumbos: verdadero, magnético y de aguja | 8 | 5 |  |
-| per-10-7 Demora, marcación y líneas de posición | 39 | 13 |  |
-| per-10-8 Mareas | 13 | 12 |  |
+| per-10-7 Demora, marcación y líneas de posición | 37 | 13 |  |
+| per-10-8 Mareas | 35 | 12 |  |
 | per-10-9 Viento y corriente: abatimiento y deriva | 15 | 4 |  |
-| per-11-1 La carta del Estrecho: coordenadas, distancias y rumbos | 31 | 4 |  |
+| per-11-1 La carta del Estrecho: coordenadas, distancias y rumbos | 8 | 4 |  |
 | per-11-2 Corrección total y conversión de rumbos | 14 | 13 |  |
 | per-11-3 Rumbo directo, distancia y hora de llegada | 28 | 20 |  |
 | per-11-4 Situación de estima | 29 | 16 |  |
@@ -112,7 +112,7 @@ Preguntas de estudio: 387 (referencia: 720). Por tema: UT1 99 (ref 180) · UT2 9
 | py-1-6 Hacerse ver: pirotecnia, espejo, bocina y reflector de radar | 18 | 26 | no llega |
 | py-1-7 Extintores y lucha contra incendios a bordo | 5 | 10 | no llega |
 | py-1-8 Abandono del barco y vida en la balsa | 17 | 20 | no llega |
-| py-1-9 Radiobaliza, respondedor de radar y VHF de socorro | 18 | 18 |  |
+| py-1-9 Radiobaliza, respondedor de radar y VHF de socorro | 17 | 18 |  |
 | py-1-10 Rescate con helicóptero y Salvamento Marítimo | 20 | 15 |  |
 | py-2-1 Isobaras, gradiente de presión, borrascas y anticiclones | 19 | 19 |  |
 | py-2-2 Masas de aire y frentes | 15 | 19 | no llega |
@@ -128,11 +128,11 @@ Preguntas de estudio: 387 (referencia: 720). Por tema: UT1 99 (ref 180) · UT2 9
 | py-3-3 Viento y corriente: abatimiento, deriva y rumbo efectivo | 19 | 19 |  |
 | py-3-4 Loxodrómica y estima analítica: los conceptos | 6 | 20 | no llega |
 | py-3-5 La hora en la mar: TU, hora civil, legal, oficial y HRB | 11 | 16 | no llega |
-| py-3-6 Mareas: el Anuario y la curva de la marea | 3 | 17 | no llega |
+| py-3-6 Mareas: el Anuario y la curva de la marea | 9 | 17 | no llega |
 | py-3-7 Publicaciones náuticas: derroteros, Avisos a los Navegantes y radioavisos | 14 | 14 |  |
 | py-3-8 El radar: ajustes, presentaciones, demoras y distancias | 22 | 22 |  |
 | py-3-9 GNSS: las siglas de la pantalla y el datum | 22 | 26 | no llega |
-| py-3-10 Cartas electrónicas y AIS | 30 | 35 | no llega |
+| py-3-10 Cartas electrónicas y AIS | 31 | 35 | no llega |
 | py-4-1 Corrección total: declinación, enfilaciones, oposiciones y la Polar | 9 | 19 | no llega |
 | py-4-2 Viento y abatimiento: rumbo de superficie y rumbo a dar | 9 | 12 | no llega |
 | py-4-3 Rumbo para pasar a una distancia de un faro, con viento | 10 | 16 | no llega |

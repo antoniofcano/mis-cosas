@@ -17,6 +17,18 @@ Qué cambia en la app para quien la usa, por fecha de publicación. Es la base d
 
 Nada pendiente.
 
+## 17 de noviembre de 2026 · versión `77b5fd5d1dc7`
+
+**Mejoras**
+
+- **«¿Estás listo?» mira ahora tu cuaderno de fallos y tu tiempo en la carta.** Además de cuántas aciertas por tema, te dice lo que puede tumbarte aunque aciertes, cada cosa con su frase y lo que tienes que hacer: «Tienes 2 fallos abiertos en carta: «Signo de la Ct» y «Sin corregir la Ct»… → Haz sus dosis de 2 minutos», o «En marea y sonda tardas 7:40 de media y el examen te da unos 5 min 30 s por problema de carta → Practica uno con reloj». Un fallo abierto en un tema con límite de fallos, o tardar más de lo que da el tribunal en los problemas que más caen, no te deja en «Estás listo» (te quedas en «Casi», con tu probabilidad tal cual) hasta que lo resuelvas; un fallo en vigilancia pesa la mitad y uno resuelto ya no cuenta. Si aún no tienes al menos 3 problemas cronometrados de un tipo, te lo dice en vez de juzgarte. Con un solo módulo del PY, solo cuenta ese. Lo ves en Hoy, la Travesía, la semana del examen y, si es lo que lo tiene cerrado, en el examen final. Los umbrales son orientativos: se ajustarán con resultados reales.
+- **El informe de fin de sesión, el cierre de clases y tandas y «Mi progreso» con la cara nueva**: cartelas de esquinas rectas con filete fino, títulos en la condensada, cifras en monoespaciada, barras como las del Temario, y claro y oscuro con los mismos colores que Hoy. Los enlaces de las ideas flojas son más fáciles de tocar. Mismos datos y misma lógica (R-05, H-71).
+
+**Correcciones**
+
+- **Cada pregunta, en su tema y en su clase**: unas 100 preguntas reales que salían en la práctica de una clase de otro tema (un extintor en «Seguridad», un nudo en «Maniobra», un faro de balizamiento en la teoría de navegación…) ahora están en el tema que dice el programa oficial y practican en la clase que las explica. Donde el tribunal las cuenta en un bloque con límite de fallos, conservan ese bloque para que tus exámenes reales se corrijan igual que en el examen.
+- **Patrón de Yate: el Anuario de Mareas pasa a Carta de navegación**, que es donde el tribunal pone las mareas y donde cuentan para el máximo de 3 fallos. La clase sigue en el mismo sitio de tu ruta; tu progreso no cambia.
+
 ## 16 de noviembre de 2026, novena publicación · versión `04e9320160b0`
 
 **Novedades**

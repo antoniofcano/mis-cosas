@@ -55,6 +55,7 @@ import { relojPaso } from '../reloj-paso.js';
 import { tiemposAlumno } from '../../store/tiempos.js';
 import { estructuraEnsayo, parteValida, tituloEnsayo, corregirHoja, cuentaEnsayos } from '../../theory/ensayo.js';
 import { correrEnsayo } from '../ensayo.js';
+import { motivosListoEl } from '../listo-motivos.js';
 import { prepararPlan, pantallaPrimerMinuto, lineaAvisoPlan, avisoDelPlan, informeDelPlan, cansancioDe, seccionInformePlan, partesDelGeneral, textoInformePlan, resumenPlan } from '../plan-examen.js';
 
 let chartRef = null;
@@ -336,7 +337,10 @@ export function tarjetaFinal(T0, fin, { titulo = 'h2' } = {}) {
   return h('section.examen-final', { class: fin.desbloqueado ? 'abierto' : 'cerrado' },
     h(titulo, conIcono(fin.desbloqueado ? 'diana' : 'candado', 'Examen final')),
     h('p.muted.small', 'Preguntas reales reservadas que no salen al estudiar: la mejor prueba de si lo sabes de verdad.'),
-    fin.lineas.map((l) => h('p', l)),
+    // Cerrado por un riesgo concreto (cuaderno de fallos o tiempo, H-70): la primera línea y los riesgos con su acción.
+    fin.bloqueo?.motivo === 'riesgos'
+      ? [h('p', fin.lineas[0]), motivosListoEl(T0.id, fin.bloqueo.riesgos, { titulo: null, nota: false })]
+      : fin.lineas.map((l) => h('p', l)),
     fin.desbloqueado
       ? h('a.btn.grande', { href: tlink(T0.id, ['test', 'final']), class: fin.sugerir || !fin.todasVistas ? '' : 'secondary' }, fin.todasVistas ? 'Hacerlo igualmente' : 'Hacer el examen final')
       : null,
@@ -354,7 +358,8 @@ export function tarjetaFinalCompacta(T0, fin) {
   const temas = b?.temas ?? [];
   const resumen = b?.motivo === 'faltan-datos'
     ? `Cerrado: te faltan preguntas de ${cuenta(temas.length, 'tema')}.`
-    : `Cerrado: se abre cuando aprobarías unas ${Math.round((b?.objetivo ?? 0) * 10)} de cada 10 veces.`;
+    : b?.motivo === 'riesgos' ? `Cerrado: aciertas lo bastante, pero te ${b.riesgos.length === 1 ? 'queda 1 riesgo concreto' : `quedan ${b.riesgos.length} riesgos concretos`}.`
+      : `Cerrado: se abre cuando aprobarías unas ${Math.round((b?.objetivo ?? 0) * 10)} de cada 10 veces.`;
   return h('section.examen-final.compacta.cerrado',
     h('div.ef-fila', h('span.ef-disco', icono('candado')),
       h('div.ef-tx', h('h2', 'Examen final'), h('p.small', resumen))),

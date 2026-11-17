@@ -100,7 +100,8 @@ export function listoCorto(r) {
   const de10 = Math.round(r.prob * 10);
   const bajo = Math.round(r.margen.bajo * 10), alto = Math.round(r.margen.alto * 10);
   const rango = alto - bajo >= 2 && bajo !== alto ? `entre ${bajo} y ${alto}` : `unas ${de10}`;
-  return `${base}: aprobarías ${rango} de cada 10`;
+  // Con un riesgo concreto (cuaderno de fallos o tiempo, src/course/listo-motivos.js), se dice cuántos.
+  return `${base}: aprobarías ${rango} de cada 10${r.riesgos ? ` · ${cuenta(r.riesgos, 'riesgo')}` : ''}`;
 }
 
 /**

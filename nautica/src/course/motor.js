@@ -19,6 +19,8 @@ import { colaRepaso, repasoDelDia, sumaDias } from './repaso.js';
 import { siguienteEnRuta } from './ruta.js';
 import { focoModulo, datosDelModulo } from './foco.js';
 import { cuadernoDe } from './cuaderno.js';
+import { velocidadPorTipo } from './velocidad.js';
+import { tiposDelBanco, motivosListo, conMotivos } from './listo-motivos.js';
 
 /**
  * @typedef {object} Entrada
@@ -41,6 +43,11 @@ import { cuadernoDe } from './cuaderno.js';
  * @property {object|null} [conceptos]  solo si el banco tiene sus preguntas etiquetadas (docs/CONCEPTOS.md):
  *   { principalDe(id), estado (progress.repasoConceptos), etiqueta(idConcepto), flojos: [{ id, etiqueta, … }] }.
  *   Con él, el repaso de fallos va por concepto (src/course/repaso.js); sin él, todo es como siempre.
+ * @property {(q: object) => string} [tipoDe]  tipo de problema de una pregunta (src/course/velocidad.js, tipoDePregunta)
+ * @property {number|null} [cartaUt]  el tema de carta de la titulación
+ * @property {{ practica?: object[], disponible?: { cartaS: number|null, teoriaS: number|null } }} [tiempo]  tu tiempo en la
+ *   práctica de carta (solo en el aparato, src/store/tiempos.js) y el tiempo que te deja el examen por pregunta
+ *   (tiempoDisponible, src/course/estrategia.js). Con `tipoDe` y esto, «¿Estás listo?» mira tu cuaderno y tu tiempo.
  */
 
 /** El estado del alumno: lo único que leen las pantallas. @param {Entrada} e */
@@ -95,9 +102,16 @@ export function estadoAlumno(e) {
   // Con un módulo aprobado y el otro pendiente (PY, src/course/tras-examen.js), «¿Estás listo?» es el del módulo que queda.
   // Con un módulo (elegido o el que queda), «¿Estás listo?» es el de ese módulo, con sus simulacros y exámenes.
   const pendiente = moduloPendiente(leerAjuste(s[claveSemana(tit)]), e.estructura);
-  const listo = foco
+  const listo0 = foco
     ? { ...estoyListo(d.estructura, d.preguntas, d.respuestas, testsDelModulo(d.tests, foco.id)), modulo: foco.id }
     : estoyListo(d.estructura, d.preguntas, d.respuestas, d.tests);
+  // Y lo que la probabilidad no ve (src/course/listo-motivos.js): los fallos abiertos del cuaderno en temas con límite y
+  // tu tiempo por tipo de problema frente al del tribunal. Con un módulo, solo sus temas y sus tipos.
+  const disp = e.tiempo?.disponible ?? null;
+  const filasVel = velocidadPorTipo({ tests: d.tests, practica: e.tiempo?.practica ?? [], disponibleCartaS: disp?.cartaS ?? null, disponibleTeoriaS: disp?.teoriaS ?? null });
+  const motivos = motivosListo({ cuaderno: d.cuaderno, estructura: d.estructura, tipos: tiposDelBanco(d.preguntas, e.tipoDe), cartaUt: e.cartaUt ?? null,
+    filas: filasVel, disponibleS: disp?.cartaS ?? null, respuestas: d.respuestas, ahora: d.ahora });
+  const listo = conMotivos(listo0, motivos);
   const diasAlExamen = fechaExamen ? diasHasta(fechaExamen, d.ahora) : null;
   const final = estadoFinal({ estructura: d.estructura, reserva: e.reserva ?? null, pool: e.pool ?? [], respuestas: d.respuestas, tests: d.tests, listo, diasAlExamen, ahora: d.ahora });
   d.final = final;

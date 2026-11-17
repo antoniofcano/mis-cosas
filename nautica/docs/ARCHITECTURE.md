@@ -42,7 +42,7 @@ nautica/
 ├── styles/laminas.css    Láminas (`--lc-*`, con su claro y oscuro propios) y Hoy, Travesía y la semana en estilo carta;
 │                         desde R-69 también la mesa de cartas (carta interactiva, ampliada y mesa), la estrategia, el día del examen, la víspera, el ensayo, el cuaderno de fallos y el aviso
 │                         diario (mismo patrón: los `--lc-*` se reasignan a los tokens) y un bloque «Resto de pantallas» (Temario, Examen,
-│                         clase, fichas…) solo con tokens. Las clases y las láminas no reasignan `--lc-*`. Icono: icons/icono.svg (PNG de él)
+│                         clase, fichas…) solo con tokens y, desde R-05, el informe de fin de sesión, el cierre de clases y tandas y Mi progreso (`.progress`, `.resumen-sesion`, `.cierre`: bloque «Informe y Mi progreso»). Las clases y las láminas no reasignan `--lc-*`. Icono: icons/icono.svg (PNG de él)
 └── tests/                node --test
 ```
 
@@ -144,6 +144,20 @@ un banco concreto; las vistas piden `cargarBanco(currentEje(progress), tit)`.
   `moduloPendiente`, y `planSemana` recibe `soloModulo` (el simulacro es solo el de ese módulo). La interfaz,
   `ui/tras-examen.js`: `tablaFallos` (Hoy, Travesía y semana), `fotografiar` (Hoy y semana), `tarjetaResultado` (tras
   «¿Cómo te fue?» y en `#/<tit>/semana`), `avisoModulo`. Norma de la conservación del módulo: BOE-A-2026-510, anexo III C.
+- **«¿Estás listo?» con el cuaderno y el tiempo** (H-70, R-56; `course/listo-motivos.js`, puro; tests
+  `tests/listo-motivos.test.js`): `estadoAlumno` calcula `estoyListo` como siempre y le añade `motivos` con
+  `motivosListo` y `conMotivos` (`st.listo.motivos`, `riesgos`, `frenado`, `estadoModelo`). `tiposDelBanco` (con el
+  `tipoDe` de la entrada, que pone `ui/cierre.js` con `SOLUCIONES`) da el tema de cada tipo de problema y los que más caen
+  (los más frecuentes del estudio, nunca reservadas, hasta cubrir `CUBREN_FRECUENTES` = 80 % de la carta; con foco, solo
+  su módulo). `motivosCuaderno`: por tema con límite propio, peso abierto 1, vigilando 0,5, resuelto 0 (`PESO_ESTADO`);
+  riesgo desde `RIESGO_CUADERNO` = 1; acción: comprobar, dosis o el cuaderno. `motivosVelocidad`: `velocidadPorTipo`
+  (tests con `tq` y la práctica del aparato, `entrada.tiempo.practica`) frente a `tiempoDisponible().cartaS`
+  (`entrada.tiempo.disponible`): te pasas, riesgo; justo (> 75 %), aviso; menos de `MIN_MUESTRAS_TIEMPO` = 3, «sin datos»;
+  acción `practicaConReloj` (`#/q/<id>?guiado=1` de una pregunta del estudio de ese tipo, o `#/ej/<tipo>`). Con un riesgo,
+  «listo» pasa a «casi» sin tocar la probabilidad, `lineaListo`/`listoCorto` lo dicen y `estadoFinal` deja el examen final
+  cerrado con `bloqueo.motivo = 'riesgos'`. Umbrales: hipótesis (R-14). La interfaz, `ui/listo-motivos.js`
+  (`motivosListoEl`): Hoy (bajo «¿Estás listo?»), Travesía, semana del examen y tarjeta del examen final; las vistas no
+  los calculan.
 - **Tu convocatoria** (R-44, `course/convocatoria.js` puro, `ui/convocatoria.js`): hora, sede y enlace opcionales (ajuste compartido `convocatoria_<tit>`, que junto a `listadia_<tit>` se reinicia con la convocatoria siguiente: la fecha cambia cuando la anterior ya pasó), editables y borrables en Ajustes → «Tu convocatoria»; Hoy enseña «Tu examen» la semana del examen (`momentoExamen`) y, de 21 días a la víspera, «¿Ya has comprobado que estás en la lista de admitidos…?» (`recordatorioAdmitidos`; la app no consulta el boletín). El push diario no se toca: su texto es fijo en `sw.js` y no conoce la fecha.
 - **Tu velocidad en carta** (R-42; `course/velocidad.js`, funciones puras; tests `tests/velocidad.test.js`): tipo de
   problema de cada pregunta (`tipoDePregunta`: el `ejercicio` de su solución, `carta` o `teoria`), acumulador de tiempo con

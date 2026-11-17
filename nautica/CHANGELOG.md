@@ -15,7 +15,9 @@ Qué cambia en la app para quien la usa, por fecha de publicación. Es la base d
 
 ## Sin publicar
 
-Nada pendiente.
+**Mejoras**
+
+- **El informe de fin de sesión, el cierre de clases y tandas y «Mi progreso» con la cara nueva**: cartelas de esquinas rectas con filete fino, títulos en la condensada, cifras en monoespaciada, barras como las del Temario, y claro y oscuro con los mismos colores que Hoy. Los enlaces de las ideas flojas son más fáciles de tocar. Mismos datos y misma lógica (R-05, H-71).
 
 ## 16 de noviembre de 2026, novena publicación · versión `04e9320160b0`
 

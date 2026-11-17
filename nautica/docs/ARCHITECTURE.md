@@ -42,7 +42,7 @@ nautica/
 ├── styles/laminas.css    Láminas (`--lc-*`, con su claro y oscuro propios) y Hoy, Travesía y la semana en estilo carta;
 │                         desde R-69 también la mesa de cartas (carta interactiva, ampliada y mesa), la estrategia, el día del examen, la víspera, el ensayo, el cuaderno de fallos y el aviso
 │                         diario (mismo patrón: los `--lc-*` se reasignan a los tokens) y un bloque «Resto de pantallas» (Temario, Examen,
-│                         clase, fichas…) solo con tokens. Las clases y las láminas no reasignan `--lc-*`. Icono: icons/icono.svg (PNG de él)
+│                         clase, fichas…) solo con tokens y, desde R-05, el informe de fin de sesión, el cierre de clases y tandas y Mi progreso (`.progress`, `.resumen-sesion`, `.cierre`: bloque «Informe y Mi progreso»). Las clases y las láminas no reasignan `--lc-*`. Icono: icons/icono.svg (PNG de él)
 └── tests/                node --test
 ```
 

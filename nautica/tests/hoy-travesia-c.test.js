@@ -230,3 +230,43 @@ test('R-69: la estrategia, el día del examen, la víspera, el ensayo, el cuader
   for (const s of ['.estrategia', '.dia-examen', '.vispera', '.ensayo-papel', '.aviso-diario', '.fallos']) assert.ok(cab.includes(s), s + ' sin reasignar');
   for (const s of ['.leccion', '.lc-marco', 'svg.il', '.cps']) assert.ok(!cab.includes(s), s + ' no debe reasignarse (sus láminas conservan los colores)');
 });
+
+// ---- R-05: el informe de fin de sesión y «Mi progreso» ----
+const BLOQUE_R05 = (() => {
+  const i = LAM.indexOf('/* ---- Informe de fin de sesión y «Mi progreso»');
+  const j = LAM.indexOf('/* ---- fin Informe y Mi progreso ---- */');
+  assert.ok(i > 0 && j > i, 'bloque de R-05 en laminas.css');
+  return LAM.slice(i, j);
+})();
+const tokensApp = (desde) => { const i = APP.indexOf(desde); const f = APP.indexOf('\n  }', i) > 0 ? APP.indexOf('}', APP.indexOf('}', i) ) : APP.indexOf('}', i); return Object.fromEntries([...APP.slice(i, f).matchAll(/--([a-z0-9-]+):\s*(#[0-9a-fA-F]{6})\b/g)].map((m) => [m[1], m[2]])); };
+
+test('R-05: el informe y Mi progreso reasignan los --lc-* a la app; solo tokens, sin animaciones, sin texto de menos de 12 px', () => {
+  const i = LAM.indexOf('.entrada, .travesia-pantalla, .semana-pantalla,');
+  const cab = LAM.slice(i, LAM.indexOf('{', i));
+  for (const s of ['.progress', '.resumen-sesion', '.cierre']) assert.ok(cab.includes(s), `${s} sin reasignar`);
+  const css = sinComentarios(BLOQUE_R05);
+  assert.ok(!/#[0-9a-f]{3,8}\b|rgba?\(|hsl/i.test(css), 'sin colores fijos');
+  assert.doesNotMatch(css, /@keyframes|animation|transition/);
+  for (const v of new Set(css.match(/var\(--[a-z0-9-]+/g))) {
+    const k = v.slice(4);
+    if (k.startsWith('--lc-')) assert.ok(CLARO[k.slice(2)], `${k} no definida`); else assert.ok(APP.includes(`${k}:`), `${k} no definida en app.css`);
+  }
+  for (const m of css.matchAll(/font-size:\s*([^;}]+)/g)) { const v = m[1].trim(); const px = v.endsWith('rem') ? parseFloat(v) * 18 : null; assert.ok(px == null || px >= 12, `font-size ${v}`); }
+  // Cifras en mono y títulos en la condensada, y los objetivos táctiles de las ideas a 44 px.
+  assert.match(css, /--fuente-mono/);
+  assert.match(css, /--fuente-titulos/);
+  assert.match(css, /\.idea-enlaces a[^{]*\{[^}]*min-height: 44px/);
+});
+
+test('R-05: contraste AA de lo que pintan estas pantallas, en claro y en oscuro', () => {
+  const claro = tokensApp(':root {');
+  const oscuro = tokensApp('@media (prefers-color-scheme: dark)');
+  for (const [modo, P] of [['claro', claro], ['oscuro', oscuro]]) {
+    for (const fondo of ['surface', 'panel']) {
+      for (const tx of ['text', 'muted', 'accent', 'ok', 'warn']) assert.ok(contraste(P[tx], P[fondo]) >= 4.5, `${modo}: ${tx} sobre ${fondo}`);
+    }
+    for (const borde of ['borde-fuerte', 'accent', 'ok', 'faro-on-texto']) assert.ok(contraste(P[borde], P.surface) >= 3, `${modo}: borde ${borde}`);
+    assert.ok(contraste(P['on-boton'], P.boton) >= 4.5, `${modo}: botón`);
+    assert.ok(contraste(P['faro-on-texto'], P['faro-on-bg']) >= 4.5, `${modo}: faro encendido`);
+  }
+});

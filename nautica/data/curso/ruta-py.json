@@ -9,7 +9,9 @@
    "4": 1.5
   }
  },
- "retoques": [],
+ "retoques": [
+  "R-29: py-3-6 (Mareas: el Anuario y la curva de la marea) es del tema de carta; pasa del tramo de Teoría (con py-3-5) al de carta siguiente (antes de py-4-4)."
+ ],
  "tramos": [
   {
    "ut": 3,
@@ -69,13 +71,13 @@
   {
    "ut": 3,
    "lecciones": [
-    "py-3-5",
-    "py-3-6"
+    "py-3-5"
    ]
   },
   {
    "ut": 4,
    "lecciones": [
+    "py-3-6",
     "py-4-4",
     "py-4-5"
    ]

@@ -59,7 +59,7 @@ retoques: después de regenerar hay que volver a hacerlos.
 
 ### PY: navegación primero, los cuatro temas alternándose
 
-`ritmo 2`, `ventana 4`, pesos 1,5 para Teoría de navegación y Carta. Sin retoques.
+`ritmo 2`, `ventana 4`, pesos 1,5 para Teoría de navegación y Carta. Un retoque (R-29): `py-3-6` (el Anuario), que es del tema de carta, va al principio del tramo de carta que sigue a `py-3-5`.
 
 1. Teoría (esfera, corrección total) → Carta (corrección total en la carta) → Seguridad (flotabilidad, metacentro) →
    Meteorología (isobaras, frentes) → Teoría (viento y corriente, loxodrómica) → Carta (viento, tangente con viento) → …

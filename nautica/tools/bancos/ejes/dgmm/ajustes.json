@@ -410,7 +410,12 @@
   "dgmm-per-2025-11-62": {"norma": {"estado": "vigente", "nota": "Balizamiento: la recomendación R1001 de la IALA (ed. 2.0, junio de 2023), que sustituye a la de 2018, mantiene sin cambios las marcas laterales, cardinales, de peligro aislado, de aguas navegables y especiales."}},
   "dgmm-per-2025-11-74": {"norma": {"estado": "vigente", "nota": "Sin cambios normativos en lo que se pregunta (el detector del balizamiento la marcó por una palabra como «boya»)."}},
   "dgmm-per-2025-11-89": {"norma": {"estado": "vigente", "nota": "Ejercicio de carta: no le afecta ninguna norma."}},
-  "dgmm-per-2025-11-90": {"norma": {"estado": "vigente", "nota": "Ejercicio de carta: no le afecta ninguna norma."}}
+  "dgmm-per-2025-11-90": {"norma": {"estado": "vigente", "nota": "Ejercicio de carta: no le afecta ninguna norma."}},
+  "dgmm-per-2020-12-10": {"ut": 1, "ut_titulo": "Nomenclatura náutica"},
+  "dgmm-per-2022-04-12": {"ut": 3, "ut_titulo": "Seguridad en la mar"},
+  "dgmm-per-2023-06-38": {"ut": 9, "ut_titulo": "Meteorología"},
+  "dgmm-per-2023-11-47": {"ut": 3, "ut_titulo": "Seguridad en la mar"},
+  "dgmm-per-2023-11-74": {"ut": 9, "ut_titulo": "Meteorología"}
  },
  "py": {
   "dgmm-py-2019-06-02": {"norma": {"estado": "vigente", "nota": "Resistencia de la balsa (30 días a flote): requisito de construcción sin cambios."}},

@@ -127,6 +127,9 @@ export async function auditar() {
   // Excepciones revisadas de la práctica (tools/bancos/practica-excepciones.json): se dicen en la señal.
   let excepciones = {};
   try { excepciones = leerJSON('tools/bancos/practica-excepciones.json'); } catch { /* sin excepciones */ }
+  // Revisión a mano del tema y la clase (tools/bancos/temas-revisados.json, R-29): cada candidata lleva su decisión.
+  let revision = {};
+  try { revision = leerJSON('tools/bancos/temas-revisados.json'); } catch { /* sin revisión */ }
   const filas = [];
   for (const tit of Object.keys(TITULACIONES)) {
     const E = TITULACIONES[tit].estructura;
@@ -206,44 +209,72 @@ export async function auditar() {
           nivel: posFuerte || (propuesto !== q.ut && acuerdo >= 2) ? 'fuerte' : 'candidata',
           senales: senales.map(({ fuerte, ...s }) => s), reservada,
           enunciado: reservada ? null : q.enunciado,
+          ...(revision[x.eje]?.[tit]?.[q.id] ? { revision: revision[x.eje][tit][q.id] } : {}),
         });
       }
     }
   }
-  return { filas, bancos: bancos.map((x) => ({ eje: x.eje, tit: x.tit, preguntas: x.qs.length })) };
+  return { filas, bancos: bancos.map((x) => ({ eje: x.eje, tit: x.tit, preguntas: x.qs.length })), revision };
 }
 
 const TIPOS = ['posicion', 'concepto', 'practica', 'vocabulario'];
 const MARCA_NOTAS = '<!-- notas -->';
 
 /** El informe en Markdown (resumen y, con `detalle`, cada candidata). */
-export function informe({ filas, bancos }, { detalle = true } = {}) {
+export function informe({ filas, bancos, revision = {} }, { detalle = true } = {}) {
+  // Pendientes: sin decisión, o «dudosa». Las decididas (tema, clase, se-queda) van solo en la tabla de decisiones.
+  const pendiente = (f) => !f.revision || f.revision.decision === 'dudosa';
   const L = ['# Auditoría de temas', '',
     'Generado con `node tools/auditoria-temas.mjs --escribir`. Preguntas sospechosas de estar en el tema equivocado, por',
     'eje y titulación. El `ut` de cada pregunta es el bloque del examen oficial en que salió; las señales dicen que, por',
     'su contenido, el alumno la espera en otro tema (qué mide cada una, en la cabecera de la herramienta). Nada de esto',
-    'cambia datos: son candidatas para revisar. Las reservadas para el examen final van sin enunciado.', '',
+    'cambia datos: son candidatas para revisar. Las reservadas para el examen final van sin enunciado. Las ya revisadas',
+    '(tools/bancos/temas-revisados.json) salen de las listas y van en la tabla de decisiones del final; las «dudosas»',
+    'siguen en su lista, con su motivo.', '',
     '## Resumen', '',
-    `| Eje | Tit. | Preguntas | Candidatas | Fuertes | ${TIPOS.join(' | ')} | Reservadas |`, `|---|---|---|---|---|${TIPOS.map(() => '---').join('|')}|---|`];
+    `| Eje | Tit. | Preguntas | Candidatas | Revisadas | Pendientes | Fuertes | ${TIPOS.join(' | ')} | Reservadas |`, `|---|---|---|---|---|---|---|${TIPOS.map(() => '---').join('|')}|---|`];
   for (const b of bancos) {
-    const fs = filas.filter((f) => f.eje === b.eje && f.tit === b.tit);
-    L.push(`| ${b.eje} | ${b.tit} | ${b.preguntas} | ${fs.length} | ${fs.filter((f) => f.nivel === 'fuerte').length} | ${TIPOS.map((t) => fs.filter((f) => f.senales.some((s) => s.tipo === t)).length).join(' | ')} | ${fs.filter((f) => f.reservada).length} |`);
+    const todas = filas.filter((f) => f.eje === b.eje && f.tit === b.tit);
+    const fs = todas.filter(pendiente);
+    L.push(`| ${b.eje} | ${b.tit} | ${b.preguntas} | ${todas.length} | ${todas.length - fs.length} | ${fs.length} | ${fs.filter((f) => f.nivel === 'fuerte').length} | ${TIPOS.map((t) => fs.filter((f) => f.senales.some((s) => s.tipo === t)).length).join(' | ')} | ${fs.filter((f) => f.reservada).length} |`);
   }
-  L.push('', `Total: ${filas.length} candidatas (${filas.filter((f) => f.nivel === 'fuerte').length} fuertes) de ${bancos.reduce((s, b) => s + b.preguntas, 0)} preguntas. Una pregunta puede tener varias señales.`, '');
+  const pend = filas.filter(pendiente);
+  L.push('', `Total: ${filas.length} candidatas de ${bancos.reduce((s, b) => s + b.preguntas, 0)} preguntas; ${filas.length - pend.length} revisadas y ${pend.length} pendientes o dudosas (${pend.filter((f) => f.nivel === 'fuerte').length} fuertes; las columnas de señales cuentan estas). Una pregunta puede tener varias señales.`, '');
   if (!detalle) return L.join('\n');
   for (const b of bancos) {
-    const fs = filas.filter((f) => f.eje === b.eje && f.tit === b.tit);
+    const fs = filas.filter((f) => f.eje === b.eje && f.tit === b.tit && pendiente(f));
     if (!fs.length) continue;
     L.push(`## ${b.eje} · ${b.tit}`, '');
     for (const nivel of ['fuerte', 'candidata']) {
       const sub = fs.filter((f) => f.nivel === nivel).sort((a, z) => a.ut - z.ut || a.id.localeCompare(z.id));
       if (!sub.length) continue;
-      L.push(`### ${nivel === 'fuerte' ? 'Fuertes' : 'Candidatas'} (${sub.length})`, '', '| id | Tema actual | Propuesto | Señales | Enunciado |', '|---|---|---|---|---|');
+      L.push(`### ${nivel === 'fuerte' ? 'Fuertes' : 'Candidatas'} (${sub.length})`, '', '| id | Tema actual | Propuesto | Señales | Enunciado | Dudosa: motivo |', '|---|---|---|---|---|---|');
       for (const f of sub) {
         const texto = f.reservada ? '_(reservada para el examen final: no se enseña)_' : String(f.enunciado ?? '').replace(/\s+/g, ' ').replace(/\|/g, '\\|').slice(0, 160);
-        L.push(`| ${f.id} | ${f.ut} · ${f.tema} | ${f.propuesto === f.ut ? '(el mismo)' : `${f.propuesto} · ${f.temaPropuesto}`} | ${f.senales.map((s) => `**${s.tipo}**: ${s.texto}`).join('; ').replace(/\|/g, '\\|')} | ${texto} |`);
+        L.push(`| ${f.id} | ${f.ut} · ${f.tema} | ${f.propuesto === f.ut ? '(el mismo)' : `${f.propuesto} · ${f.temaPropuesto}`} | ${f.senales.map((s) => `**${s.tipo}**: ${s.texto}`).join('; ').replace(/\|/g, '\\|')} | ${texto} | ${f.revision?.motivo?.replace(/\|/g, '\\|') ?? ''} |`);
       }
       L.push('');
+    }
+  }
+  // Decisiones de la revisión: id, de dónde a dónde y motivo.
+  const NOMBRE = { tema: 'cambia de tema', clase: 'cambia de clase', 'se-queda': 'se queda', dudosa: 'dudosa' };
+  const ejes = Object.keys(revision).filter((e) => e !== 'descripcion');
+  if (ejes.length) {
+    L.push('## Decisiones de la revisión (R-29)', '', 'De `tools/bancos/temas-revisados.json` (lo aplica `node tools/bancos/temas-revisados.mjs --escribir`).', '');
+    const todas = ejes.flatMap((e) => Object.entries(revision[e]).flatMap(([tit, ds]) => Object.entries(ds).map(([id, d]) => ({ eje: e, tit, id, d }))));
+    L.push(`| Decisión | ${Object.keys(NOMBRE).map((k) => NOMBRE[k]).join(' | ')} | Total |`, `|---|${Object.keys(NOMBRE).map(() => '---').join('|')}|---|`,
+      `| Preguntas | ${Object.keys(NOMBRE).map((k) => todas.filter((x) => x.d.decision === k).length).join(' | ')} | ${todas.length} |`, '');
+    for (const e of ejes) {
+      for (const [tit, ds] of Object.entries(revision[e])) {
+        L.push(`### ${e} · ${tit}`, '', '| id | Decisión | De → a | Motivo |', '|---|---|---|---|');
+        const orden = Object.keys(NOMBRE);
+        for (const [id, d] of Object.entries(ds).sort((a, z) => orden.indexOf(a[1].decision) - orden.indexOf(z[1].decision) || a[0].localeCompare(z[0]))) {
+          const donde = d.decision === 'tema' ? `tema ${d.de} → ${d.a}; practica en ${d.clase}` : d.decision === 'clase' ? `practica en ${d.clase}${d.ademas ? ' (además)' : ''}`
+            : d.excepcion ? `sigue en ${d.excepcion.clase} (excepción «${d.excepcion.tipo}»)` : '—';
+          L.push(`| ${id} | ${NOMBRE[d.decision]} | ${donde} | ${String(d.motivo).replace(/\|/g, '\\|')} |`);
+        }
+        L.push('');
+      }
     }
   }
   return L.join('\n');

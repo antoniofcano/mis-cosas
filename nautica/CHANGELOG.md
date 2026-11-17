@@ -15,7 +15,10 @@ Qué cambia en la app para quien la usa, por fecha de publicación. Es la base d
 
 ## Sin publicar
 
-Nada pendiente.
+**Correcciones**
+
+- **Cada pregunta, en su tema y en su clase**: unas 100 preguntas reales que salían en la práctica de una clase de otro tema (un extintor en «Seguridad», un nudo en «Maniobra», un faro de balizamiento en la teoría de navegación…) ahora están en el tema que dice el programa oficial y practican en la clase que las explica. Donde el tribunal las cuenta en un bloque con límite de fallos, conservan ese bloque para que tus exámenes reales se corrijan igual que en el examen.
+- **Patrón de Yate: el Anuario de Mareas pasa a Carta de navegación**, que es donde el tribunal pone las mareas y donde cuentan para el máximo de 3 fallos. La clase sigue en el mismo sitio de tu ruta; tu progreso no cambia.
 
 ## 16 de noviembre de 2026, novena publicación · versión `04e9320160b0`
 

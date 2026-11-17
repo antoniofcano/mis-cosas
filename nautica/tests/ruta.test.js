@@ -37,8 +37,9 @@ for (const tit of ['per', 'py']) {
     // Cada requisito va antes en la ruta (lo mismo, dicho clase a clase).
     const pos = new Map(ids.map((id, i) => [id, i]));
     for (const l of leccionesDe(curso)) for (const r of l.requiere) assert.ok(pos.get(r) < pos.get(l.id), `${r} tiene que ir antes que ${l.id}`);
-    // Cada tramo es de un solo tema.
-    for (const t of datos.tramos) for (const id of t.lecciones) assert.ok(id.startsWith(`${tit}-${t.ut}-`), `${id} en un tramo de ${t.ut}`);
+    // Cada tramo es de un solo tema (el de la clase, no el de su id: py-3-6, el Anuario, es del tema de carta).
+    const utDe = new Map(leccionesDe(curso).map((l) => [l.id, l.ut]));
+    for (const t of datos.tramos) for (const id of t.lecciones) assert.equal(utDe.get(id), t.ut, `${id} en un tramo de ${t.ut}`);
     // El curso cargado lleva la ruta y ordenRuta la sigue.
     assert.deepEqual(ordenRuta(curso, E).map((l) => l.id), ids);
   });
@@ -49,7 +50,8 @@ for (const tit of ['per', 'py']) {
     // Los temas eliminatorios empiezan en la primera mitad de la ruta y nunca más tarde que tema a tema.
     const antes = ordenRuta({ ...curso, ruta: null }, E).map((l) => l.id);
     for (const b of E.bloques.filter((x) => x.maxErrores != null)) {
-      const empieza = (xs) => xs.findIndex((id) => id.startsWith(`${tit}-${b.ut}-`));
+      const utDe = new Map(leccionesDe(curso).map((l) => [l.id, l.ut]));
+      const empieza = (xs) => xs.findIndex((id) => utDe.get(id) === b.ut);
       assert.ok(empieza(ids) < ids.length / 2, `${b.titulo} empieza tarde (clase ${empieza(ids) + 1} de ${ids.length})`);
       assert.ok(empieza(ids) <= empieza(antes), `${b.titulo} empieza más tarde que tema a tema`);
     }

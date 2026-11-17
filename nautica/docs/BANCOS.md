@@ -377,6 +377,20 @@ progreso anterior a los ejes es del eje por defecto (`normaliza()` en `src/store
   tema de esa clase: lo dudoso es su `ut`, que no se fuerza; sigue como candidata en `tools/auditoria-temas.mjs`) y
   `clase-corta` (la clase se quedaría con menos de 3 preguntas de su tema, p. ej. la del Anuario del PY, que el tribunal
   pregunta en el bloque de carta; la pregunta va además a la clase de su tema).
+- **Revisión del tema y la clase** (R-29, `tools/bancos/temas-revisados.json`, una decisión con motivo por pregunta; la
+  aplica `node tools/bancos/temas-revisados.mjs [--escribir]`, idempotente): `tema` (el programa, RD 875/2014, pone su
+  contenido en otro tema y ninguna clase del suyo lo explica: cambia `ut`/`ut_titulo` en el ajuste por id y en
+  `preguntas.json` y practica en la clase de su nuevo tema), `clase` (practica en otra clase, de su tema o, con
+  `excepcion`, de otro), `se-queda` y `dudosa` (no cambia nada; el motivo queda escrito). Un cambio de tema solo entre
+  temas **sin límite de fallos propio** (PER: ni Balizamiento, ni RIPA, ni Carta; PY: ninguno, cada materia tiene el
+  suyo en la corrección por módulos): mover una pregunta a otro bloque movería su fallo en la corrección del examen real.
+  Nunca en una reservada para el examen final ni en Andalucía (su tema está en la huella del banco). La auditoría de temas
+  saca las revisadas de sus listas (las «dudosas» siguen, con su motivo) y acaba con la tabla de decisiones;
+  `practica-tema.mjs --excepciones` no vuelve a proponerlas. Test: `tests/temas-revisados.test.js`.
+- **Una clase puede ser de otro tema que el de su id**: `py-3-6` (el Anuario de Mareas) es del tema de carta (`ut: 4` y
+  en el módulo 4 del curso) porque el tribunal pregunta las mareas en el bloque de carta y el programa del PY las pone en
+  la UT 4.9; su id no cambia (el progreso va por id). El tema de una clase se lee de `l.ut ?? m.ut`, nunca del id (la
+  ruta, `tools/ruta.mjs`, y los nodos de los mapas, que pueden declarar `ut`).
 - **Soluciones de carta**: el módulo de cada eje (`src/bancos/ejes/<eje>.js`) exporta `{ id, soluciones,
   documentadas }`. `documentadas` = las de carta que no se resuelven, con su motivo: `{ tipo: 'discrepancia' |
   'sin-calculo' | 'anulada', texto }`. `discrepancia`: la cuenta no llega a la opción oficial; el texto da la cuenta

@@ -80,7 +80,7 @@ un banco concreto; las vistas piden `cargarBanco(currentEje(progress), tit)`.
 | `#/<tit>/teoria/ut/<n>?s=…[&f=1]` | `views/theory.js` → `practiceView` (tanda de 10) |
 | `#/<tit>/examenes`, `#/<tit>/test/simulacro?s=…`, `#/<tit>/test/real/<conv>` | `views/theory.js` → `examenesView`, `testView` |
 | `#/<tit>/carta`, `#/ej/<id>?s=…`, `#/mesa` | ejercicios y mesa de cartas |
-| `#/q/<id>`, `#/<tit>/examenes/<lista>` (antes `#/examenes/<fichero>/<id>`, que redirige) | `views/exams.js` → `preguntaView`, `listaView` |
+| `#/q/<id>`, `#/<tit>/examenes/<lista>` (antes `#/examenes/<fichero>/<id>`, que redirige) | `views/exams.js` → `preguntaView`, `listaView` (la lista, plegada por convocatoria, con `?c=<conv>` para abrir una; lógica en `exams/lista-preguntas.js`; la pregunta, con selector de modo, menú «⋯» de `ui/menu-acciones.js` e intros de `ui/intro-vista.js`) |
 | `#/<tit>/laminas`, `#/reglas`, `#/conceptos`, `#/mas`, `#/progreso` | biblioteca, «Más» y mi progreso |
 | `#/calculadora` | `views/calculadora.js`: calculadora científica (lógica en `src/calculadora/motor.js`) |
 | `#/<tit>/estrategia` | `views/estrategia.js`: estrategia de examen (R-31). Lógica pura en `src/course/estrategia.js` (`cifrasExamen`, `presupuestoTiempo`, `textosEstrategia`, `tuEstrategia` con `progress.tests()` y `st.listo`); textos en `data/comun/estrategia.json` (normas con fuente: RD 875/2014 y convocatorias; consejos; pendientes por tribunal). Enlazada desde Examen, la Biblioteca y la pantalla de inicio de un simulacro; nunca con un examen en marcha (`estrategiaPermitida`, `tests/estrategia.test.js`). Imprimible con el patrón de las chuletas (`.mc-*`) |

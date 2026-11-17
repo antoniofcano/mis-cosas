@@ -15,6 +15,7 @@ import { tipoDePregunta } from '../course/velocidad.js';
 import { erroresAlumno } from '../store/errores.js';
 import { anotarFallo } from './cuaderno.js';
 import { cuenta } from '../texto.js';
+import { introPlegable } from './intro-vista.js';
 
 let contador = 0;
 const cache = new Map();
@@ -179,7 +180,7 @@ export function intencionPanel(o) {
   const el = h('section.intencion', { 'aria-labelledby': `${uid}-t` },
     h('div.guiado-cab', h('h2', { id: `${uid}-t` }, conIcono('transportador', 'Trázalo en la carta')),
       o.onCerrar ? h('button.secondary.small', { type: 'button', onclick: o.onCerrar }, 'Cerrar') : null),
-    h('p.small', `Eliges qué trazar, desde dónde y con qué valor; la app lo dibuja exacto. ${cuenta(plan.total, 'trazo')}.`),
+    introPlegable('traza'),
     h('div.int-cuerpo', h('div.int-carta', w.el), h('div.int-panel', hechos, tarjeta, fin)));
   fin.hidden = true;
   pintarTrazo();

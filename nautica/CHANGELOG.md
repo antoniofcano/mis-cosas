@@ -15,7 +15,10 @@ Qué cambia en la app para quien la usa, por fecha de publicación. Es la base d
 
 ## Sin publicar
 
-Nada pendiente.
+- **La lista de preguntas, plegada por convocatoria.** Antes eran más de mil enlaces seguidos; ahora ves una fila por convocatoria con lo que llevas hecho y acertado, y arriba un botón «Seguir con la siguiente sin hacer». Cada fila lleva el número de la pregunta, ✓ o ✗ y las primeras palabras del enunciado. Desde una pregunta, la flecha de volver te lleva a su convocatoria, ya abierta.
+- **La pregunta de carta, con una sola forma de hacerla a la vista.** Debajo del enunciado eliges «Solo la respuesta», «Paso a paso», «En papel» o «En la carta» y justo debajo está lo que has elegido; la app recuerda tu última elección. Chuleta, calculadora, bloc y carta van en una barra compacta, y la fuente, las notas, «¿No es de este tema?», «Avisar de un error» y «Ver la solución sin intentarlo» están en el menú «Más».
+- **Menos avisos repetidos.** El aviso de «Ampliar» es ahora una burbuja corta junto a «Carta» que sale una sola vez. La explicación del paso a paso, de «En papel» y de «En la carta» sale entera la primera vez; después queda un «?» que la despliega. En «En papel» el margen ya no se repite en cada campo: está en «Qué margen doy».
+- **Arreglo:** una pregunta sin trazado en la carta (como las de mareas) ya no ofrece «En la carta»; si abres su dirección con `?traza=1`, te lo dice y te abre el paso a paso.
 
 ## 17 de noviembre de 2026 · versión `77b5fd5d1dc7`
 

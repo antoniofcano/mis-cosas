@@ -7,7 +7,7 @@ import { TITULACIONES, tlink, volver, currentTit, currentEje } from '../titulaci
 import { createKit } from '../../exams/kit.js';
 import { chooseOption } from '../../exams/options.js';
 import { quantity } from '../../analysis/quantities.js';
-import { chartWidget, avisoCartaMovil } from '../chart-widget.js';
+import { chartWidget, burbujaCarta } from '../chart-widget.js';
 import { openWorkspace, currentWorkspace } from '../chart/workspace.js';
 import { narrateSteps, narrateIntro, narrateOutro } from '../../teacher/narrate.js';
 import { profeStepItems, listenAllButton } from '../profe-steps.js';
@@ -16,7 +16,7 @@ import { accionTema } from '../tema-pregunta.js';
 import { cuenta } from '../../texto.js';
 import { crearAyudas } from '../ayudas.js';
 import { glosar } from '../glosas.js';
-import { conIcono } from '../iconos.js';
+import { conIcono, icono } from '../iconos.js';
 import { botonBloc } from '../bloc.js';
 import { ID_BLOC } from '../../bloc/notas.js';
 import { guiadoPanel, guiadoDisponible } from '../guiado.js';
@@ -24,6 +24,8 @@ import { papelPanel, papelDisponible } from '../papel.js';
 import { intencionPanel, intencionDisponible } from '../intencion.js';
 import { diagnosticoEl, diagnosticoTexto } from '../diagnostico.js';
 import { ejemplosDelTipo } from '../../exams/ensena.js';
+import { agruparPorConvocatoria, contarGrupo, rotuloGrupo, contadoresGrupo, siguienteSinHacer, estadoDe, primerasPalabras, convocatoriaCorta } from '../../exams/lista-preguntas.js';
+import { menuAcciones } from '../menu-acciones.js';
 
 /** Quita la referencia a la «UT» (unidad del temario) de las descripciones de los bancos. */
 const sinJerga = (t) => t.replace(/\(UT ?\d+,\s*/g, '(').replace(/\bUT ?\d+\b,?\s*/g, '');
@@ -85,7 +87,14 @@ export function legadoExamenesView({ progress, params: route, tit }) {
   return { el, summary: () => 'VISTA exámenes (dirección antigua, redirigiendo)' };
 }
 
-/** #/<tit>/examenes/<lista> — una lista de preguntas reales del eje (p. ej. las de carta), por convocatorias. */
+const SIGNO_ESTADO = { ok: '✓', mal: '✗', sin: '·' };
+const RETULO_ESTADO = { ok: 'Acertada. ', mal: 'Fallada. ', sin: 'Sin hacer. ' };
+
+/**
+ * #/<tit>/examenes/<lista>[?c=<convocatoria>] — una lista de preguntas reales del eje (p. ej. las de carta), plegada por
+ * convocatorias (H-73): cada una con lo que el alumno lleva hecho y acertado, y arriba «Seguir con la siguiente sin hacer».
+ * Con `?c=` (la miga de una pregunta), esa convocatoria sale abierta. Lógica en src/exams/lista-preguntas.js.
+ */
 export function listaView({ progress, params: route, tit }) {
   const el = h('div.exams', h('p.muted', 'Cargando preguntas…'));
   let summaryText = 'VISTA lista de preguntas reales (cargando)';
@@ -93,29 +102,39 @@ export function listaView({ progress, params: route, tit }) {
   cargarBanco(currentEje(progress), tit).then((banco) => {
     const lista = banco.lista(id);
     if (!lista) { setChildren(el, volver('Exámenes', tlink(tit, ['examenes'])), h('p', 'Esta lista de preguntas no existe.')); return; }
-    const groups = new Map();
-    for (const q of lista.preguntas) {
-      if (!groups.has(q.convocatoria)) groups.set(q.convocatoria, []);
-      groups.get(q.convocatoria).push(q);
-    }
-    const answered = (q) => progress.get().exams[q.id];
+    const respuestas = progress.get().exams;
+    const grupos = agruparPorConvocatoria(lista.preguntas);
+    const siguiente = siguienteSinHacer(lista.preguntas, respuestas);
+    const abrir = route.query.c ?? null;
     const enlace = (q) => link(['q', q.id], banco.listaDe(q).id === lista.id ? undefined : { l: lista.id });
-    summaryText = `VISTA banco ${lista.titulo} · ${cuenta(lista.preguntas.length, 'pregunta')}\n` +
-      lista.preguntas.map((q) => `${q.id}: ${(answered(q)?.ok ? '✓' : answered(q) ? '✗' : '·')} ${q.enunciado.slice(0, 80)}`).join('\n');
+    const hechas = contarGrupo(lista.preguntas, respuestas);
+    summaryText = `VISTA banco ${lista.titulo} · ${cuenta(lista.preguntas.length, 'pregunta')} en ${cuenta(grupos.length, 'convocatoria')} (plegadas; ${hechas.hechas} hechas, ${hechas.acertadas} acertadas)\n` +
+      (siguiente ? `Siguiente sin hacer: ${siguiente.id}\n` : 'Todas hechas.\n') +
+      lista.preguntas.map((q) => `${q.id}: ${SIGNO_ESTADO[estadoDe(respuestas[q.id])]} ${q.enunciado.slice(0, 80)}`).join('\n');
+    let abierto = null;
+    const bloque = (g) => {
+      const d = h('details.conv-grupo', { open: abrir === g.conv, 'data-conv': g.conv },
+        h('summary', { 'aria-label': rotuloGrupo(g, respuestas) }, h('span.conv-tit', convocatoriaCorta(g.titulo)), h('span.conv-cont', contadoresGrupo(g, respuestas))),
+        h('ol.qlist', g.preguntas.map((q, i) => {
+          const e = estadoDe(respuestas[q.id]);
+          return h('li', h('a.qfila', { href: enlace(q) },
+            h('span', { class: `qestado ${e}`, 'aria-hidden': 'true' }, SIGNO_ESTADO[e]), h('span.solo-lector', RETULO_ESTADO[e]),
+            h('strong', `Pregunta ${q.numero ?? i + 1}`), ' ', h('span.qtexto', primerasPalabras(q.enunciado, 8))));
+        })));
+      if (abrir === g.conv) abierto = d;
+      return d;
+    };
     setChildren(el,
-      volver('Ejercicios de carta', tlink(tit, ['carta'])),
+      volver(lista.id === 'carta' ? 'Ejercicios de carta' : 'Examen', lista.id === 'carta' ? tlink(tit, ['carta']) : tlink(tit, ['examenes'])),
       h('h1', lista.titulo),
-      lista.descripcion ? h('p', sinJerga(lista.descripcion)) : null,
-      [...groups].map(([conv, qs]) => h('section',
-        h('h2', conv),
-        h('ol.qlist', qs.map((q) => {
-          const a = answered(q);
-          return h('li', h('a', { href: enlace(q) },
-            h('span', { class: a ? (a.ok ? 'ok' : 'warn') : 'muted' }, a ? (a.ok ? '✓ ' : '✗ ') : '· '),
-            q.numero ? `P${q.numero}: ` : '', q.enunciado.slice(0, 110), q.enunciado.length > 110 ? '…' : ''));
-        })),
-      )),
+      h('p.muted', 'Preguntas reales de exámenes anteriores, por convocatoria. Las que has hecho llevan ✓ o ✗.'),
+      siguiente
+        ? [h('a.btn.grande.lista-seguir', { href: enlace(siguiente) }, 'Seguir con la siguiente sin hacer'),
+          h('p.muted.small.lista-seguir-nota', `La siguiente: pregunta ${siguiente.numero ?? lista.preguntas.indexOf(siguiente) + 1} · ${convocatoriaCorta(siguiente.convocatoria)}.`)]
+        : h('p.ok', conIcono('ok', 'Has hecho todas las preguntas de esta lista.')),
+      h('div.conv-grupos', grupos.map(bloque)),
     );
+    if (abierto) requestAnimationFrame(() => { abierto.scrollIntoView({ block: 'start' }); abierto.querySelector('summary')?.focus({ preventScroll: true }); });
   }).catch((e) => setChildren(el, h('p.warn', `No se pudieron cargar los exámenes: ${e.message}`)));
   return { el, summary: () => summaryText };
 }
@@ -158,18 +177,22 @@ export function preguntaView({ ctx, progress, params: route }) {
     const result = h('div.diagnosis', { 'aria-live': 'polite' });
     const solution = h('div.solution', { hidden: true });
     const aiPre = h('pre.ai-text');
-    // Modo guiado «Paso a paso» (src/ui/guiado.js): se abre con el botón o con ?guiado=1.
+    // Las tres maneras de hacerla, además de «Solo la respuesta», se eligen en un selector (H-73) y se abren en su panel,
+    // justo debajo del enunciado; con ?guiado=1, ?papel=1 o ?traza=1 se abre el que se pide. Nunca en un examen.
+    //  - «Paso a paso» (src/ui/guiado.js): la app pide cada paso y lo corrige.
+    //  - «En papel» (R-58, src/ui/papel.js): el alumno resuelve en su hoja y la app corrige por pasos.
+    //  - «En la carta» (R-54, src/ui/intencion.js): elige qué trazar y la app lo dibuja. Solo si hay algo que trazar.
     const conGuiado = !!run && guiadoDisponible(q, run.sol, ctx.chart);
     const guiadoBox = h('div.guiado-box', { hidden: true });
     let guiado = null;
-    // «Lo hice en papel» (R-58, src/ui/papel.js): se abre con el botón o con ?papel=1. Nunca en un examen.
     const conPapel = !!run && papelDisponible(q, run.sol, ctx.chart);
     const papelBox = h('div.papel-box', { hidden: true });
     let papel = null;
-    // «Trázalo en la carta» (R-54, src/ui/intencion.js): se abre con el botón o con ?traza=1. Nunca en un examen.
     const conTraza = !!run && run.k.items.length > 0 && intencionDisponible(q, run.sol, ctx.chart);
     const trazaBox = h('div.intencion-box', { hidden: true });
     let traza = null;
+    const disponibles = ['respuesta', ...(conGuiado ? ['guiado'] : []), ...(conPapel ? ['papel'] : []), ...(conTraza ? ['traza'] : [])];
+    let modo = 'respuesta';
     const refresh = () => {
       summaryText = examQuestionSummary(q, choice, run && {
         steps: run.k.steps, values: run.values.map((v) => quantity(v.kind).format(v.value)), choice: run.pick.choice,
@@ -222,105 +245,52 @@ export function preguntaView({ ctx, progress, params: route }) {
     // Titulación y eje de la pregunta (el eje, como distintivo bajo el título).
     const titulacion = TITULACIONES[q.tit]?.sigla ?? '';
 
-    // Bloque de respuesta: se traslada a la mesa de cartas cuando se abre.
+    // «Solo la respuesta»: las opciones y «Comprobar». Se traslada a la mesa de cartas cuando se abre.
     let ws = null;
-    const answerBlock = h('div.answer-block', options,
-      h('div.actions',
-        h('button', { type: 'button', onclick: verify }, 'Comprobar'),
-        h('button.secondary', { type: 'button', onclick: () => { showSolution(); if (ws && currentWorkspace() === ws) ws.show('tutorial'); } }, 'Ver solución'),
-        conGuiado ? h('button.secondary.boton-guiado', { type: 'button', onclick: () => abrirGuiado(true) }, conIcono('diana', 'Resolver paso a paso')) : null,
-        conPapel ? h('button.secondary.boton-papel', { type: 'button', onclick: () => abrirPapel(true) }, conIcono('documento', 'Lo hice en papel')) : null,
-        conTraza ? h('button.secondary.boton-traza', { type: 'button', onclick: () => abrirTraza(true) }, conIcono('transportador', 'Trázalo en la carta')) : null,
-      ),
-      result);
+    const answerBlock = h('div.answer-block', options, h('div.actions', h('button', { type: 'button', onclick: verify }, 'Comprobar')), result);
     const factor = () => progress.settings().toleranceFactor ?? 1;
     const alElegir = (letra, ok) => { choice = letra; progress.recordExam(q.id, { choice: letra, ok }); refresh(); };
-    /** Abre el paso a paso en la página (con su carta, si la pregunta se dibuja) en lugar del bloque de respuesta. */
-    function abrirGuiado(enfocar) {
-      if (!conGuiado) return;
-      if (papel) cerrarPapel({ sinNavegar: true });
-      if (traza) cerrarTraza({ sinNavegar: true });
-      if (ws && currentWorkspace() === ws) ws.close();
-      const w = run.k.items.length ? chartWidget(ctx.chart, { items: run.k.items, focus: run.k.focus, step: 0 }) : null;
-      guiado = guiadoPanel({ q, sol: run.sol, chart: ctx.chart, dibujar: (n) => w?.setStep(n), carta: () => w, factor: factor(), glosas,
-        onOpcion: alElegir, onCerrar: cerrarGuiado, ejemplos: ejemplosDe({ q, sol: run.sol, banco, chart: ctx.chart, factor: factor(), glosas }) });
-      setChildren(guiadoBox, guiado.el, w ? h('div.guiado-carta', w.el) : null);
-      guiadoBox.hidden = false;
-      answerBlock.hidden = true;
-      const { papel: _p, traza: _t, ...sinPapel } = route.query;
-      navigate(['q', q.id], { ...sinPapel, guiado: '1' }, { replace: true });
-      refresh();
-      if (enfocar) requestAnimationFrame(() => { guiadoBox.scrollIntoView({ block: 'start' }); guiadoBox.querySelector('input, h2')?.focus({ preventScroll: true }); });
-    }
-    /** Abre la corrección de la hoja en papel en lugar del bloque de respuesta. */
-    function abrirPapel(enfocar) {
-      if (!conPapel) return;
-      if (guiado) cerrarGuiado();
-      if (traza) cerrarTraza({ sinNavegar: true });
-      if (ws && currentWorkspace() === ws) ws.close();
-      papel = papelPanel({ q, sol: run.sol, chart: ctx.chart, factor: factor(), tit: q.tit, onCerrar: () => cerrarPapel(),
-        onGuiado: conGuiado ? () => abrirGuiado(true) : null, onCorregido: () => refresh() });
-      papelBox.replaceChildren(papel.el);
-      papelBox.hidden = false;
-      answerBlock.hidden = true;
-      const { guiado: _g, traza: _t, ...resto } = route.query;
-      navigate(['q', q.id], { ...resto, papel: '1' }, { replace: true });
-      refresh();
-      if (enfocar) requestAnimationFrame(() => { papelBox.scrollIntoView({ block: 'start' }); papelBox.querySelector('input')?.focus({ preventScroll: true }); });
-    }
-    function cerrarPapel({ sinNavegar = false } = {}) {
-      papel = null;
-      papelBox.replaceChildren();
-      papelBox.hidden = true;
-      answerBlock.hidden = false;
-      if (!sinNavegar) {
-        const { papel: _p, ...resto } = route.query;
-        navigate(['q', q.id], Object.keys(resto).length ? resto : undefined, { replace: true });
+    const verSolucion = () => { showSolution(); if (ws && currentWorkspace() === ws) ws.show('tutorial'); };
+
+    const sinModos = (query) => { const { guiado: _g, papel: _p, traza: _t, ...resto } = query; return resto; };
+    let selector = null;
+    /** Pone el modo elegido (y su panel bajo el enunciado) y deja la dirección con su parámetro, sin añadir historial. */
+    function ponModo(nuevo, { url = true } = {}) {
+      if (!disponibles.includes(nuevo)) nuevo = 'respuesta';
+      if (nuevo !== 'respuesta' && ws && currentWorkspace() === ws) ws.close();
+      guiado = null; papel = null; traza = null;
+      for (const caja of [guiadoBox, papelBox, trazaBox]) { caja.replaceChildren(); caja.hidden = true; }
+      modo = nuevo;
+      if (nuevo === 'guiado') {
+        const w = run.k.items.length ? chartWidget(ctx.chart, { items: run.k.items, focus: run.k.focus, step: 0 }) : null;
+        guiado = guiadoPanel({ q, sol: run.sol, chart: ctx.chart, dibujar: (n) => w?.setStep(n), carta: () => w, factor: factor(), glosas,
+          onOpcion: alElegir, ejemplos: ejemplosDe({ q, sol: run.sol, banco, chart: ctx.chart, factor: factor(), glosas }) });
+        setChildren(guiadoBox, guiado.el, w ? h('div.guiado-carta', w.el) : null);
+        guiadoBox.hidden = false;
+      } else if (nuevo === 'papel') {
+        papel = papelPanel({ q, sol: run.sol, chart: ctx.chart, factor: factor(), tit: q.tit, onGuiado: conGuiado ? () => cambiarModo('guiado') : null, onCorregido: () => refresh() });
+        papelBox.replaceChildren(papel.el);
+        papelBox.hidden = false;
+      } else if (nuevo === 'traza') {
+        traza = intencionPanel({ q, sol: run.sol, chart: ctx.chart, tit: q.tit, onGuiado: conGuiado ? () => cambiarModo('guiado') : null });
+        trazaBox.replaceChildren(traza.el);
+        trazaBox.hidden = false;
       }
+      answerBlock.hidden = nuevo !== 'respuesta';
+      selector?.sync(nuevo);
+      if (url) navigate(['q', q.id], { ...sinModos(route.query), ...(nuevo === 'respuesta' ? {} : { [nuevo]: '1' }) }, { replace: true });
       refresh();
     }
-    /** Abre la carta por intención en lugar del bloque de respuesta. */
-    function abrirTraza(enfocar) {
-      if (!conTraza) return;
-      if (guiado) cerrarGuiado();
-      if (papel) cerrarPapel({ sinNavegar: true });
-      if (ws && currentWorkspace() === ws) ws.close();
-      traza = intencionPanel({ q, sol: run.sol, chart: ctx.chart, tit: q.tit, onCerrar: () => cerrarTraza(),
-        onGuiado: conGuiado ? () => abrirGuiado(true) : null });
-      trazaBox.replaceChildren(traza.el);
-      trazaBox.hidden = false;
-      answerBlock.hidden = true;
-      const { guiado: _g, papel: _p, ...resto } = route.query;
-      navigate(['q', q.id], { ...resto, traza: '1' }, { replace: true });
-      refresh();
-      if (enfocar) requestAnimationFrame(() => { trazaBox.scrollIntoView({ block: 'start' }); trazaBox.querySelector('.int-pregunta, h2')?.focus({ preventScroll: true }); });
+    /** Lo elige el alumno (selector o atajo de otro modo): se recuerda para las siguientes preguntas. */
+    function cambiarModo(nuevo) {
+      ponModo(nuevo);
+      try { progress.setSetting('modoPregunta', nuevo); } catch { /* sin almacén: solo esta pregunta */ }
     }
-    function cerrarTraza({ sinNavegar = false } = {}) {
-      traza = null;
-      trazaBox.replaceChildren();
-      trazaBox.hidden = true;
-      answerBlock.hidden = false;
-      if (!sinNavegar) {
-        const { traza: _t, ...resto } = route.query;
-        navigate(['q', q.id], Object.keys(resto).length ? resto : undefined, { replace: true });
-      }
-      refresh();
-    }
-    function cerrarGuiado() {
-      guiado = null;
-      guiadoBox.replaceChildren();
-      guiadoBox.hidden = true;
-      answerBlock.hidden = false;
-      const { guiado: _g, papel: _p, traza: _t, ...resto } = route.query;
-      navigate(['q', q.id], Object.keys(resto).length ? resto : undefined, { replace: true });
-      refresh();
-    }
+
     const examOutroText = () => `${run.values.map((v) => quantity(v.kind).format(v.value)).join(', ')}${run.pick.choice ? `, que corresponde a la opción ${run.pick.choice}` : ''}`;
     const examOutro = () => narrateOutro(examOutroText());
     const openTable = (tab) => {
-      if (guiado) cerrarGuiado(); // en la mesa, el paso a paso va en su pestaña
-      if (papel) cerrarPapel();
-      if (traza) cerrarTraza();
+      if (modo !== 'respuesta') ponModo('respuesta'); // en la mesa, el paso a paso va en su pestaña
       if (ws) { ws.show(tab); return; }
       ws = openWorkspace({
         chart: ctx.chart, title: `${titulacion} · ${q.convocatoria}${q.numero ? ` · P${q.numero}` : ''}`, statement: q.enunciado,
@@ -331,20 +301,75 @@ export function preguntaView({ ctx, progress, params: route }) {
         guiado: conGuiado ? ({ chart: api, dibujar }) => guiadoPanel({ q, sol: run.sol, chart: ctx.chart, dibujar, carta: () => api, factor: factor(), glosas, onOpcion: alElegir }).el : null,
       });
     };
-    const tableButtons = run?.k.items.length
-      ? h('div.actions.table-actions',
-        h('button', { type: 'button', onclick: () => openTable('ejercicio') }, conIcono('mapa', 'Resolver en la carta')),
-        h('button.secondary', { type: 'button', onclick: () => openTable('tutorial') }, conIcono('clase', 'Ver la resolución en la carta')))
-      : null;
+    const hayCarta = !!run?.k.items.length;
+
+    // El selector de modo: un solo grupo de botones de radio (las flechas mueven la elección). Solo si hay más de una manera.
+    const NOMBRES_MODO = { respuesta: 'Solo la respuesta', guiado: 'Paso a paso', papel: 'En papel', traza: 'En la carta' };
+    if (disponibles.length > 1) {
+      const nombre = `modo-${q.id}`;
+      const radios = disponibles.map((m) => h('input', { type: 'radio', name: nombre, value: m, checked: m === 'respuesta', onchange: () => cambiarModo(m) }));
+      selector = {
+        el: h('fieldset.modo-selector', h('legend', '¿Cómo quieres hacerla?'),
+          h('div.modo-opciones', disponibles.map((m, i) => h('label.modo-op', radios[i], h('span.modo-nombre', NOMBRES_MODO[m]))))),
+        sync: (m) => radios.forEach((r) => { r.checked = r.value === m; }),
+      };
+    }
+
+    // Barra de herramientas compacta: chuleta, calculadora, bloc, carta y el menú «⋯» con lo demás.
+    const burbuja = hayCarta ? burbujaCarta(progress) : null;
+    const botonCarta = hayCarta ? h('span.herr-carta-hueco',
+      h('button.secondary.small.boton-carta', { type: 'button', title: 'Resolver en la carta, a pantalla completa', 'aria-label': 'Resolver en la carta, a pantalla completa', ...(burbuja ? { 'aria-describedby': 'burbuja-carta' } : {}),
+        onclick: () => { burbuja?.cerrar(); openTable('ejercicio'); } }, icono('mapa'), 'Carta'),
+      burbuja?.el) : null;
+    // Lo que no es la tarea (la fuente, las notas, avisar de un error, el texto para asistentes de IA) va en el menú.
+    const abrirExtra = (nodo) => {
+      nodo.hidden = false;
+      if (nodo.tagName === 'DETAILS') nodo.open = true;
+      requestAnimationFrame(() => { nodo.scrollIntoView({ block: 'start' }); (nodo.querySelector('summary') ?? nodo).focus({ preventScroll: true }); });
+    };
+    const notasEl = q.notas ? h('section.extra-fuente', { hidden: true, tabindex: '-1', 'aria-label': 'Notas sobre la fuente' },
+      h('h2', 'Notas sobre la fuente'), h('p.small', q.notas),
+      h('button.small.secondary', { type: 'button', onclick: () => { notasEl.hidden = true; } }, 'Cerrar')) : null;
+    // `#ai-context` sigue en la página (llms.txt) aunque no se vea: «Para asistentes de IA», en el menú, lo enseña.
+    const aiEl = h('details.ai-context#ai-context', { hidden: true }, h('summary', 'Para asistentes de IA'),
+      h('p.muted.small', h('button.small', { type: 'button', onclick: () => copyText(summaryText) }, 'Copiar')), aiPre);
+    const tema = accionTema(q);
+    const menu = menuAcciones({ etiqueta: 'Más opciones de esta pregunta', items: [
+      { texto: 'Ver la solución sin intentarlo', icono: 'bombilla', onclick: verSolucion },
+      hayCarta ? { texto: 'Ver la resolución en la carta', icono: 'clase', onclick: () => openTable('tutorial') } : null,
+      q.fuentes?.examen ? { texto: 'Fuente: el examen', icono: 'enlace', href: q.fuentes.examen, externo: true } : null,
+      q.fuentes?.plantilla ? { texto: 'Fuente: la plantilla', icono: 'enlace', href: q.fuentes.plantilla, externo: true } : null,
+      notasEl ? { texto: 'Notas sobre la fuente', icono: 'libro', onclick: () => abrirExtra(notasEl) } : null,
+      tema ? { nodo: tema } : null,
+      { nodo: avisoError(`Pregunta ${q.id} (${q.convocatoria ?? lista.titulo})`, q.enunciado.slice(0, 120)) },
+      { texto: 'Para asistentes de IA', icono: 'texto', onclick: () => abrirExtra(aiEl) },
+    ] });
+    const herramientas = h('div.herr-carta', { role: 'group', 'aria-label': 'Herramientas' }, ayudas.barra, botonBloc(bloc, { texto: 'Bloc' }), botonCarta, menu.el);
+
+    // Si se pide por la dirección un modo que esta pregunta no tiene (p. ej. ?traza=1 en una de mareas, sin trazo), se dice en una línea.
+    const pedido = ['guiado', 'papel', 'traza'].find((m) => route.query[m] === '1') ?? null;
+    const noHay = !!pedido && !disponibles.includes(pedido);
+    const inicial = pedido ? (noHay ? (conGuiado ? 'guiado' : 'respuesta') : pedido) : (() => {
+      const recordado = progress.settings().modoPregunta;
+      return recordado && disponibles.includes(recordado) ? recordado : 'respuesta';
+    })();
+    const avisoModo = noHay ? h('p.modo-aviso', { role: 'status' }, conIcono('aviso',
+      `${pedido === 'traza' ? 'Esta pregunta no tiene trazado en la carta.' : 'Esa forma de hacerla no está disponible en esta pregunta.'}${inicial === 'guiado' ? ' Te abro el paso a paso.' : ''}`)) : null;
 
     const enunciadoEl = h('p', q.enunciado);
     glosar(enunciadoEl, glosas);
-    setChildren(el, 
-      volver(lista.titulo, tlink(q.tit, ['examenes', lista.id])),
-      h('header.con-ayudas', h('h1', `${titulacion} · ${q.convocatoria}${q.numero ? ` · pregunta ${q.numero}` : ''}`), h('div.badges', h('span.badge', eje.nombre), q.anulada ? h('span.badge.warn', 'Anulada') : null), ayudas.barra),
+    // La miga lleva a la convocatoria de esta pregunta dentro de la lista, ya abierta (?c=).
+    const migaLista = volver(`${convocatoriaCorta(q.convocatoria)} · lista`, tlink(q.tit, ['examenes', lista.id], q.conv ? { c: q.conv } : undefined));
+    setChildren(el,
+      migaLista,
+      h('header.pregunta-cab', h('h1', `${titulacion} · ${q.numero ? `pregunta ${q.numero}` : q.convocatoria}`),
+        h('p.pregunta-sub.muted.small', `${convocatoriaCorta(q.convocatoria)} · ${eje.nombre}`, q.anulada ? [' ', h('span.badge.warn', 'Anulada')] : null)),
+      herramientas,
       ayudas.panel,
       q.enunciado_comun ? h('section.statement.common', h('h2', 'Enunciado común'), h('p', q.enunciado_comun)) : null,
-      h('section.statement', enunciadoEl, h('div.actions.bloc-acciones', botonBloc(bloc, { texto: 'Bloc de notas' })), tableButtons ? avisoCartaMovil(progress) : null, tableButtons),
+      h('section.statement', enunciadoEl),
+      avisoModo,
+      selector?.el,
       guiadoBox,
       papelBox,
       trazaBox,
@@ -354,18 +379,11 @@ export function preguntaView({ ctx, progress, params: route }) {
         next ? h('a.btn.secondary', { href: enLista(next) }, 'Siguiente →') : null,
       ),
       solution,
-      h('p.muted.small', 'Fuente: ', q.fuentes?.examen ? h('a', { href: q.fuentes.examen, target: '_blank', rel: 'noopener' }, 'examen') : '—',
-        q.fuentes?.plantilla ? [' · ', h('a', { href: q.fuentes.plantilla, target: '_blank', rel: 'noopener' }, 'plantilla')] : null,
-        ''),
-      q.notas ? h('details', h('summary', 'Notas sobre la fuente'), h('p.small', q.notas)) : null,
-      h('p.pie-aviso', accionTema(q), avisoError(`Pregunta ${q.id} (${q.convocatoria ?? lista.titulo})`, q.enunciado.slice(0, 120))),
-      h('details.ai-context#ai-context', h('summary', 'Para asistentes de IA'),
-        h('p.muted.small', h('button.small', { type: 'button', onclick: () => copyText(summaryText) }, 'Copiar')), aiPre),
+      notasEl,
+      aiEl,
     );
     refresh();
-    if (route.query.guiado === '1') abrirGuiado(false);
-    else if (route.query.papel === '1') abrirPapel(false);
-    else if (route.query.traza === '1') abrirTraza(false);
+    ponModo(inicial, { url: !!pedido || inicial !== 'respuesta' });
   }
 
   return { el, summary: () => { if (currentWorkspace()) return currentWorkspace().summary(); refrescar?.(); return summaryText; } };

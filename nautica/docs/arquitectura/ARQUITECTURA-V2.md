@@ -223,6 +223,8 @@ perder en convivencia. El resultado se anota como revisión del ADR 0004.
 
 ### 3.2 Vite, rutas y estado
 
+- **Vite entra antes que el framework:** en la fase F2 empaqueta la app actual tal cual (misma `ui/`), y con eso ya
+  se pasa de 403 peticiones a unas 15 y la precarga se genera sola. Preact llega después, sobre esa base.
 - **Vite 7** con `@preact/preset-vite`. Salida con nombres por *hash*; `build.target` = `es2022` (los navegadores que
   ya exige la app). Sin SSR ni prerenderizado: el HTML inicial lleva la cabecera, como hoy (primera pintura ≈ 100 ms).
 - **Rutas por *hash*, como hoy** (`#/<tit>/…`): no rompe enlaces ni accesos directos, no necesita reglas en la CDN y,

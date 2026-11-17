@@ -1,5 +1,5 @@
 // Generado por tools/precache.mjs: no lo edites a mano.
-self.VERSION = '04e9320160b0';
+self.VERSION = '77b5fd5d1dc7';
 self.APP = [
  "fonts/patron-mono.woff2",
  "fonts/patron-texto.woff2",
@@ -52,6 +52,7 @@ self.APP = [
  "src/course/foco.js",
  "src/course/formulas.js",
  "src/course/guia.js",
+ "src/course/listo-motivos.js",
  "src/course/listo.js",
  "src/course/mapas.js",
  "src/course/motor.js",
@@ -335,6 +336,7 @@ self.APP = [
  "src/ui/lamina-estado.js",
  "src/ui/lamina-marco.js",
  "src/ui/lamina.js",
+ "src/ui/listo-motivos.js",
  "src/ui/mapa-trampa.js",
  "src/ui/modo-examen.js",
  "src/ui/motivo-carta.js",

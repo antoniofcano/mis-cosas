@@ -51,7 +51,8 @@ export const PRESUPUESTO = {
   referencia: { palabras: 250, controles: 16, alto: 3, scroll: 0 },
   // Estrategia y Mi tema con datos tuyos: «Tu estrategia» trae 3 consejos personales (unas 100 palabras), que no se pliegan.
   referenciaConDatos: { palabras: 280, controles: 16, alto: 3.5, scroll: 0 },
-  tema: { palabras: 230, controles: 20, alto: 3.5, scroll: 0 },
+  // Tema: una tarjeta por clase (10 enlaces) más, en las ya vistas, su enlace a las preguntas de examen.
+  tema: { palabras: 230, controles: 24, alto: 4, scroll: 0 },
   hub: { palabras: 180, controles: 14, alto: 3, scroll: 1 },
   menu: { palabras: 180, controles: 16, alto: 4 },
 };

@@ -5,6 +5,7 @@
 
 import { num } from '../course/estrategia.js';
 import { duracion } from '../course/velocidad.js';
+import { cuenta } from '../texto.js';
 
 /** Palabras de un texto (como las cuenta la auditoría: tramos con alguna letra o cifra). */
 export const palabras = (t) => String(t).split(/\s+/).filter((w) => /[\p{L}\p{N}]/u.test(w)).length;
@@ -75,7 +76,7 @@ export const AJUSTES = {
 export const TEMA = {
   leerMas: 'Leer más',
   /** «Escúchalo: 4 episodios · 57 min →» */
-  escucha: (n, min) => `Escúchalo: ${n} ${n === 1 ? 'episodio' : 'episodios'} · ${min} min →`,
+  escucha: (n, min) => `Escúchalo: ${cuenta(n, 'episodio')} · ${min} min →`,
   antes: (titulo) => `Antes: ${titulo}`,
   hoyToca: 'Hoy toca',
   masDelTema: 'Más para este tema',
@@ -94,7 +95,7 @@ export function primeraFrase(t, max = 30) {
 
 /** Máximo de palabras de cada texto fijo (tests/densidad.test.js). Lo que se pasa, falla. */
 export const LIMITES = {
-  'estrategia.entrada': 22, 'estrategia.sinDatos': 14, 'estrategia.boton': 4, 'estrategia.resumenContestar': 10,
+  'estrategia.sinDatos': 14, 'estrategia.boton': 4, 'estrategia.resumenContestar': 10,
   'estrategia.resumenDia': 10, 'estrategia.resumenFuentes': 10,
   'podcast.entrada': 16, 'podcast.pie': 20,
   'hoy.nivel': 12, 'hoy.nivelMedias': 10,

@@ -3045,3 +3045,16 @@ details.plegable.puerto > summary { padding-left: .8rem; }
 }
 .entrada.sin-datos .indicador-eje-linea { display: none; }
 .entrada-ver-derrota { display: inline-flex; margin-top: .3rem; }
+/* Tema: cada clase, una tarjeta de 2 líneas (nombre; minutos y estado); «Hoy toca» destacada con su marca y su borde */
+.tema ol.clases { gap: .4rem; }
+.tema a.clase { flex-direction: column; align-items: flex-start; justify-content: center; flex-wrap: nowrap; gap: .1rem; min-height: 56px; padding: .5rem .9rem; }
+.tema a.clase .clase-meta { font-size: .88rem; }
+.tema a.clase.siguiente-ruta { border-width: 2px; background: var(--accent-2); }
+.tema a.clase .badge-ruta { margin-left: .5rem; vertical-align: middle; }
+.tema a.clase:focus-visible, .tema .radio-tema-linea:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.tema .radio-tema { margin: .6rem 0; }
+.tema a.radio-tema-linea { display: inline-flex; align-items: center; gap: .4rem; min-height: 44px; font-weight: 600; }
+.tema-intro p { margin: .3rem 0; }
+details.tema-leer-mas { margin: 0 0 .4rem; padding: 0; border: 0; background: none; }
+details.tema-leer-mas > summary { display: inline-flex; align-items: center; min-height: 44px; padding: 0; color: var(--accent); }
+details.tema-leer-mas > summary:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }

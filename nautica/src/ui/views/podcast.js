@@ -1,5 +1,5 @@
 // #/<tit>/podcast — «Radio de a bordo»: los podcasts de Elena y Andrés como una travesía. Cada tema es un puerto
-// y cada episodio una tarjeta (número, título, duración, estado y el arranque del guion plegado en «Ver el guion»).
+// y cada episodio una línea con su título, duración y estado; arriba, «Escucha ahora». El guion está solo dentro del episodio (H-74).
 // #/<tit>/podcast/<id> — el episodio: reproductor grande, el guion al hilo (se ilumina lo que suena y se toca para
 // saltar), las preguntas del minijuego para contestar en la pausa, y su ficha con las clases.
 

@@ -26,6 +26,7 @@ import { loadFormulas } from '../../store/datasets.js';
 import { temasConFormulas } from '../../course/formulas.js';
 import { selectorFoco } from '../foco.js';
 import { plegable } from '../plegable.js';
+import { TEMA, primeraFrase } from '../textos-hubs.js';
 
 /**
  * Ideas (conceptos) de cada clase con preguntas en este banco y cómo las lleva el alumno: Map claseId → { sabidas,
@@ -135,6 +136,14 @@ export function temarioView({ progress, tit }) {
 
 const lista = (xs) => (xs.length > 4 ? `${xs.slice(0, 3).join(', ')} y ${cuenta(xs.length - 3, 'concepto')} más` : xs.length === 1 ? xs[0] : `${xs.slice(0, -1).join(', ')} y ${xs.at(-1)}`);
 
+/** La introducción del tema en una línea (H-74) y, plegado, «Leer más» con lo demás. `resumen`: la frase redactada aparte, si la hay. */
+function introCorta(intro, resumen = null) {
+  if (!intro) return null;
+  const corta = resumen ?? primeraFrase(intro);
+  const resto = resumen ? intro : intro.slice(corta.replace(/…$/, '').length).trim();
+  return h('div.tema-intro', h('p', corta), resto ? h('details.tema-leer-mas', h('summary', TEMA.leerMas), h('p', resto)) : null);
+}
+
 export function temaView({ progress, params: route, tit }) {
   if (route.parts[2] === 'chuleta') return chuletaView({ tit, params: route, progress });
   const T = TITULACIONES[tit];
@@ -194,46 +203,49 @@ export function temaView({ progress, params: route, tit }) {
       const conAudio = eps.filter((e) => e.audio);
       if (!conAudio.length) return;
       const pan = conAudio.find((e) => e.tipo === 'panorama');
-      const resto = conAudio.filter((e) => e !== pan);
-      const fila = (e) => h('a.radio-tema-ep', { href: enlaceEpisodio(tit, e, `temario/${ut}`) },
-        h('span.radio-tema-marca', { 'aria-hidden': 'true' }, estadoEpisodio(e.id).oido ? icono('ok') : icono(e.tipo === 'panorama' ? 'faro' : 'salvavidas')),
-        h('span', h('strong', `${e.n} · ${e.titulo}`), h('span.muted.small', ` · ${Math.round(e.duracion / 60)} min`)));
       // En la lista de clases, unos auriculares en las que tienen su episodio.
       for (const e of conAudio.filter((x) => x.tipo === 'profundiza')) {
         for (const lid of e.lecciones) { const m = el.querySelector(`.clase-podcast[data-clase="${lid}"]`); if (m) m.hidden = false; }
       }
-      setChildren(radioTema, h('h2', conIcono('podcast', 'Escúchalo')),
-        h('p.muted.small', pan ? 'Empieza por el panorama para situarte; luego, cada episodio va con sus clases.' : 'Cada episodio va con sus clases.'),
-        pan ? fila(pan) : null, resto.map(fila),
-        conAudio.length < eps.length ? h('p.muted.small', `${cuenta(eps.length - conAudio.length, 'episodio')} más de este tema en el astillero.`) : null);
+      // «Escúchalo: 4 episodios · 57 min →»: una línea (H-74); el panorama primero, el resto en la radio.
+      const min = Math.round(conAudio.reduce((x, e) => x + (e.duracion ?? 0), 0) / 60);
+      setChildren(radioTema, h('a.radio-tema-linea', { href: enlaceEpisodio(tit, pan ?? conAudio[0], `temario/${ut}`) }, icono('podcast', 'ico-t'), TEMA.escucha(conAudio.length, min)));
       radioTema.hidden = false;
       summaryText += `\nPODCASTS: ${conAudio.map((e) => `${e.n} ${e.titulo}`).join('; ')}`;
     }).catch(() => {});
     setChildren(el,
       volver('Temario', tlink(tit, ['temario'])),
       h('h1', conIcono(b.ico, b.titulo)),
-      m?.intro ? h('p', m.intro) : null,
+      introCorta(m?.intro, TEMA.resumen[tit]?.[ut]),
       principal,
-      clases.length ? h('section', h('h2', 'Clases'), h('ol.clases', clases.map(({ l, e: x }) => h('li', h('a.clase', { href: tlink(tit, ['curso', l.id]), class: l.id === siguienteRuta ? 'siguiente-ruta' : '' },
-        h('span.clase-titulo', l.titulo, l.id === siguienteRuta ? h('span.badge.badge-ruta', 'Siguiente en tu ruta') : null),
-        apoyos.get(l.id).length ? h('span.clase-apoyo', `Se apoya en: ${apoyos.get(l.id).map((r) => r.titulo).join(' · ')}`) : null,
-        h('span.clase-meta', h('span.muted', `${l.minutos ?? 10} min`), h('span.clase-podcast', { 'data-clase': l.id, hidden: true, title: 'Tiene podcast' }, icono('podcast', '', 'Tiene podcast')),
-          h('span.estado', { class: ESTADO_CLS[x.estado] ?? '' }, ESTADO_TXT[x.estado])),
-        ideas.has(l.id) ? h('span.clase-ideas', { class: ideas.get(l.id).flojas.length ? 'con-flojas' : '' }, lineaIdeasClase(ideas.get(l.id))) : null),
-      // Directo a la prueba de la clase, sin recorrer sus tarjetas.
-      practicables.has(l.id) ? h('a.clase-practica.small', { href: tlink(tit, ['curso', l.id], { practica: '1' }) }, conIcono('pregunta', `${cuenta(practicables.get(l.id), 'pregunta')} de examen`)) : null,
-      flojasDe.get(l.id) ?? null)))) : null,
+      // Cada clase, una tarjeta de 2 líneas (H-74): su nombre y «12 min · sin empezar». «Antes: …» solo si la clase previa está
+      // sin ver; las ideas y las preguntas de examen, solo cuando la clase está vista (es cuando sirven).
+      clases.length ? h('section', h('h2', 'Clases'), h('ol.clases', clases.map(({ l, e: x }) => {
+        const vista = ['vista', 'repasar', 'dominada'].includes(x.estado);
+        const sinVer = apoyos.get(l.id).filter((r) => { const c = clases.find((y) => y.l.id === r.id); return c && !['vista', 'repasar', 'dominada', 'saltada'].includes(c.e.estado); });
+        const hoy = l.id === (siguienteRuta ?? (aMedias ?? nueva)?.l.id); // «Hoy toca»: la de tu ruta o, sin ruta, a la que lleva el botón
+        return h('li', h('a.clase', { href: tlink(tit, ['curso', l.id]), class: hoy ? 'siguiente-ruta' : '' },
+          h('span.clase-titulo', l.titulo, hoy ? h('span.badge.badge-ruta', TEMA.hoyToca) : null),
+          h('span.clase-meta', h('span.muted', `${l.minutos ?? 10} min`), h('span.muted', '·'), h('span.estado', { class: ESTADO_CLS[x.estado] ?? '' }, ESTADO_TXT[x.estado]),
+            h('span.clase-podcast', { 'data-clase': l.id, hidden: true, title: 'Tiene podcast' }, icono('podcast', '', 'Tiene podcast'))),
+          sinVer.length ? h('span.clase-apoyo', TEMA.antes(sinVer.map((r) => r.titulo).join(' · '))) : null,
+          vista && ideas.has(l.id) ? h('span.clase-ideas', { class: ideas.get(l.id).flojas.length ? 'con-flojas' : '' }, lineaIdeasClase(ideas.get(l.id))) : null),
+        // Directo a la prueba de la clase, sin recorrer sus tarjetas (cuando ya la has visto).
+        vista && practicables.has(l.id) ? h('a.clase-practica.small', { href: tlink(tit, ['curso', l.id], { practica: '1' }) }, conIcono('pregunta', `${cuenta(practicables.get(l.id), 'pregunta')} de examen`)) : null,
+        vista ? flojasDe.get(l.id) ?? null : null);
+      }))) : null,
       h('section', h('h2', 'Preguntas de examen'),
         e.hechas ? h('p', `${e.hechas} de ${e.total} hechas`) : null,
         h('div.actions',
           h('a.btn.secondary', { href: tanda }, `Hacer ${cuenta(TANDA, 'pregunta')}`),
           e.fallos ? h('a.btn.secondary', { href: tlink(tit, ['teoria', 'ut', String(ut)], { s: randomSeed(), f: '1' }) }, `Repasar mis fallos (${e.fallos})`) : null)),
       radioTema,
-      h('p', h('a.btn.secondary', { href: tlink(tit, ['temario', String(ut), 'chuleta']) }, conIcono('imprimir', 'Chuleta del tema para imprimir'))),
-      formulasTema,
-      mapasTema,
-      ut === T.cartaUt ? h('a.card', { href: tlink(tit, ['carta']) }, h('h3', conIcono('mapa', 'Ejercicios de carta')), h('p', 'Practica cada tipo de ejercicio sobre la carta del Estrecho.')) : null,
-      h('section', h('h2', 'Para ayudarte'),
+      // Lo demás del tema, plegado: la chuleta, las fórmulas, los mapas, la carta y la ayuda general.
+      plegable({ titulo: TEMA.masDelTema },
+        h('p', h('a.btn.secondary', { href: tlink(tit, ['temario', String(ut), 'chuleta']) }, conIcono('imprimir', 'Chuleta del tema para imprimir'))),
+        formulasTema,
+        mapasTema,
+        ut === T.cartaUt ? h('a.card', { href: tlink(tit, ['carta']) }, h('h3', conIcono('mapa', 'Ejercicios de carta')), h('p', 'Practica cada tipo de ejercicio sobre la carta del Estrecho.')) : null,
         h('div.cards',
           h('a.card', { href: tlink(tit, ['laminas']) }, h('h3', conIcono('lamina', 'Láminas')), h('p', 'Todas las láminas, ordenadas por temas.')),
           h('a.card', { href: link(['reglas']) }, h('h3', conIcono('nudo', 'Reglas para recordar')), h('p', 'Trucos que funcionan, con su explicación.')),

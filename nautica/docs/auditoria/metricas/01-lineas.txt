@@ -1,0 +1,167 @@
+== LOC por dir src (lineas ficheros dir)
+19671 60 nautica/src/exams/
+17101 95 nautica/src/illustrations/
+16457 105 nautica/src/ui/
+9072 41 nautica/src/course/
+2237 1 nautica/src/vendor/
+2197 22 nautica/src/exercises/
+2076 15 nautica/src/store/
+975 15 nautica/src/nautical/
+674 5 nautica/src/theory/
+652 8 nautica/src/bancos/
+461 4 nautica/src/graphics/
+445 4 nautica/src/teacher/
+369 2 nautica/src/calculadora/
+334 5 nautica/src/math/
+265 3 nautica/src/conceptos/
+185 2 nautica/src/analysis/
+171 1 nautica/src/audio/
+164 1 nautica/src/bloc/
+107 2 nautica/src/ai/
+99 1 nautica/src/chart/
+== otros
+19017 125 nautica/tests
+8019 61 nautica/tools
+3800 2 nautica/styles
+612 4 sync-worker/src
+857 6 sync-worker/tests
+1643 15 sync-worker
+== total src
+73745
+393
+== top files
+ 104638 total
+   2991 nautica/styles/app.css
+   1336 nautica/src/ui/views/theory.js
+   1224 nautica/src/exams/solutions/baleares-py-07.js
+   1141 nautica/src/exams/solutions/baleares-py-08.js
+   1130 nautica/src/exams/solutions/baleares-py-06.js
+    988 nautica/src/exams/solutions/baleares-per-04.js
+    976 nautica/src/exams/kit.js
+    971 nautica/src/exams/solutions/baleares-py-05.js
+    950 nautica/src/exams/solutions/baleares-per-02.js
+    950 nautica/src/course/carta-pasos.js
+    945 nautica/src/exams/solutions/baleares-per-03.js
+    943 nautica/src/ui/chart/interactive-chart.js
+    918 nautica/src/exams/solutions/baleares-per-01.js
+    818 nautica/tests/travesia.test.js
+    809 nautica/styles/laminas.css
+    797 nautica/src/illustrations/per-cola-c.js
+    777 nautica/src/illustrations/per-final-c.js
+    690 nautica/src/illustrations/per-cola-carta-c.js
+    654 nautica/src/illustrations/marcos.js
+    613 nautica/src/ui/guiado.js
+    592 nautica/sw-lista.js
+    581 nautica/src/ui/views/curso.js
+    574 nautica/src/course/travesia.js
+    560 nautica/src/course/semana.js
+    534 nautica/src/illustrations/per-final-b-c.js
+    528 nautica/src/exams/intencion.js
+    489 nautica/src/illustrations/per-cola-normativa-c.js
+    471 nautica/src/illustrations/sanidad-c.js
+    458 nautica/src/ui/views/hoy.js
+    449 nautica/tools/cuarentena.mjs
+    440 nautica/tests/laminas-calculo.test.js
+    439 nautica/tests/conceptos.test.js
+    438 nautica/src/illustrations/marcos-py.js
+    438 nautica/src/illustrations/carta-pasos-c.js
+    437 nautica/tests/sync-motor.test.js
+    436 nautica/src/illustrations/py-cola-meteo-c.js
+    433 nautica/src/course/cuentas.js
+    432 nautica/tests/animaciones.test.js
+    427 nautica/tests/guiado.test.js
+    420 nautica/src/course/descarte.js
+    418 nautica/src/exams/solutions/andalucia-py-2018.js
+    416 nautica/src/illustrations/socorro.js
+    399 nautica/src/bancos/index.js
+    389 nautica/src/illustrations/py-cola-c.js
+    386 nautica/tests/intencion.test.js
+    375 nautica/src/illustrations/per-c.js
+    375 nautica/src/illustrations/electronica-c.js
+    373 nautica/tests/illustrations.test.js
+    372 nautica/src/ui/views/exams.js
+== subdirs
+1375 4 nautica/src/ui/chart/
+8043 37 nautica/src/ui/views/
+958 8 nautica/src/illustrations/animaciones/
+2288 18 nautica/src/illustrations/interactivas/
+1469 19 nautica/src/illustrations/lecciones/
+1146 8 nautica/src/store/sync/
+1811 17 nautica/src/exercises/types/
+16741 49 nautica/src/exams/solutions/
+   95 nautica/sw.js
+  592 nautica/sw-lista.js
+   44 nautica/index.html
+  731 total
+sync-worker/package-lock.json
+sync-worker/package.json
+sync-worker/schema.sql
+sync-worker/wrangler.toml
+
+sync-worker:
+migrations
+package-lock.json
+package.json
+schema.sql
+scripts
+src
+tests
+wrangler.toml
+
+sync-worker/migrations:
+0001_inicial.sql
+0002_avisos.sql
+
+sync-worker/scripts:
+vapid.mjs
+
+sync-worker/src:
+avisos.js
+index.js
+servidor.js
+webpush.js
+
+sync-worker/tests:
+avisos.test.js
+claves-prueba.js
+d1-node.js
+integracion.test.js
+servidor.test.js
+webpush.test.js
+node_modules/
+.DS_Store
+.claude/worktrees/
+# Caché del proceso de extracción de bancos (PDF oficiales descargados y salidas intermedias): nunca se sube
+nautica/.cache/
+nautica/tools/bancos/py/__pycache__/
+== data
+306M	nautica/podcast
+24M	nautica/data
+5.3M	nautica/src
+5.2M	nautica/tools
+1.5M	nautica/tests
+696K	nautica/docs
+332K	nautica/styles
+80K	nautica/fonts
+44K	nautica/icons
+36K	nautica/CHANGELOG.md
+20K	nautica/sw-lista.js
+20K	nautica/llms.txt
+16K	nautica/README.md
+8.0K	nautica/index.html
+4.0K	nautica/sw.js
+4.0K	nautica/package.json
+4.0K	nautica/package-lock.json
+4.0K	nautica/manifest.webmanifest
+21M	nautica/data/ejes
+1.2M	nautica/data/curso
+980K	nautica/data/podcast
+456K	nautica/data/conceptos
+356K	nautica/data/comun
+156K	nautica/data/podcast-per.json
+112K	nautica/data/podcast-py.json
+112K	nautica/data/mapas
+24K	nautica/data/chart-105.json
+12K	nautica/data/normativa.json
+4.0K	nautica/data/carta-l105-calibracion.json
+182

@@ -1,0 +1,6 @@
+#/per → #/per · networkidle 1943 ms · JSON 22 ficheros 4457 KB · heap 23 MB
+    data/ejes/andalucia/per/preguntas.json 2220KB | data/curso/per.json 701KB | data/ejes/andalucia/per/explicaciones.json 674KB | data/podcast-per.json 155KB | data/conceptos/balizamiento-ripa.json 109KB | data/conceptos/seguridad-legislacion.json 99KB | data/conceptos/nomenclatura-maniobra.json 80KB | data/conceptos/navegacion.json 77KB
+#/per/examenes → #/per/examenes · networkidle 1932 ms · JSON 19 ficheros 4294 KB · heap 22 MB
+    data/ejes/andalucia/per/preguntas.json 2220KB | data/curso/per.json 701KB | data/ejes/andalucia/per/explicaciones.json 674KB | data/conceptos/balizamiento-ripa.json 109KB | data/conceptos/seguridad-legislacion.json 99KB | data/conceptos/nomenclatura-maniobra.json 80KB | data/conceptos/navegacion.json 77KB | data/ejes/andalucia/per/conceptos.json 75KB
+#/py → #/py · networkidle 1784 ms · JSON 23 ficheros 3828 KB · heap 18 MB
+    data/ejes/andalucia/py/preguntas.json 1844KB | data/ejes/andalucia/py/explicaciones.json 705KB | data/curso/py.json 386KB | data/conceptos/balizamiento-ripa.json 109KB | data/podcast-py.json 108KB | data/conceptos/seguridad-legislacion.json 99KB | data/comun/vocabulario-py.json 81KB | data/conceptos/nomenclatura-maniobra.json 80KB

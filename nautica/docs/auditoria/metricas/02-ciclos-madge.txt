@@ -1,0 +1,8 @@
+- Finding files
+Processed 393 files (2.3s) 
+
+✖ Found 2 circular dependencies!
+
+1) exams/kit.js > exams/avisos-pasos.js
+2) course/ruta.js > course/engine.js
+

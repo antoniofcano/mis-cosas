@@ -1,0 +1,6 @@
+app.css · bloques de reglas: 2615 · clases distintas: 1425 · sin rastro en el código: 78 · tras quitar prefijos dinámicos: 38 · ids: 2
+   ej.: sesion-cab chart-holder chart-tools rose test-bar qnav qdot qholder il-sky il-sea il-night night il-sub il-mast il-daybox il-water-cut il-part il-fo portada tit-cards tit-card tit-icon tit-head paths icono-grande
+   variables CSS definidas: 102
+laminas.css · bloques de reglas: 594 · clases distintas: 447 · sin rastro en el código: 7 · tras quitar prefijos dinámicos: 1 · ids: 0
+   ej.: chip-estado
+   variables CSS definidas: 31

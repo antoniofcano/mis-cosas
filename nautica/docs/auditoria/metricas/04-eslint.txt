@@ -1,0 +1,90 @@
+ficheros 394 errores 109 avisos 743
+== por regla
+  407 warn complexity                   src/ai/summary.js:32
+  108 warn no-use-before-define         src/bancos/index.js:108
+  107 ERR  no-unused-vars               src/course/formulas.js:224
+   60 warn max-lines-per-function       src/bancos/index.js:71
+   55 warn max-params                   src/analysis/checker.js:20
+   41 warn no-shadow                    src/exams/kit.js:413
+   25 warn no-param-reassign            src/course/listo.js:49
+   17 warn no-await-in-loop             src/bancos/index.js:301
+    8 warn prefer-const                 src/exams/options.js:110
+    8 warn no-console                   src/illustrations/index.js:122
+    7 warn require-atomic-updates       src/store/sync/motor.js:149
+    5 warn max-depth                    src/course/config-profe.js:93
+    2 warn consistent-return            src/ui/views/oficial.js:44
+    1 ERR  no-irregular-whitespace      src/course/config-profe.js:153
+    1 ERR  no-useless-escape            src/course/examen-oficial.js:126
+== complejidad: funciones >10: 407  >20: 102  >30: 29  >50: 6
+  83 src/store/sync/plegar.js:94 · Function 'aplicarBases'
+  66 src/store/sync/operaciones.js:91 · Function 'validarOperacion'
+  64 src/course/config-profe.js:51 · Function 'validarConfig'
+  55 src/course/motor.js:54 · Function 'estadoAlumno'
+  52 src/ui/views/theory.js:1158 · Function 'resultados'
+  51 src/course/plan.js:122 · Function 'planHoy'
+  50 src/course/final.js:56 · Function 'estadoFinal'
+  50 src/ui/views/hoy.js:156 · Arrow function
+  46 src/illustrations/electronica-c.js:220 · Function 'gnssCalculos'
+  46 src/ui/views/hoy.js:260 · Arrow function
+  44 src/illustrations/carta-pasos-c.js:106 · Function 'cartaPaso'
+  43 src/course/motor.js:187 · Function 'invariantes'
+  43 src/course/semana.js:385 · Function 'planSemana'
+  40 src/ui/views/curso.js:72 · Arrow function
+  39 src/illustrations/interactivas/cadena.js:110 · Function 'dibujaCadena'
+  39 src/ui/views/idea.js:48 · Arrow function
+  38 src/store/sync/fusion.js:47 · Function 'crearBase'
+  36 src/exams/kit.js:616 · Method 'tramos'
+  36 src/ui/views/exams.js:143 · Function 'renderQuestion'
+  35 src/illustrations/lecciones/py-navegacion.js:196 · Function 'travesDerrota'
+  35 src/store/sync/plegar.js:209 · Function 'aplicar'
+  34 src/ui/lamina.js:62 · Function 'pinta'
+  33 src/illustrations/buques-c.js:35 · Function 'lucesVista'
+  32 src/course/estrategia.js:168 · Function 'tuEstrategia'
+  32 src/course/semana.js:457 · Arrow function
+  32 src/illustrations/per-cola-carta-c.js:475 · Function 'tangenteC'
+  31 src/course/estrategia.js:124 · Function 'textosEstrategia'
+  31 src/illustrations/lights.js:9 · Function 'parseRhythm'
+  31 src/ui/chart/interactive-chart.js:625 · Arrow function
+  30 src/calculadora/motor.js:265 · Function 'pulsar'
+== funciones >80 líneas: 60  >150: 22  >300: 7
+ 788 src/ui/chart/interactive-chart.js:47 · Function 'interactiveChart'
+ 767 src/exams/kit.js:64 · Function 'createKit'
+ 454 src/ui/guiado.js:107 · Function 'guiadoPanel'
+ 454 src/ui/views/curso.js:57 · Function 'leccionView'
+ 440 src/ui/views/curso.js:72 · Arrow function
+ 438 src/ui/views/theory.js:836 · Function 'testView'
+ 422 src/ui/views/theory.js:856 · Arrow function
+ 269 src/ui/views/hoy.js:136 · Function 'hoyView'
+ 252 src/ui/views/hoy.js:156 · Arrow function
+ 242 src/ui/views/profe.js:19 · Function 'profeView'
+ 232 src/ui/views/profe.js:29 · Arrow function
+ 225 src/ui/views/exams.js:124 · Function 'preguntaView'
+ 207 src/ui/views/exams.js:143 · Function 'renderQuestion'
+ 193 src/ui/views/exercise.js:43 · Function 'exerciseView'
+ 188 src/store/sync/motor.js:49 · Function 'crearMotor'
+ 187 src/bancos/index.js:71 · Function 'crearBancos'
+ 176 src/ui/chart/workspace.js:64 · Function 'openWorkspace'
+ 170 src/ui/animacion.js:35 · Function 'reproductor'
+ 162 src/ui/views/oficial.js:29 · Function 'oficialView'
+ 155 src/ui/lamina.js:20 · Function 'laminaEl'
+ 154 src/store/progress.js:45 · Function 'createProgressStore'
+ 152 src/ui/views/mas.js:31 · Function 'masView'
+ 146 src/ui/views/curso.js:174 · Function 'pasoEl'
+ 144 src/ui/views/fallos.js:91 · Function 'dosisView'
+ 141 src/illustrations/carta-pasos-c.js:106 · Function 'cartaPaso'
+== ficheros con más avisos
+44 src/ui/views/theory.js
+22 src/ui/views/curso.js
+21 src/ui/chart/interactive-chart.js
+19 src/store/sync/motor.js
+18 src/illustrations/lecciones/py-navegacion.js
+18 src/ui/guiado.js
+17 src/ui/views/exams.js
+16 src/exams/kit.js
+14 src/illustrations/lecciones/py-segunda-b.js
+11 src/ui/views/exercise.js
+11 src/ui/views/temario.js
+10 src/bancos/index.js
+10 src/course/config-profe.js
+9 src/course/plan.js
+9 src/course/semana.js

@@ -1,0 +1,66 @@
+1..2581
+# tests 2581
+# suites 0
+# pass 2575
+# fail 1
+# cancelled 0
+# skipped 5
+# todo 0
+# duration_ms 37136.516293
+
+ficheros de test: 122; test( : 1016
+== leen código fuente o CSS como TEXTO (readFileSync de src/, styles/, index.html, sw)
+68
+36
+tests que mencionan .css: 22 ficheros
+ficheros que leen src/ui como texto:
+35
+tests/mapas-chuletas-c.test.js:13
+tests/bloc.test.js:9
+tests/hoy-travesia-c.test.js:6
+tests/formulas.test.js:6
+tests/tarjetas-c.test.js:5
+tests/estrategia.test.js:5
+tests/ensayo.test.js:5
+tests/animaciones.test.js:5
+tests/tema.test.js:4
+tests/laminas-estilo.test.js:4
+tests/dia-examen.test.js:4
+tests/carta-sin-solucion.test.js:4
+tests/carta-completa.test.js:4
+tests/velocidad.test.js:3
+tests/reloj-paso.test.js:3
+tests/mesa-estilo.test.js:3
+tests/laminas-per.test.js:3
+tests/laminas-cierre.test.js:3
+tests/carta-pasos.test.js:3
+tests/travesia.test.js:2
+tests/plan-examen.test.js:2
+tests/laminas-sanidad.test.js:2
+tests/laminas-py-cola.test.js:2
+tests/entrada.test.js:2
+tests/ensena.test.js:2
+== assert.match / includes sobre texto: 863
+assert.match: 600  assert.equal/deepEqual/ok: 5116
+== leen data/ (contrato de datos): 62 ficheros
+== DOM simulado (jsdom/happy-dom/document falso): 1
+tests/animaciones.test.js
+== playwright / e2e: 
+== tests más lentos (ficheros)
+not ok 107 - tests/sync-qr.test.js	  ---	
+== tests individuales más lentos
+14392.500219 ok 2203 - barrido sobre las preguntas reales: primer desvío exacto, error con nombre y nada arrastrado marcado como fallo
+5371.217133 ok 333 - comprobación y dosis con preguntas reales: solo de la práctica, con esa trampa y nunca reservadas
+5244.014306 ok 237 - examen corregido: cada opción falsa con diagnóstico único entra en el cuaderno con su nombre, una vez por pregunta
+3484.869857 ok 1954 - barrido del banco de práctica: cada plan cuadra con su resolución y cada error tiene nombre
+2408.319707 ok 2346 - baleares per: ninguna pregunta reservada ni retirada sale por ninguna puerta del estudio
+1647.046205 ok 397 - paso a paso: hoja de examen, cuatro opciones, avisos y el error con nombre en su paso
+1617.978647 ok 2097 - vocabulario publicado: ids únicos, definiciones breves y cada forma aparece en su banco
+1458.056497 ok 2347 - baleares py: ninguna pregunta reservada ni retirada sale por ninguna puerta del estudio
+1425.820423 ok 2344 - dgmm per: ninguna pregunta reservada ni retirada sale por ninguna puerta del estudio
+1250.686406 ok 2418 - índice de distractores: coincide con el diagnóstico en vivo en una muestra
+1196.115977 ok 2471 - el profe explica todos los pasos de ejercicios y exámenes, y la voz queda limpia
+1105.005706 ok 45 - hoja-optica: lectura de una hoja sintética con los números más intensos que las burbujas
+bancos
+progress-antiguo.js
+6 tests/helpers.js

@@ -1,0 +1,68 @@
+modulos 393 aristas 1777
+== capa -> capa (n imports)
+ai             nautical:4 analysis:3 exercises:3 math:3
+analysis       math:2 exercises:1
+bancos         exams:27 theory:3 course:2 conceptos:1
+calculadora    theory:1
+chart          math:1
+conceptos      bancos:1
+course         (raiz):20 nautical:14 theory:12 math:11 illustrations:9 exams:4 calculadora:3 analysis:1 conceptos:1
+exams          math:48 analysis:7 nautical:3 exercises:1 course:1
+exercises      nautical:27 math:15
+graphics       math:6
+illustrations  nautical:33 math:3 theory:1 course:1
+nautical       math:8
+store          bancos:2 course:2 exams:1 (raiz):1
+theory         (raiz):2 course:1
+ui             course:134 (raiz):51 store:49 bancos:29 theory:29 math:25 exams:22 illustrations:19 teacher:7 exercises:7 bloc:5 graphics:5 analysis:5 ai:3 calculadora:2 conceptos:2 nautical:2 chart:1 audio:1 vendor:1
+== pares de capas con dependencia mutua
+bancos <-> conceptos  (1 / 1)  ej: bancos/index.js -> conceptos/catalogo.js  |  conceptos/index.js -> bancos/index.js
+course <-> exams  (4 / 1)  ej: course/cuaderno.js -> exams/taxonomia.js  |  exams/ensena.js -> course/velocidad.js
+course <-> theory  (12 / 1)  ej: course/estrategia.js -> theory/blocks.js  |  theory/ensayo.js -> course/estrategia.js
+course <-> illustrations  (9 / 1)  ej: course/tarjetas.js -> illustrations/buoys.js  |  illustrations/tarjetas-c.js -> course/tarjetas.js
+== violaciones: no-ui que importa ui
+== no-ui que importa store
+== top fan-in
+87 ui/dom.js
+74 texto.js
+74 ui/iconos.js
+54 exams/kit.js
+54 illustrations/estilo-c.js
+53 ui/titulacion.js
+44 math/angles.js
+34 math/format.js
+34 theory/blocks.js
+26 bancos/index.js
+25 ui/router.js
+24 math/mercator.js
+23 store/datasets.js
+22 exercises/define.js
+20 math/rng.js
+19 course/velocidad.js
+18 nautical/compass.js
+17 exercises/helpers.js
+16 ui/cierre.js
+15 analysis/quantities.js
+== top fan-out
+64 ui/app.js
+54 ui/views/theory.js
+34 ui/views/hoy.js
+33 ui/views/curso.js
+33 ui/views/exercise.js
+26 ui/views/exams.js
+25 ui/views/semana.js
+24 ui/views/misc.js
+23 ui/guiado.js
+23 ui/views/temario.js
+20 ui/views/mas.js
+19 ui/views/idea.js
+19 ui/views/travesia.js
+18 exercises/registry.js
+18 illustrations/lecciones/index.js
+18 ui/views/fallos.js
+17 illustrations/index.js
+16 bancos/ejes/dgmm.js
+16 ui/views/sesion.js
+15 course/motor.js
+== sin importadores (posible código muerto o entrada)
+ui/app.js

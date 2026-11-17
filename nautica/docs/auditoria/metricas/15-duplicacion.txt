@@ -1,0 +1,29 @@
+jscpd (min 8 líneas, 70 tokens) sobre src/ sin vendor: clones 117 · líneas duplicadas 1275 de 71134 = 1.79%
+-- líneas duplicadas por directorio
+ 1173 exams/solutions
+   30 illustrations/lecciones
+   24 exercises/types
+   22 bloc
+   16 ui
+   10 exams
+-- 20 clones mayores
+29 exams/solutions/dgmm-per-2023.js:9 ~ exams/solutions/dgmm-per-2024.js:9
+29 exams/solutions/dgmm-per-2023.js:9 ~ exams/solutions/dgmm-per-2026.js:9
+21 exams/solutions/dgmm-per-2023.js:17 ~ exams/solutions/dgmm-per-2025.js:20
+16 exams/solutions/baleares-py-05.js:51 ~ exams/solutions/baleares-py-05.js:267
+16 exams/solutions/baleares-py-05.js:51 ~ exams/solutions/baleares-py-05.js:333
+16 ui/ensayo.js:138 ~ ui/views/theory.js:1029
+15 exams/solutions/baleares-py-05.js:398 ~ exams/solutions/baleares-py-05.js:639
+15 exercises/types/corriente-desconocida.js:22 ~ exercises/types/corriente-efectiva.js:22
+14 exams/solutions/baleares-per-03.js:120 ~ exams/solutions/baleares-per-03.js:294
+14 exams/solutions/baleares-py-05.js:469 ~ exams/solutions/baleares-py-05.js:583
+14 exams/solutions/baleares-py-06.js:240 ~ exams/solutions/baleares-py-06.js:611
+14 exams/solutions/baleares-py-06.js:285 ~ exams/solutions/baleares-py-06.js:763
+14 exams/solutions/baleares-py-06.js:903 ~ exams/solutions/baleares-py-07.js:406
+14 exams/solutions/dgmm-per-2021.js:6 ~ exams/solutions/dgmm-per-2022.js:8
+13 exams/solutions/baleares-per-01.js:236 ~ exams/solutions/baleares-per-01.js:822
+13 exams/solutions/baleares-py-05.js:850 ~ exams/solutions/baleares-py-06.js:982
+13 exams/solutions/baleares-py-07.js:27 ~ exams/solutions/baleares-py-07.js:133
+13 exams/solutions/baleares-py-07.js:237 ~ exams/solutions/baleares-py-07.js:332
+12 exams/solutions/baleares-per-01.js:115 ~ exams/solutions/baleares-per-01.js:713
+12 exams/solutions/baleares-per-01.js:341 ~ exams/solutions/baleares-per-01.js:670

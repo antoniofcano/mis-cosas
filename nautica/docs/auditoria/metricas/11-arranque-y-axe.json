@@ -1,0 +1,85 @@
+{
+ "frio": {
+  "medianaListoMs": 953,
+  "medianaDcl": 905,
+  "fcp": 104,
+  "muestra": {
+   "listo": 1039,
+   "dcl": 991,
+   "load": 991,
+   "fcp": 144,
+   "hash": "#/bienvenida",
+   "ls": [
+    [
+     "nautica.sync.v1",
+     135
+    ]
+   ],
+   "peticiones": 403,
+   "js": 393,
+   "json": 5,
+   "kbTotal": 4883,
+   "kbJson": 30,
+   "errores": []
+  }
+ },
+ "cpu4": {
+  "medianaListoMs": 2128,
+  "fcp": 308
+ },
+ "cpu4_4g": {
+  "listoMs": 28055,
+  "fcp": 5304,
+  "peticiones": 403,
+  "kb": 4883
+ },
+ "axe": {
+  "#/bienvenida": {
+   "hashFinal": "#/bienvenida",
+   "violaciones": []
+  },
+  "#/per": {
+   "hashFinal": "#/per",
+   "violaciones": []
+  },
+  "#/per/temario": {
+   "hashFinal": "#/per/temario",
+   "violaciones": []
+  },
+  "#/per/examenes": {
+   "hashFinal": "#/per/examenes",
+   "violaciones": []
+  },
+  "#/per/mas": {
+   "hashFinal": "#/per/mas",
+   "violaciones": []
+  },
+  "#/ajustes": {
+   "hashFinal": "#/ajustes",
+   "violaciones": []
+  },
+  "#/progreso": {
+   "hashFinal": "#/progreso",
+   "violaciones": []
+  },
+  "#/per/carta": {
+   "hashFinal": "#/per/carta",
+   "violaciones": []
+  },
+  "#/mesa": {
+   "hashFinal": "#/mesa",
+   "violaciones": [
+    {
+     "id": "scrollable-region-focusable",
+     "impacto": "serious",
+     "nodos": 1,
+     "ej": "table"
+    }
+   ]
+  },
+  "#/calculadora": {
+   "hashFinal": "#/calculadora",
+   "violaciones": []
+  }
+ }
+}

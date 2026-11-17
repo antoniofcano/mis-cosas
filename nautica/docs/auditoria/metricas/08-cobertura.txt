@@ -1,0 +1,91 @@
+TOTAL (solo ficheros cargados por algún test): líneas 89.61 ramas 92.74 funciones 92.29
+ficheros src: 392  cargados por tests: 345  nunca cargados: 47
+líneas src: 71900  en ficheros cargados: 65055  cubiertas (aprox): 57715  => cobertura real de líneas ≈ 80.3%
+== por directorio: ficheros cargados/total · % líneas cubiertas sobre TODO el directorio · % sobre lo cargado
+src/exams                 60/60  100%  100%  19731 líneas
+src/illustrations         95/95   99%   99%  17196 líneas
+src/ui                   61/105   19%   32%  16562 líneas
+src/course                41/41  100%  100%   9113 líneas
+src/exercises             22/22   99%   99%   2219 líneas
+src/store                 15/15   96%   96%   2091 líneas
+src/nautical              14/15   97%  100%    990 líneas
+src/theory                  5/5   99%   99%    679 líneas
+src/bancos                  8/8   99%   99%    660 líneas
+src/graphics                4/4   42%   42%    465 líneas
+src/teacher                 4/4   98%   98%    449 líneas
+src/calculadora             2/2  100%  100%    371 líneas
+src/math                    5/5   99%   99%    339 líneas
+src/conceptos               3/3   99%   99%    268 líneas
+src/analysis                2/2   99%   99%    187 líneas
+src/audio                   1/1   97%   97%    172 líneas
+src/bloc                    1/1   98%   98%    165 líneas
+src/ai                      0/2    0%    -%    109 líneas
+src/chart                   1/1   99%   99%    100 líneas
+src/texto.js                1/1  100%  100%     34 líneas
+== nunca cargados por ningún test (líneas, fichero): total líneas 6845
+459 src/ui/views/hoy.js
+373 src/ui/views/exams.js
+352 src/ui/views/travesia.js
+327 src/ui/app.js
+318 src/ui/views/fallos.js
+277 src/ui/views/profe.js
+272 src/ui/views/exercise.js
+241 src/ui/views/temario.js
+218 src/ui/views/semana.js
+215 src/ui/views/misc.js
+214 src/ui/views/estrategia.js
+209 src/ui/views/oficial.js
+209 src/ui/views/tarjetas.js
+204 src/ui/views/mas.js
+192 src/ui/intencion.js
+185 src/ui/views/nivel.js
+177 src/ui/views/ensayo.js
+167 src/ui/tras-examen.js
+166 src/ui/convocatoria.js
+166 src/ui/views/formulas.js
+163 src/ui/views/sesion.js
+136 src/ui/semana.js
+127 src/ui/views/dia-examen.js
+119 src/ui/views/plan.js
+108 src/ui/views/gallery.js
+97 src/ui/views/vispera.js
+94 src/ui/config-profe.js
+89 src/ui/views/bienvenida.js
+88 src/ui/views/mas-menu.js
+78 src/ui/dispositivos.js
+77 src/ui/views/guia.js
+67 src/ui/pwa.js
+60 src/ai/api.js
+56 src/ui/views/biblioteca.js
+56 src/ui/views/vincular.js
+55 src/ui/foco.js
+54 src/ui/plan-estudio.js
+51 src/ui/views/titulacion.js
+49 src/ai/summary.js
+43 src/ui/views/calculadora.js
+42 src/ui/travesia.js
+40 src/ui/entrada.js
+40 src/ui/views/reglas.js
+38 src/ui/views/cuentas.js
+31 src/nautical/glossary.js
+== cargados con menor cobertura de líneas
+5.3% src/ui/chart/interactive-chart.js
+8.78% src/ui/views/curso.js
+9.95% src/ui/guiado.js
+10.75% src/ui/lamina.js
+17.07% src/ui/views/theory.js
+18.49% src/ui/chart/workspace.js
+18.52% src/ui/pasos.js
+18.8% src/ui/chart/tutorial.js
+21.3% src/ui/views/podcast.js
+23.89% src/ui/glosas.js
+24.53% src/ui/papel.js
+24.67% src/ui/tema-pregunta.js
+25.47% src/ui/reloj-paso.js
+25.88% src/graphics/rulers.js
+26.42% src/ui/views/carta-pasos.js
+27.4% src/ui/ensayo.js
+28.18% src/ui/views/mapas.js
+29.75% src/ui/bloc.js
+30.58% src/graphics/chart-renderer.js
+31.3% src/ui/views/idea.js

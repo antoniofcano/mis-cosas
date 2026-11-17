@@ -1,0 +1,21 @@
+versión 77b5fd5d1dc7
+APP  : 405 ficheros 4.80 MB gzip 1.57 MB
+DATOS: 181 ficheros 23.51 MB gzip 5.91 MB
+  de ellos JS: 393 4.38 MB gzip 1.42 MB
+  CSS: 2 0.32 MB gzip 0.06 MB
+== datos más grandes
+  4331 KB data/ejes/baleares/per/preguntas.json
+  2908 KB data/ejes/dgmm/per/preguntas.json
+  2220 KB data/ejes/andalucia/per/preguntas.json
+  1844 KB data/ejes/andalucia/py/preguntas.json
+  1523 KB data/ejes/baleares/per/explicaciones.json
+  1458 KB data/ejes/baleares/py/preguntas.json
+   850 KB data/ejes/dgmm/per/explicaciones.json
+   818 KB data/ejes/dgmm/py/preguntas.json
+   705 KB data/ejes/andalucia/py/explicaciones.json
+   701 KB data/curso/per.json
+   674 KB data/ejes/andalucia/per/explicaciones.json
+   432 KB data/ejes/baleares/py/explicaciones.json
+   386 KB data/curso/py.json
+   334 KB data/ejes/andalucia/img/py-tabla-mareas.png
+   265 KB data/ejes/baleares/img/bal-305714-40.jpg

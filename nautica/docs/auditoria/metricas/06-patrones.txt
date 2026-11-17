@@ -1,0 +1,82 @@
+== tsc ficheros con error
+loose 125
+strict 368
+== JSDoc
+bloques /** : 1982 en 299 ficheros
+@param: 420 en 118
+@returns: 174 en 95
+@typedef: 1 en 1
+@type: 1 ; ts-check: 0
+funciones exportadas: 1522
+== DOM
+innerHTML: 18 en 9
+insertAdjacentHTML: 0
+outerHTML: 0
+document.write: 0
+eval/new Function: 0
+document. fuera de ui: 2
+src/ai/api.js
+src/store/sync/motor.js
+== almacenamiento
+localStorage: 27 en 12
+src/ui/tema.js src/ui/views/formulas.js src/ui/efectos.js src/ui/papel.js src/ui/calculadora.js src/ui/sync.js src/bloc/notas.js src/store/tiempos.js src/store/sync/config.js src/store/progress.js src/store/recordatorio.js src/store/errores.js 
+sessionStorage: 5
+indexedDB: 1
+src/store/user-chart.js
+claves localStorage:
+      2 'nautica.sync.url
+      1 'nautica.types
+      1 'nautica.tiempos.v1
+      1 'nautica.sync.v1
+      1 'nautica.sync.diag.v1
+      1 'nautica.state
+      1 'nautica.solve
+      1 'nautica.progress.v1
+      1 'nautica.point
+      1 'nautica.lib.
+      1 'nautica.glossary
+      1 'nautica.generate
+      1 'nautica.formulas.sinEjemplos
+      1 'nautica.errores.v1
+      1 'nautica.efectos.vistos.v1
+      1 'nautica.chuleta.abierta
+      1 'nautica.check
+      1 'nautica.calculadora.v1
+      1 'nautica.bloc.v1
+      1 'nautica.avisos.vapid
+      1 'nautica.avisos.v1
+      1 'nautica.aspecto
+== errores
+try: 122
+catch vacio o silencioso: 40
+catch total: 238
+.catch(() => {}): 58
+throw: 51
+console.: 8
+onerror/unhandledrejection: 0
+== globales
+window.X = : 0
+src/ai/api.js:57:  globalThis.nautica = api;
+let a nivel de módulo: 53
+addEventListener: 106 removeEventListener: 28
+setInterval: 5 clearInterval: 5 setTimeout: 26
+== fetch
+src/ui/views/mapas.js:25:  if (!cache.has(id)) cache.set(id, fetch(new URL(`../../../data/mapas/${id}.json`, import.meta.url)).then((r) => { if (!r.ok
+src/ui/sync.js:38:    const t = await (await fetch('sw-lista.js', { cache: 'no-store' })).text();
+src/ui/chart/raster.js:10:  const r = await fetch(new URL('../../../data/carta-l105-calibracion.json', import.meta.url));
+src/bancos/index.js:389:  return fetch(new URL(ruta, RAIZ)).then((r) => {
+src/store/datasets.js:11:    cache.set(path, fetch(new URL(`../../${path}`, import.meta.url)).then((r) => {
+== import() dinámicos: 3
+== TODO/FIXME/HACK: 7
+== a11y
+aria-: 428 ; role: 85 ; alt: 141 ; tabindex: 24; :focus-visible css: styles/app.css:34 styles/laminas.css:14 ; prefers-reduced-motion: styles/app.css:12 styles/laminas.css:2 
+== css
+  2991 255036 styles/app.css
+   809  77514 styles/laminas.css
+  3800 332550 total
+!important: 21
+reglas aprox ({): 2615 app, 594 laminas
+media queries: styles/app.css:69 styles/laminas.css:17 
+colores hex literales: 296 app, 74 laminas
+líneas >300 caracteres en app.css: 10
+estilos en línea desde JS (style: / .style.): 148

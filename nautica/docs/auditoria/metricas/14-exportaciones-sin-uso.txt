@@ -1,0 +1,43 @@
+exportaciones: 2021
+no las importa ningún otro módulo de src/:  430
+  · de ellas, solo las usan tests/tools/worker: 231 ( 29 ni siquiera se usan dentro de su fichero: API solo para tests )
+  · no las usa nadie fuera de su fichero: 199 ( 29 tampoco dentro: código muerto probable )
+== muertas probables
+src/bancos/soluciones.js: solucionDe
+src/course/cuaderno.js: proximaComprobacion
+src/course/travesia.js: rangoPorId
+src/exams/ensena.js: nombrePaso
+src/exams/intencion.js: intencionPosible
+src/exams/papel.js: fraseFallo
+src/exercises/compass-data.js: flipDm
+src/exercises/compass-data.js: noUpdate
+src/exercises/helpers.js: roundPos
+src/exercises/helpers.js: stepCorrectBearing
+src/exercises/helpers.js: stepCt
+src/graphics/chart-renderer.js: renderChart
+src/illustrations/animaciones/pista.js: muestrea
+src/illustrations/electronica-c.js: PARAMS_GNSS_CALCULOS
+src/illustrations/interactivas/kit.js: svgOpen
+src/illustrations/interactivas/kit.js: barcoPlanta
+src/illustrations/kit.js: hullPlan
+src/illustrations/kit.js: boatGlyph
+src/math/angles.js: fromDegMin
+src/math/mercator.js: deltas
+src/math/vector.js: signedDistanceToLine
+src/nautical/compass.js: rmFromRv
+src/nautical/compass.js: raFromRm
+src/nautical/glossary.js: concept
+src/nautical/kinematics.js: speedFor
+src/nautical/positioning.js: bearingAndDistance
+src/ui/calculadora.js: calculadoraAbierta
+src/ui/views/hoy.js: lineaExamen
+src/ui/views/theory.js: blockStats
+== API solo para tests, por directorio {
+  'src/conceptos': 4,
+  'src/course': 13,
+  'src/exams': 2,
+  'src/illustrations': 3,
+  'src/nautical': 1,
+  'src/store': 1,
+  'src/ui': 5
+}

@@ -1,0 +1,98 @@
+== tsc --allowJs --checkJs --noEmit (loose): 472 errores en 125 ficheros
+-- por código
+    170 error TS2339
+     69 error TS2345
+     56 error TS2353
+     42 error TS2362
+     37 error TS2365
+     37 error TS2322
+     16 error TS2363
+     14 error TS8024
+     13 error TS2554
+      4 error TS2741
+      4 error TS2739
+      3 error TS2488
+      2 error TS2769
+      2 error TS2740
+      1 error TS1345
+-- por directorio
+    184 src/illustrations
+    133 src/ui
+    103 src/course
+     17 src/exams
+     13 src/store
+      8 src/theory
+      3 src/exercises
+      3 src/conceptos
+      2 src/teacher
+      2 src/nautical
+      2 src/audio
+      1 src/vendor
+      1 src/calculadora
+
+== tsc --allowJs --checkJs --noEmit (strict): 14159 errores en 368 ficheros
+-- por código
+   8714 error TS7006
+   1630 error TS2339
+    764 error TS7031
+    761 error TS7053
+    496 error TS7005
+    473 error TS2322
+    308 error TS7008
+    251 error TS2345
+    249 error TS18047
+    147 error TS7034
+     54 error TS18048
+     43 error TS2353
+     42 error TS2362
+     37 error TS2365
+     28 error TS18046
+-- por directorio
+   3777 src/ui
+   3442 src/illustrations
+   2461 src/course
+   2411 src/exams
+    508 src/store
+    332 src/exercises
+    196 src/nautical
+    178 src/theory
+    177 src/vendor
+    150 src/bancos
+    110 src/graphics
+     79 src/math
+     76 src/conceptos
+     54 src/calculadora
+     51 src/analysis
+     43 src/ai
+     38 src/audio
+     32 src/bloc
+     22 src/teacher
+     18 src/chart
+      4 src/texto
+
+== 25 primeros errores (modo no estricto)
+src/audio/efectos.js(118,39): error TS2339: Property 'audioSession' does not exist on type 'Navigator'.
+src/audio/efectos.js(118,74): error TS2339: Property 'audioSession' does not exist on type 'Navigator'.
+src/calculadora/motor.js(157,60): error TS2345: Argument of type 'number | "0"' is not assignable to parameter of type 'number'.
+src/conceptos/conceptos.js(40,88): error TS2322: Type 'string' is not assignable to type '"en-progreso" | "sin-datos" | "flojo" | "dominado"'.
+src/conceptos/conceptos.js(49,36): error TS2339: Property 'practica' does not exist on type '{ todas: any[]; estudio: any[]; porId: Map<string, any>; }'.
+src/conceptos/conceptos.js(103,5): error TS2322: Type '{}' is not assignable to type 'Record<string, { preguntas: number; vistas: number; aciertos: number; fallos: number; tasa: number; ultimo: { id: string; t: string; o
+src/course/apendice.js(25,54): error TS8024: JSDoc '@param' tag has name 'donde', but there is no parameter with that name.
+src/course/calendario.js(75,3): error TS2322: Type '({ id: string; tipo: string; titulo: any; minutos: any; ut: any; ruta: any[]; hecha: boolean; } | { id: string; tipo: string; titulo: string; minutos: number; ut: any; 
+src/course/calendario.js(250,5): error TS2353: Object literal may only specify known properties, and 'minutosAtraso' does not exist in type '{ atrasadas: any; hoy: any; futuro: { dias: { fecha: any; unidades: any; minuto
+src/course/config-profe.js(56,11): error TS2339: Property 'version' does not exist on type 'unknown'.
+src/course/config-profe.js(57,33): error TS2339: Property 'autor' does not exist on type 'unknown'.
+src/course/config-profe.js(58,34): error TS2339: Property 'nombre' does not exist on type 'unknown'.
+src/course/config-profe.js(61,28): error TS2339: Property 'fecha' does not exist on type 'unknown'.
+src/course/config-profe.js(61,81): error TS2339: Property 'fecha' does not exist on type 'unknown'.
+src/course/config-profe.js(61,94): error TS2339: Property 'fecha' does not exist on type 'unknown'.
+src/course/config-profe.js(64,11): error TS2339: Property 'tit' does not exist on type 'unknown'.
+src/course/config-profe.js(64,48): error TS2339: Property 'tit' does not exist on type 'unknown'.
+src/course/config-profe.js(64,64): error TS2339: Property 'tit' does not exist on type 'unknown'.
+src/course/config-profe.js(68,11): error TS2339: Property 'ruta' does not exist on type 'unknown'.
+src/course/config-profe.js(69,28): error TS2339: Property 'ruta' does not exist on type 'unknown'.
+src/course/config-profe.js(69,41): error TS2339: Property 'ruta' does not exist on type 'unknown'.
+src/course/config-profe.js(69,76): error TS2339: Property 'ruta' does not exist on type 'unknown'.
+src/course/config-profe.js(70,26): error TS2339: Property 'ruta' does not exist on type 'unknown'.
+src/course/config-profe.js(70,45): error TS2339: Property 'ruta' does not exist on type 'unknown'.
+src/course/config-profe.js(71,17): error TS2339: Property 'ruta' does not exist on type '{ tit?: any; version: number; autor: string; nombre: string; fecha: any; }'.

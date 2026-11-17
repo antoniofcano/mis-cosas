@@ -1,36 +1,34 @@
-# ADR 0003: TypeScript estricto por paquetes, con `checkJs` de transición
+# ADR 0003: TypeScript estricto desde el inicio y Vitest en todo el monorepo
 
-- **Estado:** aceptada
+- **Estado:** aceptada (cambia: antes había `checkJs` de transición y se conservaba `node:test`)
 - **Fecha:** 17 de noviembre de 2026
 
 ## Contexto
 
-Ni un `@ts-check` y un solo `@typedef`. `tsc --checkJs` sin `strict` da 472 errores (13 llamadas con argumentos de más
-y 95 aritméticas dudosas: fallos probables); con `strict`, 14.159, de los que 8.714 son parámetros sin anotar. Los
-directorios del núcleo dan entre 0 y 17 errores salvo `course` (103) e `illustrations` (184).
+v1 no tiene tipos (1 `@typedef` en 73.700 líneas) ni linter, y la forma de una pregunta o del progreso solo está en
+prosa (T-01). En un desarrollo nuevo no hay código que tipar poco a poco, y la mayor parte la escribirán agentes: los
+tipos y el lint son la primera revisión automática de su trabajo.
 
 ## Decisión
 
-1. `checkJs` sin `strict` como puerta de CI inmediata sobre el código actual, con una lista de errores conocidos que
-   solo puede bajar (trinquete) hasta 0.
-2. `contratos` y `api` nacen en TypeScript `strict` (más `noUncheckedIndexedAccess`, `exactOptionalPropertyTypes`,
-   `verbatimModuleSyntax` y `erasableSyntaxOnly`).
-3. El núcleo pasa a `.ts` estricto directorio a directorio, de menos a más errores, un PR por directorio y sin tocar
-   los tests.
-4. La `ui/` antigua no se convierte: se borra.
-5. Las pruebas del núcleo siguen en `node:test`, que en Node 24 ejecuta `.ts` sin compilar.
+- **TypeScript `strict` en todos los paquetes desde la primera línea**, con `noUncheckedIndexedAccess`,
+  `exactOptionalPropertyTypes` y `verbatimModuleSyntax`. Sin JavaScript en `src/`.
+- Los tipos de dominio (`Pregunta`, `Evento`, `EstadoAlumno`, `Titulacion`, `Leccion`) se derivan de los esquemas Zod
+  de `@patron/contratos`: una sola fuente para tipo y validación.
+- **Vitest 4 como único ejecutor** (núcleo, contratos, contenido, API, componentes) y `fast-check` para propiedades.
+- ESLint con `complexity` ≤ 15 y funciones ≤ 80 líneas **como error**: no se admite otra `plegar` de complejidad 83.
+- Lo que se porta de v1 se tipa en el mismo PR en que entra; sus pruebas se convierten a Vitest (`node:assert` sigue valiendo).
+- Sin `any` explícito salvo lista con motivo.
 
 ## Alternativas
 
-- **JSDoc + `checkJs` para siempre:** evita compilar, pero ya hará falta empaquetar, y las uniones de operaciones se
-  escriben mal en comentarios.
-- **Convertir todo de golpe:** 14.159 errores a la vez; imposible de revisar.
-- **Migrar las pruebas a Vitest:** reescribir 2.581 casos sin ganar nada.
+- **JavaScript con JSDoc y `checkJs`:** era la transición para el código existente; ya no hay código existente.
+- **Mantener `node:test` para lo portado:** dos ejecutores y dos formas de medir cobertura sin motivo.
+- **Límites de complejidad como aviso:** los avisos se acumulan (v1 tendría 743).
 
 ## Consecuencias
 
-- Los tipos de dominio (`Pregunta`, `Operacion`, `Progreso`, `Titulacion`, `Leccion`) se definen una vez, derivados
-  de los esquemas Zod de `contratos`.
-- `erasableSyntaxOnly` prohíbe `enum` y `namespace`: se usan uniones de literales.
-- Tipar `plegar.js` y `operaciones.js` (complejidad 83 y 66) es la parte delicada: se hace con el test de equivalencia
-  de 200 secuencias como red y sin reestructurar en el mismo PR.
+- Portar un módulo cuesta algo más que copiarlo: hay que anotarlo. A cambio, los 13 probables fallos de argumentos y
+  las 95 aritméticas dudosas que `tsc` veía en v1 se resuelven al entrar.
+- Las funciones largas de v1 que se porten tal cual (kit, generadores) necesitan partirse o una excepción anotada;
+  partir con los casos dorados como red es seguro.

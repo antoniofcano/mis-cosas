@@ -17,8 +17,8 @@ un tercero que ve datos del alumno.
 - **Consentimiento** del alumno para compartir su progreso con su profesor: explícito, granular, registrado con la
   versión del texto, revocable en un toque y **aplicado por la base de datos** (política RLS). No compartir no quita
   el acceso al contenido.
-- **Exportación y borrado desde la app**, con o sin cuenta. Borrado con 7 días de margen, en cascada, con lápida para
-  que los aparatos antiguos no recreen al alumno.
+- **Exportación y borrado desde la app**, con o sin cuenta. Borrado con 7 días de margen, en cascada; un aparato
+  con datos viejos no puede volver a subirlos, porque su sesión deja de existir.
 - **Retención:** 24 meses de inactividad para alumnos y cuentas; 12 meses para la auditoría de accesos; 30 días de
   registros; 35 días de copias; 6 años para pagos.
 - **Minimización:** la cuenta es un correo; el servidor no guarda IP ni agente de usuario en claro.

@@ -5,7 +5,7 @@
 
 ## Contexto
 
-Hoy no hay registros (apagados a propósito para no guardar credenciales, S-18), ni alertas, ni métricas, ni errores
+En v1 no hay registros (apagados a propósito para no guardar credenciales, S-18), ni alertas, ni métricas, ni errores
 del cliente: una pérdida de datos se descubre cuando un alumno se queja (M-07). Quien opera es una sola persona.
 
 ## Decisión

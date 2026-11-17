@@ -5,7 +5,7 @@
 
 ## Contexto
 
-No existe `.github/`: nada ejecuta pruebas, lint ni tipos; publicar es hacer *push* a una rama y el Worker se despliega
+En v1 no existe `.github/`: nada ejecuta pruebas, lint ni tipos; publicar es hacer *push* a una rama y el Worker se despliega
 a mano (M-01, S-20, S-21). Es el riesgo número 1 de la auditoría.
 
 ## Decisión

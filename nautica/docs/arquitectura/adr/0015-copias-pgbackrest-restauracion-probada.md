@@ -5,8 +5,9 @@
 
 ## Contexto
 
-Hoy no hay copias automáticas de D1 ni restauración ensayada (M-07). Con cuentas, centros y cobros, perder la base no
-es recuperable desde los aparatos. Un solo VPS es punto único de fallo.
+v1 no tiene copias automáticas ni restauración ensayada (M-07) y lo compensa recomponiendo el servidor desde los
+aparatos. El producto nuevo ya no puede hacerlo (ADR 0010) y además guarda cuentas, centros y cobros: perder la base
+no sería recuperable. Un solo VPS es punto único de fallo.
 
 ## Decisión
 

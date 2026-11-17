@@ -6,7 +6,7 @@
 ## Contexto
 
 El dueño ha fijado las academias como objetivo del primer año: profesor que sigue a sus alumnos, varios centros
-aislados entre sí y canon por centro. D1 no da relaciones, ni aislamiento, ni consultas sobre el progreso (D-04, D-05).
+aislados entre sí y canon por centro. El D1 de v1 no da relaciones, ni aislamiento, ni consultas sobre el progreso (D-04, D-05).
 
 ## Decisión
 

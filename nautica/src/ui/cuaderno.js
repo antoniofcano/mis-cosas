@@ -103,7 +103,7 @@ export const textoCuadernoExamen = (anotados) => (anotados?.length ? `\nCUADERNO
 /** Tarjeta breve de Hoy: dosis y comprobaciones pendientes. null si no hay nada que hacer hoy. */
 export function tarjetaCuaderno(tit, cuad) {
   if (!cuad || (!cuad.dosis.length && !cuad.comprobar.length)) return null;
-  const filas = [...cuad.comprobar.map((f) => ({ f, que: 'comprobar' })), ...cuad.dosis.map((f) => ({ f, que: 'dosis' }))].slice(0, 2);
+  const filas = [...cuad.comprobar.map((f) => ({ f, que: 'comprobar' })), ...cuad.dosis.map((f) => ({ f, que: 'dosis' }))].slice(0, 1); // Hoy: una sola (H-74); el resto, en el cuaderno
   const resto = cuad.comprobar.length + cuad.dosis.length - filas.length;
   return h('section.tarjeta-cuaderno', { 'aria-labelledby': 'tarjeta-cuaderno-t' },
     h('h2#tarjeta-cuaderno-t', conIcono('diana', 'Tu cuaderno de fallos')),

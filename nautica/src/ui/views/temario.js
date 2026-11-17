@@ -24,6 +24,8 @@ import { icono, conIcono } from '../iconos.js';
 import { novedades, claseAnimada } from '../efectos.js';
 import { loadFormulas } from '../../store/datasets.js';
 import { temasConFormulas } from '../../course/formulas.js';
+import { selectorFoco } from '../foco.js';
+import { plegable } from '../plegable.js';
 
 /**
  * Ideas (conceptos) de cada clase con preguntas en este banco y cómo las lleva el alumno: Map claseId → { sabidas,
@@ -117,9 +119,11 @@ export function temarioView({ progress, tit }) {
       (() => {
         const otros = (d.st.temasFuera ?? []).map(({ b }) => b);
         return otros.length ? h('section.temas-otro-modulo', h('h2', 'Del otro módulo'),
-          h('p.muted.small', `Ahora preparas el ${d.st.foco?.titulo.replace(/^Módulo/, 'módulo') ?? 'otro módulo'}: estos temas no entran en tu ruta ni en tu plan. Se cambia en Hoy.`),
+          h('p.muted.small', `Ahora preparas el ${d.st.foco?.titulo.replace(/^Módulo/, 'módulo') ?? 'otro módulo'}: estos temas no entran en tu ruta ni en tu plan. Se cambia más abajo, en «¿De qué te examinas?».`),
           h('ul', otros.map((b) => h('li', h('a', { href: tlink(tit, ['temario', String(b.ut)]) }, b.titulo))))) : null;
       })(),
+      // «¿De qué te examinas?» (PY): se elige en la bienvenida y se cambia aquí o en Ajustes (H-74).
+      (() => { const foco = selectorFoco(progress, tit, () => dispatchEvent(new HashChangeEvent('hashchange'))); return foco ? plegable({ titulo: '¿De qué te examinas?', resumen: d.st.foco ? `Ahora: ${d.st.foco.titulo.replace(/^Módulo/, 'módulo')}` : 'Ahora: los dos módulos' }, foco) : null; })(),
       h('details', h('summary', 'Reglas del examen'), h('ul', reglasExamen(T, d.banco.eje).map((r) => h('li', r)))),
     );
   }).catch((e) => setChildren(el, h('p.warn', `No se pudieron cargar las preguntas: ${e.message}`)));

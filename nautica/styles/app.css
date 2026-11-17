@@ -1837,8 +1837,8 @@ details.prog-carta > summary { min-height: 48px; display: flex; align-items: cen
 .entrada-cta-eti, .entrada-dato-eti { font-size: .74rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
 a.entrada-carta { display: block; color: inherit; text-decoration: none; }
 a.entrada-carta:hover .carta-trav { box-shadow: 0 0 0 2px var(--lc-magenta); }
-a.entrada-ver-derrota { display: inline-flex; align-items: center; gap: .35rem; min-height: 44px; justify-self: start; font-weight: 600; font-size: .92rem; text-decoration: none; }
-a.entrada-ver-derrota .mas-fila-flecha { color: inherit; }
+.entrada-ver-derrota { display: inline-flex; align-items: center; gap: .35rem; min-height: 44px; justify-self: start; font-weight: 600; font-size: .92rem; text-decoration: none; }
+.entrada-ver-derrota .mas-fila-flecha { color: inherit; }
 /* La carta compacta: más baja (las capas se estiran, los trazos no), sin rosa, faros sin botón y algo más pequeños. */
 .carta-trav.compacta { aspect-ratio: 358 / 232; max-width: none; }
 .carta-trav.compacta .faro-pos { width: 92px; transform: translate(-50%, -18px); }
@@ -3035,3 +3035,13 @@ details.plegable.puerto > summary { padding-left: .8rem; }
 .ep-card.compacta .ep-titulo { display: block; min-height: 44px; padding: .45rem 0 0; }
 .radio-prep, .radio-pie { margin: .6rem 0; }
 .radio-gancho { margin: .3rem 0 0; font-style: italic; color: var(--muted); }
+/* Hoy: en el móvil, la acción primero (la carta de la derrota, debajo) y el test de nivel como enlace discreto bajo «Empezar» */
+.nivel-enlace { margin: .1rem 0 0; font-size: .9rem; }
+.nivel-enlace a { display: inline-flex; align-items: center; min-height: 44px; color: var(--muted); text-decoration: underline; text-underline-offset: 3px; }
+.nivel-enlace a:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+@media (max-width: 759px) {
+  .entrada-arriba .entrada-heroe-hueco { order: 2; }
+  .entrada-arriba .entrada-principal { order: 1; }
+}
+.entrada.sin-datos .indicador-eje-linea { display: none; }
+.entrada-ver-derrota { display: inline-flex; margin-top: .3rem; }

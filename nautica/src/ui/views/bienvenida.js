@@ -9,6 +9,9 @@ import { loadCourse } from '../../store/datasets.js';
 import { bloquesEnOrden } from '../../theory/blocks.js';
 import { ejesElegibles, selectorEje } from '../eje.js';
 import { icono } from '../iconos.js';
+import { selectorFoco } from '../foco.js';
+import { claveFoco, focoDecidido, AMBOS } from '../../course/foco.js';
+import { BIENVENIDA as TX } from '../textos-hubs.js';
 
 /** Control de minutos al día (también se usa en Ajustes). */
 export function botonesMinutos(actual, onElegir) {
@@ -36,12 +39,16 @@ export function bienvenidaView({ progress }) {
   ejesElegibles().then((l) => { ejes = l; if (paso === 1) render(); }).catch(() => {});
 
   // Al terminar, directo a la primera clase del orden de estudio (si el curso no carga, a Hoy).
-  const empezar = (fecha, orientativa, min) => {
+  const empezar = (fecha, orientativa, min, verGuia = false) => {
     progress.setSetting(`examen_${tit}`, fecha);
     progress.setSetting(`examenOrientativo_${tit}`, orientativa);
     progress.setSetting('minutosDia', min);
     progress.setSetting('onboarded', true);
     const T = TITULACIONES[tit];
+    // «¿De qué te examinas?» (PY) se pregunta aquí; sin tocar nada, se prepara el examen entero.
+    if (!focoDecidido(progress.settings(), tit, T.estructura)) progress.setSetting(claveFoco(tit), AMBOS);
+    // «¿Primera vez?»: la guía de 3 minutos, antes de la primera clase (y ya no se ofrece en Hoy).
+    if (verGuia) { navigate([tit, 'guia']); return; }
     loadCourse(tit).then((curso) => {
       const ut = bloquesEnOrden(T.estructura).find((b) => curso?.modulos.some((m) => m.ut === b.ut && m.lecciones.length))?.ut;
       const primera = curso?.modulos.find((m) => m.ut === ut)?.lecciones[0];
@@ -72,14 +79,18 @@ export function bienvenidaView({ progress }) {
       const opciones = [10, 20, 30].map((m) => h('button.grande.secondary', { type: 'button', 'aria-pressed': String(m === min), onclick: () => {
         min = m; for (const b of opciones) b.setAttribute('aria-pressed', String(b === opciones[[10, 20, 30].indexOf(m)]));
       } }, cuenta(m, 'minuto')));
+      const foco = selectorFoco(progress, tit);
+      const verGuia = h('input', { type: 'checkbox', checked: true });
       const aviso = h('p.warn', { hidden: true, role: 'alert' }, 'Pon la fecha del examen o pulsa «Todavía no lo sé».');
       setChildren(el, cab, h('h1', 'Tu examen y tu tiempo'),
         h('label.pregunta-bienvenida', { for: 'fecha-examen' }, '¿Cuándo es tu examen?'),
         h('div.campo-fecha', input, noSe), nota,
         h('p.pregunta-bienvenida', '¿Cuántos minutos al día puedes estudiar?'),
         h('div.opciones-grandes.minutos-bienvenida', { role: 'group', 'aria-label': 'Minutos al día' }, opciones),
+        foco ? [h('p.pregunta-bienvenida', TX.foco), h('p.muted.small', TX.focoAyuda), foco] : null,
+        h('label.check.guia-primera-vez', verGuia, TX.guia),
         aviso,
-        h('button.grande', { type: 'button', onclick: () => { if (!input.value) { aviso.hidden = false; return; } empezar(input.value, orientativa, min); } }, 'Empezar la primera clase'));
+        h('button.grande', { type: 'button', onclick: () => { if (!input.value) { aviso.hidden = false; return; } empezar(input.value, orientativa, min, verGuia.checked); } }, 'Empezar'));
     }
     window.scrollTo(0, 0);
   }

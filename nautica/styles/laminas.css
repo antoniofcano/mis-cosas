@@ -365,8 +365,8 @@ button.mc-imprimir { display: inline-flex; align-items: center; gap: .3rem; min-
 .entrada .pildora-examen:hover, .travesia-pantalla .pildora-examen:hover { border-color: var(--lc-magenta); }
 /* La carta en Hoy: rótulo, cuenta de faros y el enlace */
 .entrada-heroe-cab .muted.small { font-size: .8rem; color: var(--lc-apagado); }
-.entrada a.entrada-ver-derrota { color: var(--lc-tinta); text-decoration: underline; text-decoration-color: var(--lc-magenta); text-underline-offset: 3px; }
-.entrada a.entrada-ver-derrota .mas-fila-flecha { color: var(--lc-magenta); }
+.entrada .entrada-ver-derrota { color: var(--lc-tinta); text-decoration: underline; text-decoration-color: var(--lc-magenta); text-underline-offset: 3px; }
+.entrada .entrada-ver-derrota .mas-fila-flecha { color: var(--lc-magenta); }
 /* La fase: rótulo con filete magenta; su ayuda plegada, una cartela */
 .entrada .entrada-fase-eti { background: none; border: 1px solid var(--lc-magenta); border-radius: 0; padding: .1rem .5rem; }
 .entrada .entrada-fase-ayuda { color: var(--lc-azul-texto); }

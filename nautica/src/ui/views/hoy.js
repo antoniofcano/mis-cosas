@@ -27,7 +27,7 @@ import { nivelEnCurso, claveNoNivel, saltarClases, empiezaPor } from './nivel.js
 import { semanaDe } from '../../course/travesia.js';
 import { sincronizarTravesia } from '../travesia.js';
 import { cartaDerrota } from './travesia.js';
-import { esNuevo, estadoEntrada, siguienteParada, paradaDeSesion, resumenPasos, lineaContexto, listoCorto, textoCarta } from '../../course/entrada.js';
+import { esNuevo, hayDatos, estadoEntrada, siguienteParada, paradaDeSesion, resumenPasos, lineaContexto, listoCorto, textoCarta } from '../../course/entrada.js';
 import { empezarSesion, marcaDerrota, pasosQueTocan } from '../entrada.js';
 import { calcularSemana, apuntarSemana, botonSalir, botonVolver, tarjetaComoFue, enlaceSemana } from '../semana.js';
 import { rotuloSemana } from '../../course/semana.js';
@@ -38,6 +38,7 @@ import { tarjetaFoco } from '../foco.js';
 import { momentoExamen, recordatorioAdmitidos, claveConvocatoria } from '../../course/convocatoria.js';
 import { convocatoriaDe, tarjetaExamenCerca, tarjetaAdmitidos, lineaConvocatoria } from '../convocatoria.js';
 import { tarjetaCuaderno } from '../cuaderno.js';
+import { HOY as TX } from '../textos-hubs.js';
 
 const CIRC = 2 * Math.PI * 32; // perímetro del anillo de la meta (r = 32)
 
@@ -182,6 +183,9 @@ export function hoyView({ progress, tit }) {
     const terminadas = st.temas.reduce((x, t) => x + t.e.clases.terminadas, 0);
     const nuevo = respondidas < 40 && terminadas < 5; // para ofrecer el test de nivel (criterio de siempre)
     const recien = esNuevo({ respondidas, terminadas }); // para el botón «Empezar» y el marcador en el inicio
+    // Rango, semana, «¿Estás listo?», el progreso y lo secundario no salen hasta que hay datos (H-74): 1 clase terminada o 20 respuestas.
+    const conDatos = hayDatos({ respondidas, terminadas });
+    el.classList.toggle('sin-datos', !conDatos);
     const saltables = ic ? clasesQueSabes({ curso: d.curso, ic, respuestas: d.respuestas, regs: d.regs, nivel, tit, ahora: d.ahora }) : [];
 
     // La travesía (solo con etiquetas de conceptos): la carta del héroe y el rango de la fila de estado.
@@ -221,17 +225,10 @@ export function hoyView({ progress, tit }) {
       if (confirm('¿Descartar el examen que tienes a medias? Se perderán sus respuestas.')) { progress.saveTestEnCurso(null); dispatchEvent(new HashChangeEvent('hashchange')); }
     } }, 'Descartar el examen a medias');
 
+    // El test de nivel, un enlace discreto bajo «Empezar» (H-74): solo con etiquetas y al alumno que empieza.
     const ofertaNivel = () => {
-      if (!ic || nivel || (!nivelMedias && (!nuevo || s[claveNoNivel(eje, tit)]))) return null;
-      // Secundaria frente a la sesión del día: superficie normal, icono, una línea, botón secundario y «Ahora no» como enlace.
-      const caja = h('section.nivel-oferta', { 'aria-label': 'Test de nivel' },
-        h('div.nivel-oferta-fila', h('span.nivel-oferta-ico', icono('diana')),
-          h('p', h('strong', nivelMedias ? 'Test de nivel a medias.' : '¿Ya sabes algo?'),
-            nivelMedias ? ' Sigue donde lo dejaste.' : ' Test de nivel: 20 preguntas, 8 min; te saltas las clases que ya sabes.')),
-        h('div.nivel-oferta-botones',
-          h('a.btn.secondary', { href: tlink(tit, ['nivel']) }, nivelMedias ? 'Seguir el test' : 'Hacer el test'),
-          nivelMedias ? null : h('button.linklike.nivel-ahora-no', { type: 'button', onclick: () => { progress.setSetting(claveNoNivel(eje, tit), true); caja.remove(); } }, 'Ahora no')));
-      return caja;
+      if (!ic || nivel || (!nivelMedias && (!nuevo || conDatos || s[claveNoNivel(eje, tit)]))) return null;
+      return h('p.nivel-enlace', h('a', { href: tlink(tit, ['nivel']) }, nivelMedias ? TX.nivelMedias : TX.nivel));
     };
     const lineaPartida = () => {
       if (!nivel || real.id !== 'aprender') return null;
@@ -349,8 +346,9 @@ export function hoyView({ progress, tit }) {
       setChildren(heroeEl, h('section.entrada-heroe', { 'aria-label': 'Tu derrota' },
         h('div.entrada-heroe-cab', h('span.entrada-cta-eti', 'Tu derrota'),
           h('span.muted.small', `${sig.encendidos} de ${cuenta(sig.total, 'faro encendido', 'faros encendidos')}`)),
-        h('a.entrada-carta', { href: hrefTrav, 'aria-label': alt }, carta),
-        h('a.entrada-ver-derrota', { href: hrefTrav }, 'Ver mi derrota', h('span.mas-fila-flecha', { 'aria-hidden': 'true' }, '›'))));
+        // Un solo enlace: la carta entera y «Ver mi derrota» abren la Travesía (antes eran dos controles al mismo sitio).
+        h('a.entrada-carta', { href: hrefTrav, 'aria-label': alt }, carta,
+          h('span.entrada-ver-derrota', 'Ver mi derrota', h('span.mas-fila-flecha', { 'aria-hidden': 'true' }, '›')))));
       travesiaTexto = `\nTRAVESÍA: rango ${sy.rango.actual.nombre} · ${sy.est.dominadas}/${sy.est.total} ideas dominadas · ${sig.encendidos}/${sig.total} faros · marcador en ${faros[marca]?.nombre ?? 'el examen'} → #/${tit}/travesia\nCARTA (texto alternativo): ${alt}`;
     }
 
@@ -373,7 +371,7 @@ export function hoyView({ progress, tit }) {
     const sem = sy?.est.semana ?? semanaDe(progress.get().dias ?? {}, d.ahora);
     const pctCamino = Math.round(a.fraccion * 100);
     const flecha = () => h('span.mas-fila-flecha', { 'aria-hidden': 'true' }, '›');
-    const estadoEl = h('section.entrada-estado', { 'aria-label': 'Cómo vas' },
+    const estadoEl = !conDatos ? null : h('section.entrada-estado', { 'aria-label': 'Cómo vas' },
       sy ? h('a.entrada-dato', { href: hrefTrav },
         h('span.entrada-dato-eti', 'Rango'), h('strong', sy.rango.actual.nombre),
         barraFina(sy.rango.fraccion, sy.rango.siguiente ? `Camino hacia ${sy.rango.siguiente.nombre}` : 'Camino completado'))
@@ -416,9 +414,9 @@ export function hoyView({ progress, tit }) {
     setChildren(el,
       cabecera,
       // Lo principal: dónde estás (la carta), qué toca y el botón para seguir.
-      h('div.entrada-arriba', { class: sy ? '' : 'sin-carta' },
+      h('div.entrada-arriba', { class: `${sy ? '' : 'sin-carta'}${conDatos ? '' : ' sin-datos'}` },
         heroeEl,
-        h('div.entrada-principal', faseEl, sesionEl)),
+        h('div.entrada-principal', faseEl, sesionEl, ofertaNivel())),
       // Pasado el examen, cómo fue (sin obligar); si salió del modo semana, volver a él.
       sx.estado.preguntar ? tarjetaComoFue(progress, tit, sx.estado.preguntar) : null,
       // Cómo vas (rango, semana, ¿estás listo?) justo debajo de lo principal, como en la maqueta «Elegida».
@@ -426,29 +424,19 @@ export function hoyView({ progress, tit }) {
       // Cuaderno de fallos (R-56): las dosis y comprobaciones que tocan hoy, en una tarjeta breve.
       tarjetaCuaderno(tit, st.cuaderno),
       // ¿De qué te examinas? (PY): se pregunta si no se sabe; si no, lo que preparas (y el módulo aprobado, si lo hay).
-      sx.estado.activo ? null : tarjetaFoco(progress, tit, st),
+      // «¿De qué te examinas?» se elige en la bienvenida; aquí, con datos, lo que preparas y «Cambiar».
+      sx.estado.activo || !conDatos ? null : tarjetaFoco(progress, tit, st),
       sx.estado.salido ? h('p.semana-volver', 'Tu examen está cerca. ', botonVolver(progress, tit)) : null,
       momento ? tarjetaExamenCerca(progress, tit, { momento, dias: st.diasAlExamen, fecha: st.fechaExamen, conv, ficha, ahora: d.ahora }) : null,
       aviso.mostrar ? tarjetaAdmitidos(progress, tit, { dias: aviso.dias, conv, ficha, ahora: d.ahora }) : null,
       // Lo secundario, debajo: nada compite con «Seguir».
-      ofertaNivel(),
       ritmo,
-      podcastHueco,
-      meta,
-      // La guía de bienvenida se ofrece hasta que se abre o se descarta (luego queda en Más y Ajustes).
-      progress.settings()[`guiaVista_${tit}`] ? null : (() => {
-        const oferta = h('section.guia-oferta',
-          h('p', h('strong', '¿Primera vez?'), ' Te cuento en 3 minutos cómo funciona el curso y cómo aprobar.'),
-          h('div.guia-oferta-botones',
-            h('a.btn', { href: tlink(tit, ['guia']) }, 'Ver cómo funciona'),
-            h('button.secondary', { type: 'button', onclick: () => { progress.setSetting(`guiaVista_${tit}`, true); oferta.remove(); } }, 'Ahora no')));
-        return oferta;
-      })(),
-      progresoEl,
+      conDatos ? podcastHueco : null,
+      conDatos || minutos > 0 ? meta : null,
+      conDatos ? progresoEl : null,
       avisoCopia(progress),
       // Una sola invitación a la vez: instalar la app y, si no toca, el aviso diario (src/ui/recordatorio.js).
       tarjetaInstalar(progress) ?? tarjetaAvisos(progress),
-      h('p.ver-todo', h('a', { href: tlink(tit, ['temario']) }, 'Ver todo el temario →')),
       marcaConfig(),
     );
   }).catch((e) => setChildren(el, cabecera, h('p.warn', `No se pudo preparar el plan: ${e.message}`)));

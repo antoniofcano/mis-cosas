@@ -86,6 +86,8 @@ async function sembrar(page, base, { perfil, tit, onboarded }) {
     p.recordTest(tit === 'per'
       ? { tit, eje: 'andalucia', tipo: 'simulacro', titulo: 'Simulacro', aciertos: 32, total: 45, minutos: 80, apto: false, porTema: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].map((ut) => ({ ut, aciertos: 3, total: 4 })) }
       : { tit, eje: 'andalucia', tipo: 'simulacro', titulo: 'Simulacro', aciertos: 40, total: 60, minutos: 110, apto: false, porTema: [1, 2, 3, 4].map((ut) => ({ ut, aciertos: 10, total: 15 })) });
+    // Las invitaciones transitorias (guardar una copia, instalar, aviso diario) ya descartadas: no son parte de la pantalla.
+    for (const k of ['avisoCopiaHasta', 'avisoInstalarHasta', 'avisoDiarioHasta']) p.setSetting(k, ahora + 365 * DIA);
     if (tit === 'py') p.setSetting('modulos_py', 'navegacion');
     const c = await import('/src/ui/cuaderno.js');
     c.fijarProgresoCuaderno(p);

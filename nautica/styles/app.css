@@ -2649,6 +2649,26 @@ table.ep-hoja-papel th, table.ep-hoja-papel td { padding: .2rem .7rem; border-bo
 .fxm-tabla tr.fxm-justo td:last-child { color: var(--warn); font-weight: 600; }
 .fxm-tabla tr.fxm-pasado td:last-child { color: var(--warn); font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
 .fxm-tabla tr.fxm-holgado td:last-child { color: var(--ok); }
+
+/* «¿Estás listo?» con tu cuaderno de fallos y tu tiempo (H-70, src/ui/listo-motivos.js). Bloque propio, solo tokens. */
+.listo-motivos { display: flex; flex-direction: column; gap: .5rem; margin-top: .75rem; min-width: 0; }
+.listo-motivos .lm-titulo { margin: 0; font-size: 1rem; }
+.lm-lista { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: .5rem; }
+.lm-motivo { display: flex; flex-direction: column; gap: .35rem; min-width: 0; padding: .6rem .75rem; border: 1px solid var(--border); border-left-width: 4px; background: var(--surface); color: var(--text); }
+.lm-motivo[data-nivel="riesgo"] { border-left-color: var(--warn); }
+.lm-motivo[data-nivel="aviso"] { border-left-color: var(--close); }
+.lm-motivo[data-nivel="sin-datos"] { border-left-color: var(--muted); }
+.lm-motivo[data-nivel="bien"] { border-left-color: var(--ok); }
+.lm-cab { display: flex; flex-wrap: wrap; align-items: center; gap: .25rem .5rem; font-size: .78rem; }
+.lm-nivel { font-weight: 700; text-transform: uppercase; letter-spacing: .04em; }
+.lm-motivo[data-nivel="riesgo"] .lm-cab { color: var(--warn); }
+.lm-motivo[data-nivel="aviso"] .lm-cab { color: var(--close); }
+.lm-motivo[data-nivel="bien"] .lm-cab { color: var(--ok); }
+.lm-motivo[data-nivel="sin-datos"] .lm-cab { color: var(--muted); }
+.lm-clase { color: var(--muted); }
+.lm-frase { margin: 0; overflow-wrap: anywhere; }
+.lm-accion { align-self: flex-start; min-height: 44px; display: inline-flex; align-items: center; max-width: 100%; white-space: normal; text-align: left; }
+.lm-nota { margin: 0; overflow-wrap: anywhere; }
 .resultado-examen, .modulo-pendiente {
   display: flex; flex-direction: column; gap: .6rem; min-width: 0; padding: .9rem 1rem 1rem;
   border: 1.5px solid var(--border); border-radius: var(--radius, 0); background: var(--surface); color: var(--text);

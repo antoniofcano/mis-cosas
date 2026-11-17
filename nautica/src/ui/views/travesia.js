@@ -18,6 +18,7 @@ import {
 import { estadoLeccion } from '../../course/engine.js';
 import { lineaListo } from '../../course/listo.js';
 import { tablaFallos } from '../tras-examen.js';
+import { motivosListoEl } from '../listo-motivos.js';
 import { cuenta, fechaLarga } from '../../texto.js';
 import { deducirFase, componerSesion, terminada } from '../../course/sesion.js';
 import { leerSesion } from '../sesion.js';
@@ -245,6 +246,7 @@ function pantallaTravesia({ T, tit, d, sy, eje, query, progress }) {
   const nota = lineaListo(d.st.listo);
   const notaEl = h('section.trav-nota', h('h2.eti', '¿Estás listo? · tu nota real'), h('p.trav-nota-linea', nota),
     h('p.small', 'Los rangos, los faros y las insignias no la cambian: solo la cambia lo que sabes.'),
+    motivosListoEl(tit, d.st.listo.motivos),
     tablaFallos(tit, d.st));
 
   const ins = cuentaInsignias(est, sy.reg);

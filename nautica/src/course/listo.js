@@ -1,4 +1,5 @@
 import { cuenta } from '../texto.js';
+import { lineaRiesgos } from './listo-motivos.js';
 // ¿Estoy listo? Probabilidad de aprobar el examen con las reglas reales (aciertos mínimos y fallos máximos por
 // bloque), a partir de lo que el alumno acierta en cada tema. Funciones puras.
 //
@@ -194,7 +195,9 @@ export function lineaListo(r) {
     const t = r.limitante;
     txt += ` Lo que más te puede tumbar: ${t.titulo} (aciertas el ${t.pct} %${t.maxErrores != null ? `, y solo se pueden fallar ${t.maxErrores} de ${t.n}` : ''}).`;
   }
-  return txt;
+  // Tu cuaderno de fallos y tu tiempo (src/course/listo-motivos.js): un riesgo concreto frena el «Estás listo».
+  const riesgos = lineaRiesgos(r);
+  return riesgos ? `${txt} ${riesgos}` : txt;
 }
 
 // ---------------------------------------------------------------------------------------------------------------

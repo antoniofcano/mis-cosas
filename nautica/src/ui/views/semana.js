@@ -27,6 +27,8 @@ import { ENSAYOS_RECOMENDADOS } from '../../theory/ensayo.js';
 import { calcularSemana, apuntarSemana, botonSalir, botonVolver, activarAMano, tarjetaComoFue } from '../semana.js';
 import { convocatoriaDe, lineaConvocatoria } from '../convocatoria.js';
 import { fotografiar, resultadosRecientes, tablaFallos } from '../tras-examen.js';
+import { motivosListoEl } from '../listo-motivos.js';
+import { resumenMotivos } from '../../course/listo-motivos.js';
 import { tarjetaFoco } from '../foco.js';
 
 export function semanaView(o) {
@@ -153,6 +155,8 @@ function planSemanaView({ progress, tit }) {
         enlacesUltimosDias(tit, hoyDia.k)),
       tarjetaFoco(progress, tit, d.st),
       hoyDia.k >= 1 ? tablaFallos(tit, d.st) : null,
+      // «¿Estás listo?» con tu cuaderno de fallos y tu tiempo (H-70): lo que aún puede tumbarte, con su acción.
+      hoyDia.k >= 1 ? motivosListoEl(tit, d.st.listo.motivos, { titulo: 'Antes del examen, ojo con esto' }) : null,
       plan.dias.length > 1 ? h('section.semana-dias', { 'aria-labelledby': 'semana-dias-t' },
         h('h2.eti#semana-dias-t', 'Los días que quedan'),
         h('ol.semana-lista', plan.dias.slice(1).map((x) => h('li.semana-dia', { class: `tipo-${x.tipo}${x.hecho ? ' hecho' : ''}` },
@@ -168,7 +172,7 @@ function planSemanaView({ progress, tit }) {
       h('p.semana-salir-fila', botonSalir(progress, tit, estado)));
     summaryText = `VISTA semana ${T.sigla}: ${rotuloSemana(estado.dias)} · examen ${estado.fecha} (${estado.modo}) · ${cuenta(hechos, 'día hecho', 'días hechos')}\n` +
       `HOY: ${hoyDia.titulo} — ${hoyDia.pasos.map((p) => `${p.titulo}: ${p.sub} (${p.minutos} min) → ${hrefActividad(tit, p)}`).join(' · ') || 'sin tarea'}\nPLAN:\n${resumenPlan(plan)}\n` +
-      `IDEAS FLOJAS: ${ideasFlojas(sem.ideas).map((i) => `${i.etiqueta} (${i.tema}) → #/${tit}/idea/${i.id}`).join(' · ') || '—'}`;
+      `IDEAS FLOJAS: ${ideasFlojas(sem.ideas).map((i) => `${i.etiqueta} (${i.tema}) → #/${tit}/idea/${i.id}`).join(' · ') || '—'}${resumenMotivos(d.st.listo, tit)}`;
   }).catch((e) => setChildren(cuerpo, h('p.warn', `No se pudo preparar la semana: ${e.message}`)));
   return { el, summary: () => summaryText };
 }

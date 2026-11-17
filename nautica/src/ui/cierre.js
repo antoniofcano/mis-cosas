@@ -2,7 +2,11 @@
 
 import { h } from './dom.js';
 import { TITULACIONES, tlink, currentEje } from './titulacion.js';
-import { cargarBanco, cargarCurso } from '../bancos/index.js';
+import { cargarBanco, cargarCurso, SOLUCIONES, esDeCarta } from '../bancos/index.js';
+import { loadEstrategia } from '../store/datasets.js';
+import { tiemposAlumno } from '../store/tiempos.js';
+import { tiempoDisponible } from '../course/estrategia.js';
+import { tipoDePregunta } from '../course/velocidad.js';
 import { estadoTema } from '../course/plan.js';
 import { estadoAlumno } from '../course/motor.js';
 import { randomSeed } from '../math/rng.js';
@@ -22,7 +26,10 @@ export async function calcularPlan(progress, tit, ahora = Date.now(), { guardar 
   const eje = currentEje(progress);
   // El banco del eje (sus preguntas para estudiar) y el curso con la práctica de cada clase de ese banco.
   // Y sus conceptos, si el banco está etiquetado (null si no: entonces todo va como siempre, por pregunta y tema).
-  const [curso, banco, conceptos] = await Promise.all([cargarCurso(tit, eje), cargarBanco(eje, tit), conceptosDelBanco(eje, tit)]);
+  const [curso, banco, conceptos, estrategia] = await Promise.all([cargarCurso(tit, eje), cargarBanco(eje, tit), conceptosDelBanco(eje, tit), loadEstrategia().catch(() => null)]);
+  // Para «¿Estás listo?»: tu tiempo en la práctica de carta (solo en este aparato) y el que te deja el examen por pregunta.
+  let practica = [];
+  try { practica = tiemposAlumno().lista(); } catch { practica = []; }
   const delEje = (x) => (x.tit ?? 'per') === tit && x.eje === banco.eje.id;
   const tc = progress.testEnCurso();
   const st = estadoAlumno({
@@ -32,6 +39,9 @@ export async function calcularPlan(progress, tit, ahora = Date.now(), { guardar 
     // El examen final: la reserva del alumno (lo que no se estudia) y sus convocatorias.
     reserva: banco.reserva, pool: banco.final, reservadas: banco.reservadas,
     conceptos: entradaConceptos(conceptos, progress, banco.eje.id, tit, progress.get().exams),
+    // Tu cuaderno de fallos y tu tiempo por tipo de problema en «¿Estás listo?» (src/course/listo-motivos.js).
+    tipoDe: (q) => tipoDePregunta(q, SOLUCIONES[q.id], { cartaUt: T.cartaUt, deCarta: esDeCarta(q) }), cartaUt: T.cartaUt,
+    tiempo: { practica, disponible: tiempoDisponible(T, estrategia?.tiempo ?? {}) },
   });
   if (guardar && st.plan?.nuevo) progress.setPlanEstudio(tit, st.plan.base); // sin guardar: para mirar otro día (el de mañana)
   // cursoCompleto: el curso sin recortar al módulo elegido (src/course/foco.js), para abrir un tema del otro módulo.

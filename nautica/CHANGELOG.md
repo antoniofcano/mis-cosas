@@ -15,6 +15,10 @@ Qué cambia en la app para quien la usa, por fecha de publicación. Es la base d
 
 ## Sin publicar
 
+Nada pendiente.
+
+## 17 de noviembre de 2026, segunda publicación · versión `37f89459c0cc`
+
 **Mejoras**
 
 - **La lista de preguntas, plegada por convocatoria.** Antes eran más de mil enlaces seguidos; ahora ves una fila por convocatoria con lo que llevas hecho y acertado, y arriba un botón «Seguir con la siguiente sin hacer». Cada fila lleva el número de la pregunta, ✓ o ✗ y las primeras palabras del enunciado. Desde una pregunta, la flecha de volver te lleva a su convocatoria, ya abierta.

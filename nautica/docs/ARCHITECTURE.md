@@ -482,6 +482,38 @@ en `src/bancos/ejes/<eje>.js`. Datos de la carta: `node tools/build-chart.mjs` r
 - `teacher/speech.js`: pasa el texto técnico a lenguaje hablado («Rv = 036°» → «rumbo verdadero igual a cero 36 grados»).
 - `ui/voice.js`: Web Speech API (voz española del sistema), lectura por frases y salvaguarda de tiempo para no bloquear.
 
+## El tope de densidad (H-74)
+
+La auditoría de densidad (palabras, controles, alto en pantallas de 664 px y dónde acaba la acción principal, solo lo visible
+dentro de `main`) fijó un presupuesto por tipo de pantalla; los hubs y las pantallas de referencia se ordenaron para cumplirlo
+sin quitar funciones: se pliega, se ordena y se retrasa lo que aún no sirve. Dos niveles de vigilancia:
+
+- **En `npm test`** (`tests/densidad.test.js`, puro, sin navegador): los textos fijos de la interfaz de Estrategia, Pódcast, Hoy,
+  bienvenida, Ajustes y Tema salen de `src/ui/textos-hubs.js` (nada de frases explicativas sueltas en esas vistas) y cada uno
+  tiene su máximo de palabras en `LIMITES`; los resúmenes con datos (límites, tiempo, módulos, ajustes) también; la Estrategia
+  solo deja abierto lo previsto (`bloquesAbiertos` de `src/course/estrategia.js`: ninguno, salvo «El día antes y el del examen»
+  a 14 días o menos de un examen con fecha no orientativa) y la vista no escribe `abierto` a mano; Hoy no pinta Rango, Semana
+  ni «¿Estás listo?» sin datos (`hayDatos` de `src/course/entrada.js`: 1 clase terminada o 20 respuestas).
+- **Fuera de `npm test`** (`tools/densidad.mjs`, con Playwright): iPhone 13, `workers.dev` cortado, perfiles bienvenida, nuevo y
+  avanzado (PER y PY) sembrados con `createProgressStore`; mide cada pantalla frente a `PRESUPUESTO` y sale con 1 si alguna se
+  pasa. Las pantallas de otras partes del plan (`pendiente`) se miden y se enseñan pero no hacen fallar. Uso:
+  `node tools/densidad.mjs` (sirve `nautica/` solo), `--url http://127.0.0.1:8801` (un servidor que ya tienes),
+  `--capturas <carpeta>` (una captura por pantalla, perfil y tema claro y oscuro), `--json <fichero>`, `--solo hoy,ajustes`.
+  Las invitaciones transitorias de Hoy (copia, instalar, aviso diario) se siembran como descartadas.
+
+| Tipo | Pantallas medidas | Palabras | Controles | Alto | Acción sin scroll |
+|---|---|---|---|---|---|
+| Bienvenida | `#/` | 40 | 3 | 1 | sí |
+| Portada | Hoy: nuevo / avanzado | 90 / 160 | 8 / 14 | 2,5 | sí |
+| Referencia | Estrategia, Pódcast, Ajustes (todo plegado) | 250 | 16 | 3 | sí, si la hay |
+| Referencia con datos | Estrategia del alumno con simulacros (3 consejos personales) | 280 | 16 | 3,5 | sí |
+| Tema | `#/<tit>/temario/<n>` (una tarjeta por clase) | 230 | 24 | 4 | sí |
+| Menú | Más (pendiente) | 180 | 16 | 4 | — |
+
+Piezas: `ui/plegable.js` (`plegable`: `<details>` con título y resumen; `abrirAlImprimir`: abre todos los `<details>` en
+`beforeprint` y los restaura en `afterprint`), `ui/foco.js` (`selectorFoco`: «¿De qué te examinas?» suelto, en la bienvenida,
+Ajustes y Temario) y, en Ajustes, `?campo=…` abre el grupo que contiene el campo antes de llevar a él.
+
 ## Herramientas de desarrollo
 
 Solo Node.js ≥ 20: `npm start` (servidor estático `tools/serve.mjs`), `npm test` (`node --test`),

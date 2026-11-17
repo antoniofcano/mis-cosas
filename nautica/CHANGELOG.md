@@ -15,7 +15,14 @@ Qué cambia en la app para quien la usa, por fecha de publicación. Es la base d
 
 ## Sin publicar
 
-Nada pendiente.
+**Mejoras**
+
+- **Menos densidad en las pantallas más cargadas.** Se pliega y se ordena; no se quita ninguna función.
+  - **Estrategia:** a la vista, tus cifras, «Tu estrategia» y el botón «Hacer un simulacro»; los límites, el tiempo, cómo contestar, los módulos del PY, el día del examen y las fuentes van en bloques plegables con su resumen (el del día del examen sale abierto a 14 días o menos). Las fuentes se numeran [1], [2]… y se listan al final. Al imprimir sale todo desplegado.
+  - **Pódcast:** arriba, «Escucha ahora» con el siguiente episodio; los temas, plegados con su contador (y solo el tuyo abierto); el episodio de bienvenida ya no sale dos veces y «Ver el guion» queda solo dentro del episodio.
+  - **Hoy, para quien empieza:** el rango, la semana y «¿Estás listo?» aparecen cuando hay una clase terminada o 20 respuestas; antes no hay nada vacío. La acción va primero en el móvil y el test de nivel es un enlace bajo «Empezar». «¿De qué te examinas?» (PY) y «¿Primera vez?» pasan a la bienvenida; el módulo se cambia en el Temario y en Ajustes.
+  - **Ajustes:** cuatro grupos plegados (Estudio, Aspecto y avisos, Tus datos y copias, Acerca de), con «Estudio» abierto y el valor de cada grupo en su título. El aviso de guardar una copia sale solo en Ajustes; Más enlaza a él.
+  - **Tema:** cada clase es una tarjeta de dos líneas (nombre; minutos y estado), con «Hoy toca» destacada; las ideas y las preguntas de examen salen cuando la clase está vista; «Escúchalo» en una línea y la introducción con «Leer más».
 
 ## 17 de noviembre de 2026 · versión `77b5fd5d1dc7`
 

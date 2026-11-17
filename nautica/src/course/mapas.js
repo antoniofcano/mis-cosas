@@ -120,6 +120,8 @@ export function trampaDePregunta(mapas, tit, q, elegida) {
 
 /** Tema (ut) de una clase por su id: «per-5-3» → 5. */
 export const utDeClase = (id) => Number(String(id).split('-')[1]);
+/** Tema de un nodo: el que declara (una clase que cambió de tema y conserva su id, p. ej. py-3-6, del tema de carta) o el de su clase. */
+export const utDeNodo = (nodo) => nodo.ut ?? utDeClase(nodo.clase);
 
 /**
  * Preguntas de mapa para rematar un repaso: relaciones que tocan los temas repasados, de todos los mapas
@@ -128,7 +130,7 @@ export const utDeClase = (id) => Number(String(id).split('-')[1]);
  */
 export function preguntasRepaso(mapas, tit, uts, rng, n = 3) {
   const temas = new Set(uts);
-  const toca = (nodo) => (nodo.tit ?? tit) === tit && temas.has(utDeClase(nodo.clase));
+  const toca = (nodo) => (nodo.tit ?? tit) === tit && temas.has(utDeNodo(nodo));
   const out = [];
   for (const mapa of mapas.filter((m) => m.tits.includes(tit))) {
     const nodos = porId(mapa);
@@ -142,6 +144,6 @@ export function preguntasRepaso(mapas, tit, uts, rng, n = 3) {
 export function mapasEliminatorios(mapas, tit, estructura) {
   const elim = new Map(estructura.bloques.filter((b) => b.maxErrores != null).map((b) => [b.ut, b]));
   return mapas.filter((m) => m.tits.includes(tit))
-    .map((mapa) => ({ mapa, temas: [...new Set(mapa.nodos.filter((n) => (n.tit ?? tit) === tit).map((n) => utDeClase(n.clase)).filter((ut) => elim.has(ut)))].map((ut) => elim.get(ut)) }))
+    .map((mapa) => ({ mapa, temas: [...new Set(mapa.nodos.filter((n) => (n.tit ?? tit) === tit).map(utDeNodo).filter((ut) => elim.has(ut)))].map((ut) => elim.get(ut)) }))
     .filter((x) => x.temas.length);
 }

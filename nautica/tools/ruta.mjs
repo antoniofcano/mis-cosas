@@ -23,6 +23,8 @@ const curso = JSON.parse(readFileSync(join(RAIZ, `data/curso/${tit}.json`), 'utf
 const fichero = join(RAIZ, `data/curso/ruta-${tit}.json`);
 const titulo = new Map(curso.modulos.flatMap((m) => m.lecciones.map((l) => [l.id, l.titulo])));
 const tema = new Map(T.estructura.bloques.map((b) => [b.ut, b.titulo]));
+// Tema de cada clase: el suyo o el de su módulo (no el de su id: py-3-6 es del tema de carta).
+const utDe = new Map(curso.modulos.flatMap((m) => m.lecciones.map((l) => [l.id, l.ut ?? m.ut])));
 
 const grafo = problemasGrafo(curso);
 if (grafo.length) { console.error(`«requiere» con problemas:\n${grafo.join('\n')}`); process.exit(1); }
@@ -38,7 +40,7 @@ if (args.includes('--comprobar')) {
     ...ids.filter((id) => !titulo.has(id)).map((id) => `${id} no existe`),
     ...ids.filter((id, i) => ids.indexOf(id) !== i).map((id) => `${id} repetida`),
     ...violacionesRuta(ids, curso).map((v) => `${v.id} va antes de ${v.faltan.join(', ')}`),
-    ...ruta.tramos.filter((t) => t.lecciones.some((id) => titulo.has(id) && !id.startsWith(`${tit}-${t.ut}-`))).map((t) => `tramo de ${t.ut} con clases de otro tema`),
+    ...ruta.tramos.filter((t) => t.lecciones.some((id) => titulo.has(id) && utDe.get(id) !== t.ut)).map((t) => `tramo de ${t.ut} con clases de otro tema`),
   ];
   pinta(ruta.tramos);
   console.log(mal.length ? `\n✗ ${mal.join('\n✗ ')}` : `\n✓ ${ids.length} clases en ${ruta.tramos.length} tramos; respeta «requiere».`);

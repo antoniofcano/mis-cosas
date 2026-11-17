@@ -43,7 +43,7 @@ export async function calcularExcepciones() {
   for (const f of filas) {
     const pr = f.senales.find((s) => s.tipo === 'practica');
     const co = f.senales.find((s) => s.tipo === 'concepto' && s.base === 'vecinas');
-    if (!pr || !co || co.propuesto !== pr.propuesto || pr.clases.length !== 1) continue;
+    if (!pr || !co || co.propuesto !== pr.propuesto || pr.clases.length !== 1 || f.revision) continue; // las revisadas ya tienen su decisión
     ((out[f.eje] ??= {})[f.tit] ??= {})[f.id] = { clase: pr.clases[0], tipo: 'tema-dudoso', motivo: `Tema dudoso (${f.ut} · ${f.tema}): ${co.texto}. Se queda en su clase hasta decidir su tema.` };
   }
   // Clases que se quedarían casi sin práctica (menos de MIN_CLASE preguntas de su tema): el tribunal pregunta lo que
